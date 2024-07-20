@@ -17,11 +17,8 @@ namespace DTO
             this.MAPM = row["MAPM"].ToString();
             this.TENPM = row["TENPM"].ToString();
             this.NGAYCD = row["NGAYCD"].ToString();
-
+            this.NGAYHT = row["NGAYHT"].ToString();
         }
-
-
-
 
         private string mAMT;
         private string pB;
@@ -29,6 +26,7 @@ namespace DTO
         private string mAPM;
         private string tENPM;
         private string nGAYCD;
+        private string nGAYHT;
 
         public string PB { get => pB; set => pB = value; }
         public string NHAMAY { get => nHAMAY; set => nHAMAY = value; }
@@ -36,5 +34,6 @@ namespace DTO
         public string MAPM { get => mAPM; set => mAPM = value; }
         public string TENPM { get => tENPM; set => tENPM = value; }
         public string NGAYCD { get => nGAYCD; set => nGAYCD = value; }
+        public string NGAYHT { get => nGAYHT; set => nGAYHT = value; }
     }
 }

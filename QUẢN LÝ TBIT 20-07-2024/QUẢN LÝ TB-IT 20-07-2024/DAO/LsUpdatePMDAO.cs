@@ -111,12 +111,13 @@ namespace DAO
             }
         }
 
+       // insert LSUPDATEPM(MAPM, TENPM, NHAMAY, PB, TGYC, TGHT)
 
-        public int Insert(string MaPM, string TenPM, string NgayCN)
+        public int Insert(string MaPM, string TenPM,string NhaMay,string PB,string TgYC,string TgHT)
         {
-            string query = "insert LSUPDATEPM(MAPM,TENPM,NGAYCN)" +
-                                   " values ( @MaPM , @TenPM , @ngay ) ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaPM,TenPM,NgayCN});
+            string query = "insert LSUPDATEPM(MAPM, TENPM, NHAMAY, PB, TGYC, TGHT)" +
+                                  " values ( @MaPM , @TenPM , @nhamay , @pb , @TgYC , @TgHT ) ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM,  TenPM,  NhaMay,  PB, TgYC, TgHT });
             return data;
         }
 

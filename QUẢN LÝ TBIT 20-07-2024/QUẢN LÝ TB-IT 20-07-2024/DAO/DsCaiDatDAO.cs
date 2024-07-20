@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DTO;
 
 namespace DAO
 {
@@ -55,12 +56,37 @@ namespace DAO
 
         }
 
-        // DSCAIDAT(MAMT,PB,NHAMAY,MAPM,TENPM,NGAYCD)
-
-        public int Insert(string MaMT,string PhongBan, string NhaMay, string MaPM, string TenPM, string ngaycaidat)
+        public List<QuanLyMayTinhDTO> GetLsMTcaiPM(string MaPM)
         {
-            string query = "insert DSCAIDAT(MAMT,PB,NHAMAY,MAPM,TENPM,NGAYCD) values ( @maMT , @pb , @nhamay , @maPM , @TenPM , @ngaycai )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaMT,PhongBan,NhaMay, MaPM, TenPM, ngaycaidat });
+            string query = " select * from DSCAIDAT where MAPM= @MAPM ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] {  MaPM });
+            List<string> LsMaMT = new List<string>();
+            foreach (DataRow item in data.Rows)
+            {
+                DsCaiDatDTO a = new DsCaiDatDTO(item);
+                if(!LsMaMT.Contains(a.MAMT))
+                {
+                    LsMaMT.Add(a.MAMT);
+                }
+            }
+
+            List<QuanLyMayTinhDTO> ls = new List<QuanLyMayTinhDTO>();
+            foreach (string item1 in LsMaMT)
+            {
+                QuanLyMayTinhDTO b = QuanLyMayTinhDAO.Instance.GetMaMT(item1);
+                ls.Add(b);
+            }
+
+            return ls;
+        }
+
+
+        // DSCAIDAT(MAMT,PB,NHAMAY,MAPM,TENPM,NGAYCD,NGAYHT)
+
+        public int Insert(string MaMT,string PhongBan, string NhaMay, string MaPM, string TenPM, string ngaycaidat,string ngayhoantat )
+        {
+            string query = "insert DSCAIDAT(MAMT,PB,NHAMAY,MAPM,TENPM,NGAYCD,NGAYHT) values ( @maMT , @pb , @nhamay , @maPM , @TenPM , @ngaycai , @ngayht )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaMT,PhongBan,NhaMay, MaPM, TenPM, ngaycaidat,ngayhoantat });
             return data;
         }
 

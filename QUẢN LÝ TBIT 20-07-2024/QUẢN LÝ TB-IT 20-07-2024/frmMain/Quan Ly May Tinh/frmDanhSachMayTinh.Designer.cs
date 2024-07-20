@@ -373,9 +373,9 @@
             // btnTaiForm
             // 
             this.btnTaiForm.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTaiForm.ImageOptions.Image")));
-            this.btnTaiForm.Location = new System.Drawing.Point(1091, 113);
+            this.btnTaiForm.Location = new System.Drawing.Point(1086, 113);
             this.btnTaiForm.Name = "btnTaiForm";
-            this.btnTaiForm.Size = new System.Drawing.Size(75, 22);
+            this.btnTaiForm.Size = new System.Drawing.Size(80, 22);
             this.btnTaiForm.StyleController = this.layoutControl1;
             this.btnTaiForm.TabIndex = 2;
             this.btnTaiForm.Text = "Tải Form";
@@ -833,7 +833,7 @@
             this.emptySpaceItem2.AllowHotTrack = false;
             this.emptySpaceItem2.Location = new System.Drawing.Point(993, 101);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(86, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(81, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem14
@@ -902,9 +902,9 @@
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.btnTaiForm;
-            this.layoutControlItem22.Location = new System.Drawing.Point(1079, 101);
+            this.layoutControlItem22.Location = new System.Drawing.Point(1074, 101);
             this.layoutControlItem22.Name = "layoutControlItem22";
-            this.layoutControlItem22.Size = new System.Drawing.Size(79, 26);
+            this.layoutControlItem22.Size = new System.Drawing.Size(84, 26);
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
             // 
