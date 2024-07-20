@@ -143,6 +143,12 @@
       <DependentUpon>frmTonLKThuHoi.cs</DependentUpon>
     </Compile>
     <Compile Include="Quan Ly May Tinh\CommonMaBaoTri.cs" />
+    <Compile Include="Quan Ly May Tinh\frmChiTietUpdatePM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quan Ly May Tinh\frmChiTietUpdatePM.Designer.cs">
+      <DependentUpon>frmChiTietUpdatePM.cs</DependentUpon>
+    </Compile>
     <Compile Include="Quan Ly May Tinh\frmKHBaoDuongMT.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -446,6 +452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Quan Ly Kho\frmTonLKThuHoi.resx">
       <DependentUpon>frmTonLKThuHoi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quan Ly May Tinh\frmChiTietUpdatePM.resx">
+      <DependentUpon>frmChiTietUpdatePM.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Quan Ly May Tinh\frmKHBaoDuongMT.resx">
       <DependentUpon>frmKHBaoDuongMT.cs</DependentUpon>

@@ -3885,6 +3885,32 @@
         AABJRU5ErkJggg==
 </value>
   </data>
+  <data name="btnChiTietUpdatePM.ImageOptions.SvgImage" type="DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v19.1" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFpEZXZFeHByZXNzLkRhdGEudjE5LjEsIFZlcnNpb249MTkuMS4x
+        Ni4wLCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI4OGQxNzU0ZDcwMGU0OWEFAQAAAB1E
+        ZXZFeHByZXNzLlV0aWxzLlN2Zy5TdmdJbWFnZQEAAAAERGF0YQcCAgAAAAkDAAAADwMAAABaBAAAAu+7
+        vzw/eG1sIHZlcnNpb249JzEuMCcgZW5jb2Rpbmc9J1VURi04Jz8+DQo8c3ZnIHg9IjBweCIgeT0iMHB4
+        IiB2aWV3Qm94PSIwIDAgMzIgMzIiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3Jn
+        LzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNw
+        YWNlPSJwcmVzZXJ2ZSIgaWQ9IkxheWVyXzEiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAw
+        IDMyIDMyIj4NCiAgPHN0eWxlIHR5cGU9InRleHQvY3NzIj4KCS5ZZWxsb3d7ZmlsbDojRkZCMTE1O30K
+        CS5SZWR7ZmlsbDojRDExQzFDO30KCS5CbHVle2ZpbGw6IzExNzdENzt9CgkuR3JlZW57ZmlsbDojMDM5
+        QzIzO30KCS5CbGFja3tmaWxsOiM3MjcyNzI7fQoJLldoaXRle2ZpbGw6I0ZGRkZGRjt9Cgkuc3Qwe29w
+        YWNpdHk6MC41O30KPC9zdHlsZT4NCiAgPGcgaWQ9IlVwZGF0ZURhdGFFeHRyYWN0Ij4NCiAgICA8cGF0
+        aCBkPSJNNCwxMFY2YzAtMi4yLDQuNS00LDEwLTRzMTAsMS44LDEwLDR2NGMwLDIuMi00LjUsNC0xMCw0
+        UzQsMTIuMiw0LDEweiBNMTQsMjBjMC41LDAsMS4xLDAsMS42LTAuMSAgIGMxLjYtMi40LDQuMy0zLjks
+        Ny40LTMuOWMwLjMsMCwwLjcsMCwxLDAuMWMwLDAsMCwwLDAtMC4xdi00YzAsMi4yLTQuNSw0LTEwLDRT
+        NCwxNC4yLDQsMTJ2NEM0LDE4LjIsOC41LDIwLDE0LDIweiBNMTQsMjRMMTQsMjQgICBjMC4xLTAuNyww
+        LjMtMS40LDAuNS0yYy0wLjIsMC0wLjQsMC0wLjUsMGMtNS41LDAtMTAtMS44LTEwLTR2NGMwLDIuMiw0
+        LjUsNCwxMCw0VjI0eiIgY2xhc3M9IlllbGxvdyIgLz4NCiAgICA8cGF0aCBkPSJNMzAsMTh2NmgtMC4x
+        SDI0bDIuNS0yLjVDMjUuNiwyMC42LDI0LjQsMjAsMjMsMjBjLTIuNCwwLTQuNCwxLjctNC45LDRoLTJj
+        MC41LTMuNCwzLjQtNiw2LjktNiAgIGMxLjksMCwzLjcsMC44LDQuOSwyLjFMMzAsMTh6IE0yMywzMGMt
+        MS40LDAtMi42LTAuNi0zLjUtMS41TDIyLDI2aC01LjlIMTZ2NmwyLjEtMi4xYzEuMywxLjMsMywyLjEs
+        NC45LDIuMWMzLjUsMCw2LjQtMi42LDYuOS02ICAgaC0yQzI3LjQsMjguMywyNS40LDMwLDIzLDMweiIg
+        Y2xhc3M9IkdyZWVuIiAvPg0KICA8L2c+DQo8L3N2Zz4L
+</value>
+  </data>
   <metadata name="documentManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>

@@ -694,6 +694,11 @@ namespace frmMain
         {
             OpenForm(typeof(frmThongKeThuHoi));
         }
+
+        private void btnChiTietUpdatePM_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm(typeof(frmChiTietUpdatePM));
+        }
     }
 }
  

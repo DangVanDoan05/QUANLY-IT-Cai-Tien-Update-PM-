@@ -106,6 +106,7 @@
             this.btnLichSuBT = new DevExpress.XtraBars.BarButtonItem();
             this.btnTonLKTH = new DevExpress.XtraBars.BarButtonItem();
             this.btnTKTH = new DevExpress.XtraBars.BarButtonItem();
+            this.btnChiTietUpdatePM = new DevExpress.XtraBars.BarButtonItem();
             this.rpYCKT = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgTaoYCKT = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpQlyKho = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -215,9 +216,10 @@
             this.btnLapKH,
             this.btnLichSuBT,
             this.btnTonLKTH,
-            this.btnTKTH});
+            this.btnTKTH,
+            this.btnChiTietUpdatePM});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 76;
+            this.ribbon.MaxItemId = 77;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpYCKT,
@@ -406,7 +408,7 @@
             // 
             // btnDanhSachCaiDat
             // 
-            this.btnDanhSachCaiDat.Caption = "Quản lý cài đặt PM";
+            this.btnDanhSachCaiDat.Caption = "Qly cài đặt, Update PM";
             this.btnDanhSachCaiDat.Id = 21;
             this.btnDanhSachCaiDat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDanhSachCaiDat.ImageOptions.Image")));
             this.btnDanhSachCaiDat.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDanhSachCaiDat.ImageOptions.LargeImage")));
@@ -851,6 +853,14 @@
             this.btnTKTH.Name = "btnTKTH";
             this.btnTKTH.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnTKTH_ItemClick);
             // 
+            // btnChiTietUpdatePM
+            // 
+            this.btnChiTietUpdatePM.Caption = "Chi tiết Update PM";
+            this.btnChiTietUpdatePM.Id = 76;
+            this.btnChiTietUpdatePM.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnChiTietUpdatePM.ImageOptions.SvgImage")));
+            this.btnChiTietUpdatePM.Name = "btnChiTietUpdatePM";
+            this.btnChiTietUpdatePM.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChiTietUpdatePM_ItemClick);
+            // 
             // rpYCKT
             // 
             this.rpYCKT.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -915,6 +925,7 @@
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnDanhSachMT);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnChiTietCH, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnChiTietCaiDat, true);
+            this.rpgQlyMayTinh.ItemLinks.Add(this.btnChiTietUpdatePM, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnDanhSachCaiDat, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnLichSuBT, true);
             this.rpgQlyMayTinh.Name = "rpgQlyMayTinh";
@@ -1153,5 +1164,6 @@
         private DevExpress.XtraBars.BarButtonItem btnTonLKTH;
         private DevExpress.XtraBars.BarButtonItem btnTKTH;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgQlyVTTH;
+        private DevExpress.XtraBars.BarButtonItem btnChiTietUpdatePM;
     }
 }
