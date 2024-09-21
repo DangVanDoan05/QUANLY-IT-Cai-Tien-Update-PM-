@@ -699,6 +699,16 @@ namespace frmMain
         {
             OpenForm(typeof(frmChiTietUpdatePM));
         }
+
+        private void btnQlyMayIn_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm(typeof(frmQlyMayIn));
+        }
+
+        private void btnQlyCamera_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm(typeof(frmQuanLyWifi));
+        }
     }
 }
  

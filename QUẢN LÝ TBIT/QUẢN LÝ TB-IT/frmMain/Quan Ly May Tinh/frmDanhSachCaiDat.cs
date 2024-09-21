@@ -207,6 +207,42 @@ namespace frmMain
             loadControl();
         }
 
-       
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+
+            // Lấy ra toàn bộ danh sách sau đó update tên người sử dụng
+
+            List<QuanLyMayTinhDTO> LsDSMT = QuanLyMayTinhDAO.Instance.GetListMaMT();
+            List<string> LsMT = new List<string>();
+
+            foreach (QuanLyMayTinhDTO item in LsDSMT)
+            {
+                string MaMT = item.MAMT;
+                LsMT.Add(MaMT);
+            }
+
+            List<DsCaiDatDTO> LsDSCaiDat = DsCaiDatDAO.Instance.GetLsDsCD();
+
+            foreach (DsCaiDatDTO item in LsDSCaiDat)
+            {
+                string MaMT = item.MAMT;
+                if (!LsMT.Contains(MaMT)) // Nếu như ko chứa trong List danh sách quản lý máy tính
+                {
+                    // Xóa khỏi danh sách cài đặt
+                    DsCaiDatDAO.Instance.Delete1(MaMT);
+                }
+                else
+                {
+                    QuanLyMayTinhDTO mayTinhDTO = QuanLyMayTinhDAO.Instance.GetMaMT(MaMT);
+                    string NguoiSd = mayTinhDTO.NGUOISD;
+                    DsCaiDatDAO.Instance.UpdateNGuoiSd(MaMT, NguoiSd);
+                }
+            }
+
+
+            // Lỗi, một số mã máy đã xóa rồi nên sẽ ko có thông tin.         
+            loadControl();
+
+        }
     }
 }

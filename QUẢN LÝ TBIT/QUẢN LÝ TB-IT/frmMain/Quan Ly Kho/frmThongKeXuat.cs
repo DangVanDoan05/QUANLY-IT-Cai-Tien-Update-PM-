@@ -147,14 +147,20 @@ namespace frmMain
                             string YCKT = xuatDTO.YCKTSD;
                             if (IDttKK <= 0 && YCKT == "") // Dữ liệu chưa kiểm kê + là dữ liệu xuất kho thì mới được xóa.
                             {
-                                // UPDATE LẠI SỐ LƯỢNG TỒN, Cộng GIẢ TỒN THIẾT BỊ 
-                                string MaLK = xuatDTO.MALK;
-                                TonLinhKienDTO TonLKDTO = TonLinhKienDAO.Instance.GetMaLKTon(MaLK);
-                                int slxuat = xuatDTO.SLXUAT;
-                                int slton = TonLKDTO.SLTON;
-                                int sltonmoi = slton + slxuat;
-                                TonLinhKienDAO.Instance.UpdateSLTON(MaLK, sltonmoi);
-
+                                try
+                                {
+                                    // UPDATE LẠI SỐ LƯỢNG TỒN, Cộng GIẢ TỒN THIẾT BỊ 
+                                    string MaLK = xuatDTO.MALK;
+                                    TonLinhKienDTO TonLKDTO = TonLinhKienDAO.Instance.GetMaLKTon(MaLK);
+                                    int slxuat = xuatDTO.SLXUAT;
+                                    int slton = TonLKDTO.SLTON;
+                                    int sltonmoi = slton + slxuat;
+                                    TonLinhKienDAO.Instance.UpdateSLTON(MaLK, sltonmoi);
+                                }
+                                catch 
+                                {                                 
+                                }
+                               
                                 // XÓA TRONG BẢNG THỐNG KÊ xuất.
                                 ThongKeXuatDAO.Instance.DeleteMaTKxuat(item);
                                 DemXoa++;

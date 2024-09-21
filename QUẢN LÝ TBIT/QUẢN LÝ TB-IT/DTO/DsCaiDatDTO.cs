@@ -12,6 +12,7 @@ namespace DTO
         public DsCaiDatDTO(DataRow row)
         {
             this.MAMT = row["MAMT"].ToString();
+            this.NGUOISD = row["NGUOISD"].ToString();
             this.PB = row["PB"].ToString();
             this.NHAMAY = row["NHAMAY"].ToString();
             this.MAPM = row["MAPM"].ToString();
@@ -21,6 +22,7 @@ namespace DTO
         }
 
         private string mAMT;
+        private string nGUOISD;
         private string pB;
         private string nHAMAY;
         private string mAPM;
@@ -35,5 +37,6 @@ namespace DTO
         public string TENPM { get => tENPM; set => tENPM = value; }
         public string NGAYCD { get => nGAYCD; set => nGAYCD = value; }
         public string NGAYHT { get => nGAYHT; set => nGAYHT = value; }
+        public string NGUOISD { get => nGUOISD; set => nGUOISD = value; }
     }
 }

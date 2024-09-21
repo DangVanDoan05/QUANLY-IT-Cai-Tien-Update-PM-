@@ -90,10 +90,6 @@
     <Compile Include="UserDAO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChuoiKetNoi\ChuoiKetNoi.csproj">
-      <Project>{51b87b28-80cb-4083-8937-1d4fa7710854}</Project>
-      <Name>ChuoiKetNoi</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CONNECTION\CONNECTION.csproj">
       <Project>{902baed6-babb-4fd0-a2ef-a6bcbb68e2af}</Project>
       <Name>CONNECTION</Name>

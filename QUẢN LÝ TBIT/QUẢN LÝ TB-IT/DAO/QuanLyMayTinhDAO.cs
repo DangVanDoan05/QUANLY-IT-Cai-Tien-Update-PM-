@@ -189,11 +189,12 @@ namespace DAO
 
         // HAM SUA
 
-        public int Update(string MaMT, string IP, string MAC,string Domain, string LOAIMT, string NCC, string NhaMay, string phongban, string nguoisd, string matscd, string ngaymua, string hanbh, bool baohanh, string ghichu)
+        public int Update(int ID,string MaMT, string IP, string MAC,string Domain, string LOAIMT, string NCC, string NhaMay, string phongban, string nguoisd,
+            string matscd, string ngaymua, string hanbh, bool baohanh, string ghichu)
         {
-            string query = "UPDATE QLYMAYTINH set IP= @ip ,MAC= @mac ,DOMAIN= @domain ,LOAIMT= @LoaiMT ,NCC= @NCC ,NHAMAY= @nhamay ,PB= @pb ,NGUOISD= @NgSD ,MATSCD= @MaTSCD " +
-                ",NGAYMUA= @NgayMua ,HANBH= @hanBH ,BAOHANH= @bh ,GHICHU= @GhiChu where MAMT= @ma ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {IP, MAC,Domain,LOAIMT, NCC, NhaMay, phongban, nguoisd, matscd, ngaymua, hanbh, baohanh, ghichu,MaMT});
+            string query = "UPDATE QLYMAYTINH set MAMT= @MAMT ,IP= @ip ,MAC= @mac ,DOMAIN= @domain ,LOAIMT= @LoaiMT ,NCC= @NCC ,NHAMAY= @nhamay ,PB= @pb ,NGUOISD= @NgSD ,MATSCD= @MaTSCD " +
+                ",NGAYMUA= @NgayMua ,HANBH= @hanBH ,BAOHANH= @bh ,GHICHU= @GhiChu where ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT,IP, MAC,Domain,LOAIMT, NCC, NhaMay, phongban, nguoisd, matscd, ngaymua, hanbh, baohanh, ghichu,ID});
             return data;
         }
 

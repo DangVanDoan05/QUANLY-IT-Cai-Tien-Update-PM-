@@ -25,6 +25,19 @@ namespace DAO
             return data;
         }
 
+        public List<DsCaiDatDTO> GetLsDsCD()
+        {
+            string query = " select * from DSCAIDAT ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            List<DsCaiDatDTO> Ls = new List<DsCaiDatDTO>();
+            foreach (DataRow item in data.Rows)
+            {
+                DsCaiDatDTO a = new DsCaiDatDTO(item);
+                Ls.Add(a);
+            }
+            return Ls;
+        }
+
         public bool CheckCDPM(string MaMT)
         {
             string query = " select * from DSCAIDAT where MAMT= @ma ";
@@ -121,12 +134,12 @@ namespace DAO
         }
 
 
-        // DSCAIDAT(MAMT,PB,NHAMAY,MAPM,TENPM,NGAYCD,NGAYHT)
+        // DSCAIDAT(MAMT,NGUOISD,PB,NHAMAY,MAPM,TENPM,NGAYCD,NGAYHT)
 
-        public int Insert(string MaMT,string PhongBan, string NhaMay, string MaPM, string TenPM, string ngaycaidat,string ngayhoantat )
+        public int Insert(string MaMT,string NguoiSD,string PhongBan, string NhaMay, string MaPM, string TenPM, string ngaycaidat,string ngayhoantat )
         {
-            string query = "insert DSCAIDAT(MAMT,PB,NHAMAY,MAPM,TENPM,NGAYCD,NGAYHT) values ( @maMT , @pb , @nhamay , @maPM , @TenPM , @ngaycai , @ngayht )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaMT,PhongBan,NhaMay, MaPM, TenPM, ngaycaidat,ngayhoantat });
+            string query = "insert DSCAIDAT(MAMT,NGUOISD,PB,NHAMAY,MAPM,TENPM,NGAYCD,NGAYHT) values ( @maMT , @nguoiSD , @pb , @nhamay , @maPM , @TenPM , @ngaycai , @ngayht )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaMT,NguoiSD,PhongBan,NhaMay, MaPM, TenPM, ngaycaidat,ngayhoantat });
             return data;
         }
 
@@ -134,6 +147,13 @@ namespace DAO
         {
             string query = "update DSCAIDAT set NGAYHT= @ngayht WHERE MAMT= @ma and MAPM= @mapm and NGAYCD= @ngaycd ";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { ngayhoantat, MaMT, MaPM, ngaycaidat });
+            return data;
+        }
+
+        public int UpdateNGuoiSd(string MaMT, string NguoiSD)
+        {
+            string query = "update DSCAIDAT set NGUOISD= @nguoisd WHERE MAMT= @ma ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { NguoiSD, MaMT });
             return data;
         }
 

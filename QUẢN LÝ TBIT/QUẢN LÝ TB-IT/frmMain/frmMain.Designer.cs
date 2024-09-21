@@ -329,13 +329,16 @@
             this.btnQlyMayIn.Id = 11;
             this.btnQlyMayIn.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnQlyMayIn.ImageOptions.SvgImage")));
             this.btnQlyMayIn.Name = "btnQlyMayIn";
+            this.btnQlyMayIn.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnQlyMayIn_ItemClick);
             // 
             // btnQlyCamera
             // 
-            this.btnQlyCamera.Caption = "Quản Lý Camera";
+            this.btnQlyCamera.Caption = "Quản Lý Wifi";
             this.btnQlyCamera.Id = 12;
-            this.btnQlyCamera.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnQlyCamera.ImageOptions.SvgImage")));
+            this.btnQlyCamera.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnQlyCamera.ImageOptions.Image")));
+            this.btnQlyCamera.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnQlyCamera.ImageOptions.LargeImage")));
             this.btnQlyCamera.Name = "btnQlyCamera";
+            this.btnQlyCamera.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnQlyCamera_ItemClick);
             // 
             // btnMaLK
             // 

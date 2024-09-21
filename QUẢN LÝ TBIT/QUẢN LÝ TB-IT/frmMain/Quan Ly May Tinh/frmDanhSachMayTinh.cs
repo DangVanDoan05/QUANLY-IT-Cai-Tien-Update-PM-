@@ -12,7 +12,6 @@ using DAO;
 using System.IO;
 using OfficeOpenXml;
 using DTO;
-
 using frmMain.Quan_Ly_May_Tinh;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.ClipboardSource.SpreadsheetML;
@@ -27,7 +26,7 @@ namespace frmMain
             LoadControl();
         }
 
-
+        int IDselected;
         int luu = 0;
 
 
@@ -154,7 +153,6 @@ namespace frmMain
 
         void Save()
         {
-
             switch (luu)
             {
                 case 1: // luu khi them du lieu
@@ -224,16 +222,14 @@ namespace frmMain
                         }
                         else
                         {
-
                             TimeSpan timebh = dtpHanBaoHanh.Value - DateTime.Now;
                             int songay = timebh.Days;
                             if (songay > 0)
                             {
                                 baohanh = true;
                             }
-                            QuanLyMayTinhDAO.Instance.Update(maMT, dcIP, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu);
+                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, dcIP, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu);
                             MessageBox.Show($"Đã sửa thông tin mã máy tính {maMT}.", "Thành công:");
-
                         }
                         luu = 0;
                     }
@@ -566,13 +562,34 @@ namespace frmMain
         {
             LockControl(false);
             luu = 1;
+
+           
+            
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            LockControl(false);
-            txtMaMT.Enabled = false;
-            luu = 2;
+            int Count = 0;
+
+            List<int> LsIDselected = new List<int>();
+
+            foreach (var item in gridView1.GetSelectedRows())
+            {
+                int ID = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                IDselected = ID;
+                LsIDselected.Add(ID);
+                Count++;
+            }
+            if (Count == 1)
+            {
+                LockControl(false);
+                luu = 2;
+            }
+            else
+            {
+                MessageBox.Show("Chưa chọn mã máy tính để xóa hoặc chọn quá 1 mã máy tính để sửa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
 
         private void btnXoa_Click(object sender, EventArgs e)

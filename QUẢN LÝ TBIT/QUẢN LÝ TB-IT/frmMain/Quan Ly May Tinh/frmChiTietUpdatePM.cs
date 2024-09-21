@@ -111,13 +111,15 @@ namespace frmMain.Quan_Ly_May_Tinh
                         {
 
                             QuanLyMayTinhDTO MaMTdto = QuanLyMayTinhDAO.Instance.GetMaMT(item);
+                            string NguoiSD = MaMTdto.NGUOISD;
 
                             // Lưu vào bảng chi tiết Update, lưu vào bảng quản lý Update.
+
                             bool CheckDangkoUpDate = DsCaiDatDAO.Instance.CheckChuaHTCD(item, PhanMemDTO.MAPM);
+
                             if (!CheckDangkoUpDate)
                             {
-
-                                DsCaiDatDAO.Instance.Insert(item, MaMTdto.PB, MaMTdto.NHAMAY, PhanMemDTO.MAPM, PhanMemDTO.TENPM, TgYeucau, "");
+                                DsCaiDatDAO.Instance.Insert(item,NguoiSD,MaMTdto.PB, MaMTdto.NHAMAY, PhanMemDTO.MAPM, PhanMemDTO.TENPM, TgYeucau, "");
                                 if (!LsNhaMay.Contains(MaMTdto.NHAMAY))
                                 {
                                     LsNhaMay.Add(MaMTdto.NHAMAY);
@@ -126,7 +128,6 @@ namespace frmMain.Quan_Ly_May_Tinh
                                 {
                                     LsPB.Add(MaMTdto.PB);
                                 }
-
                             }
                             // nếu máy tính đó đang không được Update.
 

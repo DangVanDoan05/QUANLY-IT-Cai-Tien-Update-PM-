@@ -6,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CONNECTION;
-using ChuoiKetNoi;
 namespace DAO
 {
   
@@ -75,7 +74,6 @@ namespace DAO
                             i++;
                         }
                     }
-
                 }
 
                 data = cmd.ExecuteNonQuery();

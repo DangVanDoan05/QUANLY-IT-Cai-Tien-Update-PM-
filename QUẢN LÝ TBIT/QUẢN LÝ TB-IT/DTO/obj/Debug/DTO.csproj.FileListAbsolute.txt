@@ -568,3 +568,9 @@ E:\QUẢN LÝ IT 22-07-2024\QUẢN LÝ TBIT 22-07-2024\QUẢN LÝ TB-IT 22-07-20
 E:\QUẢN LÝ IT 22-07-2024\QUẢN LÝ TBIT 22-07-2024\QUẢN LÝ TB-IT 22-07-2024\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 E:\QUẢN LÝ IT 22-07-2024\QUẢN LÝ TBIT 22-07-2024\QUẢN LÝ TB-IT 22-07-2024\DTO\obj\Debug\DTO.dll
 E:\QUẢN LÝ IT 22-07-2024\QUẢN LÝ TBIT 22-07-2024\QUẢN LÝ TB-IT 22-07-2024\DTO\obj\Debug\DTO.pdb
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\bin\Debug\DTO.dll
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\bin\Debug\DTO.pdb
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.dll
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.pdb

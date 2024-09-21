@@ -16,3 +16,9 @@ E:\QUẢN LÝ IT 20-07-2024\QuanLyThietBiIT\QUẢN LÝ YCKT 11-07(Đang Thao Tá
 E:\QUẢN LÝ IT 20-07-2024\QuanLyThietBiIT\QUẢN LÝ YCKT 11-07(Đang Thao Tác)\QuanLyIT(YCKT)_11_07(Đang Thao tác)\ChuoiKetNoi\obj\Debug\ChuoiKetNoi.csproj.CoreCompileInputs.cache
 E:\QUẢN LÝ IT 20-07-2024\QuanLyThietBiIT\QUẢN LÝ YCKT 11-07(Đang Thao Tác)\QuanLyIT(YCKT)_11_07(Đang Thao tác)\ChuoiKetNoi\obj\Debug\ChuoiKetNoi.dll
 E:\QUẢN LÝ IT 20-07-2024\QuanLyThietBiIT\QUẢN LÝ YCKT 11-07(Đang Thao Tác)\QuanLyIT(YCKT)_11_07(Đang Thao tác)\ChuoiKetNoi\obj\Debug\ChuoiKetNoi.pdb
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\ChuoiKetNoi\bin\Debug\ChuoiKetNoi.dll
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\ChuoiKetNoi\bin\Debug\ChuoiKetNoi.pdb
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\ChuoiKetNoi\obj\Debug\ChuoiKetNoi.csprojAssemblyReference.cache
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\ChuoiKetNoi\obj\Debug\ChuoiKetNoi.csproj.CoreCompileInputs.cache
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\ChuoiKetNoi\obj\Debug\ChuoiKetNoi.dll
+E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\ChuoiKetNoi\obj\Debug\ChuoiKetNoi.pdb

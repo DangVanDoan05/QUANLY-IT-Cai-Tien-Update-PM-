@@ -179,6 +179,18 @@
     <Compile Include="Quan Ly May Tinh\FrmPicture.Designer.cs">
       <DependentUpon>FrmPicture.cs</DependentUpon>
     </Compile>
+    <Compile Include="Quan Ly May Tinh\frmQlyMayIn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quan Ly May Tinh\frmQlyMayIn.Designer.cs">
+      <DependentUpon>frmQlyMayIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Quan Ly May Tinh\frmQuanLyWifi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quan Ly May Tinh\frmQuanLyWifi.Designer.cs">
+      <DependentUpon>frmQuanLyWifi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Quan Ly May Tinh\frmVatTuSD.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -471,6 +483,12 @@
     <EmbeddedResource Include="Quan Ly May Tinh\FrmPicture.resx">
       <DependentUpon>FrmPicture.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Quan Ly May Tinh\frmQlyMayIn.resx">
+      <DependentUpon>frmQlyMayIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quan Ly May Tinh\frmQuanLyWifi.resx">
+      <DependentUpon>frmQuanLyWifi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Quan Ly May Tinh\frmVatTuSD.resx">
       <DependentUpon>frmVatTuSD.cs</DependentUpon>
     </EmbeddedResource>
@@ -617,10 +635,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ChuoiKetNoi\ChuoiKetNoi.csproj">
-      <Project>{51b87b28-80cb-4083-8937-1d4fa7710854}</Project>
-      <Name>ChuoiKetNoi</Name>
-    </ProjectReference>
     <ProjectReference Include="..\CONNECTION\CONNECTION.csproj">
       <Project>{902baed6-babb-4fd0-a2ef-a6bcbb68e2af}</Project>
       <Name>CONNECTION</Name>

@@ -9359,7 +9359,6 @@ E:\QUẢN LÝ IT 29-07-2024\QUẢN LÝ TBIT 29-07-2024\QUẢN LÝ TB-IT 29-07-20
 E:\QUẢN LÝ IT 29-07-2024\QUẢN LÝ TBIT 29-07-2024\QUẢN LÝ TB-IT 29-07-2024\DAO\obj\Debug\DAO.pdb
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\DAO.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\DAO.pdb
-E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\ChuoiKetNoi.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\CONNECTION.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\DTO.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\PhanQuyenUngDung.dll
@@ -9370,7 +9369,6 @@ E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\DevExpress.Data.
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\DevExpress.Printing.v19.1.Core.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\DevExpress.Sparkline.v19.1.Core.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\DevExpress.Pdf.v19.1.Core.dll
-E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\ChuoiKetNoi.pdb
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\CONNECTION.pdb
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\DTO.pdb
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DAO\bin\Debug\PhanQuyenUngDung.pdb

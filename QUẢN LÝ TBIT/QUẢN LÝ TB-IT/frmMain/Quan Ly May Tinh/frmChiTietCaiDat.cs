@@ -80,6 +80,8 @@ namespace frmMain
         private void btnCaiDatPM_Click(object sender, EventArgs e)
         {
             #region  Kiểm tra xem Mã phần mềm đã có trên mã máy tính hay chưa. 
+
+
             string ngaycaidat = dtpNgayCaiDat.Value.ToString("dd/MM/yyyy");
             int DemMT = 0;
             List<string> ListMaMT = new List<string>();
@@ -119,12 +121,13 @@ namespace frmMain
                         foreach (string item in ListMaMT)
                         {
                             QuanLyMayTinhDTO MaMTdto = QuanLyMayTinhDAO.Instance.GetMaMT(item);
+                            string NguoiSD = MaMTdto.NGUOISD;
                             foreach (DanhSachPhanMemDTO item3 in ListMaPM)
                             {
                                 bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(item, item3.MAPM);
                                 if(!CheckCDPM)
                                 {
-                                    DsCaiDatDAO.Instance.Insert(item, MaMTdto.PB, MaMTdto.NHAMAY, item3.MAPM, item3.TENPM, ngaycaidat,ngaycaidat);
+                                    DsCaiDatDAO.Instance.Insert(item,NguoiSD, MaMTdto.PB, MaMTdto.NHAMAY, item3.MAPM, item3.TENPM, ngaycaidat,ngaycaidat);
                                     dem++;
                                 }
                                                                  

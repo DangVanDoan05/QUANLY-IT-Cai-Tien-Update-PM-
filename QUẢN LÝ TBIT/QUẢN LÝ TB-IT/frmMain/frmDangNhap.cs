@@ -11,7 +11,7 @@ using DevExpress.XtraEditors;
 using DAO;
 using DTO;
 using CONNECTION;
-using ChuoiKetNoi;
+
 
 namespace frmMain
 {
@@ -48,7 +48,7 @@ namespace frmMain
 
         private void btnDnDD1_Click(object sender, EventArgs e)
         {
-            DataProvider.Instance.strcon = @"Data Source=.\SQLEXPRESS;Initial Catalog=QlyIT_ALL;Integrated Security=True";
+            DataProvider.Instance.strcon = @"Data Source=192.168.4.48,1433;Initial Catalog=QlyIT_ALL;User ID=sa;Password=P@ssword@123456";
             string tknhap = txtTaiKhoan.Text.Trim();
             string tk = tknhap.ToLower();
             string mkNhap = txtMatKhau.Text.Trim();
