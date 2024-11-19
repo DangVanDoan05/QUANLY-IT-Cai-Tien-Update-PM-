@@ -32,10 +32,12 @@ namespace frmMain
 
         private void LoadControl()
         {
-            LoadData();
+            //Update lại biến bảo hành mỗi khi Load lại Form
+            UpdateBaoHanh();
             LoadCBX();
             LockControl(true);
             CleanText();
+            LoadData();
         }
 
 
@@ -111,7 +113,6 @@ namespace frmMain
 
         private void LoadData()
         {
-
             // Load trong bảng kế hoạch bảo dưỡng, bảo trì xem có phòng ban nào cần bảo dưỡng không thì bôi màu các máy tính hết hạn bảo hành.
 
             gridControl1.DataSource = QuanLyMayTinhDAO.Instance.GetTable();
@@ -119,6 +120,35 @@ namespace frmMain
             string maMT = txtMaMT.Text;
 
 
+        }
+
+        private void UpdateBaoHanh()
+        {
+
+            // Load trong bảng kế hoạch bảo dưỡng, bảo trì xem có phòng ban nào cần bảo dưỡng không thì bôi màu các máy tính hết hạn bảo hành.
+
+            List<QuanLyMayTinhDTO> LsMT = QuanLyMayTinhDAO.Instance.GetListMaMT();
+
+            foreach (QuanLyMayTinhDTO item in LsMT)
+            {
+                    string HanBH = item.HANBH;
+                    // Nếu hạn bảo hành bằng rỗng.
+                    if(HanBH=="")
+                    {
+                        QuanLyMayTinhDAO.Instance.UpdateBH(item.ID, false);
+                    }
+                    else
+                    {
+                        DateTime Hanbh = Convert.ToDateTime(HanBH);
+                        TimeSpan time = Hanbh- DateTime.Now  ;  // Hạn bảo hành - ngày hiện tại.
+                        int songayBH = time.Days;
+                        if (songayBH < 0) // không còn bảo hành thì Update lại là ko còn bảo hành.
+                        {
+                            QuanLyMayTinhDAO.Instance.UpdateBH(item.ID, false);
+                        }
+                    }
+                   
+            }                    
         }
 
         private void LoadCBX()

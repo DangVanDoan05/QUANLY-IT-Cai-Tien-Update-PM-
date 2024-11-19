@@ -84,6 +84,7 @@
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -236,7 +237,8 @@
             this.gridColumn6,
             this.gridColumn13,
             this.gridColumn7,
-            this.gridColumn8});
+            this.gridColumn8,
+            this.gridColumn9});
             this.gridView1.DetailHeight = 404;
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.IndicatorWidth = 42;
@@ -423,12 +425,12 @@
             this.gridColumn8.AppearanceHeader.Options.UseFont = true;
             this.gridColumn8.AppearanceHeader.Options.UseTextOptions = true;
             this.gridColumn8.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn8.Caption = "Số lượng nhận";
-            this.gridColumn8.FieldName = "SLNHAN";
+            this.gridColumn8.Caption = "Ghi chú";
+            this.gridColumn8.FieldName = "GHICHU";
             this.gridColumn8.MinWidth = 23;
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 10;
+            this.gridColumn8.VisibleIndex = 11;
             this.gridColumn8.Width = 87;
             // 
             // barManager1
@@ -753,6 +755,16 @@
             this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem10.TextVisible = false;
             // 
+            // gridColumn9
+            // 
+            this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn9.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn9.Caption = "Số lượng nhận";
+            this.gridColumn9.FieldName = "SLNHAN";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 10;
+            // 
             // frmQuanLyDHPB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -849,5 +861,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraEditors.Repository.RepositoryItemRichTextEdit repositoryItemRichTextEdit1;
         private DevExpress.XtraEditors.Repository.RepositoryItemColorEdit repositoryItemColorEdit1;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
     }
 }

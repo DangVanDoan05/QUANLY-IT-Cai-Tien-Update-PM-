@@ -198,7 +198,13 @@ namespace DAO
             return data;
         }
 
-       
+        public int UpdateBH(int Id,bool baohanh)
+        {
+            string query = "update QLYMAYTINH set BAOHANH= @baohanh WHERE ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { baohanh,Id});
+            return data;
+        }
+
 
         // HAM XOA
         public int Delete(string MaMT)
@@ -206,8 +212,9 @@ namespace DAO
             string query = "DELETE QLYMAYTINH WHERE MAMT= @ma ";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaMT });
             return data;
-
         }
+
+
 
     }
 }

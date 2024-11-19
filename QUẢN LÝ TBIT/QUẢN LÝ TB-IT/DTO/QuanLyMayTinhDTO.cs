@@ -12,7 +12,8 @@ namespace DTO
          // QLYMAYTINH(MAMT, IP, MAC,DOMAIN, LOAIMT, NCC, NHAMAY, PB, NGUOISD, MATSCD, NGAYMUA, HANBH, BAOHANH, GHICHU)
 
         public QuanLyMayTinhDTO(DataRow row)  //14 cột
-        {          
+        {
+            this.ID =int.Parse( row["ID"].ToString());
             this.MAMT = row["MAMT"].ToString();
             this.BAOHANH = (bool)row["BAOHANH"];
             this.IP = row["IP"].ToString();
@@ -66,7 +67,7 @@ namespace DTO
 
         }
 
-
+        private int iD;
         private string mAMT;      
         private string iP;
         private string mAC;
@@ -99,5 +100,6 @@ namespace DTO
         public string NHAMAY { get => nHAMAY; set => nHAMAY = value; }
         public string PB { get => pB; set => pB = value; }
         public string DOMAIN { get => dOMAIN; set => dOMAIN = value; }
+        public int ID { get => iD; set => iD = value; }
     }
 }
