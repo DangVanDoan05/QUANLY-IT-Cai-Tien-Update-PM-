@@ -107,7 +107,7 @@ namespace frmMain
                             MaLinhKienDAO.Instance.InsertTable(malk, tenlk, dvi, ncc, slmin, slmax, note);                        
                             MessageBox.Show($" Thêm mã linh kiện {malk} thành công! ","Thông báo:");
                         }
-                        them = false;
+                      
                         LoadControl();
                     }
                 }
@@ -115,6 +115,7 @@ namespace frmMain
                 {
                     MessageBox.Show("Hãy chọn nhà cung cấp trong danh sách!", "Lỗi",MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
+                them = false;
 
             }
             else

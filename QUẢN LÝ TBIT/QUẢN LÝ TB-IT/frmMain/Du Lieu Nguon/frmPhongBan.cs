@@ -109,6 +109,7 @@ namespace frmMain.Du_Lieu_Nguon
             //}
 
         }
+
         void Save()
         {
             if (them)
@@ -173,6 +174,7 @@ namespace frmMain.Du_Lieu_Nguon
                 them = false;
 
             }
+
             else   // Sửa thông tin
             {
                 string maPB = txtMaPB.Text.Trim();
@@ -213,7 +215,8 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            if (idquyen >= 6)
+            // Không sửa được nhà máy, bộ phận, phải thêm mới.
+            if (idquyen >= 6) // Quyền từ QLCC TRỞ lên.
             {
                 LockControl(false);
                 txtMaPB.Enabled = false;
@@ -266,6 +269,7 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            // 
             if (idquyen >= 6)
             {
                 Save();

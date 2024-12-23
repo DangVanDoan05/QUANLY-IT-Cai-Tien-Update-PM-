@@ -116,9 +116,9 @@
             // btnCapNhat
             // 
             this.btnCapNhat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCapNhat.ImageOptions.Image")));
-            this.btnCapNhat.Location = new System.Drawing.Point(518, 61);
+            this.btnCapNhat.Location = new System.Drawing.Point(347, 61);
             this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(128, 22);
+            this.btnCapNhat.Size = new System.Drawing.Size(85, 22);
             this.btnCapNhat.StyleController = this.layoutControl1;
             this.btnCapNhat.TabIndex = 4;
             this.btnCapNhat.Text = "Cập Nhật";
@@ -127,9 +127,9 @@
             // btnLuu
             // 
             this.btnLuu.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLuu.ImageOptions.Image")));
-            this.btnLuu.Location = new System.Drawing.Point(382, 61);
+            this.btnLuu.Location = new System.Drawing.Point(261, 61);
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(132, 22);
+            this.btnLuu.Size = new System.Drawing.Size(82, 22);
             this.btnLuu.StyleController = this.layoutControl1;
             this.btnLuu.TabIndex = 3;
             this.btnLuu.Text = "Lưu";
@@ -145,9 +145,9 @@
             // btnXoa
             // 
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
-            this.btnXoa.Location = new System.Drawing.Point(250, 61);
+            this.btnXoa.Location = new System.Drawing.Point(178, 61);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(128, 22);
+            this.btnXoa.Size = new System.Drawing.Size(79, 22);
             this.btnXoa.StyleController = this.layoutControl1;
             this.btnXoa.TabIndex = 2;
             this.btnXoa.Text = "Xóa";
@@ -163,9 +163,9 @@
             // btnSua
             // 
             this.btnSua.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.ImageOptions.Image")));
-            this.btnSua.Location = new System.Drawing.Point(129, 61);
+            this.btnSua.Location = new System.Drawing.Point(94, 61);
             this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(117, 22);
+            this.btnSua.Size = new System.Drawing.Size(80, 22);
             this.btnSua.StyleController = this.layoutControl1;
             this.btnSua.TabIndex = 1;
             this.btnSua.Text = "Sửa";
@@ -188,7 +188,7 @@
             this.btnThem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.ImageOptions.Image")));
             this.btnThem.Location = new System.Drawing.Point(12, 61);
             this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(113, 22);
+            this.btnThem.Size = new System.Drawing.Size(78, 22);
             this.btnThem.StyleController = this.layoutControl1;
             this.btnThem.TabIndex = 0;
             this.btnThem.Text = "Thêm";
@@ -464,53 +464,68 @@
             // emptySpaceItem2
             // 
             this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(638, 49);
+            this.emptySpaceItem2.Location = new System.Drawing.Point(424, 49);
             this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(953, 26);
+            this.emptySpaceItem2.Size = new System.Drawing.Size(1167, 26);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnThem;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 49);
+            this.layoutControlItem9.MaxSize = new System.Drawing.Size(82, 26);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(82, 26);
             this.layoutControlItem9.Name = "layoutControlItem9";
-            this.layoutControlItem9.Size = new System.Drawing.Size(117, 26);
+            this.layoutControlItem9.Size = new System.Drawing.Size(82, 26);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.btnSua;
-            this.layoutControlItem11.Location = new System.Drawing.Point(117, 49);
+            this.layoutControlItem11.Location = new System.Drawing.Point(82, 49);
+            this.layoutControlItem11.MaxSize = new System.Drawing.Size(84, 26);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(84, 26);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(121, 26);
+            this.layoutControlItem11.Size = new System.Drawing.Size(84, 26);
+            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.btnXoa;
-            this.layoutControlItem12.Location = new System.Drawing.Point(238, 49);
+            this.layoutControlItem12.Location = new System.Drawing.Point(166, 49);
+            this.layoutControlItem12.MaxSize = new System.Drawing.Size(83, 26);
+            this.layoutControlItem12.MinSize = new System.Drawing.Size(83, 26);
             this.layoutControlItem12.Name = "layoutControlItem12";
-            this.layoutControlItem12.Size = new System.Drawing.Size(132, 26);
+            this.layoutControlItem12.Size = new System.Drawing.Size(83, 26);
+            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.btnLuu;
-            this.layoutControlItem13.Location = new System.Drawing.Point(370, 49);
+            this.layoutControlItem13.Location = new System.Drawing.Point(249, 49);
+            this.layoutControlItem13.MaxSize = new System.Drawing.Size(86, 26);
+            this.layoutControlItem13.MinSize = new System.Drawing.Size(86, 26);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(136, 26);
+            this.layoutControlItem13.Size = new System.Drawing.Size(86, 26);
+            this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.btnCapNhat;
-            this.layoutControlItem14.Location = new System.Drawing.Point(506, 49);
+            this.layoutControlItem14.Location = new System.Drawing.Point(335, 49);
+            this.layoutControlItem14.MaxSize = new System.Drawing.Size(89, 26);
+            this.layoutControlItem14.MinSize = new System.Drawing.Size(89, 26);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(132, 26);
+            this.layoutControlItem14.Size = new System.Drawing.Size(89, 26);
+            this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
