@@ -72,19 +72,7 @@ namespace frmMain
             }
         }
 
-        private void gridControl1_Click(object sender, EventArgs e)
-        {
-            try
-            {
-               
-
-            }
-            catch
-            {
-
-
-            }
-        }
+      
 
         void XuatExCel()
         {
@@ -130,8 +118,7 @@ namespace frmMain
 
         private void btnXuatExcell_Click(object sender, EventArgs e)
         {
-
-            DialogResult kq = MessageBox.Show("Bạn muốn xuất danh sách tồn kho thành File Excel?", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult kq = MessageBox.Show("Bạn muốn xuất thông tin cài đặt phần mềm thành File Excel?", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (kq == DialogResult.Yes)
             {
                 XuatExCel();
