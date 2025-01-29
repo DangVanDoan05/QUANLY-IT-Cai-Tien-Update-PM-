@@ -22,7 +22,8 @@ namespace DAO
 
         private DataProvider() { }
 
-        public string strcon = "";
+
+        public string strcon = @"Data Source=DD-DI01\MYSQL;Initial Catalog=QUANLYIT;Integrated Security=True";
         
       
                      

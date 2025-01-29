@@ -43,11 +43,11 @@ namespace frmMain
         public frmMain()
         {
             InitializeComponent();
-            barHeaderItem1.Caption = user.FULLNAME;
+            //barHeaderItem1.Caption = user.FULLNAME;
              
-            LoadListCN();     // Fix lỗi thêm chức năng khi Lập trình viên muốn mở rộng các tính năng của phần mềm 
+            //LoadListCN();     // Fix lỗi thêm chức năng khi Lập trình viên muốn mở rộng các tính năng của phần mềm 
 
-            LoadRight();    // Fix lỗi thêm chức năng khi Lập trình viên muốn mở rộng các tính năng của phần mềm
+            //LoadRight();    // Fix lỗi thêm chức năng khi Lập trình viên muốn mở rộng các tính năng của phần mềm
             
         }
 

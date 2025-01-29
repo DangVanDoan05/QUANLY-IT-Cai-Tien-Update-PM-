@@ -26,9 +26,9 @@ namespace DAO
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data;
         }
-        public bool CheckExist(string MaNM)
+        public bool CheckMaNMExist(string MaNM)
         {
-            string query = "select * from NHAMAY where MANHAMAY= @ma ";
+            string query = "select * from NHAMAY where MANM= @ma ";
             DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaNM });
             int dem = data.Rows.Count;
             if (dem > 0)
@@ -58,26 +58,27 @@ namespace DAO
         }
 
         // HAM THEM
-        public int Insert(string MaNM, string TenNM, string DiaChi)
+        public int Insert(string MaNM, string TenNM, string DiaChi,string Ghichu)
         {
-            string query = "insert NHAMAY(MANHAMAY,TENNHAMAY,DIACHI) values( @maNM , @tenNM , @diachi )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaNM, TenNM, DiaChi });
+            string query = "insert NHAMAY(MANM,TENNM,DIACHI,GHICHU) values( @maNM , @tenNM , @diachi, @ghichu )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaNM, TenNM, DiaChi, Ghichu });
             return data;
         }
 
         // HAM SUA
-        public int Update(string MaNM, string TenNM, string DiaChi)
+        // THÊM KHÓA ID THÌ ƯU VIỆT CÓ THỂ SỬA ĐƯỢC MÃ NHÀ MÁY.
+        public int Update(int id,string MaNM, string TenNM, string DiaChi, string Ghichu)
         {
-            string query = "UPDATE	NHAMAY set TENNHAMAY= @tenNM ,DIACHI= @diachi WHERE MANHAMAY= @maNM ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { TenNM, DiaChi, MaNM });
+            string query = "UPDATE	NHAMAY set MANM= @maNM ,TENNM= @tenNM ,DIACHI= @diachi ,GHICHU= @ghichu WHERE ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaNM, TenNM, DiaChi, Ghichu,id});
             return data;
         }
 
         // HAM XOA
-        public int Delete(string MaNM)
+        public int Delete(int id)
         {
-            string query = "DELETE NHAMAY WHERE MANHAMAY= @maNM ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaNM });
+            string query = "DELETE NHAMAY WHERE ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { id });
             return data;
         }
     }

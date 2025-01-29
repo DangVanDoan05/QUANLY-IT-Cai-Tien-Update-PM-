@@ -806,3 +806,11 @@ E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstanda
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.AssemblyInfo.cs
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.pdb
+D:\PM QUAN LY IT( LÀM LẠI) 28-01-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.deps.json
+D:\PM QUAN LY IT( LÀM LẠI) 28-01-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.dll
+D:\PM QUAN LY IT( LÀM LẠI) 28-01-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.pdb
+D:\PM QUAN LY IT( LÀM LẠI) 28-01-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.csprojAssemblyReference.cache
+D:\PM QUAN LY IT( LÀM LẠI) 28-01-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.csproj.CoreCompileInputs.cache
+D:\PM QUAN LY IT( LÀM LẠI) 28-01-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.AssemblyInfo.cs
+D:\PM QUAN LY IT( LÀM LẠI) 28-01-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.dll
+D:\PM QUAN LY IT( LÀM LẠI) 28-01-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.pdb

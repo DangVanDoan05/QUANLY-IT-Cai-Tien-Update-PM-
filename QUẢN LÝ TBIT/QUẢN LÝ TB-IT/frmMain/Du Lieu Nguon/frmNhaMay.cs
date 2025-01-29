@@ -22,6 +22,7 @@ namespace frmMain.Du_Lieu_Nguon
             LoadControl();
         }
         bool them;
+        int IDNMdc;
 
         private void LoadControl()
         {
@@ -34,7 +35,8 @@ namespace frmMain.Du_Lieu_Nguon
         {
             txtMaNhaMay.Clear();
             txtTenNhaMay.Clear();
-            txtDiaChi.Clear();         
+            txtDiaChi.Clear();
+            txtGhiChu.Clear();
         }
         private void LockControl(bool kt)
         {
@@ -42,7 +44,9 @@ namespace frmMain.Du_Lieu_Nguon
             {
                 txtMaNhaMay.Enabled = false;
                 txtTenNhaMay.Enabled = false;
-                txtDiaChi.Enabled = false;                
+                txtDiaChi.Enabled = false;
+                txtGhiChu.Enabled = false;
+
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;
@@ -54,7 +58,9 @@ namespace frmMain.Du_Lieu_Nguon
             {
                 txtMaNhaMay.Enabled = true;
                 txtTenNhaMay.Enabled = true;
-                txtDiaChi.Enabled = true;                         
+                txtDiaChi.Enabled = true;
+                txtGhiChu.Enabled = true;
+                
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
@@ -65,7 +71,7 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void LoadData()
         {
-            gridControl1.DataSource = NHAMAYDAO.Instance.GetTable();
+            gcNM.DataSource = NHAMAYDAO.Instance.GetTable();
         }
 
         void Save()
@@ -75,34 +81,29 @@ namespace frmMain.Du_Lieu_Nguon
                 string maNM = txtMaNhaMay.Text.Trim();
                 string tenNM = txtTenNhaMay.Text.Trim();
                 string diaChi = txtDiaChi.Text.Trim();
-                bool CheckExits = NHAMAYDAO.Instance.CheckExist(maNM);              
+                string ghichu = txtGhiChu.Text.Trim();
+                bool CheckExits = NHAMAYDAO.Instance.CheckMaNMExist(maNM);              
                 if (CheckExits)
                 {
                     MessageBox.Show($" Mã nhà máy {maNM} đã tồn tại", "Lỗi:", MessageBoxButtons.OK,MessageBoxIcon.Error);
                 }
                 else
-                {
-                    DialogResult kq = MessageBox.Show($" Bạn muốn thêm mã nhà máy {maNM} ?", " Thông báo: ", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-                    if (kq == DialogResult.Yes)
-                    {
-                        NHAMAYDAO.Instance.Insert(maNM, tenNM, diaChi);
-                        MessageBox.Show($"Đã thêm mã nhà máy {maNM}","THÀNH CÔNG:");
-                    }
+                {                  
+                    NHAMAYDAO.Instance.Insert(maNM, tenNM, diaChi,ghichu);
+                    MessageBox.Show($"Đã thêm mã nhà máy {maNM} .","THÀNH CÔNG:", MessageBoxButtons.OK, MessageBoxIcon.Information);                   
                 }
                 them = false;
-
             }
             else
             {
                 string maNM = txtMaNhaMay.Text.Trim();
                 string tenNM = txtTenNhaMay.Text.Trim();
                 string diaChi = txtDiaChi.Text.Trim();
-                DialogResult kq = MessageBox.Show($" Bạn muốn sửa thông tin mã nhà máy {maNM} ?", " Thông Báo: ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (kq == DialogResult.Yes)
-                {
-                    NHAMAYDAO.Instance.Update(maNM, tenNM, diaChi);
-                    MessageBox.Show($"Đã sửa mã nhà máy {maNM}", "THÀNH CÔNG:");
-                }
+                string ghichu = txtGhiChu.Text.Trim();
+               
+                NHAMAYDAO.Instance.Update(maNM, tenNM, diaChi);
+                MessageBox.Show($"Đã sửa mã nhà máy {maNM}", "THÀNH CÔNG:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
             }
         }
 
