@@ -60,7 +60,7 @@ namespace DAO
         // HAM THEM
         public int Insert(string MaNM, string TenNM, string DiaChi,string Ghichu)
         {
-            string query = "insert NHAMAY(MANM,TENNM,DIACHI,GHICHU) values( @maNM , @tenNM , @diachi, @ghichu )";
+            string query = "insert NHAMAY(MANM,TENNM,DIACHI,GHICHU) values( @maNM , @tenNM , @diachi , @ghichu )";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaNM, TenNM, DiaChi, Ghichu });
             return data;
         }

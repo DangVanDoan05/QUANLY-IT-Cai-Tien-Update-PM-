@@ -22,10 +22,11 @@ namespace frmMain.Du_Lieu_Nguon
             LoadControl();
         }
         bool them;
-        int IDNMdc;
+        int IDNMdc=0;
 
         private void LoadControl()
         {
+            IDNMdc = 0;
             LoadData();
             LockControl(true);
             CleanText();
@@ -101,7 +102,7 @@ namespace frmMain.Du_Lieu_Nguon
                 string diaChi = txtDiaChi.Text.Trim();
                 string ghichu = txtGhiChu.Text.Trim();
                
-                NHAMAYDAO.Instance.Update(maNM, tenNM, diaChi);
+                NHAMAYDAO.Instance.Update(IDNMdc,maNM, tenNM, diaChi,ghichu);
                 MessageBox.Show($"Đã sửa mã nhà máy {maNM}", "THÀNH CÔNG:", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 
             }
@@ -115,8 +116,16 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            LockControl(false);
-            txtMaNhaMay.Enabled = false;
+            if(IDNMdc==0)
+            {
+                MessageBox.Show($" Chưa chọn nhà máy muốn sửa thông tin.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                LockControl(false);
+                txtMaNhaMay.Enabled = false;
+            }
+          
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -132,41 +141,45 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            LockControl(false);
-            txtMaNhaMay.Enabled = false;
-         
-              string maNM = txtMaNhaMay.Text.Trim();
-            if (maNM == "")
+           
+            if (IDNMdc == 0)
             {
-                MessageBox.Show(" Bạn chưa chọn mã nhà máy để xóa! ", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(" Bạn chưa chọn nhà máy để xóa! ", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else
             {
+                string maNM = txtMaNhaMay.Text.Trim();
                 DialogResult kq = MessageBox.Show($"Bạn muốn xóa mã nhà máy {maNM} ?", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 if (kq == DialogResult.Yes)
                 {
-                    NHAMAYDAO.Instance.Delete(maNM);
-                    MessageBox.Show($"Xóa thành công mã nhà máy:{maNM}", "Thông Báo:");
+                    NHAMAYDAO.Instance.Delete(IDNMdc);
+                    MessageBox.Show($"Xóa thành công mã nhà máy:{maNM}", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                 }
             }
             LoadControl();
+
         }
 
-        private void gridControl1_Click(object sender, EventArgs e)
+      
+
+      
+        private void gcNM_Click(object sender, EventArgs e)
         {
             try
             {
-                txtMaNhaMay.Text = gridView1.GetFocusedRowCellValue("MANHAMAY").ToString();
-                txtTenNhaMay.Text = gridView1.GetFocusedRowCellValue("TENNHAMAY").ToString();
-                txtDiaChi.Text = gridView1.GetFocusedRowCellValue("DIACHI").ToString();
+                IDNMdc = int.Parse(gridView2.GetFocusedRowCellValue("ID").ToString());
+                txtMaNhaMay.Text = gridView2.GetFocusedRowCellValue("MANM").ToString();
+                txtTenNhaMay.Text = gridView2.GetFocusedRowCellValue("TENNM").ToString();
+                txtDiaChi.Text = gridView2.GetFocusedRowCellValue("DIACHI").ToString();
+                txtGhiChu.Text = gridView2.GetFocusedRowCellValue("GHICHU").ToString();
             }
             catch
             {
 
             }
-                 
         }
 
-        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        private void gridView2_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             ColumSTT.Instance.CustomDrawRowIndicator(e);
         }

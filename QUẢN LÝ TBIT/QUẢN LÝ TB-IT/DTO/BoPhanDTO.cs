@@ -9,26 +9,30 @@ namespace DTO
 {
     public class BoPhanDTO
     {
+        //  BOPHAN(ID,MABP, TENBP, GHICHU, IDNM)
         public BoPhanDTO(DataRow row)
         {
+            this.ID =int.Parse( row["ID"].ToString());
             this.MABP = row["MABP"].ToString();
             this.TENBP = row["TENBP"].ToString();
             this.GHICHU = row["GHICHU"].ToString();
-            this.NHAMAY = row["NHAMAY"].ToString();
+            this.IDNM =int.Parse( row["IDNM"].ToString());
         }
 
-        //  BOPHAN(MABP, TENBP, GHICHU, NHAMAY)
+       
 
+        private int iD;
         private string mABP;
         private string tENBP;
         private string gHICHU;
-        private string nHAMAY;
+        private int iDNM;
 
 
        
         public string GHICHU { get => gHICHU; set => gHICHU = value; }
         public string MABP { get => mABP; set => mABP = value; }
         public string TENBP { get => tENBP; set => tENBP = value; }
-        public string NHAMAY { get => nHAMAY; set => nHAMAY = value; }
+        public int ID { get => iD; set => iD = value; }
+        public int IDNM { get => iDNM; set => iDNM = value; }
     }
 }

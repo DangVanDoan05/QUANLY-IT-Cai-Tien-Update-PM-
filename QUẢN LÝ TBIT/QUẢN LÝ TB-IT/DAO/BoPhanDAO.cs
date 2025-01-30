@@ -22,12 +22,13 @@ namespace DAO
         // HAM LAY BANG
         public DataTable GetTable()
         {
-            string query = "select* from BOPHAN";
+            string query = "select* from BOPHAN"; // cẦN PHẢI TẠO THÊM KHÓA PHỤ
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data;
         }
 
-        public BoPhanDTO GetBoPhanDTO(string MaBP, string ThuocNM)
+        public BoPhanDTO GetBoPhanDTO(string MaBP, string ThuocNM) // Khởi tạo khóa phụ để tham chiếu.
+
         {
             string query = "select* from BOPHAN where MABOPHAN= @ma and NHAMAY= @nhamay ";
             DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaBP, ThuocNM });
@@ -48,10 +49,10 @@ namespace DAO
             return Ls;
         }
 
-        public bool CheckBPExistNM(string MaBP,string ThuocNM)
+        public bool CheckBPExistNM(string MaBP,int IdNM) // Check trùng theo Mã bộ phận và ID nhà máy
         {
-            string query = "select * from BOPHAN where MABP= @ma and NHAMAY= @nhamay ";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaBP , ThuocNM });
+            string query = " select * from BOPHAN where MABP= @ma and IDNM= @ID ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] {MaBP,IdNM});
             int dem = data.Rows.Count;
             if (dem > 0)
             {
@@ -65,27 +66,33 @@ namespace DAO
 
         // HAM THEM
      
-        public int Insert(string MaBP, string TenBP, string Ghichu,string ThuocNM )
+        public int Insert(string MaBP, string TenBP, string Ghichu,int IdNM)
         {
-            string query = "insert BOPHAN(MABP, TENBP, GHICHU, NHAMAY) values( @mabp , @tenbp , @ghichu , @nhamay )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaBP, TenBP,  Ghichu, ThuocNM });
+            string query = "insert BOPHAN(MABP, TENBP, GHICHU, IDNM) values( @mabp , @tenbp , @ghichu , @IDNM )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaBP, TenBP,  Ghichu, IdNM });
             return data;
         }
 
+
+        // Xóa trong Nhà máy thì sẽ không được do bảng bộ phận đang tham chiếu tới.
         // HAM SUA
-        public int Update(string MaBP, string TenBP, string Ghichu,string ThuocNM )
+
+        public int Update(int IdBP,string MaBP, string TenBP, string Ghichu, int IdNM)
         {
-            string query = "UPDATE	BOPHAN set TENBP= @ten ,GHICHU= @ghichu WHERE MABP= @mabp and NHAMAY= @nhamay ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {TenBP, Ghichu, MaBP,ThuocNM });
+            string query = "UPDATE	BOPHAN set MABP= @mabp ,TENBP= @ten ,GHICHU= @ghichu WHERE ID= @idBP  and IDNM= @IdNM ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaBP,TenBP, Ghichu, IdBP,IdNM});
             return data;
         }
+
 
         // HAM XOA
-        public int Delete(string MaBP,string ThuocNM )
+       
+        public int Delete(int IdBP)
         {
-            string query = "DELETE BOPHAN WHERE MABP= @mabp and NHAMAY= @nhamay ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaBP,ThuocNM});
+            string query = "DELETE BOPHAN WHERE ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { IdBP});
             return data;
         }
+
     }
 }
