@@ -15,6 +15,7 @@ namespace frmMain.Du_Lieu_Nguon
 {
     public partial class frmBoPhan : DevExpress.XtraEditors.XtraForm
     {
+        // Tạo khóa phụ và sau đó là Code.
         public frmBoPhan()
         {
             InitializeComponent();
