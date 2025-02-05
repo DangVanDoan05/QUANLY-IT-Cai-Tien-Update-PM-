@@ -65,6 +65,7 @@
             this.layoutControlItem8 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gcDsPhanMem)).BeginInit();
@@ -289,6 +290,7 @@
             // gridView1
             // 
             this.gridView1.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn8,
             this.gridColumn1,
             this.gridColumn2,
             this.gridColumn3,
@@ -519,6 +521,12 @@
             this.emptySpaceItem4.Size = new System.Drawing.Size(625, 26);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "ID";
+            this.gridColumn8.FieldName = "ID";
+            this.gridColumn8.Name = "gridColumn8";
+            // 
             // frmChiTietCaiDat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -590,5 +598,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem8;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
     }
 }

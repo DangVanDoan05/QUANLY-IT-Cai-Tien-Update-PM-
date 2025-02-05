@@ -81,18 +81,23 @@ namespace frmMain
         {
             #region  Kiểm tra xem Mã phần mềm đã có trên mã máy tính hay chưa. 
 
-
             string ngaycaidat = dtpNgayCaiDat.Value.ToString("dd/MM/yyyy");
+
             int DemMT = 0;
-            List<string> ListMaMT = new List<string>();
+            // LẤY ID hay là lấy mã đây.
+            List<QuanLyMayTinhDTO> ListMaMT = new List<QuanLyMayTinhDTO>();
+
             foreach (var item in gridView1.GetSelectedRows())
             {
-                string ma = gridView1.GetRowCellValue(item, "MAMT").ToString();
+                string MaMT = gridView1.GetRowCellValue(item, "MAMT").ToString();
+                QuanLyMayTinhDTO a = QuanLyMayTinhDAO.Instance.GetMaMT(MaMT);
                 DemMT++;
-                ListMaMT.Add(ma);
+                ListMaMT.Add(a);
             }
 
             int DemPM = 0;
+
+            // Bảng phần mềm để chỉnh sửa sau.
             List<DanhSachPhanMemDTO> ListMaPM = new List<DanhSachPhanMemDTO>();
             foreach (var item in gridView2.GetSelectedRows())
             {
@@ -118,16 +123,14 @@ namespace frmMain
                     if (kq == DialogResult.Yes)
                     {
                         int dem = 0;
-                        foreach (string item in ListMaMT)
-                        {
-                            QuanLyMayTinhDTO MaMTdto = QuanLyMayTinhDAO.Instance.GetMaMT(item);
-                            string NguoiSD = MaMTdto.NGUOISD;
+                        foreach (QuanLyMayTinhDTO item in ListMaMT)
+                        {                                                   
                             foreach (DanhSachPhanMemDTO item3 in ListMaPM)
                             {
-                                bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(item, item3.MAPM);
+                                bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(item.MAMT, item3.MAPM);
                                 if(!CheckCDPM)
                                 {
-                                    DsCaiDatDAO.Instance.Insert(item,NguoiSD, MaMTdto.PB, MaMTdto.NHAMAY, item3.MAPM, item3.TENPM, ngaycaidat,ngaycaidat);
+                                    DsCaiDatDAO.Instance.Insert(item.ID, item.MAMT, item3.MAPM, item3.TENPM, ngaycaidat,ngaycaidat);
                                     dem++;
                                 }
                                                                  

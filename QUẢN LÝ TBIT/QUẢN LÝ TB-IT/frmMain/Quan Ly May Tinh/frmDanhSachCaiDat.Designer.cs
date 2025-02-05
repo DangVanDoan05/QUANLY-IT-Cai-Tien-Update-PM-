@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDanhSachCaiDat));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnCapNhat = new DevExpress.XtraEditors.SimpleButton();
             this.btnTaiForm = new DevExpress.XtraEditors.SimpleButton();
             this.btnXuatExcell = new DevExpress.XtraEditors.SimpleButton();
             this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
@@ -40,6 +41,7 @@
             this.gridColumn6 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -50,9 +52,9 @@
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem5 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnCapNhat = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
+            this.layoutControlItem7 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridControl1)).BeginInit();
@@ -64,10 +66,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.simpleButton1);
             this.layoutControl1.Controls.Add(this.btnCapNhat);
             this.layoutControl1.Controls.Add(this.btnTaiForm);
             this.layoutControl1.Controls.Add(this.btnXuatExcell);
@@ -83,12 +87,23 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnCapNhat
+            // 
+            this.btnCapNhat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCapNhat.ImageOptions.Image")));
+            this.btnCapNhat.Location = new System.Drawing.Point(952, 12);
+            this.btnCapNhat.Name = "btnCapNhat";
+            this.btnCapNhat.Size = new System.Drawing.Size(92, 22);
+            this.btnCapNhat.StyleController = this.layoutControl1;
+            this.btnCapNhat.TabIndex = 9;
+            this.btnCapNhat.Text = "Cập nhật";
+            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
+            // 
             // btnTaiForm
             // 
             this.btnTaiForm.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTaiForm.ImageOptions.Image")));
-            this.btnTaiForm.Location = new System.Drawing.Point(1158, 12);
+            this.btnTaiForm.Location = new System.Drawing.Point(1140, 12);
             this.btnTaiForm.Name = "btnTaiForm";
-            this.btnTaiForm.Size = new System.Drawing.Size(75, 22);
+            this.btnTaiForm.Size = new System.Drawing.Size(83, 22);
             this.btnTaiForm.StyleController = this.layoutControl1;
             this.btnTaiForm.TabIndex = 8;
             this.btnTaiForm.Text = "Tải Form";
@@ -97,9 +112,9 @@
             // btnXuatExcell
             // 
             this.btnXuatExcell.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatExcell.ImageOptions.Image")));
-            this.btnXuatExcell.Location = new System.Drawing.Point(1237, 12);
+            this.btnXuatExcell.Location = new System.Drawing.Point(1227, 12);
             this.btnXuatExcell.Name = "btnXuatExcell";
-            this.btnXuatExcell.Size = new System.Drawing.Size(87, 22);
+            this.btnXuatExcell.Size = new System.Drawing.Size(97, 22);
             this.btnXuatExcell.StyleController = this.layoutControl1;
             this.btnXuatExcell.TabIndex = 7;
             this.btnXuatExcell.Text = "Xuất Excell";
@@ -108,9 +123,9 @@
             // btnXoa
             // 
             this.btnXoa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXoa.ImageOptions.Image")));
-            this.btnXoa.Location = new System.Drawing.Point(1078, 12);
+            this.btnXoa.Location = new System.Drawing.Point(1048, 12);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(76, 22);
+            this.btnXoa.Size = new System.Drawing.Size(88, 22);
             this.btnXoa.StyleController = this.layoutControl1;
             this.btnXoa.TabIndex = 6;
             this.btnXoa.Text = "Xóa";
@@ -121,7 +136,7 @@
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(12, 12);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(967, 22);
+            this.label1.Size = new System.Drawing.Size(787, 22);
             this.label1.TabIndex = 5;
             this.label1.Text = "Danh Sách Cài Đặt/Cập Nhật Phần Mềm";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -135,7 +150,6 @@
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
-          
             // 
             // gridView1
             // 
@@ -207,6 +221,20 @@
             this.gridColumn1.VisibleIndex = 3;
             this.gridColumn1.Width = 87;
             // 
+            // gridColumn9
+            // 
+            this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn9.AppearanceCell.Options.UseFont = true;
+            this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn9.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn9.Caption = "Người sử dụng";
+            this.gridColumn9.FieldName = "NGUOISD";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 4;
+            // 
             // gridColumn2
             // 
             this.gridColumn2.AppearanceCell.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -220,7 +248,7 @@
             this.gridColumn2.MinWidth = 23;
             this.gridColumn2.Name = "gridColumn2";
             this.gridColumn2.Visible = true;
-            this.gridColumn2.VisibleIndex = 4;
+            this.gridColumn2.VisibleIndex = 5;
             this.gridColumn2.Width = 87;
             // 
             // gridColumn3
@@ -236,7 +264,7 @@
             this.gridColumn3.MinWidth = 23;
             this.gridColumn3.Name = "gridColumn3";
             this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 5;
+            this.gridColumn3.VisibleIndex = 6;
             this.gridColumn3.Width = 87;
             // 
             // gridColumn4
@@ -252,7 +280,7 @@
             this.gridColumn4.MinWidth = 23;
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
-            this.gridColumn4.VisibleIndex = 6;
+            this.gridColumn4.VisibleIndex = 7;
             this.gridColumn4.Width = 87;
             // 
             // gridColumn8
@@ -267,7 +295,7 @@
             this.gridColumn8.FieldName = "NGAYHT";
             this.gridColumn8.Name = "gridColumn8";
             this.gridColumn8.Visible = true;
-            this.gridColumn8.VisibleIndex = 7;
+            this.gridColumn8.VisibleIndex = 8;
             // 
             // Root
             // 
@@ -279,7 +307,8 @@
             this.layoutControlItem3,
             this.layoutControlItem4,
             this.layoutControlItem5,
-            this.layoutControlItem6});
+            this.layoutControlItem6,
+            this.layoutControlItem7});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1336, 610);
             this.Root.TextVisible = false;
@@ -298,70 +327,65 @@
             this.layoutControlItem2.Control = this.label1;
             this.layoutControlItem2.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem2.Name = "layoutControlItem2";
-            this.layoutControlItem2.Size = new System.Drawing.Size(971, 26);
+            this.layoutControlItem2.Size = new System.Drawing.Size(791, 26);
             this.layoutControlItem2.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem2.TextVisible = false;
             // 
             // layoutControlItem3
             // 
             this.layoutControlItem3.Control = this.btnXoa;
-            this.layoutControlItem3.Location = new System.Drawing.Point(1066, 0);
+            this.layoutControlItem3.Location = new System.Drawing.Point(1036, 0);
             this.layoutControlItem3.Name = "layoutControlItem3";
-            this.layoutControlItem3.Size = new System.Drawing.Size(80, 26);
+            this.layoutControlItem3.Size = new System.Drawing.Size(92, 26);
             this.layoutControlItem3.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem3.TextVisible = false;
             // 
             // layoutControlItem4
             // 
             this.layoutControlItem4.Control = this.btnXuatExcell;
-            this.layoutControlItem4.Location = new System.Drawing.Point(1225, 0);
+            this.layoutControlItem4.Location = new System.Drawing.Point(1215, 0);
             this.layoutControlItem4.Name = "layoutControlItem4";
-            this.layoutControlItem4.Size = new System.Drawing.Size(91, 26);
+            this.layoutControlItem4.Size = new System.Drawing.Size(101, 26);
             this.layoutControlItem4.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem4.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.btnTaiForm;
-            this.layoutControlItem5.Location = new System.Drawing.Point(1146, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(1128, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(79, 26);
+            this.layoutControlItem5.Size = new System.Drawing.Size(87, 26);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
-            // 
-            // btnCapNhat
-            // 
-            this.btnCapNhat.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
-            this.btnCapNhat.Location = new System.Drawing.Point(983, 12);
-            this.btnCapNhat.Name = "btnCapNhat";
-            this.btnCapNhat.Size = new System.Drawing.Size(91, 22);
-            this.btnCapNhat.StyleController = this.layoutControl1;
-            this.btnCapNhat.TabIndex = 9;
-            this.btnCapNhat.Text = "Cập nhật";
-            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.btnCapNhat;
-            this.layoutControlItem6.Location = new System.Drawing.Point(971, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(940, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(95, 26);
+            this.layoutControlItem6.Size = new System.Drawing.Size(96, 26);
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
-            // gridColumn9
+            // simpleButton1
             // 
-            this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn9.AppearanceCell.Options.UseFont = true;
-            this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn9.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn9.Caption = "Người sử dụng";
-            this.gridColumn9.FieldName = "NGUOISD";
-            this.gridColumn9.Name = "gridColumn9";
-            this.gridColumn9.Visible = true;
-            this.gridColumn9.VisibleIndex = 4;
+            this.simpleButton1.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.ImageOptions.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(803, 12);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(145, 22);
+            this.simpleButton1.StyleController = this.layoutControl1;
+            this.simpleButton1.TabIndex = 10;
+            this.simpleButton1.Text = "Cập nhật ID máy tính.";
+            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            // 
+            // layoutControlItem7
+            // 
+            this.layoutControlItem7.Control = this.simpleButton1;
+            this.layoutControlItem7.Location = new System.Drawing.Point(791, 0);
+            this.layoutControlItem7.Name = "layoutControlItem7";
+            this.layoutControlItem7.Size = new System.Drawing.Size(149, 26);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem7.TextVisible = false;
             // 
             // frmDanhSachCaiDat
             // 
@@ -382,6 +406,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem7)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -412,5 +437,7 @@
         private DevExpress.XtraEditors.SimpleButton btnCapNhat;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem6;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraEditors.SimpleButton simpleButton1;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem7;
     }
 }

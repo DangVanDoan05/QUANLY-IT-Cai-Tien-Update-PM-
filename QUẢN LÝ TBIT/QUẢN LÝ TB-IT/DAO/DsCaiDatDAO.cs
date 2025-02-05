@@ -18,9 +18,10 @@ namespace DAO
             private set { DsCaiDatDAO.instance = value; }
         }
         private DsCaiDatDAO() { }
+
         public DataTable GetTable()
         {
-            string query = "select * from DSCAIDAT";
+            string query = "select * from DSCAIDAT,QLYMAYTINH where DSCAIDAT.IDMAMT=QLYMAYTINH.ID";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data;
         }
@@ -129,18 +130,21 @@ namespace DAO
                 QuanLyMayTinhDTO b = QuanLyMayTinhDAO.Instance.GetMaMT(item1);
                 ls.Add(b);
             }
-
             return ls;
         }
 
 
-        // DSCAIDAT(MAMT,NGUOISD,PB,NHAMAY,MAPM,TENPM,NGAYCD,NGAYHT)
+        //  DSCAIDAT(ID,IDMAMT,MAMT,MAPM,TENPM,NGAYCD,NGAYHT)
 
-        public int Insert(string MaMT,string NguoiSD,string PhongBan, string NhaMay, string MaPM, string TenPM, string ngaycaidat,string ngayhoantat )
+        public int Insert(int IDMAMT, string MaMT, string MaPM, string TenPM, string ngaycaidat,string ngayhoantat )
         {
-            string query = "insert DSCAIDAT(MAMT,NGUOISD,PB,NHAMAY,MAPM,TENPM,NGAYCD,NGAYHT) values ( @maMT , @nguoiSD , @pb , @nhamay , @maPM , @TenPM , @ngaycai , @ngayht )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaMT,NguoiSD,PhongBan,NhaMay, MaPM, TenPM, ngaycaidat,ngayhoantat });
+            string query = "insert DSCAIDAT(IDMAMT,MAMT,MAPM,TENPM,NGAYCD,NGAYHT)" +
+                " values (@idmamt , @MAMT , @mapm , @TenPM , @ngaycai , @ngayht )";
+
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {IDMAMT,MaMT,MaPM,TenPM,ngaycaidat,ngayhoantat});
+
             return data;
+
         }
 
         public int UpdateHT(string MaMT, string MaPM, string ngaycaidat, string ngayhoantat)
@@ -154,6 +158,14 @@ namespace DAO
         {
             string query = "update DSCAIDAT set NGUOISD= @nguoisd WHERE MAMT= @ma ";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { NguoiSD, MaMT });
+            return data;
+        }
+
+
+        public int UpdateIDMT(string MaMT, int IDMT)
+        {
+            string query = "update DSCAIDAT set IDMAMT= @id WHERE MAMT= @ma ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { IDMT, MaMT });
             return data;
         }
 
@@ -178,6 +190,8 @@ namespace DAO
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, ngaycaidat });
             return data;
         }
+
+
 
         public int Delete1(string MaMT)
         {

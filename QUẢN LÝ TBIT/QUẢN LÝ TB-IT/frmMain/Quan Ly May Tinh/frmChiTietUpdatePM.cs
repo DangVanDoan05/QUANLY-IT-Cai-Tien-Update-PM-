@@ -50,8 +50,11 @@ namespace frmMain.Quan_Ly_May_Tinh
             try
             {
                 MaPMdangchon= gridView1.GetFocusedRowCellValue("MAPM").ToString();
+
                 // Load bảng những máy tính cài phần mềm trên.
+
                 gcDsMayTinh.DataSource = DsCaiDatDAO.Instance.GetLsMTcaiPM(MaPMdangchon);
+
             }
             catch
             {
@@ -119,7 +122,8 @@ namespace frmMain.Quan_Ly_May_Tinh
 
                             if (!CheckDangkoUpDate)
                             {
-                                DsCaiDatDAO.Instance.Insert(item,NguoiSD,MaMTdto.PB, MaMTdto.NHAMAY, PhanMemDTO.MAPM, PhanMemDTO.TENPM, TgYeucau, "");
+                                DsCaiDatDAO.Instance.Insert(MaMTdto.ID,MaMTdto.MAMT, PhanMemDTO.MAPM, PhanMemDTO.TENPM, TgYeucau, "");
+
                                 if (!LsNhaMay.Contains(MaMTdto.NHAMAY))
                                 {
                                     LsNhaMay.Add(MaMTdto.NHAMAY);

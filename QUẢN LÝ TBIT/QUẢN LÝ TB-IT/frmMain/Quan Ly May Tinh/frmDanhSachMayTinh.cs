@@ -647,7 +647,15 @@ namespace frmMain
 
                     foreach (string item in LsMaMTDcChon)
                     {
-                        QuanLyMayTinhDAO.Instance.Delete(item); 
+                       
+                        // Xóa trong bảng ds máy tính. 
+
+                        QuanLyMayTinhDAO.Instance.Delete(item);
+
+                        // Xóa trong bảng ds cài đặt phần mềm xóa theo mã.
+                        DsCaiDatDAO.Instance.Delete1(item);
+
+
                     }
                     MessageBox.Show($"Đã xóa {dem} mã máy tính được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }

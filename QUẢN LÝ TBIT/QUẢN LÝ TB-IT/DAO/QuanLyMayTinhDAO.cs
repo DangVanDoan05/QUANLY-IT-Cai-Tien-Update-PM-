@@ -148,6 +148,8 @@ namespace DAO
             return lsvMTOfBP;
         }
 
+      
+
         public QuanLyMayTinhDTO GetMaMT(string mamt)
         {
             string query = "select * from QLYMAYTINH where MAMT= @ma ";

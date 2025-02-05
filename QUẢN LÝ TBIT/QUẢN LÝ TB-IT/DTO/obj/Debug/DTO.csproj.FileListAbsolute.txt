@@ -573,3 +573,8 @@ E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\bin\Debug\DTO.pdb
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.pdb
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\bin\Debug\DTO.dll
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\bin\Debug\DTO.pdb
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.dll
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.pdb

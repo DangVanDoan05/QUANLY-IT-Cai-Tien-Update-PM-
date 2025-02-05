@@ -28,11 +28,12 @@ namespace frmMain
             gridControl1.DataSource = DsCaiDatDAO.Instance.GetTable();
         }
 
+        // Chạy một lệnh Update lại toàn bộ:
         private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
         {
             ColumSTT.Instance.CustomDrawRowIndicator(e);
         }
-
+        // tạo thêm một cột mới.
         private void btnXoa_Click(object sender, EventArgs e)
         {
             // cho phép xóa nhiều dòng trong gridview
@@ -230,6 +231,32 @@ namespace frmMain
             // Lỗi, một số mã máy đã xóa rồi nên sẽ ko có thông tin.         
             loadControl();
 
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            // Thêm một cột ID mã máy tính trong bảng ds cài đặt.
+
+            // Lấy danh sách máy tính DTO.
+            //List<QuanLyMayTinhDTO> LsDsMTDTO = QuanLyMayTinhDAO.Instance.GetListMaMT();
+
+            //foreach (QuanLyMayTinhDTO item in LsDsMTDTO)
+            //{
+            //    int IDMT = item.ID;
+            //    string MAMT = item.MAMT;
+            //    // Chạy câu lệnh Update trong phần ds cài đặt.
+            //    DsCaiDatDAO.Instance.UpdateIDMT(MAMT, IDMT);
+            //}
+
+            //MessageBox.Show("Đã cập nhật ID máy tính", "Thành công:", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
+            // Đã chỉnh sửa xong.
+
+            
+
+            // Chỉnh sửa lại nút xóa trong phần ds máy tính.
+
+            // Chỉnh sửa lại bảng chi tiết cài đặt( Lấy ID máy tính thay vì lấy mã)
         }
     }
 }

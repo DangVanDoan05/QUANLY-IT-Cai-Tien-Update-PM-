@@ -806,3 +806,10 @@ E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstanda
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.AssemblyInfo.cs
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.dll
 E:\QUẢN LÝ IT\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.pdb
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.deps.json
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.dll
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.pdb
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.csproj.CoreCompileInputs.cache
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.AssemblyInfo.cs
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.dll
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.pdb
