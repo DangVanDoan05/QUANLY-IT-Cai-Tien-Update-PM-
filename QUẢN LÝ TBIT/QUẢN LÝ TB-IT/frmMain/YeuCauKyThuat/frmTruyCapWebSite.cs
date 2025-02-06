@@ -34,7 +34,7 @@ namespace frmMain.YeuCauKyThuat
         {
             // Load website:
 
-            sglWebSite.Properties.DataSource = DsWebDAO.Instance.GetTable();
+            sglWebSite.Properties.DataSource = QlyIPDAO.Instance.GetTable();
             sglWebSite.Properties.DisplayMember = "MAWEB";
             sglWebSite.Properties.ValueMember = "MAWEB";
 
@@ -169,7 +169,7 @@ namespace frmMain.YeuCauKyThuat
                     if(dem>0)
                     {
                       
-                        DsWebDTO webDTO = DsWebDAO.Instance.GetWebDTO(MaWeb);
+                        DsWebDTO webDTO = QlyIPDAO.Instance.GetWebDTO(MaWeb);
                         string LinkWeb = webDTO.LINKWEB;
                         string mucdichSD = txtMDSD.Text;
                         string NgayYC = DateTime.Now.ToString("dd/MM/yyyy");

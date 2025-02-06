@@ -47,7 +47,7 @@
     <Compile Include="ChucVuDAO.cs" />
     <Compile Include="CommonConnection.cs" />
     <Compile Include="DsCaiDatDAO.cs" />
-    <Compile Include="DsWebDAO.cs" />
+    <Compile Include="QlyIPDAO.cs" />
     <Compile Include="LsUpdatePMDAO.cs" />
     <Compile Include="HangMucBaoTriDAO.cs" />
     <Compile Include="KeHoachBDDAO.cs" />

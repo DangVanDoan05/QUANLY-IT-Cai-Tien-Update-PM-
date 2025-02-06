@@ -139,7 +139,7 @@ namespace DAO
         public int Insert(int IDMAMT, string MaMT, string MaPM, string TenPM, string ngaycaidat,string ngayhoantat )
         {
             string query = "insert DSCAIDAT(IDMAMT,MAMT,MAPM,TENPM,NGAYCD,NGAYHT)" +
-                " values (@idmamt , @MAMT , @mapm , @TenPM , @ngaycai , @ngayht )";
+                " values ( @idmamt , @MAMT , @mapm , @TenPM , @ngaycai , @ngayht )";
 
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {IDMAMT,MaMT,MaPM,TenPM,ngaycaidat,ngayhoantat});
 

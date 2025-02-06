@@ -97,7 +97,7 @@
             this.btnDsNhanVien = new DevExpress.XtraBars.BarButtonItem();
             this.btnDonHangIT = new DevExpress.XtraBars.BarButtonItem();
             this.btnDonHangPB = new DevExpress.XtraBars.BarButtonItem();
-            this.btnDSWebSite = new DevExpress.XtraBars.BarButtonItem();
+            this.btnQlyIP = new DevExpress.XtraBars.BarButtonItem();
             this.btnNhaMay1 = new DevExpress.XtraBars.BarButtonItem();
             this.btnDatHangIT = new DevExpress.XtraBars.BarButtonItem();
             this.btnKeHoachBDMT = new DevExpress.XtraBars.BarButtonItem();
@@ -208,7 +208,7 @@
             this.btnDsNhanVien,
             this.btnDonHangIT,
             this.btnDonHangPB,
-            this.btnDSWebSite,
+            this.btnQlyIP,
             this.btnNhaMay1,
             this.btnDatHangIT,
             this.btnKeHoachBDMT,
@@ -778,14 +778,14 @@
             this.btnDonHangPB.Name = "btnDonHangPB";
             this.btnDonHangPB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDonHangPB_ItemClick);
             // 
-            // btnDSWebSite
+            // btnQlyIP
             // 
-            this.btnDSWebSite.Caption = "Danh sách WebSite";
-            this.btnDSWebSite.Id = 67;
-            this.btnDSWebSite.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnDSWebSite.ImageOptions.Image")));
-            this.btnDSWebSite.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnDSWebSite.ImageOptions.LargeImage")));
-            this.btnDSWebSite.Name = "btnDSWebSite";
-            this.btnDSWebSite.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDSWebSite_ItemClick);
+            this.btnQlyIP.Caption = "Quản lý IP";
+            this.btnQlyIP.Id = 67;
+            this.btnQlyIP.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnQlyIP.ImageOptions.Image")));
+            this.btnQlyIP.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnQlyIP.ImageOptions.LargeImage")));
+            this.btnQlyIP.Name = "btnQlyIP";
+            this.btnQlyIP.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnQlyIP_ItemClick);
             // 
             // btnNhaMay1
             // 
@@ -998,7 +998,7 @@
             this.rpgQuanLyMT.ItemLinks.Add(this.btnLoaiMT, true);
             this.rpgQuanLyMT.ItemLinks.Add(this.btnDanhSachPM, true);
             this.rpgQuanLyMT.ItemLinks.Add(this.btnBaoDuongSuaChua, true);
-            this.rpgQuanLyMT.ItemLinks.Add(this.btnDSWebSite, true);
+            this.rpgQuanLyMT.ItemLinks.Add(this.btnQlyIP, true);
             this.rpgQuanLyMT.Name = "rpgQuanLyMT";
             this.rpgQuanLyMT.Text = "Qly máy tính";
             // 
@@ -1154,7 +1154,7 @@
         private DevExpress.XtraBars.BarButtonItem btnDonHangIT;
         private DevExpress.XtraBars.BarButtonItem btnDonHangPB;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgQuanLyMT;
-        private DevExpress.XtraBars.BarButtonItem btnDSWebSite;
+        private DevExpress.XtraBars.BarButtonItem btnQlyIP;
         private DevExpress.XtraBars.BarButtonItem btnNhaMay1;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgQlyDatHang;
         private DevExpress.XtraBars.BarButtonItem btnDatHangIT;

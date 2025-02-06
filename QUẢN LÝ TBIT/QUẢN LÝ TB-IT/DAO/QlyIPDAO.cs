@@ -8,21 +8,21 @@ using DTO;
 
 namespace DAO
 {
-   public class DsWebDAO
+   public class QlyIPDAO
     {
-        private static DsWebDAO instance;
+        private static QlyIPDAO instance;
 
-        public static DsWebDAO Instance
+        public static QlyIPDAO Instance
         {
-            get { if (instance == null) instance = new DsWebDAO(); return DsWebDAO.instance; }
-            private set { DsWebDAO.instance = value; }
+            get { if (instance == null) instance = new QlyIPDAO(); return QlyIPDAO.instance; }
+            private set { QlyIPDAO.instance = value; }
         }
-        private DsWebDAO() { }
+        private QlyIPDAO() { }
 
         // HAM LAY BANG
         public DataTable GetTable()
         {
-            string query = "select* from DSWEBSITE";
+            string query = "select* from QLYIP";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data;
         }
@@ -48,6 +48,7 @@ namespace DAO
             {
                 return false;
             }
+
         }
 
         // HAM THEM

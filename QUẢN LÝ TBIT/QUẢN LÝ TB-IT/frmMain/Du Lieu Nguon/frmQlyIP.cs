@@ -15,9 +15,9 @@ using DevExpress.XtraGrid.Columns;
 
 namespace frmMain.Du_Lieu_Nguon
 {
-    public partial class frmDsWebSite : DevExpress.XtraEditors.XtraForm
+    public partial class frmQlyIP : DevExpress.XtraEditors.XtraForm
     {
-        public frmDsWebSite()
+        public frmQlyIP()
         {
             InitializeComponent();
             LoadControl();
@@ -33,17 +33,17 @@ namespace frmMain.Du_Lieu_Nguon
         }
         void CleanText()
         {
-            txtMaWeb.Clear();
-            txtLinkWeb.Clear();
-            txtGhiChu.Clear();
+            txtDaiMang.Clear();
+            txtStartIP.Clear();
+            txtEndIP.Clear();
         }
         private void LockControl(bool kt)
         {
             if (kt)
             {
-                txtMaWeb.Enabled = false;
-                txtLinkWeb.Enabled = false;
-                txtGhiChu.Enabled = false;
+                txtDaiMang.Enabled = false;
+                txtStartIP.Enabled = false;
+                txtEndIP.Enabled = false;
 
                 btnThem.Enabled = true;             
                 btnXoa.Enabled = true;
@@ -52,9 +52,9 @@ namespace frmMain.Du_Lieu_Nguon
             }
             else
             {
-                txtMaWeb.Enabled = true;
-                txtLinkWeb.Enabled = true;
-                txtGhiChu.Enabled = true;
+                txtDaiMang.Enabled = true;
+                txtStartIP.Enabled = true;
+                txtEndIP.Enabled = true;
 
                 btnThem.Enabled = false;              
                 btnXoa.Enabled = false;
@@ -67,7 +67,7 @@ namespace frmMain.Du_Lieu_Nguon
         {
           
                
-                gridControl1.DataSource = DsWebDAO.Instance.GetTable();
+                gridControl1.DataSource = QlyIPDAO.Instance.GetTable();
             
         }
         void Save()
@@ -75,13 +75,13 @@ namespace frmMain.Du_Lieu_Nguon
             if (them)
             {
 
-                string MaWeb = txtMaWeb.Text.Trim();
-                string TenWeb = txtLinkWeb.Text.Trim();
-                string ghichu = txtGhiChu.Text.Trim();
+                string MaWeb = txtDaiMang.Text.Trim();
+                string TenWeb = txtStartIP.Text.Trim();
+                string ghichu = txtEndIP.Text.Trim();
 
                 if (MaWeb != "")
                 {
-                    bool CheckWebExits = DsWebDAO.Instance.CheckExist(MaWeb);
+                    bool CheckWebExits = QlyIPDAO.Instance.CheckExist(MaWeb);
                     if (CheckWebExits)
                     {
                         MessageBox.Show($" Mã trang Web {MaWeb} đã tồn tại", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -89,7 +89,7 @@ namespace frmMain.Du_Lieu_Nguon
                     else
                     {
                        
-                            DsWebDAO.Instance.Insert(MaWeb, TenWeb, ghichu);
+                            QlyIPDAO.Instance.Insert(MaWeb, TenWeb, ghichu);
                             MessageBox.Show($" Đã thêm mã trang Web {MaWeb} ", "THÀNH CÔNG!");
                         
                     }
@@ -103,12 +103,12 @@ namespace frmMain.Du_Lieu_Nguon
             }
             else
             {
-                string MaWeb = txtMaWeb.Text.Trim();
-                string TenWeb = txtLinkWeb.Text.Trim();
-                string ghichu = txtGhiChu.Text.Trim();
+                string MaWeb = txtDaiMang.Text.Trim();
+                string TenWeb = txtStartIP.Text.Trim();
+                string ghichu = txtEndIP.Text.Trim();
 
 
-                DsWebDAO.Instance.Update(MaWeb, TenWeb, ghichu);
+                QlyIPDAO.Instance.Update(MaWeb, TenWeb, ghichu);
                 MessageBox.Show($"Đã sửa thông tin mã trang Web {MaWeb}", "THÀNH CÔNG!");
                 
             }
@@ -124,7 +124,7 @@ namespace frmMain.Du_Lieu_Nguon
         {
            
                 LockControl(false);
-                txtMaWeb.Enabled = false;
+                txtDaiMang.Enabled = false;
                                           
                     // cho phép xóa nhiều dòng trong gridview
                     int dem = 0;
@@ -142,7 +142,7 @@ namespace frmMain.Du_Lieu_Nguon
                         {
                             foreach (string item in LsBPdcChon)
                             {
-                                DsWebDAO.Instance.Delete(item);
+                                QlyIPDAO.Instance.Delete(item);
                             }
                             MessageBox.Show($" Đã xóa thành công {dem} mã trang Web.", "THÀNH CÔNG!");
                         }

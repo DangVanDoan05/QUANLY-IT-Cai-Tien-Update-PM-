@@ -813,3 +813,4 @@ E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.AssemblyInfo.cs
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.dll
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.pdb
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.csprojAssemblyReference.cache

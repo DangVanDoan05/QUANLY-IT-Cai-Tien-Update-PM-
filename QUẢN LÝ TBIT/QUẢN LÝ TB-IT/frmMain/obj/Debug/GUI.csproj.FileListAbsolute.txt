@@ -47802,7 +47802,6 @@ E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\GUI.csprojAssemblyReference.cache
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.Du_Lieu_Nguon.frmBoPhan.resources
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.Du_Lieu_Nguon.frmChucVu.resources
-E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.Du_Lieu_Nguon.frmDsWebSite.resources
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.Du_Lieu_Nguon.frmHangMucBaoDuong.resources
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.Du_Lieu_Nguon.frmNhaMay.resources
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.Du_Lieu_Nguon.frmPhongBan.resources
@@ -47864,3 +47863,4 @@ E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\GUI.csproj.CopyComplete
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.exe
 E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.pdb
+E:\Quan ly Tbi IT\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\frmMain\obj\Debug\frmMain.Du_Lieu_Nguon.frmQlyIP.resources

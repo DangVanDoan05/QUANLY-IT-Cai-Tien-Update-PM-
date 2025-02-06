@@ -662,17 +662,14 @@ namespace frmMain
             OpenForm(typeof(frmQuanLyDHPB));
         }
 
-        private void btnDSWebSite_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            OpenForm(typeof(frmDsWebSite));
-        }
+       
 
         private void btnNhaMay1_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenForm(typeof(frmNhaMay));
         }
 
-       
+        
 
         private void btnBaoDuongSuaChua_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -708,6 +705,11 @@ namespace frmMain
         private void btnQlyCamera_ItemClick(object sender, ItemClickEventArgs e)
         {
             OpenForm(typeof(frmQuanLyWifi));
+        }
+
+        private void btnQlyIP_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm(typeof(frmQlyIP));
         }
     }
 }
