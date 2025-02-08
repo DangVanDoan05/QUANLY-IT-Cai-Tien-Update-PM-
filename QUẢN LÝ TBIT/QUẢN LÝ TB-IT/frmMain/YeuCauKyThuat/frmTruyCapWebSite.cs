@@ -169,8 +169,8 @@ namespace frmMain.YeuCauKyThuat
                     if(dem>0)
                     {
                       
-                        DsWebDTO webDTO = QlyIPDAO.Instance.GetWebDTO(MaWeb);
-                        string LinkWeb = webDTO.LINKWEB;
+                        QlyIPDTO webDTO = QlyIPDAO.Instance.GetWebDTO(MaWeb);
+                        string LinkWeb = "";
                         string mucdichSD = txtMDSD.Text;
                         string NgayYC = DateTime.Now.ToString("dd/MM/yyyy");
                         string NglapYC = CommonUser.UserStatic.MANV + "-" + NgayYC + DateTime.Now.ToString(" HH:mm:ss tt");

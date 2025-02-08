@@ -295,11 +295,11 @@
     <Compile Include="Du Lieu Nguon\frmNhom.Designer.cs">
       <DependentUpon>frmNhom.cs</DependentUpon>
     </Compile>
-    <Compile Include="Du Lieu Nguon\frmMaCongCu.cs">
+    <Compile Include="Du Lieu Nguon\frmLoaiTB.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Du Lieu Nguon\frmMaCongCu.Designer.cs">
-      <DependentUpon>frmMaCongCu.cs</DependentUpon>
+    <Compile Include="Du Lieu Nguon\frmLoaiTB.Designer.cs">
+      <DependentUpon>frmLoaiTB.cs</DependentUpon>
     </Compile>
     <Compile Include="Quan Ly Dat Hang\frmNhanHangPB.cs">
       <SubType>Form</SubType>
@@ -531,8 +531,8 @@
     <EmbeddedResource Include="Du Lieu Nguon\frmNhom.resx">
       <DependentUpon>frmNhom.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Du Lieu Nguon\frmMaCongCu.resx">
-      <DependentUpon>frmMaCongCu.cs</DependentUpon>
+    <EmbeddedResource Include="Du Lieu Nguon\frmLoaiTB.resx">
+      <DependentUpon>frmLoaiTB.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Quan Ly Dat Hang\frmNhanHangPB.resx">
       <DependentUpon>frmNhanHangPB.cs</DependentUpon>

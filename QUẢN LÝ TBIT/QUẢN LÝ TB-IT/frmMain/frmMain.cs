@@ -420,8 +420,8 @@ namespace frmMain
 
         private void barButtonItem10_ItemClick(object sender, ItemClickEventArgs e)
         {
-            LoadItem(e);
-            OpenForm(typeof(frmMaCongCu));
+          //  LoadItem(e);
+            OpenForm(typeof(frmLoaiTB));
         }
 
         private void barButtonItem9_ItemClick(object sender, ItemClickEventArgs e)

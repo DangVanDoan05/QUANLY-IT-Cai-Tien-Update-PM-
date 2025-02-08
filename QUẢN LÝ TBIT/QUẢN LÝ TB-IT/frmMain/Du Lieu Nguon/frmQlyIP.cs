@@ -25,12 +25,22 @@ namespace frmMain.Du_Lieu_Nguon
 
         bool them;
         int idquyen = CommonUser.Quyen;
+
         private void LoadControl()
         {
+            LoadLookupEdit();
             LockControl(true);
             LoadData();
             CleanText();
         }
+
+        private void LoadLookupEdit()
+        {
+            sglLoaiTB.Properties.DataSource = LoaiTBDAO.Instance.GetTable();
+            sglLoaiTB.Properties.DisplayMember = "ID";
+            sglLoaiTB.Properties.ValueMember = "ID";
+        }
+
         void CleanText()
         {
             txtDaiMang.Clear();
@@ -44,6 +54,7 @@ namespace frmMain.Du_Lieu_Nguon
                 txtDaiMang.Enabled = false;
                 txtStartIP.Enabled = false;
                 txtEndIP.Enabled = false;
+                sglLoaiTB.Enabled = false;
 
                 btnThem.Enabled = true;             
                 btnXoa.Enabled = true;
@@ -55,6 +66,7 @@ namespace frmMain.Du_Lieu_Nguon
                 txtDaiMang.Enabled = true;
                 txtStartIP.Enabled = true;
                 txtEndIP.Enabled = true;
+                sglLoaiTB.Enabled = true;
 
                 btnThem.Enabled = false;              
                 btnXoa.Enabled = false;
@@ -64,52 +76,66 @@ namespace frmMain.Du_Lieu_Nguon
         }
 
         private void LoadData()
-        {
-          
-               
-                gridControl1.DataSource = QlyIPDAO.Instance.GetTable();
-            
+        {                      
+                gridControl1.DataSource = QlyIPDAO.Instance.GetTable();           
         }
+
         void Save()
         {
             if (them)
             {
+                // Thêm một địa chỉ mạng và thêm một dải mạng:
+                string DaiMang = txtDaiMang.Text.Trim();
+                int IdTB = int.Parse(sglLoaiTB.EditValue.ToString());
 
-                string MaWeb = txtDaiMang.Text.Trim();
-                string TenWeb = txtStartIP.Text.Trim();
-                string ghichu = txtEndIP.Text.Trim();
+                int IPStart = 0;
+                int IPEnd = 0;
 
-                if (MaWeb != "")
+                try
                 {
-                    bool CheckWebExits = QlyIPDAO.Instance.CheckExist(MaWeb);
-                    if (CheckWebExits)
-                    {
-                        MessageBox.Show($" Mã trang Web {MaWeb} đã tồn tại", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    else
-                    {
-                       
-                            QlyIPDAO.Instance.Insert(MaWeb, TenWeb, ghichu);
-                            MessageBox.Show($" Đã thêm mã trang Web {MaWeb} ", "THÀNH CÔNG!");
-                        
-                    }
-                    them = false;
+                     IPStart = int.Parse(txtStartIP.Text.Trim());
+                     IPEnd = int.Parse(txtEndIP.Text.Trim());
+                }
+                catch 
+                {
+                    MessageBox.Show($"Hãy nhập giá trị số nguyên cho địa chỉ IP.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+                if(IPStart> IPEnd)
+                {
+                    MessageBox.Show($"IP bắt đầu lớn hơn IP kết thúc.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show($"Mã trang Web không được phép để trống.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                    // Khởi tạo một biến đếm với bước nhảy là 1 tăng từ IPStart đến IpEnd
+                    int demthem = 0;
+                    int demtrung = 0;
 
+                    // Chạy vòng lặp for để Insert IP vào CSDL
+
+                    for (int i = IPStart; i <= IPEnd; i++)
+                    {
+                        string IP = DaiMang + i.ToString();
+                        bool CheckIPExits = QlyIPDAO.Instance.CheckIPExist(IP);
+                        if (CheckIPExits)  // Nếu IP đó đã tồn tại
+                        {
+                            demtrung++;
+                        }
+                        else                      
+                        {
+                            //IP chưa được gán thì có trạng thái bằng 0
+                            QlyIPDAO.Instance.Insert(DaiMang, IP, 0, IdTB);
+                            demthem++;
+                        }
+                    }
+                    MessageBox.Show($"Đã thêm {demthem} địa chỉ IP, có {demtrung} địa chỉ IP đã tồn tại. ", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    them = false;
+                }                
             }
             else
             {
-                string MaWeb = txtDaiMang.Text.Trim();
-                string TenWeb = txtStartIP.Text.Trim();
-                string ghichu = txtEndIP.Text.Trim();
-
-
-                QlyIPDAO.Instance.Update(MaWeb, TenWeb, ghichu);
-                MessageBox.Show($"Đã sửa thông tin mã trang Web {MaWeb}", "THÀNH CÔNG!");
+                
+                MessageBox.Show($"Không có chức năng sửa.", "THÔNG BÁO:");
                 
             }
         }
@@ -122,34 +148,38 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-           
-                LockControl(false);
-                txtDaiMang.Enabled = false;
-                                          
+                                                                        
                     // cho phép xóa nhiều dòng trong gridview
                     int dem = 0;
-                    List<string> LsBPdcChon = new List<string>();
+                    List<int> LsIPdcChon = new List<int>();
+
                     foreach (var item in gridView1.GetSelectedRows())
                     {
-                        string ma1 = gridView1.GetRowCellValue(item, "MAWEB").ToString();
-                        LsBPdcChon.Add(ma1);
+                        int ID =int.Parse( gridView1.GetRowCellValue(item, "ID").ToString());
+                        LsIPdcChon.Add(ID);
                         dem++;
                     }
+
                     if(dem>0)
                     {
-                        DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} trang Web được chọn. ?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                        DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} địa chỉ IP được chọn. ?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            foreach (string item in LsBPdcChon)
+
+                            foreach (int item in LsIPdcChon)
                             {
+                                // Cần vòng Try Catch do sẽ bị dính khóa phụ.
                                 QlyIPDAO.Instance.Delete(item);
                             }
-                            MessageBox.Show($" Đã xóa thành công {dem} mã trang Web.", "THÀNH CÔNG!");
+                            MessageBox.Show($" Đã xóa thành công {dem} địa chỉ IP.", "THÀNH CÔNG!");
+
                         }
+
                     }
                     else
                     {
-                        MessageBox.Show(" Bạn chưa chọn trang web để xóa! ", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(" Bạn chưa chọn IP để xóa! ", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }                               
                 LoadControl();          
         }

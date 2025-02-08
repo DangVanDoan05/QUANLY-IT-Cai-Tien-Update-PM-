@@ -45,7 +45,7 @@
             this.btnQlyMayIn = new DevExpress.XtraBars.BarButtonItem();
             this.btnQlyCamera = new DevExpress.XtraBars.BarButtonItem();
             this.btnMaLK = new DevExpress.XtraBars.BarButtonItem();
-            this.btnMCC = new DevExpress.XtraBars.BarButtonItem();
+            this.btnLoaiTB = new DevExpress.XtraBars.BarButtonItem();
             this.barButtonItem11 = new DevExpress.XtraBars.BarButtonItem();
             this.btnNCC = new DevExpress.XtraBars.BarButtonItem();
             this.btnThongTinTK = new DevExpress.XtraBars.BarButtonItem();
@@ -156,7 +156,7 @@
             this.btnQlyMayIn,
             this.btnQlyCamera,
             this.btnMaLK,
-            this.btnMCC,
+            this.btnLoaiTB,
             this.barButtonItem11,
             this.btnNCC,
             this.btnThongTinTK,
@@ -348,14 +348,14 @@
             this.btnMaLK.Name = "btnMaLK";
             this.btnMaLK.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem9_ItemClick);
             // 
-            // btnMCC
+            // btnLoaiTB
             // 
-            this.btnMCC.Caption = "Mã Công Cụ";
-            this.btnMCC.Id = 14;
-            this.btnMCC.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMCC.ImageOptions.Image")));
-            this.btnMCC.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnMCC.ImageOptions.LargeImage")));
-            this.btnMCC.Name = "btnMCC";
-            this.btnMCC.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem10_ItemClick);
+            this.btnLoaiTB.Caption = "Loại Thiết Bị";
+            this.btnLoaiTB.Id = 14;
+            this.btnLoaiTB.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMCC.ImageOptions.Image")));
+            this.btnLoaiTB.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnMCC.ImageOptions.LargeImage")));
+            this.btnLoaiTB.Name = "btnLoaiTB";
+            this.btnLoaiTB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem10_ItemClick);
             // 
             // barButtonItem11
             // 
@@ -982,7 +982,6 @@
             // rpgLinhKienCongCu
             // 
             this.rpgLinhKienCongCu.ItemLinks.Add(this.btnMaLK);
-            this.rpgLinhKienCongCu.ItemLinks.Add(this.btnMCC, true);
             this.rpgLinhKienCongCu.Name = "rpgLinhKienCongCu";
             this.rpgLinhKienCongCu.Text = "Qly Linh kiện - Công cụ";
             // 
@@ -995,6 +994,7 @@
             // 
             // rpgQuanLyMT
             // 
+            this.rpgQuanLyMT.ItemLinks.Add(this.btnLoaiTB, true);
             this.rpgQuanLyMT.ItemLinks.Add(this.btnLoaiMT, true);
             this.rpgQuanLyMT.ItemLinks.Add(this.btnDanhSachPM, true);
             this.rpgQuanLyMT.ItemLinks.Add(this.btnBaoDuongSuaChua, true);
@@ -1083,7 +1083,7 @@
         private DevExpress.XtraBars.BarButtonItem btnQlyMayIn;
         private DevExpress.XtraBars.BarButtonItem btnQlyCamera;
         private DevExpress.XtraBars.BarButtonItem btnMaLK;
-        private DevExpress.XtraBars.BarButtonItem btnMCC;
+        private DevExpress.XtraBars.BarButtonItem btnLoaiTB;
         private DevExpress.XtraBars.BarButtonItem barButtonItem11;
         private DevExpress.XtraBars.BarButtonItem btnNCC;
         private DevExpress.XtraBars.BarButtonItem btnThongTinTK;

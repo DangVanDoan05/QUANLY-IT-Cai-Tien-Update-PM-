@@ -27,18 +27,20 @@ namespace DAO
             return data;
         }
 
-        public DsWebDTO GetWebDTO(string MaWeb)
+        public QlyIPDTO GetWebDTO(string MaWeb)
         {
             string query = "select* from DSWEBSITE WHERE MAWEB= @ma ";
             DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaWeb });
-            DsWebDTO a = new DsWebDTO(data.Rows[0]);
+            QlyIPDTO a = new QlyIPDTO(data.Rows[0]);
             return a;
         }
 
-        public bool CheckExist(string MaWEB)
+
+        public bool CheckIPExist(string IP)
         {
-            string query = "DELETE DSWEBSITE WHERE MAWEB= @ma ";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaWEB });
+
+            string query = "select* from QLYIP WHERE IP= @ip ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { IP });
             int dem = data.Rows.Count;
             if (dem > 0)
             {
@@ -53,26 +55,30 @@ namespace DAO
 
         // HAM THEM
 
-        public int Insert(string MaWeb, string LinkWeb, string Ghichu)
+        // QLYIP(DAIMANG, IP, STATUS, IDTB)
+
+        public int Insert(string DaiMang , string IP , int status ,int IDTB )
         {
-            string query = "insert DSWEBSITE(MAWEB,LINKWEB,GHICHU) values( @ma , @ten , @ghichu )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaWeb, LinkWeb , Ghichu });
+            string query = "insert QLYIP(DAIMANG, IP, STATUS, IDTB) values( @daimang , @ip , @status , @idtb )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  DaiMang, IP, status,  IDTB });
             return data;
         }
 
         // HAM SUA
-        public int Update(string MaWeb, string LinkWeb, string Ghichu)
+
+        public int Update(int ID,string DaiMang, string IP, int status, int IDTB)
         {
-            string query = "update DSWEBSITE set LINKWEB= @link ,GHICHU= @ghichu where MAWEB= @web ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { LinkWeb, Ghichu, MaWeb });
+            string query = "update QLYIP set DAIMANG= @daimang ,IP= @ip ,STATUS= @status ,IDTB= @idtb  where ID= @ID ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {DaiMang,IP,status,IDTB,ID});
             return data;
         }
 
         // HAM XOA
-        public int Delete(string MaWeb)
+
+        public int Delete(int ID)
         {
-            string query = "DELETE DSWEBSITE WHERE MAWEB= @ma ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaWeb });
+            string query = "DELETE QLYIP WHERE ID= @ma ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {ID});
             return data;
         }
 

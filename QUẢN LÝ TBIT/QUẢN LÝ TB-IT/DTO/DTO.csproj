@@ -46,10 +46,11 @@
     <Compile Include="BoPhanDTO.cs" />
     <Compile Include="ChucVuDTO.cs" />
     <Compile Include="DsCaiDatDTO.cs" />
-    <Compile Include="DsWebDTO.cs" />
+    <Compile Include="QlyIPDTO.cs" />
     <Compile Include="HangMucBaoTriDTO.cs" />
     <Compile Include="KeHoachBDDTO.cs" />
     <Compile Include="LichSuBTDTO.cs" />
+    <Compile Include="LoaiTBDTO.cs" />
     <Compile Include="LsUpdatePMDTO.cs" />
     <Compile Include="NgayCNDTO.cs" />
     <Compile Include="NgayDTO.cs" />

@@ -688,6 +688,7 @@ namespace frmMain
         {
             ColumSTT.Instance.CustomDrawRowIndicator(e);
         }
+
         DataTable data = new DataTable();
 
         private void btnNhapExcell_Click(object sender, EventArgs e)
