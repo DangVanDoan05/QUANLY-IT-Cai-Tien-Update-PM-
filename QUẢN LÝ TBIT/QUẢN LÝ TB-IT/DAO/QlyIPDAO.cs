@@ -22,19 +22,122 @@ namespace DAO
         // HAM LAY BANG
         public DataTable GetTable()
         {
-            string query = "select* from QLYIP";
+            string query = "select * from QLYIP,LOAITB where IDTB=LOAITB.ID";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data;
         }
 
-        public QlyIPDTO GetWebDTO(string MaWeb)
+        public DataTable GetTableDaiMang()
         {
-            string query = "select* from DSWEBSITE WHERE MAWEB= @ma ";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaWeb });
+            string query = "SELECT DISTINCT DAIMANG FROM QLYIP";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            return data;
+        }
+
+        // Lấy các IP trống của các dải mạng.
+        public DataTable GetTableIPofDAIMANG(string DaiMang)
+        {
+            string query = " SELECT * FROM QLYIP where DAIMANG= @daimang and STATUS=0 ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] {DaiMang});
+            return data;
+        }
+
+
+        public QlyIPDTO GetIPDTO(int ID)
+        {
+            string query = "select* from QLYIP WHERE ID= @ID ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { ID });
             QlyIPDTO a = new QlyIPDTO(data.Rows[0]);
             return a;
         }
 
+
+      
+
+        public List<QlyIPDTO> GetLsIPDTODaSX()
+        {
+            string query = "select * from QLYIP ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { });
+            List<QlyIPDTO> LsIPDTOall = new List<QlyIPDTO>();
+            List<int> LsSoDMOnly = new List<int>();
+            List<int> LsSoIPOnly = new List<int>();
+
+            foreach (DataRow item in data.Rows)
+            {
+                QlyIPDTO a = new QlyIPDTO(item);
+                LsIPDTOall.Add(a);
+                if(!LsSoDMOnly.Contains(a.SODAIMANG))
+                {
+                    LsSoDMOnly.Add(a.SODAIMANG);
+                }
+                if (!LsSoIPOnly.Contains(a.SOIP))
+                {
+                    LsSoIPOnly.Add(a.SOIP);
+                }
+            }
+
+            // Lấy được dải mạng và IP duy nhất, bây h tiến hành sắp xếp.
+
+            // Sắp xếp dải mạng.
+
+            int dodaiDM = LsSoDMOnly.Count();
+
+            int[] DaiMang = new int[dodaiDM];
+
+            int m = 0;
+
+            foreach (int item in LsSoDMOnly)
+            {
+                DaiMang[m] = item;
+                m++;
+            }
+
+            // Tiến hành sắp xếp mảng dải mạng tăng dần
+
+            for (int i = 0; i < dodaiDM - 1; i++)
+            {
+                for (int j = i + 1; j < dodaiDM; j++)
+                {
+                    if ( DaiMang[j] < DaiMang[i] )
+                    {
+                        int trunggian = DaiMang[j];
+                        DaiMang[j] = DaiMang[i];
+                        DaiMang[i] = trunggian;
+                    }
+                }
+            }
+
+
+            // Sắp xếp dải IP
+
+            int dodaiDIP = LsSoIPOnly.Count();
+
+            int[] DaiIP = new int[dodaiDIP];
+
+            int n = 0;
+
+            foreach (int item in LsSoIPOnly)
+            {
+                DaiMang[m] = item;
+                m++;
+            }
+
+            // Tiến hành sắp xếp mảng dải mạng tăng dần
+
+            for (int i = 0; i < dodaiDM - 1; i++)
+            {
+                for (int j = i + 1; j < dodaiDM; j++)
+                {
+                    if (DaiMang[j] < DaiMang[i])
+                    {
+                        int trunggian = DaiMang[j];
+                        DaiMang[j] = DaiMang[i];
+                        DaiMang[i] = trunggian;
+                    }
+                }
+            }
+            return LsDsDHdasx;
+        }
 
         public bool CheckIPExist(string IP)
         {
@@ -55,21 +158,36 @@ namespace DAO
 
         // HAM THEM
 
-        // QLYIP(DAIMANG, IP, STATUS, IDTB)
+        // QLYIP(DAIMANG, IP, STATUS, IDTB,SODAIMANG,SOIP)
 
-        public int Insert(string DaiMang , string IP , int status ,int IDTB )
+        public int Insert(string DaiMang , string IP , int status ,int IDTB,int SoDaiMang,int SoIP)
         {
-            string query = "insert QLYIP(DAIMANG, IP, STATUS, IDTB) values( @daimang , @ip , @status , @idtb )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  DaiMang, IP, status,  IDTB });
+            string query = "insert QLYIP(DAIMANG, IP, STATUS, IDTB,SODAIMANG,SOIP) values( @daimang , @ip , @status , @idtb , @soDM , @soIP )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  DaiMang, IP, status,  IDTB , SoDaiMang , SoIP });
             return data;
         }
 
-        // HAM SUA
 
-        public int Update(int ID,string DaiMang, string IP, int status, int IDTB)
+        // HAM SUA, không cần Update chỉ cần Update lại Id thiêt bị.
+
+        public int UpdateDMIP(int ID,int SoDaiMang, int SoIP)
         {
-            string query = "update QLYIP set DAIMANG= @daimang ,IP= @ip ,STATUS= @status ,IDTB= @idtb  where ID= @ID ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {DaiMang,IP,status,IDTB,ID});
+            string query = "update QLYIP set SODAIMANG= @sodaimang ,SOIP= @soip   where ID= @ID ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {SoDaiMang,SoIP,ID});
+            return data;
+        }
+
+        public int UpdateIDTB(int ID, int IDTB)
+        {
+            string query = "update QLYIP set IDTB= @IDTB  where ID= @ID ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { IDTB, ID });
+            return data;
+        }
+
+        public int UpdateStatus(int ID, int status)
+        {
+            string query = "update QLYIP set STATUS= @status  where ID= @ID ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  status, ID });
             return data;
         }
 

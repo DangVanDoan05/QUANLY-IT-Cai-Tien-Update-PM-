@@ -26,22 +26,29 @@ namespace frmMain
             LoadControl();
         }
 
-        int IDselected;
+        int IDselected=0;
         int luu = 0;
 
 
         private void LoadControl()
         {
+
             //Update lại biến bảo hành mỗi khi Load lại Form
-            UpdateBaoHanh();
+          //   UpdateBaoHanh(); 
+           
+            LoadEditLookup();
             LoadCBX();
             LockControl(true);
-            CleanText();
+            CleanText();    
             LoadData();
+            IDselected = 0;
         }
 
 
-
+        private void LoadEditLookup()
+        {
+           
+        }
 
         private void LockControl(bool kt)
         {
@@ -64,6 +71,8 @@ namespace frmMain
                 dtpHanBaoHanh.Enabled = false;
                 txtNguoiSD.Enabled = false;
                 txtGhiChu.Enabled = false;
+                sglDaiIP.Enabled = false;
+                sglDiaChiIP.Enabled = false;
 
 
                 btnThem.Enabled = true;
@@ -79,8 +88,7 @@ namespace frmMain
             }
             else
             {
-                txtMaMT.Enabled = true;
-                txtDiaChiIP.Enabled = true;
+                txtMaMT.Enabled = true;              
                 txtDcMAC.Enabled = true;
                 txtDomain.Enabled = true;
                 cbLoaiMT.Enabled = true;
@@ -95,6 +103,8 @@ namespace frmMain
                 dtpHanBaoHanh.Enabled = true;
                 txtNguoiSD.Enabled = true;
                 txtGhiChu.Enabled = true;
+                sglDaiIP.Enabled = true;
+                sglDiaChiIP.Enabled = false;
 
 
                 btnThem.Enabled = false;
@@ -113,18 +123,20 @@ namespace frmMain
 
         private void LoadData()
         {
+            // Khởi tạo ban đầu là máy tính sẽ chọn IP tĩnh.
+
+            radIPtinh.Checked = true;
+
             // Load trong bảng kế hoạch bảo dưỡng, bảo trì xem có phòng ban nào cần bảo dưỡng không thì bôi màu các máy tính hết hạn bảo hành.
 
             gridControl1.DataSource = QuanLyMayTinhDAO.Instance.GetTable();
             lblTongSoMT.Text = QuanLyMayTinhDAO.Instance.TongMT() + "";
             string maMT = txtMaMT.Text;
-
-
         }
+
 
         private void UpdateBaoHanh()
         {
-
             // Load trong bảng kế hoạch bảo dưỡng, bảo trì xem có phòng ban nào cần bảo dưỡng không thì bôi màu các máy tính hết hạn bảo hành.
 
             List<QuanLyMayTinhDTO> LsMT = QuanLyMayTinhDAO.Instance.GetListMaMT();
@@ -153,18 +165,36 @@ namespace frmMain
 
         private void LoadCBX()
         {
+            // Load NHÀ CUNG CẤP:
+
             cbNCC.DataSource = NhaCungCapDAO.Instance.GetListNCC();
             cbNCC.DisplayMember = "MANCC";
             cbNCC.ValueMember = "MANCC";
+
+
 
             cbLoaiMT.DataSource = LoaiMayTinhDAO.Instance.GetListLoaiMT();
             cbLoaiMT.DisplayMember = "TENLOAIMT";
             cbLoaiMT.ValueMember = "TENLOAIMT";
 
             // Load Phòng ban:
+
             sglPhongBan.Properties.DataSource = PhongBanDAO.Instance.GetLsvPB();
             sglPhongBan.Properties.DisplayMember = "MAPB";
             sglPhongBan.Properties.ValueMember = "MAPB";
+
+            // Load Dải  IP
+
+            sglDaiIP.Properties.DataSource = QlyIPDAO.Instance.GetTableDaiMang();
+            sglDaiIP.Properties.DisplayMember = "DAIMANG";
+            sglDaiIP.Properties.ValueMember = "DAIMANG";
+
+
+            // Load Địa chỉ IP:
+
+            sglDiaChiIP.Properties.DataSource = QlyIPDAO.Instance.GetTable();
+            sglDiaChiIP.Properties.DisplayMember = "IP";
+            sglDiaChiIP.Properties.ValueMember = "ID";
 
         }
 
@@ -173,7 +203,7 @@ namespace frmMain
         private void CleanText()
         {
             txtMaMT.Clear();
-            txtDiaChiIP.Clear();
+          //  txtDiaChiIP.Clear();
             txtDcMAC.Clear();
             txtNguoiSD.Clear();
             txtMaTSCD.Clear();
@@ -187,52 +217,106 @@ namespace frmMain
             {
                 case 1: // luu khi them du lieu
                     {
-                        // QLYMAYTINH(ID,MAMT, IP, MAC, LOAIMT, NCC, NHAMAY, PB, NGUOISD, MATSCD, NGAYMUA, HANBH, BAOHANH, GHICHU)
+                        // QLYMAYTINH(ID,MAMT, MAC, LOAIMT, NCC, NHAMAY, PB, NGUOISD, MATSCD, NGAYMUA, HANBH, BAOHANH, GHICHU, IDIP)
 
                         string maMT = txtMaMT.Text.Trim();
-                        string dcIP = txtDiaChiIP.Text.Trim();
-                        string mac = txtDcMAC.Text.Trim();
-                        string Domain = txtDomain.Text.Trim();
-                        string loaiMT = cbLoaiMT.SelectedValue.ToString();
-                        string ncc = cbNCC.SelectedValue.ToString();
-                        string Phongban = sglPhongBan.EditValue.ToString();
-                        string NhaMay = txtNhaMay.Text;
-                        string nguoisd = txtNguoiSD.Text;
-                        string MaTSCD = txtMaTSCD.Text;
-                        bool baohanh = false;
-                        string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
-                        string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
-                        string ghichu = txtGhiChu.Text;
-
-                        bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
-                        if (CheckMaMTExist)
+                     
+                        int IdIP = 0;
+                      
+                        if(radDHCP.Checked)
                         {
-                            MessageBox.Show(" Mã máy tính đã tồn tại!", "Thông Báo");
+                            IdIP = 1053;  // ID= 1053 là ID của DHCP
                         }
-                        else
+                        if(radIPtinh.Checked)
                         {
-
-                            TimeSpan timebh = dtpHanBaoHanh.Value - DateTime.Now;
-                            int songay = timebh.Days;
-                            if (songay > 0)
+                            try
                             {
-                                baohanh = true;
-                            }
-                            QuanLyMayTinhDAO.Instance.Insert(maMT, dcIP, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu);
-                            MessageBox.Show($"Đã thêm mã máy tính {maMT}.", "Thành công:");
+                                IdIP = int.Parse(sglDiaChiIP.EditValue.ToString()); string mac = txtDcMAC.Text.Trim();
+                                string Domain = txtDomain.Text.Trim();
+                                string loaiMT = cbLoaiMT.SelectedValue.ToString();
+                                string ncc = cbNCC.SelectedValue.ToString();
+                                string Phongban = sglPhongBan.EditValue.ToString();
+                                string NhaMay = txtNhaMay.Text;
+                                string nguoisd = txtNguoiSD.Text;
+                                string MaTSCD = txtMaTSCD.Text;
+                                bool baohanh = false;
+                                string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
+                                string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
+                                string ghichu = txtGhiChu.Text;
 
+                                bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
+
+                                if (CheckMaMTExist)
+                                {
+                                    MessageBox.Show($" Mã máy tính {maMT} đã tồn tại!", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                }
+                                else
+                                {
+
+                                    TimeSpan timebh = dtpHanBaoHanh.Value - DateTime.Now;
+                                    int songay = timebh.Days;
+                                    if (songay > 0)
+                                    {
+                                        baohanh = true;
+                                    }
+
+                                    // IP được lưu vào thì phải đổi trạng thái cho máy tính.
+
+                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP);
+
+                                    // Update trạng thái IP trong bảng quản lý IP( Trạng thái 1: trạng thái đã bị cấp phát)
+
+                                    QlyIPDAO.Instance.UpdateStatus(IdIP, 1);
+
+                                    MessageBox.Show($"Đã thêm mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                }
+                                luu = 0;
+
+                            }
+                            catch
+                            {
+                                MessageBox.Show($"Chưa chọn địa chỉ IP.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                            
                         }
-                        luu = 0;
+
+                        
                     }
 
                     break;
 
-                // Thực hiện sửa dữ liệu máy tính
-                case 2:
+                // Thực hiện sửa dữ liệu máy tính( Sửa thông tin là khó)
+
+                case 2: // Sửa thông tin máy tính.
+
+                    //  Từ ID máy tính đc chọn ====> Lấy ra được IDIP của máy tính theo DTO.
 
                     {
+
                         string maMT = txtMaMT.Text.Trim();
-                        string dcIP = txtDiaChiIP.Text.Trim();
+                        int IDIPpast = 0;
+                        try
+                        {
+                            QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
+                            IDIPpast = MTDTO.IDIP;
+                        }
+                        catch 
+                        {
+                         
+                        }                       
+                        string dcIP = txtDiaChiIP.Text;
+                        int IdIPnew = 0;                    
+                        if (radDHCP.Checked)
+                        {
+                            IdIPnew = 1053;
+                        }
+                        if (radIPtinh.Checked)
+                        {
+                            IdIPnew = int.Parse(sglDiaChiIP.EditValue.ToString()); // Lấy giá trị ID của IP 
+                        }
                         string mac = txtDcMAC.Text.Trim();
                         string Domain = txtDomain.Text.Trim();
                         string loaiMT = cbLoaiMT.SelectedValue.ToString();
@@ -258,13 +342,36 @@ namespace frmMain
                             {
                                 baohanh = true;
                             }
-                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, dcIP, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu);
-                            MessageBox.Show($"Đã sửa thông tin mã máy tính {maMT}.", "Thành công:");
+
+                            // Sửa trong bảng quản lý máy tính
+
+                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew);
+
+                            //Sửa trong cả bảng Quản lý IP.
+                            // Kiểm tra sự khác biệt của 2 IDIP để chạy lệnh Update trạng thái IDIP.
+                            // So sánh IDIP cũ và IDIP MỚI ====> ĐỂ ĐƯA RA QUYẾT ĐỊNH CHẠY LỆNH Update trạng thái IDIP TRONG BẢNG QUẢN LÝ IP.
+
+
+                            if(IdIPnew!=IDIPpast)
+                            {
+
+                                // Update trạng thái đã bị chiếm cho IP new
+
+                                QlyIPDAO.Instance.UpdateStatus(IdIPnew, 1); // Trạng thái 1, đã bị chiếm đóng.
+
+
+                                // Update lại trạng thái khả dụng cho IP pass
+
+                                QlyIPDAO.Instance.UpdateStatus(IDIPpast, 0);  // Trạng thái 0 khả dụng.
+                            }
+
+                            MessageBox.Show($"Đã sửa thông tin mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+
                         }
                         luu = 0;
                     }
                     break;
-                case 3:
+                case 3:   // Trường hợp nhập File Excell từ máy tính.
                     {
                         DialogResult kq = MessageBox.Show($"Bạn muốn lưu lại danh sách máy tính bên dưới vào CSDL?", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
@@ -320,6 +427,8 @@ namespace frmMain
         }
         private DataTable NhapExCel()
         {
+            // Đoạn Excell này xử lý sau.
+
             // Khai bao bien de luu duong dan file can import
             string filePath = "";
             // tao openfile dialog dde mo file excell
@@ -327,14 +436,17 @@ namespace frmMain
             // chi loc ra cac file co dinh dang excel
             // dialog.Filter = "Excel | *.xlsx | Excel 2003 | *.xls";
             // Nếu mở file và chọn nơi lưu file thành công sẽ lưu đường dẫn lại dùng
+
             if (dialog.ShowDialog() != DialogResult.Cancel)
             {
                 filePath = dialog.FileName;
             }
+
             // Nếu đường dẫn null hoặc rỗng thì báo không hợp lệ và return hàm
+
             if (string.IsNullOrEmpty(filePath))
             {
-                MessageBox.Show("Duong dan bao cao khong hop le.");
+                MessageBox.Show("Duong dan khong hop le. ");
 
             }
             // tao ra bảng mẫu danh sach User Infor rong de hung du lieu.
@@ -597,8 +709,10 @@ namespace frmMain
             
         }
 
+
         private void btnSua_Click(object sender, EventArgs e)
         {
+
             int Count = 0;
 
             List<int> LsIDselected = new List<int>();
@@ -647,7 +761,12 @@ namespace frmMain
 
                     foreach (string item in LsMaMTDcChon)
                     {
-                       
+                        // Update lại trạng thái cho địa chỉ IP của máy tính.
+
+                        QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMaMT1(item);
+                        int IdIP = MTDTO.IDIP;
+                        QlyIPDAO.Instance.UpdateStatus(IdIP,0); // Trạng thái IP 0 là trạng thái IP chưa được gán.
+
                         // Xóa trong bảng ds máy tính. 
 
                         QuanLyMayTinhDAO.Instance.Delete(item);
@@ -727,20 +846,31 @@ namespace frmMain
         {
             try
             {
+
+                IDselected = int.Parse(gridView1.GetFocusedRowCellValue("ID").ToString());
+                // 320 thì sẽ lấy theo ID đầu tiên.
+              //  MessageBox.Show($"ID lấy là ID {IDselected} ");
                 txtMaMT.Text = gridView1.GetFocusedRowCellValue("MAMT").ToString();
                 txtDomain.Text = gridView1.GetFocusedRowCellValue("DOMAIN").ToString();
                 txtDiaChiIP.Text = gridView1.GetFocusedRowCellValue("IP").ToString();
+
                 txtDcMAC.Text = gridView1.GetFocusedRowCellValue("MAC").ToString();
                 txtNguoiSD.Text = gridView1.GetFocusedRowCellValue("NGUOISD").ToString();
                 txtGhiChu.Text = gridView1.GetFocusedRowCellValue("GHICHU").ToString();
                 txtMaTSCD.Text = gridView1.GetFocusedRowCellValue("MATSCD").ToString();
+                sglDaiIP.Properties.DataSource = QlyIPDAO.Instance.GetTableDaiMang();
                 sglPhongBan.EditValue = gridView1.GetFocusedRowCellValue("PB").ToString();
+                // đang không đúng lý ở đây // Lấy ra giá trị ID IP
+                sglDiaChiIP.EditValue= gridView1.GetFocusedRowCellValue("IDIP").ToString();
+                
                 txtNhaMay.Text = gridView1.GetFocusedRowCellValue("NHAMAY").ToString();
                 cbNCC.SelectedValue = gridView1.GetFocusedRowCellValue("NCC").ToString();
                 cbLoaiMT.SelectedValue = gridView1.GetFocusedRowCellValue("LOAIMT").ToString();
                 dtpNgayMua.Value = Convert.ToDateTime(gridView1.GetFocusedRowCellValue("NGAYMUA").ToString());
                 dtpHanBaoHanh.Value = Convert.ToDateTime(gridView1.GetFocusedRowCellValue("HANBH").ToString());
                 txtGhiChu.Text = gridView1.GetFocusedRowCellValue("GHICHU").ToString();
+
+
             }
             catch
             {
@@ -846,6 +976,30 @@ namespace frmMain
                 }
                 
             }
+        }
+
+        private void radDHCP_CheckedChanged(object sender, EventArgs e)
+        {
+            sglDaiIP.Enabled = false;
+            sglDiaChiIP.Enabled = false;
+        }
+
+        private void sglDaiIP_EditValueChanged(object sender, EventArgs e)
+        {
+            sglDiaChiIP.Enabled = true;
+            string DaiMang = sglDaiIP.EditValue.ToString();
+            // Khi chọn thì Load ra dải địa chỉ mạng cho máy tính văn phòng của dải mạng đó 
+
+            sglDiaChiIP.Properties.DataSource = QlyIPDAO.Instance.GetTableIPofDAIMANG(DaiMang);
+            sglDiaChiIP.Properties.DisplayMember = "IP";
+            sglDiaChiIP.Properties.ValueMember = "ID";
+
+        }
+
+        private void radIPtinh_CheckedChanged(object sender, EventArgs e)
+        {
+            sglDaiIP.Enabled = true;
+            sglDiaChiIP.Enabled = false;
         }
     }
 

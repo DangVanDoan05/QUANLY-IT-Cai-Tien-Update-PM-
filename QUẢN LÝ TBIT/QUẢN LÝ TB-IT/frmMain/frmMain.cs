@@ -373,7 +373,7 @@ namespace frmMain
 
         private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
         {
-            LoadItem(e);         
+            //  LoadItem(e);         
             OpenForm(typeof(frmDanhSachMayTinh)); 
         }
 

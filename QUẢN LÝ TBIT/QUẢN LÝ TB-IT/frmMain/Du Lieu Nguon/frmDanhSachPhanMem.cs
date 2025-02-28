@@ -14,6 +14,9 @@ using OfficeOpenXml;
 using frmMain.Quan_Ly_May_Tinh;
 using static DevExpress.Utils.Svg.CommonSvgImages;
 using DevExpress.XtraGrid.Columns;
+using DTO;
+using Microsoft.Office.Interop.Excel;
+
 
 namespace frmMain
 {
@@ -24,7 +27,9 @@ namespace frmMain
             InitializeComponent();
             LoadControl();
         }
+
         bool them;
+        int IDselected = 0;
 
         private void LoadControl()
         {
@@ -32,6 +37,7 @@ namespace frmMain
             LoadData();
             CleanText();
             LoadCBX();
+            IDselected = 0;
         }
 
         private void LoadCBX()
@@ -51,8 +57,7 @@ namespace frmMain
 
         private void LoadData()
         {
-
-            gridControl1.DataSource = DanhSachPhanMemDAO.Instance.GetTable();
+            gridControl1.DataSource = QLPhanMemDAO.Instance.GetTable();
         }
 
         private void LockControl(bool kt)
@@ -100,6 +105,7 @@ namespace frmMain
             {
                 if (them)
                 {
+
                     string maPM = txtMaPhanMem.Text;
                     string tenPM = txtTenPhanMem.Text;
                     string license = txtLicense.Text;
@@ -108,18 +114,19 @@ namespace frmMain
                     string ghichu = txtGhiChu.Text;
                     string chucnang = txtChucnang.Text;
                     string ncc = cbNCC.Text;
-                    int socot = DanhSachPhanMemDAO.Instance.CheckMaPM(maPM);
-                    if (socot > 0)
+                    bool CheckMaPMExist = QLPhanMemDAO.Instance.CheckMaPMExist(maPM);
+                    if (CheckMaPMExist)
                     {
-                        MessageBox.Show(" Mã phần mềm đã tồn tại!", "Thông Báo");
+                        MessageBox.Show(" Mã phần mềm đã tồn tại!", "Lỗi:",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                     else
                     {
-                        DialogResult kq = MessageBox.Show($"Bạn muốn thêm mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo);
+
+                        DialogResult kq = MessageBox.Show($"Bạn muốn thêm mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            DanhSachPhanMemDAO.Instance.Insert(maPM, tenPM, license, ngaymua, hansd, ncc,chucnang, ghichu);
-                            MessageBox.Show($" Thêm mã phần mềm {maPM} thành công! ");
+                            QLPhanMemDAO.Instance.Insert(maPM, tenPM, license, ngaymua, hansd, ncc,chucnang, ghichu);
+                            MessageBox.Show($" Thêm mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         them = false;
                         LoadControl();
@@ -144,11 +151,11 @@ namespace frmMain
                     }
                     else
                     {
-                        DialogResult kq = MessageBox.Show($"Bạn muốn sửa thông tin của mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo);
+                        DialogResult kq = MessageBox.Show($"Bạn muốn sửa thông tin của mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            DanhSachPhanMemDAO.Instance.Update(maPM, tenPM, license, ngaymua, hansd, ncc,ChucNang, ghichu);
-                            MessageBox.Show($" Sửa thông tin mã phần mềm {maPM} thành công! ");
+                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, license, ngaymua, hansd, ncc,ChucNang, ghichu);
+                            MessageBox.Show($" Sửa thông tin mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
                 }
@@ -167,44 +174,74 @@ namespace frmMain
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            LockControl(false);
-            txtMaPhanMem.Enabled = false;
+
+            if(IDselected==0)
+            {
+                MessageBox.Show("Chưa chọn phần mềm để sửa thông tin.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                LockControl(false);
+                txtMaPhanMem.Enabled = false;
+            }
+            
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            LockControl(false);
-            txtMaPhanMem.Enabled = false;
-            string ma = txtMaPhanMem.Text.Trim();
+           
+            // cho phép xóa nhiều dòng trong gridview
+            int dem = 0;
+            //  int demloi = 0;
 
+            List<int> LsIDPMdc = new List<int>();
 
-            if (ma == "")
+            foreach (var item in gridView1.GetSelectedRows())
             {
-                MessageBox.Show(" Bạn chưa chọn mã phần mềm để xóa! ", " Thông Báo");
+                int ID = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                LsIDPMdc.Add(ID);
+                dem++;
+            }
+
+            if (dem > 0)
+            {
+                DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} phần mềm được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (kq == DialogResult.Yes)
+                {
+                    int demXoa = 0;
+                    foreach (int item in LsIDPMdc)
+                    {
+                        // Trường hợp nó đang có khóa phụ tham chiếu đến.
+                        try
+                        {
+                            QLPhanMemDAO.Instance.Delete(item);
+                            demXoa++;
+                        }
+                        catch 
+                        {
+                            // Trường hợp nó đang có khóa phụ tham chiếu đến.
+                            // Thông báo do bị dính khóa phụ.
+
+                        }
+                    }
+
+                    if (demXoa < dem)
+                    {
+                        MessageBox.Show($"Đã xóa {demXoa} phần mềm, {dem - demXoa} phần mềm không thể xóa.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Đã xóa {dem} nhân viên được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    demXoa = 0;
+                    dem = 0;
+                }
+                LoadControl();
             }
             else
             {
-                DialogResult kq = MessageBox.Show($"Bạn muốn xóa các mã phần mềm đã chọn?", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (kq == DialogResult.Yes)
-                {
-                    int dem = 0;
-                    // cho phép xóa nhiều dòng trong gridview
-                    foreach (var item in gridView1.GetSelectedRows())
-                    {
-                        string ma1 = gridView1.GetRowCellValue(item, "MAPM").ToString();
-
-                        DanhSachPhanMemDAO.Instance.Delete(ma1);
-
-                        // Xóa trong cả bảng quản lý cài đặt phần mềm.                       
-                        DsCaiDatDAO.Instance.DeletePM(ma1);
-
-                        dem++;
-                    }
-                    MessageBox.Show($"Xóa thành công {dem} mã phần mềm được chọn.", "Thông Báo: ");
-                   
-                }
+                MessageBox.Show("Bạn chưa chọn phần mềm để xóa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LoadControl();
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -232,6 +269,7 @@ namespace frmMain
         {
             try
             {
+                IDselected = int.Parse(gridView1.GetFocusedRowCellValue("ID").ToString());
                 txtMaPhanMem.Text = gridView1.GetFocusedRowCellValue("MAPM").ToString();
                 txtTenPhanMem.Text = gridView1.GetFocusedRowCellValue("TENPM").ToString();
                 txtLicense.Text = gridView1.GetFocusedRowCellValue("LICENSE").ToString();
@@ -250,6 +288,58 @@ namespace frmMain
         // Xử lý Excell cho Form danh sách phần mềm:
         void XuatExCel()
         {
+            #region  Xuat Excel OK
+            //using (System.Windows.Forms.SaveFileDialog saveDialog = new System.Windows.Forms.SaveFileDialog())
+            //{
+            //    saveDialog.Filter = "Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
+            //    if (saveDialog.ShowDialog() != DialogResult.Cancel)
+            //    {
+            //        string exportFilePath = saveDialog.FileName;
+            //        string fileExtenstion = new FileInfo(exportFilePath).Extension;
+
+            //        switch (fileExtenstion)
+            //        {
+            //            case ".xlsx":
+            //                gridView1.OptionsSelection.MultiSelect = false;
+            //              GridColumn A=  new GridColumn();
+            //                A.FieldName = "MAPM";
+            //                A.Caption = "Test";
+            //                gridView1.Columns.Add(A);
+            //                A.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways;
+
+
+            //                gridControl1.ExportToXlsx(exportFilePath);
+
+            //                gridView1.OptionsSelection.MultiSelect = true;
+            //                gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
+            //                break;
+
+            //            default:
+            //                break;
+            //        }
+
+            //        if (File.Exists(exportFilePath))
+            //        {
+            //            try
+            //            {
+            //                //Try to open the file and let windows decide how to open it.
+            //                System.Diagnostics.Process.Start(exportFilePath);
+            //            }
+            //            catch
+            //            {
+            //                String msg = "The file could not be opened." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+            //                MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //            }
+            //        }
+            //        else
+            //        {
+            //            String msg = "The file could not be saved." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
+            //            MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //        }
+            //    }
+            //}
+            #endregion
+
             using (System.Windows.Forms.SaveFileDialog saveDialog = new System.Windows.Forms.SaveFileDialog())
             {
                 saveDialog.Filter = "Excel (2010) (.xlsx)|*.xlsx |RichText File (.rtf)|*.rtf |Pdf File (.pdf)|*.pdf |Html File (.html)|*.html";
@@ -262,7 +352,7 @@ namespace frmMain
                     {
                         case ".xlsx":
                             gridView1.OptionsSelection.MultiSelect = false;
-                          GridColumn A=  new GridColumn();
+                            GridColumn A = new GridColumn();
                             A.FieldName = "MAPM";
                             A.Caption = "Test";
                             gridView1.Columns.Add(A);
@@ -278,6 +368,22 @@ namespace frmMain
                         default:
                             break;
                     }
+
+                    string duongdan = exportFilePath;
+                    gridView1.ExportToXlsx(duongdan);
+                    Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                    Microsoft.Office.Interop.Excel.Workbook wb = excel.Workbooks.Open(duongdan);
+                    Microsoft.Office.Interop.Excel.Worksheet ws = wb.Sheets[1];
+                    int cot = ws.UsedRange.Columns.Count + 1;
+                    ws.Cells[1, cot + 3] = "PHU";
+                    for (int i = 2; i < ws.UsedRange.Rows.Count + 1; i++)
+                    {
+                        ws.Cells[i, cot + 3] = "=IF(COUNTIF($G$2:G"+i+",G"+i+ ")=1,G" + i + ","+'"'+'"'+")";
+                    }
+                    wb.Save();
+                    wb.Close();
+                    excel.Quit();
+                
 
                     if (File.Exists(exportFilePath))
                     {
@@ -297,8 +403,12 @@ namespace frmMain
                         String msg = "The file could not be saved." + Environment.NewLine + Environment.NewLine + "Path: " + exportFilePath;
                         MessageBox.Show(msg, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    
                 }
             }
+            
+
+
         }
 
         void TaiForm()

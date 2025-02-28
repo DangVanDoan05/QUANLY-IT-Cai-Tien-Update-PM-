@@ -17,16 +17,20 @@ namespace DTO
             this.IP = row["IP"].ToString();
             this.STATUS = int.Parse(row["STATUS"].ToString());
             this.IDTB = int.Parse(row["IDTB"].ToString());
+            this.STATUS = int.Parse(row["SODAIMANG"].ToString());
+            this.IDTB = int.Parse(row["SOIP"].ToString());
         }
 
 
-        // QLYIP(DAIMANG, IP, STATUS, IDTB)
+        // QLYIP(DAIMANG, IP, STATUS, IDTB,SODAIMANG,SOIP)
 
         private int iD;
         private string dAIMANG;
         private string iP;
         private int sTATUS;
         private int iDTB;
+        private int sODAIMANG;
+        private int sOIP;
 
 
         public int ID { get => iD; set => iD = value; }
@@ -34,5 +38,8 @@ namespace DTO
         public string IP { get => iP; set => iP = value; }
         public int STATUS { get => sTATUS; set => sTATUS = value; }
         public int IDTB { get => iDTB; set => iDTB = value; }
+        public int SODAIMANG { get => sODAIMANG; set => sODAIMANG = value; }
+        public int SOIP { get => sOIP; set => sOIP = value; }
+
     }
 }

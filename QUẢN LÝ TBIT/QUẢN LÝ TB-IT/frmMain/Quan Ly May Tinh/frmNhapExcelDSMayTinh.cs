@@ -349,6 +349,7 @@ namespace frmMain
             LockControl(true);
         }
 
+
         private void btnLuu_Click_1(object sender, EventArgs e)
         {
             DialogResult kq = MessageBox.Show("Bạn muốn lưu dữ liệu từ File Excell vào hệ thống! ", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -360,7 +361,7 @@ namespace frmMain
                     bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(item.MAMT);
                     if(!CheckMaMTExist)
                     {
-                        QuanLyMayTinhDAO.Instance.Insert(item.MAMT, item.IP, item.MAC, item.DOMAIN, item.LOAIMT, item.NCC, item.NHAMAY, item.PB, item.NGUOISD, item.MATSCD, item.NGAYMUA, item.HANBH, item.BAOHANH, item.GHICHU);
+                       // QuanLyMayTinhDAO.Instance.Insert(item.MAMT, item.IP, item.MAC, item.DOMAIN, item.LOAIMT, item.NCC, item.NHAMAY, item.PB, item.NGUOISD, item.MATSCD, item.NGAYMUA, item.HANBH, item.BAOHANH, item.GHICHU);
                         mamoi++;
                     }
                     else

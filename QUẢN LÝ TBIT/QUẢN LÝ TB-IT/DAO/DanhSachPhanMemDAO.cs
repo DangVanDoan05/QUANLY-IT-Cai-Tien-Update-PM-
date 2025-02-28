@@ -18,7 +18,9 @@ namespace DAO
             private set { DanhSachPhanMemDAO.instance = value; }
         }
 
+
         private DanhSachPhanMemDAO() { }
+        
         public List<DanhSachPhanMemDTO> GetListMaMT()
         {
             string query = "select * from DANHSACHPHANMEM";
@@ -29,9 +31,9 @@ namespace DAO
                 DanhSachPhanMemDTO maPM = new DanhSachPhanMemDTO(item);
                 lsv.Add(maPM);
             }
-
             return lsv;
         }
+
         public DanhSachPhanMemDTO GetMaPM(String MaPM)
         {
             string query = "select * from DANHSACHPHANMEM where MAPM= @MA ";

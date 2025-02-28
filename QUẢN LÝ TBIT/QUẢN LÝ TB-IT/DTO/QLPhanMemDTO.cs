@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class DanhSachPhanMemDTO
+    public class QLPhanMemDTO
     {
-        public DanhSachPhanMemDTO(DataRow row)
+       // QLYPHANMEM(MAPM, TENPM, LICENSE, NGAYMUA, HANSD, NCC, CHUCNANG, GHICHU)
+        public QLPhanMemDTO(DataRow row)
         {
-
+            this.ID =int.Parse(row["ID"].ToString());
             this.MAPM = row["MAPM"].ToString();
             this.TENPM = row["TENPM"].ToString();
             this.LICENSE = row["LICENSE"].ToString();
@@ -22,16 +23,22 @@ namespace DTO
             this.GHICHU = row["GHICHU"].ToString();
         }
 
-        public DanhSachPhanMemDTO(string maPM,string tenPM,string License, string ngaymua,string hansd,string ncc,string ghichu)
+
+        // QLYPHANMEM(MAPM, TENPM, LICENSE, NGAYMUA, HANSD, NCC, CHUCNANG, GHICHU)
+        public QLPhanMemDTO(string maPM, string tenPM, string License, string ngaymua, string hansd, string ncc,string ChucNang, string ghichu)
         {
             this.MAPM = maPM;
             this.TENPM = tenPM;
             this.LICENSE = License;
-            this.NGAYMUA =ngaymua;
+            this.NGAYMUA = ngaymua;
             this.HANSD = hansd;
-            this.NCC =ncc;
+            this.CHUCNANG = ChucNang;
+            this.NCC = ncc;
             this.GHICHU = ghichu;
         }
+
+
+        private int iD;
         private string mAPM;
         private string tENPM;
         private string lICENSE;
@@ -49,5 +56,6 @@ namespace DTO
         public string NCC { get => nCC; set => nCC = value; }
         public string GHICHU { get => gHICHU; set => gHICHU = value; }
         public string CHUCNANG { get => cHUCNANG; set => cHUCNANG = value; }
+        public int ID { get => iD; set => iD = value; }
     }
 }

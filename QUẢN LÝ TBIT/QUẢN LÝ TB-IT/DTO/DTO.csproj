@@ -46,6 +46,7 @@
     <Compile Include="BoPhanDTO.cs" />
     <Compile Include="ChucVuDTO.cs" />
     <Compile Include="DsCaiDatDTO.cs" />
+    <Compile Include="QLPhanMemDTO.cs" />
     <Compile Include="QlyIPDTO.cs" />
     <Compile Include="HangMucBaoTriDTO.cs" />
     <Compile Include="KeHoachBDDTO.cs" />

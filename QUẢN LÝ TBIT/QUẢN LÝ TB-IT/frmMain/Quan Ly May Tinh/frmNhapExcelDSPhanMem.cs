@@ -48,11 +48,15 @@ namespace frmMain.Quan_Ly_May_Tinh
         ExcelWorksheet worksheet;
         ExcelPackage package;
         DataTable dt = new DataTable();
-        List<DanhSachPhanMemDTO> LsdsPM = new List<DanhSachPhanMemDTO>();
+        List<QLPhanMemDTO> LsdsPM = new List<QLPhanMemDTO>();
         List<string> MaPMloi=new List<string>();
+
+
+
         private void ReadFileExcel()
         {
-                DataTable dt = new DataTable();
+            // QLYPHANMEM(MAPM, TENPM, LICENSE, NGAYMUA, HANSD, NCC, CHUCNANG, GHICHU)
+            DataTable dt = new DataTable();
                 dt.Columns.Add("MAPM");
                 dt.Columns.Add("TENPM");
                 dt.Columns.Add("LICENSE");
@@ -72,7 +76,7 @@ namespace frmMain.Quan_Ly_May_Tinh
                 {
                     //  biến j biểu thị cho một cột dữ liệu trong file Excell
 
-                    int j = 2;
+                    int j = 1;
                     string maPM = "";
                     try
                     {
@@ -133,6 +137,16 @@ namespace frmMain.Quan_Ly_May_Tinh
 
                     }
                     j++;
+                    string chucnang = "";
+                    try
+                    {
+                        chucnang = worksheet.Cells[i, j].Value.ToString();
+                    }
+                    catch
+                    {
+
+                    }
+                    j++;
                     string ghichu = "";
                     try
                     {
@@ -144,8 +158,9 @@ namespace frmMain.Quan_Ly_May_Tinh
                     }
 
 
-                    dt.Rows.Add(maPM, TenPM, License, ngaymua, hansd, ncc, ghichu);
-                    DanhSachPhanMemDTO pmDTO = new DanhSachPhanMemDTO(maPM, TenPM, License, ngaymua, hansd, ncc, ghichu);
+                    dt.Rows.Add(maPM, TenPM, License, ngaymua, hansd, ncc,chucnang,ghichu);
+
+                    QLPhanMemDTO pmDTO = new QLPhanMemDTO(maPM, TenPM, License, ngaymua, hansd, ncc,chucnang, ghichu);
                     LsdsPM.Add(pmDTO);
                     gridControl1.DataSource = dt;
                     LockControl(false);
@@ -226,7 +241,7 @@ namespace frmMain.Quan_Ly_May_Tinh
             GridView view = sender as GridView;
             string maPM = view.GetRowCellValue(e.RowHandle, view.Columns["MAPM"]).ToString();
 
-            if (MaPMloi.Contains(maPM)) // nếu List chứa linh kiện tồn
+            if (MaPMloi.Contains(maPM)) // nếu List chứa phần mềm lỗi.
             {
                 e.Appearance.BackColor = txtPMdatt.BackColor;
             }
@@ -238,22 +253,21 @@ namespace frmMain.Quan_Ly_May_Tinh
             DialogResult kq = MessageBox.Show("Bạn muốn lưu dữ liệu từ File Excell vào hệ thống! ", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (kq == DialogResult.Yes)
             {
-                foreach (DanhSachPhanMemDTO item in LsdsPM)
+                foreach (QLPhanMemDTO item in LsdsPM)
                 {
-                    try
-                    {
-                        DanhSachPhanMemDAO.Instance.Insert(item.MAPM, item.TENPM, item.LICENSE, item.NGAYMUA, item.HANSD, item.NCC,item.CHUCNANG, item.GHICHU);
+                    //try
+                    //{
+                        QLPhanMemDAO.Instance.Insert(item.MAPM, item.TENPM, item.LICENSE, item.NGAYMUA, item.HANSD, item.NCC,item.CHUCNANG, item.GHICHU);
                         mamoi++;
-                    }
-                    catch
-                    {
-                        MaPMloi.Add(item.MAPM);
-                        loi++;
-                    }
-
+                    //}
+                    //catch
+                    //{
+                    //    MaPMloi.Add(item.MAPM);
+                    //    loi++;
+                    //}
                 }
             }
-            MessageBox.Show($"Thêm thành công {mamoi} máy tính, {loi} mã máy bị lỗi.", "Thông Báo: ");
+            MessageBox.Show($"Thêm thành công {mamoi} phần mềm , {loi} mã phần mềm bị lỗi.", "Thông Báo: ",MessageBoxButtons.OK,MessageBoxIcon.Information);
             gridControl1.DataSource = LsdsPM;
 
             LockControl(true);

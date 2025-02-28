@@ -82,10 +82,11 @@ namespace DAO
                         }
                     }
                 }
+
             }
             return LsDsDHdasx;
         }
-
+         
         public List<QlyDonHangPBDTO> GetLsQuaDuKienNhan()
         {
             string query = " select* from QLYDONHANGPB ";

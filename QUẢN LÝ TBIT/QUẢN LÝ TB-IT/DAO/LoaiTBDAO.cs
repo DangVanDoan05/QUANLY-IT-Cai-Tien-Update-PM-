@@ -27,26 +27,26 @@ namespace DAO
             return data;
         }
 
-        public BoPhanDTO GetBoPhanDTO(string MaBP, string ThuocNM)
-        {
-            string query = "select* from BOPHAN where MABOPHAN= @ma and NHAMAY= @nhamay ";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaBP, ThuocNM });
-            BoPhanDTO a = new BoPhanDTO(data.Rows[0]);
-            return a;
-        }
+        //public BoPhanDTO GetBoPhanDTO(string MaBP, string ThuocNM)
+        //{
+        //    string query = "select* from BOPHAN where MABOPHAN= @ma and NHAMAY= @nhamay ";
+        //    DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaBP, ThuocNM });
+        //    BoPhanDTO a = new BoPhanDTO(data.Rows[0]);
+        //    return a;
+        //}
 
-        public List<BoPhanDTO> GetLsTB(string NhaMay)
-        {
-            string query = " select * from BOPHAN where NHAMAY= @nhamay ";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { NhaMay });
-            List<BoPhanDTO> Ls = new List<BoPhanDTO>();
-            foreach (DataRow item in data.Rows)
-            {
-                BoPhanDTO a = new BoPhanDTO(item);
-                Ls.Add(a);
-            }
-            return Ls;
-        }
+        //public List<BoPhanDTO> GetLsTB(string NhaMay)
+        //{
+        //    string query = " select * from BOPHAN where NHAMAY= @nhamay ";
+        //    DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { NhaMay });
+        //    List<BoPhanDTO> Ls = new List<BoPhanDTO>();
+        //    foreach (DataRow item in data.Rows)
+        //    {
+        //        BoPhanDTO a = new BoPhanDTO(item);
+        //        Ls.Add(a);
+        //    }
+        //    return Ls;
+        //}
 
         public bool CheckLoaiTBExist(string MaTB)
         {

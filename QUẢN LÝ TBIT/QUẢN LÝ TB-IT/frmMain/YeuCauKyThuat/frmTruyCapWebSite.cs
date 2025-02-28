@@ -169,14 +169,14 @@ namespace frmMain.YeuCauKyThuat
                     if(dem>0)
                     {
                       
-                        QlyIPDTO webDTO = QlyIPDAO.Instance.GetWebDTO(MaWeb);
-                        string LinkWeb = "";
-                        string mucdichSD = txtMDSD.Text;
-                        string NgayYC = DateTime.Now.ToString("dd/MM/yyyy");
-                        string NglapYC = CommonUser.UserStatic.MANV + "-" + NgayYC + DateTime.Now.ToString(" HH:mm:ss tt");
-                        string PdPB = "";
-                        string PDIT = "";
-                        string HoantatYC = "";
+                        //QlyIPDTO webDTO = QlyIPDAO.Instance.GetWebDTO(MaWeb);
+                        //string LinkWeb = "";
+                        //string mucdichSD = txtMDSD.Text;
+                        //string NgayYC = DateTime.Now.ToString("dd/MM/yyyy");
+                        //string NglapYC = CommonUser.UserStatic.MANV + "-" + NgayYC + DateTime.Now.ToString(" HH:mm:ss tt");
+                        //string PdPB = "";
+                        //string PDIT = "";
+                        //string HoantatYC = "";
                         foreach (string item in LsMaNVdcChon)
                         {
                             //QLNhanVienDTO NVdto = QLNhanVienDAO.Instance.GetNhanVienDTO(item);

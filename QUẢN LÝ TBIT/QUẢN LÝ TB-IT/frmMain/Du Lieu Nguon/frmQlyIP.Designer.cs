@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQlyIP));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtIPsua = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnIPdcp = new DevExpress.XtraEditors.SimpleButton();
+            this.btnIPkd = new DevExpress.XtraEditors.SimpleButton();
             this.sglLoaiTB = new DevExpress.XtraEditors.SearchLookUpEdit();
             this.searchLookUpEdit1View = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.ID = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -51,7 +55,9 @@
             this.gridColumn1 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn2 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn3 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -66,8 +72,13 @@
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem15 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.txtSoDaiMang = new System.Windows.Forms.TextBox();
+            this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sglLoaiTB.Properties)).BeginInit();
@@ -88,11 +99,21 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.txtSoDaiMang);
+            this.layoutControl1.Controls.Add(this.txtIPsua);
+            this.layoutControl1.Controls.Add(this.label1);
+            this.layoutControl1.Controls.Add(this.btnIPdcp);
+            this.layoutControl1.Controls.Add(this.btnIPkd);
             this.layoutControl1.Controls.Add(this.sglLoaiTB);
             this.layoutControl1.Controls.Add(this.btnSua);
             this.layoutControl1.Controls.Add(this.btnTaiForm);
@@ -111,18 +132,56 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(943, 295, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1381, 563);
+            this.layoutControl1.Size = new System.Drawing.Size(1392, 583);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // txtIPsua
+            // 
+            this.txtIPsua.Location = new System.Drawing.Point(84, 12);
+            this.txtIPsua.Name = "txtIPsua";
+            this.txtIPsua.Size = new System.Drawing.Size(189, 20);
+            this.txtIPsua.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(459, 38);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(68, 22);
+            this.label1.TabIndex = 19;
+            this.label1.Text = "Ghi chú:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // btnIPdcp
+            // 
+            this.btnIPdcp.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.btnIPdcp.Appearance.Options.UseBackColor = true;
+            this.btnIPdcp.Location = new System.Drawing.Point(733, 38);
+            this.btnIPdcp.Name = "btnIPdcp";
+            this.btnIPdcp.Size = new System.Drawing.Size(236, 22);
+            this.btnIPdcp.StyleController = this.layoutControl1;
+            this.btnIPdcp.TabIndex = 18;
+            this.btnIPdcp.Text = "IP đã cấp phát.";
+            // 
+            // btnIPkd
+            // 
+            this.btnIPkd.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.btnIPkd.Appearance.Options.UseBackColor = true;
+            this.btnIPkd.Location = new System.Drawing.Point(531, 38);
+            this.btnIPkd.Name = "btnIPkd";
+            this.btnIPkd.Size = new System.Drawing.Size(198, 22);
+            this.btnIPkd.StyleController = this.layoutControl1;
+            this.btnIPkd.TabIndex = 17;
+            this.btnIPkd.Text = "IP khả dụng.";
+            // 
             // sglLoaiTB
             // 
-            this.sglLoaiTB.Location = new System.Drawing.Point(454, 12);
+            this.sglLoaiTB.Location = new System.Drawing.Point(349, 12);
             this.sglLoaiTB.Name = "sglLoaiTB";
             this.sglLoaiTB.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sglLoaiTB.Properties.PopupView = this.searchLookUpEdit1View;
-            this.sglLoaiTB.Size = new System.Drawing.Size(321, 22);
+            this.sglLoaiTB.Size = new System.Drawing.Size(156, 22);
             this.sglLoaiTB.StyleController = this.layoutControl1;
             this.sglLoaiTB.TabIndex = 16;
             // 
@@ -185,11 +244,12 @@
             this.btnSua.StyleController = this.layoutControl1;
             this.btnSua.TabIndex = 15;
             this.btnSua.Text = "Sửa";
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
             // btnTaiForm
             // 
             this.btnTaiForm.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnTaiForm.ImageOptions.Image")));
-            this.btnTaiForm.Location = new System.Drawing.Point(1060, 38);
+            this.btnTaiForm.Location = new System.Drawing.Point(1071, 38);
             this.btnTaiForm.Name = "btnTaiForm";
             this.btnTaiForm.Size = new System.Drawing.Size(104, 22);
             this.btnTaiForm.StyleController = this.layoutControl1;
@@ -200,7 +260,7 @@
             // btnNhapExcell
             // 
             this.btnNhapExcell.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnNhapExcell.ImageOptions.Image")));
-            this.btnNhapExcell.Location = new System.Drawing.Point(1168, 38);
+            this.btnNhapExcell.Location = new System.Drawing.Point(1179, 38);
             this.btnNhapExcell.Name = "btnNhapExcell";
             this.btnNhapExcell.Size = new System.Drawing.Size(103, 22);
             this.btnNhapExcell.StyleController = this.layoutControl1;
@@ -211,7 +271,7 @@
             // btnXuatExcell
             // 
             this.btnXuatExcell.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatExcell.ImageOptions.Image")));
-            this.btnXuatExcell.Location = new System.Drawing.Point(1275, 38);
+            this.btnXuatExcell.Location = new System.Drawing.Point(1286, 38);
             this.btnXuatExcell.Name = "btnXuatExcell";
             this.btnXuatExcell.Size = new System.Drawing.Size(94, 22);
             this.btnXuatExcell.StyleController = this.layoutControl1;
@@ -221,23 +281,23 @@
             // 
             // txtDaiMang
             // 
-            this.txtDaiMang.Location = new System.Drawing.Point(155, 12);
+            this.txtDaiMang.Location = new System.Drawing.Point(806, 12);
             this.txtDaiMang.Name = "txtDaiMang";
-            this.txtDaiMang.Size = new System.Drawing.Size(152, 20);
+            this.txtDaiMang.Size = new System.Drawing.Size(163, 20);
             this.txtDaiMang.TabIndex = 11;
             // 
             // txtStartIP
             // 
-            this.txtStartIP.Location = new System.Drawing.Point(922, 12);
+            this.txtStartIP.Location = new System.Drawing.Point(1045, 12);
             this.txtStartIP.Name = "txtStartIP";
-            this.txtStartIP.Size = new System.Drawing.Size(128, 20);
+            this.txtStartIP.Size = new System.Drawing.Size(136, 20);
             this.txtStartIP.TabIndex = 10;
             // 
             // txtEndIP
             // 
-            this.txtEndIP.Location = new System.Drawing.Point(1197, 12);
+            this.txtEndIP.Location = new System.Drawing.Point(1257, 12);
             this.txtEndIP.Name = "txtEndIP";
-            this.txtEndIP.Size = new System.Drawing.Size(172, 20);
+            this.txtEndIP.Size = new System.Drawing.Size(123, 20);
             this.txtEndIP.TabIndex = 9;
             // 
             // btnCapNhat
@@ -271,7 +331,7 @@
             this.btnXoa.StyleController = this.layoutControl1;
             this.btnXoa.TabIndex = 6;
             this.btnXoa.Text = "Xóa";
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click_1);
             // 
             // btnThem
             // 
@@ -289,10 +349,11 @@
             this.gridControl1.Location = new System.Drawing.Point(12, 64);
             this.gridControl1.MainView = this.gridView1;
             this.gridControl1.Name = "gridControl1";
-            this.gridControl1.Size = new System.Drawing.Size(1357, 487);
+            this.gridControl1.Size = new System.Drawing.Size(1368, 507);
             this.gridControl1.TabIndex = 4;
             this.gridControl1.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
             this.gridView1});
+            this.gridControl1.Click += new System.EventHandler(this.gridControl1_Click);
             // 
             // gridView1
             // 
@@ -301,13 +362,16 @@
             this.gridColumn2,
             this.gridColumn3,
             this.gridColumn5,
-            this.gridColumn4});
+            this.gridColumn4,
+            this.gridColumn8});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.IndicatorWidth = 36;
             this.gridView1.Name = "gridView1";
             this.gridView1.OptionsSelection.MultiSelect = true;
             this.gridView1.OptionsSelection.MultiSelectMode = DevExpress.XtraGrid.Views.Grid.GridMultiSelectMode.CheckBoxRowSelect;
             this.gridView1.OptionsView.ShowGroupPanel = false;
+            this.gridView1.CustomDrawRowIndicator += new DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventHandler(this.gridView1_CustomDrawRowIndicator);
+            this.gridView1.RowCellStyle += new DevExpress.XtraGrid.Views.Grid.RowCellStyleEventHandler(this.gridView1_RowCellStyle);
             // 
             // gridColumn1
             // 
@@ -339,6 +403,8 @@
             // 
             this.gridColumn3.AppearanceCell.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn3.AppearanceCell.Options.UseFont = true;
+            this.gridColumn3.AppearanceCell.Options.UseTextOptions = true;
+            this.gridColumn3.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Near;
             this.gridColumn3.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn3.AppearanceHeader.Options.UseFont = true;
             this.gridColumn3.AppearanceHeader.Options.UseTextOptions = true;
@@ -346,11 +412,25 @@
             this.gridColumn3.Caption = "Trạng thái";
             this.gridColumn3.FieldName = "STATUS";
             this.gridColumn3.Name = "gridColumn3";
-            this.gridColumn3.Visible = true;
-            this.gridColumn3.VisibleIndex = 4;
+            // 
+            // gridColumn5
+            // 
+            this.gridColumn5.AppearanceCell.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn5.AppearanceCell.Options.UseFont = true;
+            this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn5.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn5.Caption = "Thiết bị";
+            this.gridColumn5.FieldName = "MATB";
+            this.gridColumn5.Name = "gridColumn5";
+            this.gridColumn5.Visible = true;
+            this.gridColumn5.VisibleIndex = 2;
             // 
             // gridColumn4
             // 
+            this.gridColumn4.AppearanceCell.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn4.AppearanceCell.Options.UseFont = true;
             this.gridColumn4.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gridColumn4.AppearanceHeader.Options.UseFont = true;
             this.gridColumn4.AppearanceHeader.Options.UseTextOptions = true;
@@ -360,6 +440,12 @@
             this.gridColumn4.Name = "gridColumn4";
             this.gridColumn4.Visible = true;
             this.gridColumn4.VisibleIndex = 3;
+            // 
+            // gridColumn8
+            // 
+            this.gridColumn8.Caption = "ID THIẾT BỊ";
+            this.gridColumn8.FieldName = "IDTB";
+            this.gridColumn8.Name = "gridColumn8";
             // 
             // Root
             // 
@@ -379,9 +465,14 @@
             this.layoutControlItem10,
             this.layoutControlItem11,
             this.layoutControlItem12,
-            this.layoutControlItem13});
+            this.layoutControlItem14,
+            this.layoutControlItem15,
+            this.layoutControlItem16,
+            this.layoutControlItem13,
+            this.layoutControlItem17,
+            this.layoutControlItem18});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1381, 563);
+            this.Root.Size = new System.Drawing.Size(1392, 583);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem1
@@ -389,16 +480,16 @@
             this.layoutControlItem1.Control = this.gridControl1;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 52);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(1361, 491);
+            this.layoutControlItem1.Size = new System.Drawing.Size(1372, 511);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
             // emptySpaceItem1
             // 
             this.emptySpaceItem1.AllowHotTrack = false;
-            this.emptySpaceItem1.Location = new System.Drawing.Point(447, 26);
+            this.emptySpaceItem1.Location = new System.Drawing.Point(961, 26);
             this.emptySpaceItem1.Name = "emptySpaceItem1";
-            this.emptySpaceItem1.Size = new System.Drawing.Size(601, 26);
+            this.emptySpaceItem1.Size = new System.Drawing.Size(98, 26);
             this.emptySpaceItem1.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem2
@@ -452,34 +543,34 @@
             // layoutControlItem6
             // 
             this.layoutControlItem6.Control = this.txtEndIP;
-            this.layoutControlItem6.Location = new System.Drawing.Point(1042, 0);
+            this.layoutControlItem6.Location = new System.Drawing.Point(1173, 0);
             this.layoutControlItem6.Name = "layoutControlItem6";
-            this.layoutControlItem6.Size = new System.Drawing.Size(319, 26);
+            this.layoutControlItem6.Size = new System.Drawing.Size(199, 26);
             this.layoutControlItem6.Text = "End IP:";
-            this.layoutControlItem6.TextSize = new System.Drawing.Size(140, 15);
+            this.layoutControlItem6.TextSize = new System.Drawing.Size(69, 15);
             // 
             // layoutControlItem7
             // 
             this.layoutControlItem7.Control = this.txtStartIP;
-            this.layoutControlItem7.Location = new System.Drawing.Point(767, 0);
+            this.layoutControlItem7.Location = new System.Drawing.Point(961, 0);
             this.layoutControlItem7.Name = "layoutControlItem7";
-            this.layoutControlItem7.Size = new System.Drawing.Size(275, 26);
+            this.layoutControlItem7.Size = new System.Drawing.Size(212, 26);
             this.layoutControlItem7.Text = "Start IP:";
-            this.layoutControlItem7.TextSize = new System.Drawing.Size(140, 15);
+            this.layoutControlItem7.TextSize = new System.Drawing.Size(69, 15);
             // 
             // layoutControlItem8
             // 
             this.layoutControlItem8.Control = this.txtDaiMang;
-            this.layoutControlItem8.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem8.Location = new System.Drawing.Point(722, 0);
             this.layoutControlItem8.Name = "layoutControlItem8";
-            this.layoutControlItem8.Size = new System.Drawing.Size(299, 26);
-            this.layoutControlItem8.Text = "Dải mạng (Eg: 192.168.1.x):";
-            this.layoutControlItem8.TextSize = new System.Drawing.Size(140, 15);
+            this.layoutControlItem8.Size = new System.Drawing.Size(239, 26);
+            this.layoutControlItem8.Text = "Dải mạng :";
+            this.layoutControlItem8.TextSize = new System.Drawing.Size(69, 15);
             // 
             // layoutControlItem9
             // 
             this.layoutControlItem9.Control = this.btnXuatExcell;
-            this.layoutControlItem9.Location = new System.Drawing.Point(1263, 26);
+            this.layoutControlItem9.Location = new System.Drawing.Point(1274, 26);
             this.layoutControlItem9.MaxSize = new System.Drawing.Size(98, 26);
             this.layoutControlItem9.MinSize = new System.Drawing.Size(98, 26);
             this.layoutControlItem9.Name = "layoutControlItem9";
@@ -491,7 +582,7 @@
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.btnNhapExcell;
-            this.layoutControlItem10.Location = new System.Drawing.Point(1156, 26);
+            this.layoutControlItem10.Location = new System.Drawing.Point(1167, 26);
             this.layoutControlItem10.MaxSize = new System.Drawing.Size(107, 26);
             this.layoutControlItem10.MinSize = new System.Drawing.Size(107, 26);
             this.layoutControlItem10.Name = "layoutControlItem10";
@@ -503,7 +594,7 @@
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.btnTaiForm;
-            this.layoutControlItem11.Location = new System.Drawing.Point(1048, 26);
+            this.layoutControlItem11.Location = new System.Drawing.Point(1059, 26);
             this.layoutControlItem11.MaxSize = new System.Drawing.Size(108, 26);
             this.layoutControlItem11.MinSize = new System.Drawing.Size(108, 26);
             this.layoutControlItem11.Name = "layoutControlItem11";
@@ -516,37 +607,81 @@
             // 
             this.layoutControlItem12.Control = this.btnSua;
             this.layoutControlItem12.Location = new System.Drawing.Point(91, 26);
+            this.layoutControlItem12.MaxSize = new System.Drawing.Size(83, 26);
+            this.layoutControlItem12.MinSize = new System.Drawing.Size(83, 26);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Size = new System.Drawing.Size(83, 26);
+            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
+            // 
+            // layoutControlItem14
+            // 
+            this.layoutControlItem14.Control = this.btnIPkd;
+            this.layoutControlItem14.Location = new System.Drawing.Point(519, 26);
+            this.layoutControlItem14.Name = "layoutControlItem14";
+            this.layoutControlItem14.Size = new System.Drawing.Size(202, 26);
+            this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem14.TextVisible = false;
+            // 
+            // layoutControlItem15
+            // 
+            this.layoutControlItem15.Control = this.btnIPdcp;
+            this.layoutControlItem15.Location = new System.Drawing.Point(721, 26);
+            this.layoutControlItem15.Name = "layoutControlItem15";
+            this.layoutControlItem15.Size = new System.Drawing.Size(240, 26);
+            this.layoutControlItem15.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem15.TextVisible = false;
+            // 
+            // layoutControlItem16
+            // 
+            this.layoutControlItem16.Control = this.label1;
+            this.layoutControlItem16.Location = new System.Drawing.Point(447, 26);
+            this.layoutControlItem16.Name = "layoutControlItem16";
+            this.layoutControlItem16.Size = new System.Drawing.Size(72, 26);
+            this.layoutControlItem16.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem16.TextVisible = false;
             // 
             // layoutControlItem13
             // 
             this.layoutControlItem13.Control = this.sglLoaiTB;
-            this.layoutControlItem13.Location = new System.Drawing.Point(299, 0);
+            this.layoutControlItem13.Location = new System.Drawing.Point(265, 0);
             this.layoutControlItem13.Name = "layoutControlItem13";
-            this.layoutControlItem13.Size = new System.Drawing.Size(468, 26);
+            this.layoutControlItem13.Size = new System.Drawing.Size(232, 26);
             this.layoutControlItem13.Text = "Loại thiết bị:";
-            this.layoutControlItem13.TextSize = new System.Drawing.Size(140, 15);
+            this.layoutControlItem13.TextSize = new System.Drawing.Size(69, 15);
             // 
-            // gridColumn5
+            // layoutControlItem17
             // 
-            this.gridColumn5.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gridColumn5.AppearanceHeader.Options.UseFont = true;
-            this.gridColumn5.AppearanceHeader.Options.UseTextOptions = true;
-            this.gridColumn5.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.gridColumn5.Caption = "Thiết bị";
-            this.gridColumn5.FieldName = "MATB";
-            this.gridColumn5.Name = "gridColumn5";
-            this.gridColumn5.Visible = true;
-            this.gridColumn5.VisibleIndex = 2;
+            this.layoutControlItem17.Control = this.txtIPsua;
+            this.layoutControlItem17.Location = new System.Drawing.Point(0, 0);
+            this.layoutControlItem17.Name = "layoutControlItem17";
+            this.layoutControlItem17.Size = new System.Drawing.Size(265, 26);
+            this.layoutControlItem17.Text = "IP muốn sửa:";
+            this.layoutControlItem17.TextSize = new System.Drawing.Size(69, 15);
+            // 
+            // txtSoDaiMang
+            // 
+            this.txtSoDaiMang.Location = new System.Drawing.Point(581, 12);
+            this.txtSoDaiMang.Name = "txtSoDaiMang";
+            this.txtSoDaiMang.Size = new System.Drawing.Size(149, 20);
+            this.txtSoDaiMang.TabIndex = 21;
+            this.txtSoDaiMang.TextChanged += new System.EventHandler(this.txtSoDaiMang_TextChanged);
+            // 
+            // layoutControlItem18
+            // 
+            this.layoutControlItem18.Control = this.txtSoDaiMang;
+            this.layoutControlItem18.Location = new System.Drawing.Point(497, 0);
+            this.layoutControlItem18.Name = "layoutControlItem18";
+            this.layoutControlItem18.Size = new System.Drawing.Size(225, 26);
+            this.layoutControlItem18.Text = "Số dải mạng:";
+            this.layoutControlItem18.TextSize = new System.Drawing.Size(69, 15);
             // 
             // frmQlyIP
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1381, 563);
+            this.ClientSize = new System.Drawing.Size(1392, 583);
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmQlyIP";
             this.Text = "Quản lý địa chỉ IP";
@@ -570,7 +705,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem15)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem16)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem17)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem18)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -616,5 +756,16 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem13;
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn5;
+        private System.Windows.Forms.Label label1;
+        private DevExpress.XtraEditors.SimpleButton btnIPdcp;
+        private DevExpress.XtraEditors.SimpleButton btnIPkd;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem14;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem15;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem16;
+        private System.Windows.Forms.TextBox txtIPsua;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem17;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
+        private System.Windows.Forms.TextBox txtSoDaiMang;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
     }
 }
