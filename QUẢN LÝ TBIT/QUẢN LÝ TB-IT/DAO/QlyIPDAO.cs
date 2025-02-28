@@ -118,24 +118,26 @@ namespace DAO
 
             foreach (int item in LsSoIPOnly)
             {
-                DaiMang[m] = item;
-                m++;
+                DaiIP[n] = item;
+                n++;
             }
 
-            // Tiến hành sắp xếp mảng dải mạng tăng dần
+            // Tiến hành sắp xếp mảng dải IP tăng dần
 
-            for (int i = 0; i < dodaiDM - 1; i++)
+            for (int i = 0; i < dodaiDIP - 1; i++)
             {
-                for (int j = i + 1; j < dodaiDM; j++)
+                for (int j = i + 1; j < dodaiDIP; j++)
                 {
-                    if (DaiMang[j] < DaiMang[i])
+                    if (DaiIP[j] < DaiIP[i])
                     {
-                        int trunggian = DaiMang[j];
-                        DaiMang[j] = DaiMang[i];
-                        DaiMang[i] = trunggian;
+                        int trunggian1 = DaiIP[j];
+                        DaiIP[j] = DaiIP[i];
+                        DaiIP[i] = trunggian1;
                     }
                 }
             }
+
+
             return LsDsDHdasx;
         }
 
