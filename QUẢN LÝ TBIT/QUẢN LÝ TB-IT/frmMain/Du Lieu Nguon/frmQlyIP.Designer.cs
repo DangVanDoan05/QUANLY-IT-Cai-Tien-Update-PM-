@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmQlyIP));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.txtSoDaiMang = new System.Windows.Forms.TextBox();
             this.txtIPsua = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnIPdcp = new DevExpress.XtraEditors.SimpleButton();
@@ -58,6 +59,8 @@
             this.gridColumn5 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn4 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.gridColumn8 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn9 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn10 = new DevExpress.XtraGrid.Columns.GridColumn();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem1 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem1 = new DevExpress.XtraLayout.EmptySpaceItem();
@@ -77,7 +80,6 @@
             this.layoutControlItem16 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem17 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtSoDaiMang = new System.Windows.Forms.TextBox();
             this.layoutControlItem18 = new DevExpress.XtraLayout.LayoutControlItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
@@ -135,6 +137,14 @@
             this.layoutControl1.Size = new System.Drawing.Size(1392, 583);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
+            // 
+            // txtSoDaiMang
+            // 
+            this.txtSoDaiMang.Location = new System.Drawing.Point(581, 12);
+            this.txtSoDaiMang.Name = "txtSoDaiMang";
+            this.txtSoDaiMang.Size = new System.Drawing.Size(149, 20);
+            this.txtSoDaiMang.TabIndex = 21;
+            this.txtSoDaiMang.TextChanged += new System.EventHandler(this.txtSoDaiMang_TextChanged);
             // 
             // txtIPsua
             // 
@@ -363,7 +373,9 @@
             this.gridColumn3,
             this.gridColumn5,
             this.gridColumn4,
-            this.gridColumn8});
+            this.gridColumn8,
+            this.gridColumn9,
+            this.gridColumn10});
             this.gridView1.GridControl = this.gridControl1;
             this.gridView1.IndicatorWidth = 36;
             this.gridView1.Name = "gridView1";
@@ -446,6 +458,34 @@
             this.gridColumn8.Caption = "ID THIẾT BỊ";
             this.gridColumn8.FieldName = "IDTB";
             this.gridColumn8.Name = "gridColumn8";
+            // 
+            // gridColumn9
+            // 
+            this.gridColumn9.AppearanceCell.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn9.AppearanceCell.Options.UseFont = true;
+            this.gridColumn9.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn9.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn9.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn9.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn9.Caption = "Máy tính cấp phát";
+            this.gridColumn9.FieldName = "MAMT";
+            this.gridColumn9.Name = "gridColumn9";
+            this.gridColumn9.Visible = true;
+            this.gridColumn9.VisibleIndex = 4;
+            // 
+            // gridColumn10
+            // 
+            this.gridColumn10.AppearanceCell.Font = new System.Drawing.Font("Times New Roman", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn10.AppearanceCell.Options.UseFont = true;
+            this.gridColumn10.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn10.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn10.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn10.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn10.Caption = "Người Sử Dụng";
+            this.gridColumn10.FieldName = "NGUOISD";
+            this.gridColumn10.Name = "gridColumn10";
+            this.gridColumn10.Visible = true;
+            this.gridColumn10.VisibleIndex = 5;
             // 
             // Root
             // 
@@ -660,14 +700,6 @@
             this.layoutControlItem17.Text = "IP muốn sửa:";
             this.layoutControlItem17.TextSize = new System.Drawing.Size(69, 15);
             // 
-            // txtSoDaiMang
-            // 
-            this.txtSoDaiMang.Location = new System.Drawing.Point(581, 12);
-            this.txtSoDaiMang.Name = "txtSoDaiMang";
-            this.txtSoDaiMang.Size = new System.Drawing.Size(149, 20);
-            this.txtSoDaiMang.TabIndex = 21;
-            this.txtSoDaiMang.TextChanged += new System.EventHandler(this.txtSoDaiMang_TextChanged);
-            // 
             // layoutControlItem18
             // 
             this.layoutControlItem18.Control = this.txtSoDaiMang;
@@ -767,5 +799,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gridColumn8;
         private System.Windows.Forms.TextBox txtSoDaiMang;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem18;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn9;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn10;
     }
 }

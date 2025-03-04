@@ -15,8 +15,7 @@ namespace DTO
         {
             this.ID =int.Parse( row["ID"].ToString());
             this.MAMT = row["MAMT"].ToString();
-            this.BAOHANH = (bool)row["BAOHANH"];
-            this.IP = row["IP"].ToString();
+            this.BAOHANH = (bool)row["BAOHANH"];         
             this.MAC = row["MAC"].ToString();
             this.DOMAIN = row["DOMAIN"].ToString();
             this.LOAIMT = row["LOAIMT"].ToString();

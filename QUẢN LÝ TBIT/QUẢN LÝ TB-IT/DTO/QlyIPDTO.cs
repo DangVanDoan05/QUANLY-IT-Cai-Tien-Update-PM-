@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace DTO
 {
     public class QlyIPDTO
@@ -15,19 +16,27 @@ namespace DTO
             this.ID = int.Parse(row["ID"].ToString());
             this.DAIMANG = row["DAIMANG"].ToString();
             this.IP = row["IP"].ToString();
-            this.STATUS = int.Parse(row["STATUS"].ToString());
+            this.MATB = row["MATB"].ToString();
+            this.STATUS = int.Parse(row["STATUS"].ToString());           
             this.IDTB = int.Parse(row["IDTB"].ToString());
-            this.STATUS = int.Parse(row["SODAIMANG"].ToString());
-            this.IDTB = int.Parse(row["SOIP"].ToString());
+            this.SODAIMANG = int.Parse(row["SODAIMANG"].ToString());
+            this.SOIP = int.Parse(row["SOIP"].ToString());
+            this.MAMT = row["MAMT"].ToString();
+            this.NGUOISD = row["NGUOISD"].ToString();
         }
 
 
         // QLYIP(DAIMANG, IP, STATUS, IDTB,SODAIMANG,SOIP)
 
+
+        
         private int iD;
         private string dAIMANG;
         private string iP;
+        private string mATB;
         private int sTATUS;
+        private string mAMT;
+        private string nGUOISD;
         private int iDTB;
         private int sODAIMANG;
         private int sOIP;
@@ -40,6 +49,8 @@ namespace DTO
         public int IDTB { get => iDTB; set => iDTB = value; }
         public int SODAIMANG { get => sODAIMANG; set => sODAIMANG = value; }
         public int SOIP { get => sOIP; set => sOIP = value; }
-
+        public string MATB { get => mATB; set => mATB = value; }
+        public string MAMT { get => mAMT; set => mAMT = value; }
+        public string NGUOISD { get => nGUOISD; set => nGUOISD = value; }
     }
 }

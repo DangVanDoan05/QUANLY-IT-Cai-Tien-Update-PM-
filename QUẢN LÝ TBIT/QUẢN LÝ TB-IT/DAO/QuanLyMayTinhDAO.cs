@@ -167,6 +167,14 @@ namespace DAO
             return maMTDTO;
         }
 
+        public QuanLyMayTinhDTO GetMTDTOwithIDIP(int IDIP)
+        {
+            string query = "select * from QLYMAYTINH where IDIP= @idip ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { IDIP });
+            QuanLyMayTinhDTO maMTDTO = new QuanLyMayTinhDTO(data.Rows[0]);
+            return maMTDTO;
+        }
+
         public QuanLyMayTinhDTO GetMaMT1(string mamt)
         {
             string query = $"select * from QLYMAYTINH where MAMT='{mamt}' ";

@@ -18,11 +18,15 @@ namespace frmMain.Du_Lieu_Nguon
 {
     public partial class frmQlyIP : DevExpress.XtraEditors.XtraForm
     {
+
         public frmQlyIP()
         {
             InitializeComponent();
             LoadControl();
         }
+
+
+        // Đang khó lấy tên của máy tính.
 
         bool them;
         int idquyen = CommonUser.Quyen;
@@ -88,12 +92,18 @@ namespace frmMain.Du_Lieu_Nguon
                 btnLuu.Enabled = true;
                 btnCapNhat.Enabled = true;
             }
+
         }
 
+        // ĐANG KHÔNG LẤY ĐƯỢC TÊN MÁY TÍNH.
+
         private void LoadData()
-        {     
-                // Chỗ này đang cần một giải thuật để sắp xếp
-                gridControl1.DataSource = QlyIPDAO.Instance.GetTable();           
+        {
+
+            // Chỗ này đang cần một giải thuật để sắp xếp
+            gridControl1.DataSource = QlyIPDAO.Instance.GetLsIPDTODaSX();
+
+            // Dùng luôn cột STATUS LÀM IDMT 
         }
 
         void Save()
@@ -148,8 +158,8 @@ namespace frmMain.Du_Lieu_Nguon
                             }
                             else
                             {
-                                //IP chưa được gán thì có trạng thái bằng 0
-                                 QlyIPDAO.Instance.Insert(DaiMang, IP, 0, IdTB,SoDaiMang,i);
+                                //IP chưa được gán thì có trạng thái bằng 0, ban đầu thêm vào thì mã máy tính bằng trống,người sử dụng bằng trống.
+                                 QlyIPDAO.Instance.Insert(DaiMang, IP, 0, IdTB,SoDaiMang,i,"","");
                                 demthem++;
                             }
                         }
@@ -232,27 +242,32 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-             LoadControl();
 
-            // Bây h cần chạy giải thuật 
+            LoadControl();
 
-            // Chạy lệnh cập nhật Số  Dải mạng và số IP
+            //  Bây h cần CẬP nhật mã máy tính.
 
-            //List<QlyIPDTO> LsIPDTO = QlyIPDAO.Instance.GetLsIPDTO();
+            // Chạy lệnh cập nhật các tên người sử dụng
+
+            //List<QlyIPDTO> LsIPDTO = QlyIPDAO.Instance.GetLsIPDTODaSX();
 
             //foreach (QlyIPDTO item in LsIPDTO)
             //{
-            //    int ID = item.ID;
-            //    if(ID!=1053)
+            //    if (item.STATUS != 0) // Lúc này Status đang là ID máy tính.
             //    {
-            //        string[] listSo = item.IP.Split('.');
-            //        int length = listSo.Length;
-            //        int Sodaimang = int.Parse(listSo[2].ToString()); // sao lại nằm ngoài dải được.
-            //        int SoIP = int.Parse(listSo[3].ToString());
-            //        QlyIPDAO.Instance.UpdateDMIP(ID, Sodaimang, SoIP);
-            //    }               
+
+            //        int IDMT = item.STATUS;
+            //        QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDMT);
+
+            //        string NGUOISD = MTDTO.NGUOISD;
+
+            //        // cập nhật MÃ MÁY TÍNH
+
+            //        QlyIPDAO.Instance.UpdateNGUOISD(IDMT,NGUOISD);
+            //    }
             //}
-            //MessageBox.Show(" Cập nhật Thành công.", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            //MessageBox.Show("Đã cập nhật xong  máy tính.", "Thành  công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
         }
 
@@ -405,8 +420,7 @@ namespace frmMain.Du_Lieu_Nguon
             {
                 e.Appearance.BackColor = btnIPkd.Appearance.BackColor;
             }
-
-            if (ID == 1) //  BẰNG 1 thì IP đã cấp phát.
+            else //  Khác 0 thì IP đã cấp phát.
             {
                 e.Appearance.BackColor = btnIPdcp.Appearance.BackColor;
             }
@@ -478,7 +492,7 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void btnXoa_Click_1(object sender, EventArgs e)
         {
-
+            // Chưa có chức năng xóa.
         }
 
         private void txtSoDaiMang_TextChanged(object sender, EventArgs e)

@@ -265,9 +265,13 @@ namespace frmMain
 
                                     QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP);
 
-                                    // Update trạng thái IP trong bảng quản lý IP( Trạng thái 1: trạng thái đã bị cấp phát)
+                                    // Lúc này lại ko biết được ID của thằng này
 
-                                    QlyIPDAO.Instance.UpdateStatus(IdIP, 1);
+                                    QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMaMT(maMT);
+
+                                    // Update trạng thái IP từ 0 chuyển sang Status là ID của máy tính.
+
+                                    QlyIPDAO.Instance.UpdateStatus(IdIP, MTDTO.ID,maMT,nguoisd);
 
                                     MessageBox.Show($"Đã thêm mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
@@ -357,12 +361,14 @@ namespace frmMain
 
                                 // Update trạng thái đã bị chiếm cho IP new
 
-                                QlyIPDAO.Instance.UpdateStatus(IdIPnew, 1); // Trạng thái 1, đã bị chiếm đóng.
+                                QlyIPDAO.Instance.UpdateStatus(IdIPnew, IDselected,maMT,nguoisd); // Trạng thái  đã bị chiếm đóng STATUS bằng ID máy tính
 
 
                                 // Update lại trạng thái khả dụng cho IP pass
 
-                                QlyIPDAO.Instance.UpdateStatus(IDIPpast, 0);  // Trạng thái 0 khả dụng.
+                                QlyIPDAO.Instance.UpdateStatus(IDIPpast, 0,"","");  // Trạng thái 0 khả dụng.
+
+
                             }
 
                             MessageBox.Show($"Đã sửa thông tin mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
@@ -765,7 +771,9 @@ namespace frmMain
 
                         QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMaMT1(item);
                         int IdIP = MTDTO.IDIP;
-                        QlyIPDAO.Instance.UpdateStatus(IdIP,0); // Trạng thái IP 0 là trạng thái IP chưa được gán.
+
+                        // TRƯỜNG HỢP XÓA MÁY TÍNH
+                        QlyIPDAO.Instance.UpdateStatus(IdIP,0,"",""); // Trạng thái IP 0 là trạng thái IP chưa được gán.
 
                         // Xóa trong bảng ds máy tính. 
 
@@ -796,6 +804,7 @@ namespace frmMain
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
             LoadControl();
+            // Done: hoàn thành.
         }
 
         private void btnHuy_Click(object sender, EventArgs e)

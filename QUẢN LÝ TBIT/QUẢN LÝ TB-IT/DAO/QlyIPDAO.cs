@@ -56,7 +56,7 @@ namespace DAO
 
         public List<QlyIPDTO> GetLsIPDTODaSX()
         {
-            string query = "select * from QLYIP ";
+            string query = " select * from QLYIP,LOAITB where IDTB=LOAITB.ID ";
             DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { });
             List<QlyIPDTO> LsIPDTOall = new List<QlyIPDTO>();
             List<int> LsSoDMOnly = new List<int>();
@@ -137,8 +137,24 @@ namespace DAO
                 }
             }
 
+            // Đã có được mảng dải mạng và dải IP tăng dần
 
-            return LsDsDHdasx;
+            // Sắp xếp dải mạng trước và dải IP sau.( Chưa nghĩ ra được giải thuật sắp xếp)
+            List<QlyIPDTO> LsIPDTOallDaSX = new List<QlyIPDTO>();
+            foreach (int itemNet in DaiMang) // Với mỗi một dải mạng thì tôi lại xét với từng  IP  
+            {
+                foreach (int itemIP in DaiIP) // lúc này thứ tự trong mảng đang là tăng dần rồi.
+                {
+                    foreach (QlyIPDTO itemIPDTO in LsIPDTOall)
+                    {
+                        if(itemIPDTO.SODAIMANG==itemNet&& itemIPDTO.SOIP==itemIP)
+                        {
+                            LsIPDTOallDaSX.Add(itemIPDTO);
+                        }
+                    }
+                }
+            }
+            return LsIPDTOallDaSX;
         }
 
         public bool CheckIPExist(string IP)
@@ -160,12 +176,12 @@ namespace DAO
 
         // HAM THEM
 
-        // QLYIP(DAIMANG, IP, STATUS, IDTB,SODAIMANG,SOIP)
+        // QLYIP(DAIMANG, IP, STATUS, IDTB,SODAIMANG,SOIP,MAMT,NGUOISD)
 
-        public int Insert(string DaiMang , string IP , int status ,int IDTB,int SoDaiMang,int SoIP)
+        public int Insert(string DaiMang , string IP , int status ,int IDTB,int SoDaiMang,int SoIP,string MaMT,string NguoiSD)
         {
-            string query = "insert QLYIP(DAIMANG, IP, STATUS, IDTB,SODAIMANG,SOIP) values( @daimang , @ip , @status , @idtb , @soDM , @soIP )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  DaiMang, IP, status,  IDTB , SoDaiMang , SoIP });
+            string query = "insert QLYIP(DAIMANG, IP, STATUS, IDTB,SODAIMANG,SOIP,MAMT,NGUOISD) values( @daimang , @ip , @status , @idtb , @soDM , @soIP , @mamt , @ngsd )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  DaiMang, IP, status,  IDTB , SoDaiMang , SoIP,MaMT,NguoiSD });
             return data;
         }
 
@@ -186,12 +202,24 @@ namespace DAO
             return data;
         }
 
-        public int UpdateStatus(int ID, int status)
+
+
+        public int UpdateStatus(int ID, int IdMayTinh,string MAMT,string NguoiSD)
         {
-            string query = "update QLYIP set STATUS= @status  where ID= @ID ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  status, ID });
+            string query = "update QLYIP set STATUS= @status ,MAMT= @MAMT ,NGUOISD= @nguoisd where ID= @ID ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {IdMayTinh,MAMT,NguoiSD,ID});
             return data;
         }
+
+
+        public int UpdateNGUOISD(int IdMayTinh,string NGUOISD)
+        {
+            string query = "update QLYIP set NGUOISD= @NguoiSD where STATUS= @idmt ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { NGUOISD, IdMayTinh});
+            return data;
+        }
+
+
 
         // HAM XOA
 
@@ -201,6 +229,10 @@ namespace DAO
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {ID});
             return data;
         }
+
+
+
+
 
     }
 }
