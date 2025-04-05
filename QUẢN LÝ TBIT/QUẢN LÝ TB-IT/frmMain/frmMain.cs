@@ -711,6 +711,12 @@ namespace frmMain
         {
             OpenForm(typeof(frmQlyIP));
         }
+
+        private void btnQLKey_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            OpenForm(typeof(frmQuanLyKeyLicense));
+        }
+
     }
 }
  

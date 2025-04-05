@@ -28,6 +28,8 @@ namespace DTO
             this.HANBH = row["HANBH"].ToString();
             this.GHICHU = row["GHICHU"].ToString();
             this.IDIP = int.Parse(row["IDIP"].ToString());
+            this.MODEL = row["MODEL"].ToString();
+            this.UPS= row["UPS"].ToString();
         }
 
         public QuanLyMayTinhDTO(string maMT, bool baohanh, string ip, string mac,string Domain,string LoaiMT, string NCC, string Nhamay, string phongban, string nguoisd, string mtscd, string ngaymua, string hanbh, string ghichu)
@@ -83,8 +85,8 @@ namespace DTO
         private bool bAOHANH;
         private string gHICHU;
         private int iDIP;
-
-
+        private string mODEL;
+        private string uPS;
 
         public string MAMT { get => mAMT; set => mAMT = value; }
         public bool BAOHANH { get => bAOHANH; set => bAOHANH = value; }
@@ -103,5 +105,7 @@ namespace DTO
         public string DOMAIN { get => dOMAIN; set => dOMAIN = value; }
         public int ID { get => iD; set => iD = value; }
         public int IDIP { get => iDIP; set => iDIP = value; }
+        public string MODEL { get => mODEL; set => mODEL = value; }
+        public string UPS { get => uPS; set => uPS = value; }
     }
 }

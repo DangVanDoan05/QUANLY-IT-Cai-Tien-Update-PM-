@@ -48,6 +48,7 @@
     <Compile Include="CommonConnection.cs" />
     <Compile Include="DsCaiDatDAO.cs" />
     <Compile Include="LoaiTBDAO.cs" />
+    <Compile Include="QLLicenseDAO.cs" />
     <Compile Include="QLPhanMemDAO.cs" />
     <Compile Include="QlyIPDAO.cs" />
     <Compile Include="LsUpdatePMDAO.cs" />

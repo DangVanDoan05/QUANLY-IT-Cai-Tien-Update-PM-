@@ -263,7 +263,7 @@ namespace frmMain.Du_Lieu_Nguon
 
             //        // cập nhật MÃ MÁY TÍNH
 
-            //        QlyIPDAO.Instance.UpdateNGUOISD(IDMT,NGUOISD);
+            //        QlyIPDAO.Instance.UpdateNGUOISD(IDMT, NGUOISD);
             //    }
             //}
 
@@ -492,7 +492,63 @@ namespace frmMain.Du_Lieu_Nguon
 
         private void btnXoa_Click_1(object sender, EventArgs e)
         {
-            // Chưa có chức năng xóa.
+           
+
+            // cho phép xóa nhiều dòng trong gridview
+            int dem = 0;
+            //  int demloi = 0;
+            List<int> LsIDselected = new List<int>();
+            foreach (var item in gridView1.GetSelectedRows())
+            {
+                int ID = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                LsIDselected.Add(ID);
+                dem++;
+            }
+
+            if (dem > 0)
+            {
+                DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} địa chỉ IP được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (kq == DialogResult.Yes)
+                {
+                    int demXoa = 0;
+                    foreach (int item in LsIDselected)
+                    {
+                        // Chỉ cần xét xem IP có bị chiếm đóng hay không thôi.
+
+                        QlyIPDTO IPDTO = QlyIPDAO.Instance.GetIPDTO(item);
+
+                        if(IPDTO.STATUS==0) // IP chưa bị chiếm đóng thì có thể xóa.
+
+                        {
+                            QlyIPDAO.Instance.Delete(item);
+                            demXoa++;
+                        }
+                            
+
+                       
+                    }
+
+                    if (demXoa < dem)
+                    {
+                        MessageBox.Show($"Đã xóa {demXoa} địa chỉ IP,có {dem - demXoa} không thể xóa do đang được cấp phát.", "THÀNH CÔNG:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Đã xóa {dem} địa chỉ IP được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+                    demXoa = 0;
+                    dem = 0;
+
+                }
+                LoadControl();
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa chọn địa chỉ IP để xóa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
         }
 
         private void txtSoDaiMang_TextChanged(object sender, EventArgs e)

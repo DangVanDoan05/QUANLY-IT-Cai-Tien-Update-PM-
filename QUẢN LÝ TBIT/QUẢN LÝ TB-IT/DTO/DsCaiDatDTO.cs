@@ -11,32 +11,26 @@ namespace DTO
     {
         public DsCaiDatDTO(DataRow row)
         {
-            this.MAMT = row["MAMT"].ToString();
-            this.NGUOISD = row["NGUOISD"].ToString();
-            this.PB = row["PB"].ToString();
-            this.NHAMAY = row["NHAMAY"].ToString();
-            this.MAPM = row["MAPM"].ToString();
-            this.TENPM = row["TENPM"].ToString();
+            this.IDMAMT =int.Parse(row["IDMAMT"].ToString());
+            this.IDPM =int.Parse( row["IDPM"].ToString());                    
             this.NGAYCD = row["NGAYCD"].ToString();
             this.NGAYHT = row["NGAYHT"].ToString();
+            this.GHICHU = row["GHICHU"].ToString();
         }
 
-        private string mAMT;
-        private string nGUOISD;
-        private string pB;
-        private string nHAMAY;
-        private string mAPM;
-        private string tENPM;
+        // IDMAMT,IDPM,NGAYCD,NGAYHT,GHICHU
+
+        private int iDMAMT;
+        private int iDPM;     
         private string nGAYCD;
         private string nGAYHT;
+        private string gHICHU;
 
-        public string PB { get => pB; set => pB = value; }
-        public string NHAMAY { get => nHAMAY; set => nHAMAY = value; }
-        public string MAMT { get => mAMT; set => mAMT = value; }
-        public string MAPM { get => mAPM; set => mAPM = value; }
-        public string TENPM { get => tENPM; set => tENPM = value; }
+      
         public string NGAYCD { get => nGAYCD; set => nGAYCD = value; }
-        public string NGAYHT { get => nGAYHT; set => nGAYHT = value; }
-        public string NGUOISD { get => nGUOISD; set => nGUOISD = value; }
+        public string NGAYHT { get => nGAYHT; set => nGAYHT = value; }    
+        public string GHICHU { get => gHICHU; set => gHICHU = value; }
+        public int IDMAMT { get => iDMAMT; set => iDMAMT = value; }
+        public int IDPM { get => iDPM; set => iDPM = value; }
     }
 }

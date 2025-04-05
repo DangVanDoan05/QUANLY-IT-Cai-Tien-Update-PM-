@@ -47,7 +47,12 @@ namespace frmMain
 
         private void LoadEditLookup()
         {
-           
+            //Load key Win
+
+
+            //Load key Office:
+
+
         }
 
         private void LockControl(bool kt)
@@ -73,7 +78,8 @@ namespace frmMain
                 txtGhiChu.Enabled = false;
                 sglDaiIP.Enabled = false;
                 sglDiaChiIP.Enabled = false;
-
+                txtModel.Enabled = false;
+                txtUPS.Enabled = false;
 
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
@@ -105,7 +111,8 @@ namespace frmMain
                 txtGhiChu.Enabled = true;
                 sglDaiIP.Enabled = true;
                 sglDiaChiIP.Enabled = false;
-
+                txtModel.Enabled = true;
+                txtUPS.Enabled = true;
 
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
@@ -177,6 +184,18 @@ namespace frmMain
             cbLoaiMT.DisplayMember = "TENLOAIMT";
             cbLoaiMT.ValueMember = "TENLOAIMT";
 
+            // Load Key Win khả dụng.
+
+            sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyWinAvailable();
+            sglKeyWin.Properties.DisplayMember = "MALICENSE";
+            sglKeyWin.Properties.ValueMember = "ID";
+
+            // Load Key Office khả dụng.
+
+            sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyOfficeAvailable();
+            sglKeyOffice.Properties.DisplayMember = "MALICENSE";
+            sglKeyOffice.Properties.ValueMember = "ID";
+
             // Load Phòng ban:
 
             sglPhongBan.Properties.DataSource = PhongBanDAO.Instance.GetLsvPB();
@@ -203,11 +222,13 @@ namespace frmMain
         private void CleanText()
         {
             txtMaMT.Clear();
-          //  txtDiaChiIP.Clear();
+          //txtDiaChiIP.Clear();
             txtDcMAC.Clear();
             txtNguoiSD.Clear();
             txtMaTSCD.Clear();
             txtGhiChu.Clear();
+            txtModel.Clear();
+            txtUPS.Clear();
         }
 
 
@@ -226,6 +247,69 @@ namespace frmMain
                         if(radDHCP.Checked)
                         {
                             IdIP = 1053;  // ID= 1053 là ID của DHCP
+                            string mac = txtDcMAC.Text.Trim();
+                            string Domain = txtDomain.Text.Trim();
+                            string loaiMT = cbLoaiMT.SelectedValue.ToString();
+                            string ncc = cbNCC.SelectedValue.ToString();
+                            string Phongban = sglPhongBan.EditValue.ToString();
+                            string NhaMay = txtNhaMay.Text;
+                            string nguoisd = txtNguoiSD.Text;
+                            string MaTSCD = txtMaTSCD.Text;
+                            bool   baohanh = false;
+                            string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
+                            string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
+                            string ghichu = txtGhiChu.Text;
+                            string Model = txtModel.Text;
+                            string UPS = txtUPS.Text;
+                            int IDWIN =int.Parse( sglKeyWin.EditValue.ToString());
+                            int IDOFFICE = 0;
+                            int IDKAS = 0;
+                            bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
+
+                            if (CheckMaMTExist)
+                            {
+                                MessageBox.Show($" Mã máy tính {maMT} đã tồn tại!", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            }
+                            else
+                            {
+
+                                TimeSpan timebh = dtpHanBaoHanh.Value - DateTime.Now;
+                                int songay = timebh.Days;
+                                if (songay > 0)
+                                {
+                                    baohanh = true;
+                                }
+
+                                // IP được lưu vào thì phải đổi trạng thái cho máy tính.
+
+                                QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model, UPS,IDWIN,IDOFFICE,IDKAS);
+
+                                // Lúc này lại ko biết được ID của thằng này
+
+                                QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMaMT(maMT);
+
+                                // Update trạng thái IP từ 0 chuyển sang Status là ID của máy tính.
+
+                                QlyIPDAO.Instance.UpdateStatus(IdIP, MTDTO.ID, maMT, nguoisd);
+
+                                // Update LẠI TRẠNG THÁI CỦA KEY
+
+                                //++ Update trạng thái key Win
+                                  QLLicenseDAO.Instance.UpdatesTATUS(IDWIN, 1);
+                                // Cập nhật trong bảng thông tin cài đặt phần mềm.
+
+
+                                //++ Cập nhật đã cài đặt.
+
+                                //if(ID)
+                                //DsCaiDatDAO.Instance.Insert();
+
+                                MessageBox.Show($"Đã thêm mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            }
+                            luu = 0;
+
                         }
                         if(radIPtinh.Checked)
                         {
@@ -243,6 +327,11 @@ namespace frmMain
                                 string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
                                 string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
                                 string ghichu = txtGhiChu.Text;
+                                string Model = txtModel.Text;
+                                string UPS = txtUPS.Text;
+                                int IDWIN = int.Parse(sglKeyWin.EditValue.ToString());
+                                int IDOFFICE = 0;
+                                int IDKAS = 0;
 
                                 bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
 
@@ -263,7 +352,7 @@ namespace frmMain
 
                                     // IP được lưu vào thì phải đổi trạng thái cho máy tính.
 
-                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP);
+                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP,Model,UPS, IDWIN, IDOFFICE, IDKAS);
 
                                     // Lúc này lại ko biết được ID của thằng này
 
@@ -333,6 +422,11 @@ namespace frmMain
                         string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
                         string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
                         string ghichu = txtGhiChu.Text;
+                        string Model = txtModel.Text;
+                        string UPS = txtUPS.Text;
+                        int IDWIN = int.Parse(sglKeyWin.EditValue.ToString());
+                        int IDOFFICE = 0;
+                        int IDKAS = 0;
 
                         if (maMT == "")
                         {
@@ -349,7 +443,7 @@ namespace frmMain
 
                             // Sửa trong bảng quản lý máy tính
 
-                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew);
+                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew,Model,UPS,IDWIN,IDOFFICE,IDKAS);
 
                             //Sửa trong cả bảng Quản lý IP.
                             // Kiểm tra sự khác biệt của 2 IDIP để chạy lệnh Update trạng thái IDIP.
@@ -709,10 +803,7 @@ namespace frmMain
         private void btnThem_Click(object sender, EventArgs e)
         {
             LockControl(false);
-            luu = 1;
-
-           
-            
+            luu = 1;                     
         }
 
 
@@ -775,13 +866,16 @@ namespace frmMain
                         // TRƯỜNG HỢP XÓA MÁY TÍNH
                         QlyIPDAO.Instance.UpdateStatus(IdIP,0,"",""); // Trạng thái IP 0 là trạng thái IP chưa được gán.
 
+                        // Xóa trong bảng ds cài đặt phần mềm, vấn đề là nếu mã máy tính thay đổi thì trong bảng ds cài đặt sẽ chưa thay đổi mã theo nên vẫn báo là máy chưa cài đặt PM.
+                        int IdMT = MTDTO.ID;
+
+                        // Xóa thông tin cài đặt theo ID máy tính.
+
+                        DsCaiDatDAO.Instance.DeleteWithIDMT(IdMT);
+
                         // Xóa trong bảng ds máy tính. 
 
                         QuanLyMayTinhDAO.Instance.Delete(item);
-
-                        // Xóa trong bảng ds cài đặt phần mềm xóa theo mã.
-                        DsCaiDatDAO.Instance.Delete1(item);
-
 
                     }
                     MessageBox.Show($"Đã xóa {dem} mã máy tính được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -806,6 +900,8 @@ namespace frmMain
             LoadControl();
             // Done: hoàn thành.
         }
+
+
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
@@ -878,7 +974,8 @@ namespace frmMain
                 dtpNgayMua.Value = Convert.ToDateTime(gridView1.GetFocusedRowCellValue("NGAYMUA").ToString());
                 dtpHanBaoHanh.Value = Convert.ToDateTime(gridView1.GetFocusedRowCellValue("HANBH").ToString());
                 txtGhiChu.Text = gridView1.GetFocusedRowCellValue("GHICHU").ToString();
-
+                txtModel.Text = gridView1.GetFocusedRowCellValue("MODEL").ToString();
+                txtUPS.Text = gridView1.GetFocusedRowCellValue("UPS").ToString();
 
             }
             catch
@@ -907,84 +1004,91 @@ namespace frmMain
         private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             GridView view = sender as GridView;
-            //if (e.RowHandle > 0)
-            //{
-            // 
-            // Sét thời gian cảnh báo trước 3 ngày ====> Load  trong 7 ngày tới xem có phòng ban nào cần vệ sinh máy tính không thì bôi màu
+           
+            // string ton = view.GetRowCellDisplayText(e.RowHandle, view.Columns["SLTON"]).ToString();
+            //string mamt = view.GetRowCellValue(e.RowHandle, view.Columns["MAMT"]).ToString();
+            int IDMT = int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["ID"]).ToString());
+            bool CheckCDPM = DsCaiDatDAO.Instance.CheckCDPM(IDMT);
+            bool kt = bool.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["BAOHANH"]).ToString());
+            //string ton = view.GetRowCellValue(e.RowHandle, view.Columns["SLTON"]).ToString();
+            //string ma = view.GetRowCellValue(e.RowHandle, view.Columns["MALK"]).ToString();
+            //TonLinhKienDTO TonLkDTO = TonLinhKienDAO.Instance.GetMaLKTon(ma);
+            //int IDttKK = TonLkDTO.IDTTKIEMKE;
+            //int ktMaTon = CheckTon(ma);
 
-            //QlyDonHangITDTO a = new QlyDonHangITDTO(item);
-            //DateTime ngayDH = Convert.ToDateTime(a.NGAYDH);
-
-            //TimeSpan time = DateTime.Now - ngayDH;
-            //int songay = time.Days;
-
-            //if (songay > 15)
-            //{
-            //    LsQuaHan.Add(a);
-            //}
-
-
-            // Lấy ra 7 ngày sau 
-            // THỜI gian để thực hiện câu lệnh này, Select theo năm và theo tháng
-
-
+            if (kt) 
+            {
+                e.Appearance.BackColor = btnConBH.Appearance.BackColor;
+            }
+            if(!CheckCDPM)
+            {
+                e.Appearance.BackColor = btnChuaCaiPM.Appearance.BackColor;
+            }
 
           
 
-            //string MaP = view.GetRowCellValue(e.RowHandle, view.Columns["PB"]).ToString();
-            //string MaNM = view.GetRowCellValue(e.RowHandle, view.Columns["NHAMAY"]).ToString();
-
-            string mamt = view.GetRowCellValue(e.RowHandle, view.Columns["MAMT"]).ToString();
-            //string loaimt = view.GetRowCellValue(e.RowHandle, view.Columns["LOAIMT"]).ToString();
-            bool CheckCDPM =DsCaiDatDAO.Instance.CheckCDPM(mamt);
-            bool kt = bool.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["BAOHANH"]).ToString());
-
-                List<string> LsMaMT = new List<string>();
-                List<KeHoachBDDTO> LsKH = KeHoachBDDAO.Instance.GetKHCanTH();
-
-                foreach (KeHoachBDDTO item in LsKH)
-                {
-                    string Nhamay = item.NHAMAY;
-                    string PB = item.PB;
-                    // Lấy ra List máy tính cần bảo trì
-                    List<QuanLyMayTinhDTO> LsMT = QuanLyMayTinhDAO.Instance.GetLsMTBaoTri(Nhamay, PB);
-                    foreach (QuanLyMayTinhDTO item1 in LsMT)
-                    {
-                        if(!LsMaMT.Contains(item1.MAMT))
-                        {
-                            LsMaMT.Add(item1.MAMT);
-                        }
-                    }
-
-                }
-
-            // Lấy ra được List ngày bảo trì bảo dưỡng.
-
-
-            //List<KeHoachBDDTO> LsKH1 = LsKH.Where(x => x.PB == MaP).ToList();
-            //int dem = LsKH1.Count;
-            //if (e.CellValue.ToString() == mamt && dem > 0 && !kt && loaimt != "LAPTOP")
+            //if (e.RowHandle > 0)
             //{
-            //    e.Appearance.BackColor = btnCanBD.Appearance.BackColor;
-            //}
+            //    // 
+                // Sét thời gian cảnh báo trước 3 ngày ====> Load  trong 7 ngày tới xem có phòng ban nào cần vệ sinh máy tính không thì bôi màu
 
-            if (e.CellValue.ToString() == mamt && LsMaMT.Contains(mamt))
-            {
-                e.Appearance.BackColor = btnCanBD.Appearance.BackColor;
-            }
-            else
-            {
-                if (e.CellValue.ToString() == mamt && kt) // Check BẢO HÀNH
-                {
-                    e.Appearance.BackColor = btnConBH.Appearance.BackColor;
-                }
+               
+                //string MaP = view.GetRowCellValue(e.RowHandle, view.Columns["PB"]).ToString();
+                //string MaNM = view.GetRowCellValue(e.RowHandle, view.Columns["NHAMAY"]).ToString();
 
-                if (e.CellValue.ToString() == mamt && !CheckCDPM)
-                {
-                    e.Appearance.BackColor = btnChuaCaiPM.Appearance.BackColor;
-                }
-                
-            }
+                //string mamt = view.GetRowCellValue(e.RowHandle, view.Columns["MAMT"]).ToString();
+                //int IDMT = int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["ID"]).ToString());
+                //bool CheckCDPM = DsCaiDatDAO.Instance.CheckCDPM(IDMT);
+                //bool kt = bool.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["BAOHANH"]).ToString());
+
+                //List<string> LsMaMT = new List<string>();
+                //List<KeHoachBDDTO> LsKH = KeHoachBDDAO.Instance.GetKHCanTH();
+
+                //foreach (KeHoachBDDTO item in LsKH)
+                //{
+                //    string Nhamay = item.NHAMAY;
+                //    string PB = item.PB;
+                //    // Lấy ra List máy tính cần bảo trì
+                //    List<QuanLyMayTinhDTO> LsMT = QuanLyMayTinhDAO.Instance.GetLsMTBaoTri(Nhamay, PB);
+                //    foreach (QuanLyMayTinhDTO item1 in LsMT)
+                //    {
+                //        if (!LsMaMT.Contains(item1.MAMT))
+                //        {
+                //            LsMaMT.Add(item1.MAMT);
+                //        }
+                //    }
+
+                //}
+
+                // Lấy ra được List ngày bảo trì bảo dưỡng.
+
+
+                //List<KeHoachBDDTO> LsKH1 = LsKH.Where(x => x.PB == MaP).ToList();
+                //int dem = LsKH1.Count;
+                //if (e.CellValue.ToString() == mamt && dem > 0 && !kt && loaimt != "LAPTOP")
+                //{
+                //    e.Appearance.BackColor = btnCanBD.Appearance.BackColor;
+                //}
+
+                //if (e.CellValue.ToString() == mamt && LsMaMT.Contains(mamt))
+                //{
+                //    e.Appearance.BackColor = btnCanBD.Appearance.BackColor;
+                //}
+                //else
+                //{
+                //if (e.CellValue.ToString() == mamt && kt) // Check BẢO HÀNH
+                //{
+                //    e.Appearance.BackColor = btnConBH.Appearance.BackColor;
+                //}
+
+                //if (e.CellValue.ToString() == mamt && !CheckCDPM)
+                //{
+                //    e.Appearance.BackColor = btnChuaCaiPM.Appearance.BackColor;
+                //}
+
+                // }
+         //   }
+
         }
 
         private void radDHCP_CheckedChanged(object sender, EventArgs e)

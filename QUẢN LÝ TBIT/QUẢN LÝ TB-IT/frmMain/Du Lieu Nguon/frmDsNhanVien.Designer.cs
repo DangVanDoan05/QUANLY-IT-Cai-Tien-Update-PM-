@@ -818,8 +818,11 @@
             // 
             this.layoutControlItem9.Control = this.btnThemUser;
             this.layoutControlItem9.Location = new System.Drawing.Point(0, 52);
+            this.layoutControlItem9.MaxSize = new System.Drawing.Size(123, 26);
+            this.layoutControlItem9.MinSize = new System.Drawing.Size(123, 26);
             this.layoutControlItem9.Name = "layoutControlItem9";
             this.layoutControlItem9.Size = new System.Drawing.Size(123, 26);
+            this.layoutControlItem9.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem9.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem9.TextVisible = false;
             // 
@@ -827,8 +830,11 @@
             // 
             this.layoutControlItem11.Control = this.btnSuaUser;
             this.layoutControlItem11.Location = new System.Drawing.Point(123, 52);
+            this.layoutControlItem11.MaxSize = new System.Drawing.Size(117, 26);
+            this.layoutControlItem11.MinSize = new System.Drawing.Size(117, 26);
             this.layoutControlItem11.Name = "layoutControlItem11";
             this.layoutControlItem11.Size = new System.Drawing.Size(117, 26);
+            this.layoutControlItem11.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
@@ -836,8 +842,11 @@
             // 
             this.layoutControlItem12.Control = this.btnXoaUser;
             this.layoutControlItem12.Location = new System.Drawing.Point(240, 52);
+            this.layoutControlItem12.MaxSize = new System.Drawing.Size(119, 26);
+            this.layoutControlItem12.MinSize = new System.Drawing.Size(119, 26);
             this.layoutControlItem12.Name = "layoutControlItem12";
             this.layoutControlItem12.Size = new System.Drawing.Size(119, 26);
+            this.layoutControlItem12.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
             // 
@@ -845,8 +854,11 @@
             // 
             this.layoutControlItem13.Control = this.btnLuuUser;
             this.layoutControlItem13.Location = new System.Drawing.Point(359, 52);
+            this.layoutControlItem13.MaxSize = new System.Drawing.Size(117, 26);
+            this.layoutControlItem13.MinSize = new System.Drawing.Size(117, 26);
             this.layoutControlItem13.Name = "layoutControlItem13";
             this.layoutControlItem13.Size = new System.Drawing.Size(117, 26);
+            this.layoutControlItem13.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem13.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem13.TextVisible = false;
             // 
@@ -854,8 +866,11 @@
             // 
             this.layoutControlItem14.Control = this.btnCapNhatUser;
             this.layoutControlItem14.Location = new System.Drawing.Point(476, 52);
+            this.layoutControlItem14.MaxSize = new System.Drawing.Size(121, 26);
+            this.layoutControlItem14.MinSize = new System.Drawing.Size(121, 26);
             this.layoutControlItem14.Name = "layoutControlItem14";
             this.layoutControlItem14.Size = new System.Drawing.Size(121, 26);
+            this.layoutControlItem14.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 

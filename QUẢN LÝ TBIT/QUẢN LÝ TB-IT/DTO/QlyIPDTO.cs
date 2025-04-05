@@ -16,7 +16,15 @@ namespace DTO
             this.ID = int.Parse(row["ID"].ToString());
             this.DAIMANG = row["DAIMANG"].ToString();
             this.IP = row["IP"].ToString();
-            this.MATB = row["MATB"].ToString();
+            try
+            {
+                this.MATB = row["MATB"].ToString();
+            }
+            catch 
+            {
+                this.MATB = "";
+            }
+           
             this.STATUS = int.Parse(row["STATUS"].ToString());           
             this.IDTB = int.Parse(row["IDTB"].ToString());
             this.SODAIMANG = int.Parse(row["SODAIMANG"].ToString());

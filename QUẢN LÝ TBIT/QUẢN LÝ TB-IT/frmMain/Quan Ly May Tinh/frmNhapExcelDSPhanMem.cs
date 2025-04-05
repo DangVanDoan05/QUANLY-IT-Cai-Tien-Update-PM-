@@ -257,7 +257,7 @@ namespace frmMain.Quan_Ly_May_Tinh
                 {
                     //try
                     //{
-                        QLPhanMemDAO.Instance.Insert(item.MAPM, item.TENPM, item.LICENSE, item.NGAYMUA, item.HANSD, item.NCC,item.CHUCNANG, item.GHICHU);
+                     //   QLPhanMemDAO.Instance.Insert(item.MAPM, item.TENPM, item.LICENSE, item.NGAYMUA, item.HANSD, item.NCC,item.CHUCNANG, item.GHICHU);
                         mamoi++;
                     //}
                     //catch

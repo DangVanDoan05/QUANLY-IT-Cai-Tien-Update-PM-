@@ -21,6 +21,7 @@ namespace DTO
             this.NCC = row["NCC"].ToString();
             this.CHUCNANG = row["CHUCNANG"].ToString();
             this.GHICHU = row["GHICHU"].ToString();
+            this.STATUS = int.Parse(row["STATUS"].ToString());
         }
 
 
@@ -47,6 +48,7 @@ namespace DTO
         private string nCC;
         private string cHUCNANG;
         private string gHICHU;
+        private int sTATUS;
 
         public string MAPM { get => mAPM; set => mAPM = value; }
         public string TENPM { get => tENPM; set => tENPM = value; }
@@ -57,5 +59,6 @@ namespace DTO
         public string GHICHU { get => gHICHU; set => gHICHU = value; }
         public string CHUCNANG { get => cHUCNANG; set => cHUCNANG = value; }
         public int ID { get => iD; set => iD = value; }
+        public int STATUS { get => sTATUS; set => sTATUS = value; }
     }
 }

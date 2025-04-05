@@ -189,6 +189,12 @@
     <Compile Include="Quan Ly May Tinh\frmQlyMayIn.Designer.cs">
       <DependentUpon>frmQlyMayIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Quan Ly May Tinh\frmQuanLyKeyLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quan Ly May Tinh\frmQuanLyKeyLicense.Designer.cs">
+      <DependentUpon>frmQuanLyKeyLicense.cs</DependentUpon>
+    </Compile>
     <Compile Include="Quan Ly May Tinh\frmQuanLyWifi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -489,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Quan Ly May Tinh\frmQlyMayIn.resx">
       <DependentUpon>frmQlyMayIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quan Ly May Tinh\frmQuanLyKeyLicense.resx">
+      <DependentUpon>frmQuanLyKeyLicense.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Quan Ly May Tinh\frmQuanLyWifi.resx">
       <DependentUpon>frmQuanLyWifi.cs</DependentUpon>

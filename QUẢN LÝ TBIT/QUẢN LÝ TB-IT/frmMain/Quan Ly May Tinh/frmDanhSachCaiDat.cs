@@ -197,66 +197,12 @@ namespace frmMain
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-
-            // Lấy ra toàn bộ danh sách sau đó update tên người sử dụng
-
-            List<QuanLyMayTinhDTO> LsDSMT = QuanLyMayTinhDAO.Instance.GetListMaMT();
-            List<string> LsMT = new List<string>();
-
-            foreach (QuanLyMayTinhDTO item in LsDSMT)
-            {
-                string MaMT = item.MAMT;
-                LsMT.Add(MaMT);
-            }
-
-            List<DsCaiDatDTO> LsDSCaiDat = DsCaiDatDAO.Instance.GetLsDsCD();
-
-            foreach (DsCaiDatDTO item in LsDSCaiDat)
-            {
-                string MaMT = item.MAMT;
-                if (!LsMT.Contains(MaMT)) // Nếu như ko chứa trong List danh sách quản lý máy tính
-                {
-                    // Xóa khỏi danh sách cài đặt
-                    DsCaiDatDAO.Instance.Delete1(MaMT);
-                }
-                else
-                {
-                    QuanLyMayTinhDTO mayTinhDTO = QuanLyMayTinhDAO.Instance.GetMaMT(MaMT);
-                    string NguoiSd = mayTinhDTO.NGUOISD;
-                    DsCaiDatDAO.Instance.UpdateNGuoiSd(MaMT, NguoiSd);
-                }
-            }
-
-
+         
             // Lỗi, một số mã máy đã xóa rồi nên sẽ ko có thông tin.         
             loadControl();
 
         }
 
-        private void simpleButton1_Click(object sender, EventArgs e)
-        {
-            // Thêm một cột ID mã máy tính trong bảng ds cài đặt.
-
-            // Lấy danh sách máy tính DTO.
-            //List<QuanLyMayTinhDTO> LsDsMTDTO = QuanLyMayTinhDAO.Instance.GetListMaMT();
-
-            //foreach (QuanLyMayTinhDTO item in LsDsMTDTO)
-            //{
-            //    int IDMT = item.ID;
-            //    string MAMT = item.MAMT;
-            //    // Chạy câu lệnh Update trong phần ds cài đặt.
-            //    DsCaiDatDAO.Instance.UpdateIDMT(MAMT, IDMT);
-            //}
-
-            //MessageBox.Show("Đã cập nhật ID máy tính", "Thành công:", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-
-            // Đã chỉnh sửa xong.
-
-            
-
-            // Chỉnh sửa lại nút xóa trong phần ds máy tính.
-
-            // Chỉnh sửa lại bảng chi tiết cài đặt( Lấy ID máy tính thay vì lấy mã)
-        }
+      
     }
 }

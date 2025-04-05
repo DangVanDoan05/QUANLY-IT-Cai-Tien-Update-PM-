@@ -11,7 +11,7 @@ namespace DTO
     {
         public DanhSachPhanMemDTO(DataRow row)
         {
-
+            this.ID =int.Parse( row["ID"].ToString());
             this.MAPM = row["MAPM"].ToString();
             this.TENPM = row["TENPM"].ToString();
             this.LICENSE = row["LICENSE"].ToString();
@@ -32,6 +32,8 @@ namespace DTO
             this.NCC =ncc;
             this.GHICHU = ghichu;
         }
+
+        private int iD;
         private string mAPM;
         private string tENPM;
         private string lICENSE;
@@ -49,5 +51,6 @@ namespace DTO
         public string NCC { get => nCC; set => nCC = value; }
         public string GHICHU { get => gHICHU; set => gHICHU = value; }
         public string CHUCNANG { get => cHUCNANG; set => cHUCNANG = value; }
+        public int ID { get => iD; set => iD = value; }
     }
 }

@@ -43,7 +43,7 @@ namespace frmMain
                 string NhaMay = txtNhaMay.Text;
                 string ngaydh = dtpNgayDatHang.Value.ToString("dd/MM/yyyy");
                 string TgDH = dtpNgayDatHang.Value.ToString("-ddMMyyyy-") + DateTime.Now.ToString("HHmmss");
-                string MaDonHang = PBDH + TgDH;
+                string MaDonHang = PBDH+"-"+NhaMay+ TgDH;
                 string TenHang = txtTenMH.Text;
                 string sldat = txtSLDat.Text;
                 string DvTinh = txtDonViTinh.Text;

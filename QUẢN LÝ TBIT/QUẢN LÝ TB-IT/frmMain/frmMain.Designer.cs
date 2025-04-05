@@ -107,6 +107,7 @@
             this.btnTonLKTH = new DevExpress.XtraBars.BarButtonItem();
             this.btnTKTH = new DevExpress.XtraBars.BarButtonItem();
             this.btnChiTietUpdatePM = new DevExpress.XtraBars.BarButtonItem();
+            this.btnQLKey = new DevExpress.XtraBars.BarButtonItem();
             this.rpYCKT = new DevExpress.XtraBars.Ribbon.RibbonPage();
             this.rpgTaoYCKT = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.rpQlyKho = new DevExpress.XtraBars.Ribbon.RibbonPage();
@@ -217,9 +218,10 @@
             this.btnLichSuBT,
             this.btnTonLKTH,
             this.btnTKTH,
-            this.btnChiTietUpdatePM});
+            this.btnChiTietUpdatePM,
+            this.btnQLKey});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 77;
+            this.ribbon.MaxItemId = 78;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpYCKT,
@@ -352,8 +354,8 @@
             // 
             this.btnLoaiTB.Caption = "Loại Thiết Bị";
             this.btnLoaiTB.Id = 14;
-            this.btnLoaiTB.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnMCC.ImageOptions.Image")));
-            this.btnLoaiTB.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnMCC.ImageOptions.LargeImage")));
+            this.btnLoaiTB.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLoaiTB.ImageOptions.Image")));
+            this.btnLoaiTB.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLoaiTB.ImageOptions.LargeImage")));
             this.btnLoaiTB.Name = "btnLoaiTB";
             this.btnLoaiTB.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem10_ItemClick);
             // 
@@ -864,6 +866,15 @@
             this.btnChiTietUpdatePM.Name = "btnChiTietUpdatePM";
             this.btnChiTietUpdatePM.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnChiTietUpdatePM_ItemClick);
             // 
+            // btnQLKey
+            // 
+            this.btnQLKey.Caption = "Quản lý License Key";
+            this.btnQLKey.Id = 77;
+            this.btnQLKey.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnQLKey.ImageOptions.Image")));
+            this.btnQLKey.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnQLKey.ImageOptions.LargeImage")));
+            this.btnQLKey.Name = "btnQLKey";
+            this.btnQLKey.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnQLKey_ItemClick);
+            // 
             // rpYCKT
             // 
             this.rpYCKT.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] {
@@ -929,6 +940,7 @@
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnChiTietUpdatePM, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnDanhSachCaiDat, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnLichSuBT, true);
+            this.rpgQlyMayTinh.ItemLinks.Add(this.btnQLKey, true);
             this.rpgQlyMayTinh.Name = "rpgQlyMayTinh";
             this.rpgQlyMayTinh.Text = "Quản Lý Máy Tính";
             // 
@@ -1166,5 +1178,6 @@
         private DevExpress.XtraBars.BarButtonItem btnTKTH;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgQlyVTTH;
         private DevExpress.XtraBars.BarButtonItem btnChiTietUpdatePM;
+        private DevExpress.XtraBars.BarButtonItem btnQLKey;
     }
 }

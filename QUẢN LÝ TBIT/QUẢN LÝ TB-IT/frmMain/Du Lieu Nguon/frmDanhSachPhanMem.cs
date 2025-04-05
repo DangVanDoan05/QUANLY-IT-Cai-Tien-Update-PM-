@@ -47,17 +47,21 @@ namespace frmMain
             cbNCC.ValueMember = "MANCC";
         }
 
+        // đang ko biết hệ thống lưu làm sao
         private void CleanText()
         {
             txtMaPhanMem.Clear();
             txtTenPhanMem.Clear();
             txtLicense.Clear();
             txtGhiChu.Clear();
+            chkGHLC.Checked = false;
         }
+
 
         private void LoadData()
         {
             gridControl1.DataSource = QLPhanMemDAO.Instance.GetTable();
+            // Trường STATUS để giới hạn Key hay không.
         }
 
         private void LockControl(bool kt)
@@ -103,6 +107,7 @@ namespace frmMain
         {
             try
             {
+                // 
                 if (them)
                 {
 
@@ -114,6 +119,15 @@ namespace frmMain
                     string ghichu = txtGhiChu.Text;
                     string chucnang = txtChucnang.Text;
                     string ncc = cbNCC.Text;
+                    int GioiHanLC = 0;
+                    if(chkGHLC.Checked)
+                    {
+                        GioiHanLC = 1;
+                    }
+                    else
+                    {
+                        GioiHanLC = 0;
+                    }
                     bool CheckMaPMExist = QLPhanMemDAO.Instance.CheckMaPMExist(maPM);
                     if (CheckMaPMExist)
                     {
@@ -125,7 +139,7 @@ namespace frmMain
                         DialogResult kq = MessageBox.Show($"Bạn muốn thêm mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            QLPhanMemDAO.Instance.Insert(maPM, tenPM, license, ngaymua, hansd, ncc,chucnang, ghichu);
+                            QLPhanMemDAO.Instance.Insert(maPM, tenPM, license, ngaymua, hansd, ncc,chucnang, ghichu,GioiHanLC);
                             MessageBox.Show($" Thêm mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         them = false;
@@ -144,7 +158,15 @@ namespace frmMain
                     string ghichu = txtGhiChu.Text;
                     string ChucNang = txtChucnang.Text;
                     string ncc = cbNCC.Text;
-
+                    int GioiHanLC = 0;
+                    if (chkGHLC.Checked)
+                    {
+                        GioiHanLC = 1;
+                    }
+                    else
+                    {
+                        GioiHanLC = 0;
+                    }
                     if (maPM == "")
                     {
                         MessageBox.Show($" Bạn chưa chọn mã phần mềm để thay đổi thông tin!", "Thông Báo:");
@@ -154,7 +176,7 @@ namespace frmMain
                         DialogResult kq = MessageBox.Show($"Bạn muốn sửa thông tin của mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, license, ngaymua, hansd, ncc,ChucNang, ghichu);
+                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, license, ngaymua, hansd, ncc,ChucNang, ghichu,GioiHanLC);
                             MessageBox.Show($" Sửa thông tin mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -182,7 +204,7 @@ namespace frmMain
             else
             {
                 LockControl(false);
-                txtMaPhanMem.Enabled = false;
+               
             }
             
         }
@@ -211,11 +233,18 @@ namespace frmMain
                     int demXoa = 0;
                     foreach (int item in LsIDPMdc)
                     {
-                        // Trường hợp nó đang có khóa phụ tham chiếu đến.
+                       
+                        // Không có khóa phụ tham chiếu đến bảng này.
                         try
                         {
+                            // Xóa trong bảng quản lý phần mềm
                             QLPhanMemDAO.Instance.Delete(item);
                             demXoa++;
+
+                            // Xóa trong bảng danh sách cài đặt.
+                            DsCaiDatDAO.Instance.DeleteWithIDPM(item);
+
+                            // Không cần xóa trong bảng lịch sử cài đặt
                         }
                         catch 
                         {

@@ -21,6 +21,9 @@ namespace frmMain
             LoadControl();
         }
         bool them;
+
+
+
         private void LoadControl()
         {
             LockControl(true);

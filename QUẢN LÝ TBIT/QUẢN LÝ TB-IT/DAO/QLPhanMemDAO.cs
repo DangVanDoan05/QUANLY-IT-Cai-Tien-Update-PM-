@@ -21,9 +21,21 @@ namespace DAO
 
         private QLPhanMemDAO() { }
 
-        public List<QLPhanMemDTO> GetListMaMT()
+        public List<QLPhanMemDTO> GetListPMDTO()
         {
             string query = "select * from QLYPHANMEM";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            List<QLPhanMemDTO> lsv = new List<QLPhanMemDTO>();
+            foreach (DataRow item in data.Rows)
+            {
+                QLPhanMemDTO maPM = new QLPhanMemDTO(item);
+                lsv.Add(maPM);
+            }
+            return lsv;
+        }
+        public List<QLPhanMemDTO> GetListPMDTOKoGH()
+        {
+            string query = "select * from QLYPHANMEM where STATUS=0";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             List<QLPhanMemDTO> lsv = new List<QLPhanMemDTO>();
             foreach (DataRow item in data.Rows)
@@ -69,19 +81,19 @@ namespace DAO
 
         // HAM THEM
 
-        public int Insert(string MaPM, string TenPM, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu)
+        public int Insert(string MaPM, string TenPM, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status)
         {
-            string query = "insert QLYPHANMEM(MAPM,TENPM,LICENSE,NGAYMUA,HANSD,NCC,CHUCNANG,GHICHU) values( @ma , @ten , @LICENSE , @ngmua , @hsd , @ncc , @CN , @note )";
+            string query = "insert QLYPHANMEM(MAPM,TENPM,LICENSE,NGAYMUA,HANSD,NCC,CHUCNANG,GHICHU) values( @ma , @ten , @LICENSE , @ngmua , @hsd , @ncc , @CN , @note , @status )";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM, license, ngmua, hansd, ncc, Chucnang, ghichu });
             return data;
 
         }
 
         // HAM SUA
-        public int Update(int ID,string MaPM, string TenPM, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu)
+        public int Update(int ID,string MaPM, string TenPM, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status)
         {
-            string query = "UPDATE	QLYPHANMEM SET MAPM= @ma ,TENPM= @tenpm ,LICENSE= @lisen ,NGAYMUA= @ngmua ,HANSD= @han ,NCC= @ncc ,CHUCNANG= @CN ,GHICHU= @ghichu  WHERE int ID= @id  ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM, license, ngmua, hansd, ncc, Chucnang, ghichu, ID });
+            string query = "UPDATE	QLYPHANMEM SET MAPM= @ma ,TENPM= @tenpm ,LICENSE= @lisen ,NGAYMUA= @ngmua ,HANSD= @han ,NCC= @ncc ,CHUCNANG= @CN ,GHICHU= @ghichu ,STATUS= @status  WHERE ID= @id  ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM, license, ngmua, hansd, ncc, Chucnang, ghichu,status, ID });
             return data;
 
         }
