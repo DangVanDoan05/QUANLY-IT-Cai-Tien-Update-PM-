@@ -30,6 +30,10 @@ namespace DTO
             this.IDIP = int.Parse(row["IDIP"].ToString());
             this.MODEL = row["MODEL"].ToString();
             this.UPS= row["UPS"].ToString();
+            this.IDWIN = int.Parse(row["IDWIN"].ToString());
+            this.IDOFFICE = int.Parse(row["IDOFFICE"].ToString());
+            this.IDKAS = int.Parse(row["IDKAS"].ToString());
+            this.STATUS = int.Parse(row["STATUS"].ToString());
         }
 
         public QuanLyMayTinhDTO(string maMT, bool baohanh, string ip, string mac,string Domain,string LoaiMT, string NCC, string Nhamay, string phongban, string nguoisd, string mtscd, string ngaymua, string hanbh, string ghichu)
@@ -87,6 +91,11 @@ namespace DTO
         private int iDIP;
         private string mODEL;
         private string uPS;
+        private int iDWIN;
+        private int iDOFFICE;
+        private int iDKAS;
+        private int sTATUS;
+
 
         public string MAMT { get => mAMT; set => mAMT = value; }
         public bool BAOHANH { get => bAOHANH; set => bAOHANH = value; }
@@ -107,5 +116,9 @@ namespace DTO
         public int IDIP { get => iDIP; set => iDIP = value; }
         public string MODEL { get => mODEL; set => mODEL = value; }
         public string UPS { get => uPS; set => uPS = value; }
+        public int IDWIN { get => iDWIN; set => iDWIN = value; }
+        public int IDOFFICE { get => iDOFFICE; set => iDOFFICE = value; }
+        public int IDKAS { get => iDKAS; set => iDKAS = value; }
+        public int STATUS { get => sTATUS; set => sTATUS = value; }
     }
 }
