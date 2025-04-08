@@ -74,9 +74,17 @@ namespace DAO
                 }
             }
 
-            // HAM THEM: INSERT QLLICENSE(MALICENSE,IDPM,NGAYMUA,NGAYHETHAN,STATUS)
+        public QLLicenseDTO GetLicenseDTO(int ID)
+        {
+            string query = "select * from QLLICENSE where ID= @id ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { ID });
+            QLLicenseDTO a = new QLLicenseDTO(data.Rows[0]);
+            return a;
+        }
 
-            public int Insert(string MaLicense,int IdPM, string Ngaymua, string ngayhethan, int status )
+        // HAM THEM: INSERT QLLICENSE(MALICENSE,IDPM,NGAYMUA,NGAYHETHAN,STATUS)
+
+        public int Insert(string MaLicense,int IdPM, string Ngaymua, string ngayhethan, int status )
             {
                 string query = "INSERT QLLICENSE(MALICENSE,IDPM,NGAYMUA,NGAYHETHAN,STATUS) values( @ma , @idpm , @ngaymua , @ngayhethan , @status )";
                 int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaLicense,  IdPM, Ngaymua,  ngayhethan, status });
@@ -94,7 +102,7 @@ namespace DAO
 
             public int UpdatesTATUS(int ID, int status) // không Update Status trong trường này
             {
-                string query = "UPDATE QLLICENSE set STATUS= @ID where ID= @id ";
+                string query = "UPDATE QLLICENSE set STATUS= @status where ID= @id ";
                 int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { status,ID });
                 return data;
             }

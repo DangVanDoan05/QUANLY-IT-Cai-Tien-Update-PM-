@@ -854,3 +854,11 @@ D:\PM QUAN LY IT( LÀM LẠI) 07-04-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN L�
 D:\PM QUAN LY IT( LÀM LẠI) 07-04-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.AssemblyInfo.cs
 D:\PM QUAN LY IT( LÀM LẠI) 07-04-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.dll
 D:\PM QUAN LY IT( LÀM LẠI) 07-04-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.pdb
+E:\PHAN MEM QLY TBI IT(Đang làm 08-04-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.deps.json
+E:\PHAN MEM QLY TBI IT(Đang làm 08-04-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.dll
+E:\PHAN MEM QLY TBI IT(Đang làm 08-04-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\bin\Debug\netstandard1.4\CONNECTION.pdb
+E:\PHAN MEM QLY TBI IT(Đang làm 08-04-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.csprojAssemblyReference.cache
+E:\PHAN MEM QLY TBI IT(Đang làm 08-04-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.csproj.CoreCompileInputs.cache
+E:\PHAN MEM QLY TBI IT(Đang làm 08-04-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.AssemblyInfo.cs
+E:\PHAN MEM QLY TBI IT(Đang làm 08-04-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.dll
+E:\PHAN MEM QLY TBI IT(Đang làm 08-04-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\CONNECTION\obj\Debug\netstandard1.4\CONNECTION.pdb

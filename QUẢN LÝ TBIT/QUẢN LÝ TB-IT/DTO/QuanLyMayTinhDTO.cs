@@ -25,6 +25,9 @@ namespace DTO
             this.NGUOISD = row["NGUOISD"].ToString();
             this.MATSCD = row["MATSCD"].ToString();
             this.NGAYMUA = row["NGAYMUA"].ToString();
+            this.KEYWIN = row["KEYWIN"].ToString();
+            this.KEYOFFICE = row["KEYOFFICE"].ToString();
+            this.KEYKAS = row["KEYKAS"].ToString();
             this.HANBH = row["HANBH"].ToString();
             this.GHICHU = row["GHICHU"].ToString();
             this.IDIP = int.Parse(row["IDIP"].ToString());
@@ -92,8 +95,11 @@ namespace DTO
         private string mODEL;
         private string uPS;
         private int iDWIN;
+        private string  kEYWIN;
         private int iDOFFICE;
+        private string kEYOFFICE;
         private int iDKAS;
+        private string kEYKAS;
         private int sTATUS;
 
 
@@ -120,5 +126,8 @@ namespace DTO
         public int IDOFFICE { get => iDOFFICE; set => iDOFFICE = value; }
         public int IDKAS { get => iDKAS; set => iDKAS = value; }
         public int STATUS { get => sTATUS; set => sTATUS = value; }
+        public string KEYWIN { get => kEYWIN; set => kEYWIN = value; }
+        public string KEYOFFICE { get => kEYOFFICE; set => kEYOFFICE = value; }
+        public string KEYKAS { get => kEYKAS; set => kEYKAS = value; }
     }
 }
