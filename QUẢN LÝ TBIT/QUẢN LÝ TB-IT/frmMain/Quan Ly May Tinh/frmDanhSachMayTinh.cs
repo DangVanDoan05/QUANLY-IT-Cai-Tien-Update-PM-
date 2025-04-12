@@ -147,8 +147,9 @@ namespace frmMain
             gridControl1.DataSource = QuanLyMayTinhDAO.Instance.GetTable();
             lblTongSoMT.Text = QuanLyMayTinhDAO.Instance.TongMT() + "";
             string maMT = txtMaMT.Text;
-         chkOffline.Checked = true;
+            chkOffline.Checked = true;
             radDHCP.Checked = true;
+
         }
 
 
@@ -211,6 +212,11 @@ namespace frmMain
             sglPhongBan.Properties.DataSource = PhongBanDAO.Instance.GetLsvPB();
             sglPhongBan.Properties.DisplayMember = "MAPB";
             sglPhongBan.Properties.ValueMember = "MAPB";
+
+            // Load Phòng ban:
+
+            sglPhongBan.Properties.DataSource = PhongBanDAO.Instance.GetLsvPB();
+            sglPhongBan.Properties.DisplayMember = "MAPB";
 
             // Load Dải  IP
 

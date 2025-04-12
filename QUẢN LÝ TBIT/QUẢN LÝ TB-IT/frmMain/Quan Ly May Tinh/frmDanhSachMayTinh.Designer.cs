@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDanhSachMayTinh));
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.chkOffline = new System.Windows.Forms.CheckBox();
+            this.chkOnline = new System.Windows.Forms.CheckBox();
             this.sglKeyKas = new DevExpress.XtraEditors.GridLookUpEdit();
             this.gridView4 = new DevExpress.XtraGrid.Views.Grid.GridView();
             this.sglKeyOffice = new DevExpress.XtraEditors.SearchLookUpEdit();
@@ -151,10 +153,14 @@
             this.layoutControlItem32 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem33 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem34 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chkOnline = new System.Windows.Forms.CheckBox();
             this.layoutControlItem37 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.chkOffline = new System.Windows.Forms.CheckBox();
             this.layoutControlItem44 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.sglNhaMay = new DevExpress.XtraEditors.SearchLookUpEdit();
+            this.layoutControlItem35 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.gridView5 = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.gridColumn32 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn33 = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.gridColumn34 = new DevExpress.XtraGrid.Columns.GridColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sglKeyKas.Properties)).BeginInit();
@@ -216,10 +222,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem44)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sglNhaMay.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
+            this.layoutControl1.Controls.Add(this.sglNhaMay);
             this.layoutControl1.Controls.Add(this.chkOffline);
             this.layoutControl1.Controls.Add(this.chkOnline);
             this.layoutControl1.Controls.Add(this.sglKeyKas);
@@ -271,14 +281,34 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // chkOffline
+            // 
+            this.chkOffline.Location = new System.Drawing.Point(138, 90);
+            this.chkOffline.Name = "chkOffline";
+            this.chkOffline.Size = new System.Drawing.Size(138, 20);
+            this.chkOffline.TabIndex = 66;
+            this.chkOffline.Text = "Offline";
+            this.chkOffline.UseVisualStyleBackColor = true;
+            this.chkOffline.CheckedChanged += new System.EventHandler(this.chkOffline_CheckedChanged);
+            // 
+            // chkOnline
+            // 
+            this.chkOnline.Location = new System.Drawing.Point(12, 90);
+            this.chkOnline.Name = "chkOnline";
+            this.chkOnline.Size = new System.Drawing.Size(122, 20);
+            this.chkOnline.TabIndex = 65;
+            this.chkOnline.Text = "Online";
+            this.chkOnline.UseVisualStyleBackColor = true;
+            this.chkOnline.CheckedChanged += new System.EventHandler(this.chkOnline_CheckedChanged);
+            // 
             // sglKeyKas
             // 
-            this.sglKeyKas.Location = new System.Drawing.Point(1135, 90);
+            this.sglKeyKas.Location = new System.Drawing.Point(1130, 90);
             this.sglKeyKas.Name = "sglKeyKas";
             this.sglKeyKas.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sglKeyKas.Properties.PopupView = this.gridView4;
-            this.sglKeyKas.Size = new System.Drawing.Size(210, 22);
+            this.sglKeyKas.Size = new System.Drawing.Size(215, 22);
             this.sglKeyKas.StyleController = this.layoutControl1;
             this.sglKeyKas.TabIndex = 62;
             // 
@@ -291,12 +321,12 @@
             // 
             // sglKeyOffice
             // 
-            this.sglKeyOffice.Location = new System.Drawing.Point(828, 90);
+            this.sglKeyOffice.Location = new System.Drawing.Point(620, 90);
             this.sglKeyOffice.Name = "sglKeyOffice";
             this.sglKeyOffice.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sglKeyOffice.Properties.PopupView = this.gridView3;
-            this.sglKeyOffice.Size = new System.Drawing.Size(195, 22);
+            this.sglKeyOffice.Size = new System.Drawing.Size(96, 22);
             this.sglKeyOffice.StyleController = this.layoutControl1;
             this.sglKeyOffice.TabIndex = 61;
             // 
@@ -345,7 +375,7 @@
             this.sglKeyWin.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
             this.sglKeyWin.Properties.PopupView = this.searchLookUpEdit1View;
-            this.sglKeyWin.Size = new System.Drawing.Size(328, 22);
+            this.sglKeyWin.Size = new System.Drawing.Size(120, 22);
             this.sglKeyWin.StyleController = this.layoutControl1;
             this.sglKeyWin.TabIndex = 60;
             // 
@@ -1237,7 +1267,8 @@
             this.layoutControlItem33,
             this.layoutControlItem34,
             this.layoutControlItem37,
-            this.layoutControlItem44});
+            this.layoutControlItem44,
+            this.layoutControlItem35});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(1357, 649);
             this.Root.TextVisible = false;
@@ -1632,37 +1663,27 @@
             this.layoutControlItem32.Control = this.sglKeyWin;
             this.layoutControlItem32.Location = new System.Drawing.Point(268, 78);
             this.layoutControlItem32.Name = "layoutControlItem32";
-            this.layoutControlItem32.Size = new System.Drawing.Size(440, 26);
+            this.layoutControlItem32.Size = new System.Drawing.Size(232, 26);
             this.layoutControlItem32.Text = "Key Win:";
             this.layoutControlItem32.TextSize = new System.Drawing.Size(105, 15);
             // 
             // layoutControlItem33
             // 
             this.layoutControlItem33.Control = this.sglKeyOffice;
-            this.layoutControlItem33.Location = new System.Drawing.Point(708, 78);
+            this.layoutControlItem33.Location = new System.Drawing.Point(500, 78);
             this.layoutControlItem33.Name = "layoutControlItem33";
-            this.layoutControlItem33.Size = new System.Drawing.Size(307, 26);
+            this.layoutControlItem33.Size = new System.Drawing.Size(208, 26);
             this.layoutControlItem33.Text = "Key Office:";
             this.layoutControlItem33.TextSize = new System.Drawing.Size(105, 15);
             // 
             // layoutControlItem34
             // 
             this.layoutControlItem34.Control = this.sglKeyKas;
-            this.layoutControlItem34.Location = new System.Drawing.Point(1015, 78);
+            this.layoutControlItem34.Location = new System.Drawing.Point(1010, 78);
             this.layoutControlItem34.Name = "layoutControlItem34";
-            this.layoutControlItem34.Size = new System.Drawing.Size(322, 26);
-            this.layoutControlItem34.Text = "Key Kasper:";
+            this.layoutControlItem34.Size = new System.Drawing.Size(327, 26);
+            this.layoutControlItem34.Text = "License Kas:";
             this.layoutControlItem34.TextSize = new System.Drawing.Size(105, 15);
-            // 
-            // chkOnline
-            // 
-            this.chkOnline.Location = new System.Drawing.Point(12, 90);
-            this.chkOnline.Name = "chkOnline";
-            this.chkOnline.Size = new System.Drawing.Size(122, 20);
-            this.chkOnline.TabIndex = 65;
-            this.chkOnline.Text = "Online";
-            this.chkOnline.UseVisualStyleBackColor = true;
-            this.chkOnline.CheckedChanged += new System.EventHandler(this.chkOnline_CheckedChanged);
             // 
             // layoutControlItem37
             // 
@@ -1673,16 +1694,6 @@
             this.layoutControlItem37.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem37.TextVisible = false;
             // 
-            // chkOffline
-            // 
-            this.chkOffline.Location = new System.Drawing.Point(138, 90);
-            this.chkOffline.Name = "chkOffline";
-            this.chkOffline.Size = new System.Drawing.Size(138, 20);
-            this.chkOffline.TabIndex = 66;
-            this.chkOffline.Text = "Offline";
-            this.chkOffline.UseVisualStyleBackColor = true;
-            this.chkOffline.CheckedChanged += new System.EventHandler(this.chkOffline_CheckedChanged);
-            // 
             // layoutControlItem44
             // 
             this.layoutControlItem44.Control = this.chkOffline;
@@ -1691,6 +1702,73 @@
             this.layoutControlItem44.Size = new System.Drawing.Size(142, 26);
             this.layoutControlItem44.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem44.TextVisible = false;
+            // 
+            // sglNhaMay
+            // 
+            this.sglNhaMay.Location = new System.Drawing.Point(828, 90);
+            this.sglNhaMay.Name = "sglNhaMay";
+            this.sglNhaMay.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.sglNhaMay.Properties.PopupView = this.gridView5;
+            this.sglNhaMay.Size = new System.Drawing.Size(190, 22);
+            this.sglNhaMay.StyleController = this.layoutControl1;
+            this.sglNhaMay.TabIndex = 67;
+            // 
+            // layoutControlItem35
+            // 
+            this.layoutControlItem35.Control = this.sglNhaMay;
+            this.layoutControlItem35.Location = new System.Drawing.Point(708, 78);
+            this.layoutControlItem35.Name = "layoutControlItem35";
+            this.layoutControlItem35.Size = new System.Drawing.Size(302, 26);
+            this.layoutControlItem35.Text = "Nhà máy:";
+            this.layoutControlItem35.TextSize = new System.Drawing.Size(105, 15);
+            // 
+            // gridView5
+            // 
+            this.gridView5.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.gridColumn32,
+            this.gridColumn33,
+            this.gridColumn34});
+            this.gridView5.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFocus;
+            this.gridView5.Name = "gridView5";
+            this.gridView5.OptionsSelection.EnableAppearanceFocusedCell = false;
+            this.gridView5.OptionsView.ShowGroupPanel = false;
+            // 
+            // gridColumn32
+            // 
+            this.gridColumn32.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn32.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn32.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn32.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn32.Caption = "Mã nhà máy";
+            this.gridColumn32.FieldName = "MANHAMAY";
+            this.gridColumn32.Name = "gridColumn32";
+            this.gridColumn32.Visible = true;
+            this.gridColumn32.VisibleIndex = 0;
+            // 
+            // gridColumn33
+            // 
+            this.gridColumn33.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn33.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn33.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn33.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn33.Caption = "Tên nhà máy";
+            this.gridColumn33.FieldName = "TENNHAMAY";
+            this.gridColumn33.Name = "gridColumn33";
+            this.gridColumn33.Visible = true;
+            this.gridColumn33.VisibleIndex = 1;
+            // 
+            // gridColumn34
+            // 
+            this.gridColumn34.AppearanceHeader.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gridColumn34.AppearanceHeader.Options.UseFont = true;
+            this.gridColumn34.AppearanceHeader.Options.UseTextOptions = true;
+            this.gridColumn34.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.gridColumn34.Caption = "Địa chỉ";
+            this.gridColumn34.FieldName = "DIACHI";
+            this.gridColumn34.Name = "gridColumn34";
+            this.gridColumn34.Visible = true;
+            this.gridColumn34.VisibleIndex = 2;
             // 
             // frmDanhSachMayTinh
             // 
@@ -1761,6 +1839,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem34)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem37)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem44)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sglNhaMay.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem35)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridView5)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1893,5 +1974,11 @@
         private System.Windows.Forms.CheckBox chkOnline;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem37;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem44;
+        private DevExpress.XtraEditors.SearchLookUpEdit sglNhaMay;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridView5;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn32;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn33;
+        private DevExpress.XtraGrid.Columns.GridColumn gridColumn34;
+        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem35;
     }
 }

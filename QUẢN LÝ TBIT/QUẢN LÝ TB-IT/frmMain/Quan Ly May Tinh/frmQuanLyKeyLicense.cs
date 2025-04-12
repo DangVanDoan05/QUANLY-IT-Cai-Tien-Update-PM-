@@ -47,7 +47,7 @@ namespace frmMain.Quan_Ly_May_Tinh
         private void CleanText()
         {
             txtMaLicense.Clear();
-            chkKhongTH.Checked = true;          
+            chkKhongTH.Checked = false;          
             txtSoLuong.Clear();
         }
 
@@ -105,11 +105,11 @@ namespace frmMain.Quan_Ly_May_Tinh
 
                     string MaLicense =txtMaLicense.Text.Trim();
                     int IDPM =int.Parse(sglPhanMem.EditValue.ToString());
-                    
+                    string TenPM = QLPhanMemDAO.Instance.GetPMDTO(IDPM).TENPM;
                     string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
                     string ngayhethan = dtpNgayHetHan.Value.ToString("dd/MM/yyyy");
 
-                    if(chkKhongTH.Checked=true)
+                    if(chkKhongTH.Checked==true)
                     {
                          ngayhethan = "Không thời hạn.";
                     }
@@ -120,24 +120,49 @@ namespace frmMain.Quan_Ly_May_Tinh
                     int SoLuong = int.Parse(txtSoLuong.Text.Trim());
                     if(SoLuong>=1)
                     {
-                        bool CheckMaLicenseExist = QLLicenseDAO.Instance.CheckMaLicense(MaLicense);
-                        if (CheckMaLicenseExist)
+                        if(SoLuong==1)
                         {
-                            MessageBox.Show(" Mã License đã tồn tại.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            bool CheckMaLicenseExist = QLLicenseDAO.Instance.CheckMaLicense(MaLicense);
+                            if (CheckMaLicenseExist)
+                            {
+                                MessageBox.Show(" Mã License đã tồn tại.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            else
+                            {
+                                DialogResult kq = MessageBox.Show($"Bạn muốn thêm  mã License {MaLicense} cho phần mềm {TenPM} ?", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                                if (kq == DialogResult.Yes)
+                                {                                  
+                                    QLLicenseDAO.Instance.Insert(MaLicense, IDPM, ngaymua, ngayhethan, 0); // 0: là trạng thái chưa sử dụng, 1: là trạng thái đã sử dụng.
+                                    MessageBox.Show($" Thêm mã phần mềm {MaLicense} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);                                  
+                                }
+                                them = false;
+                                LoadControl();
+                            }
                         }
                         else
                         {
-
-                            DialogResult kq = MessageBox.Show($"Bạn muốn thêm mã License {MaLicense}", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                            DialogResult kq = MessageBox.Show($"Bạn muốn thêm {SoLuong} mã License {MaLicense} cho phần mềm {TenPM} ? ", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                             if (kq == DialogResult.Yes)
                             {
-                                QLLicenseDAO.Instance.Insert(MaLicense,IDPM,ngaymua,ngayhethan,0); // 0: là trạng thái chưa sử dụng, 1: là trạng thái đã sử dụng.
-                                MessageBox.Show($" Thêm mã phần mềm {MaLicense} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                int demthem = 0;
+                                for (int i = 1; i <= SoLuong; i++)
+                                {
+                                    bool CheckMaLicenseExist = QLLicenseDAO.Instance.CheckMaLicense(MaLicense + i.ToString());
+                                    if (!CheckMaLicenseExist)
+                                    {
+                                        QLLicenseDAO.Instance.Insert(MaLicense + i.ToString(), IDPM, ngaymua, ngayhethan, 0); // 0: là trạng thái chưa sử dụng, 1: là trạng thái đã sử dụng.
+                                        demthem++;
+                                    }                                
+                                   
+                                }
+                                MessageBox.Show($"Đã thêm {demthem} mã License cho phần mềm {TenPM}, có { SoLuong - demthem } ? thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             }
                             them = false;
                             LoadControl();
-
                         }
+                       
+
+                        
                     }
                     else
                     {
@@ -145,7 +170,7 @@ namespace frmMain.Quan_Ly_May_Tinh
                     }
                     
                 }
-                else // Sửa thông tin.
+                else // SỬA THÔNG TIN.
                 {
                     string MaLicense = txtMaLicense.Text.Trim();
                     int IDPM = int.Parse(sglPhanMem.EditValue.ToString());
@@ -153,13 +178,13 @@ namespace frmMain.Quan_Ly_May_Tinh
                     string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
                     string ngayhethan = dtpNgayHetHan.Value.ToString("dd/MM/yyyy");
 
-                    if (chkKhongTH.Checked = true)
+                    if (chkKhongTH.Checked == true)
                     {
                         ngayhethan = "Không thời hạn.";
                     }
                     else
                     {
-                        ngayhethan = dtpNgayHetHan.Value.ToString("dd/MM/yyyy");
+                        
                     }
                  
                      QLLicenseDAO.Instance.Update(IDselected,MaLicense,IDPM,ngaymua,ngayhethan); // 0: là trạng thái chưa sử dụng, 1: là trạng thái đã sử dụng.
@@ -182,7 +207,49 @@ namespace frmMain.Quan_Ly_May_Tinh
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+
             // Chưa có chức năng xóa.
+            // Check khóa phụ trong phần danh sách máy tính
+            // cho phép xóa nhiều dòng trong gridview
+            int dem = 0;
+            //  int demloi = 0;
+
+            List<int> LsIDLSdc = new List<int>();
+
+            foreach (var item in gridView1.GetSelectedRows())
+            {
+                int ID = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                LsIDLSdc.Add(ID);
+                dem++;
+            }
+
+            if (dem > 0)
+            {
+                DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} License được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (kq == DialogResult.Yes)
+                {
+                    int demXoa = 0;
+                    foreach (int item in LsIDLSdc)
+                    {                                          
+                       QLLicenseDAO.Instance.Delete(item);                       
+                    }
+                    //if (demXoa < dem)
+                    //{
+                    //    MessageBox.Show($"Đã xóa {demXoa} phần mềm, {dem - demXoa} phần mềm không thể xóa.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //}
+                    //else
+                    //{
+                        MessageBox.Show($"Đã xóa {dem} nhân viên được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //}
+                    demXoa = 0;
+                    dem = 0;
+                }
+                LoadControl();
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa chọn phần mềm để xóa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
 
