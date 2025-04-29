@@ -45,6 +45,7 @@ namespace frmMain
                 string dvtinh = txtDonVi.Text;
                 string ncc = txtNCC.Text;
                 string NguoiNhap = CommonUser.UserStatic.MANV+"-" +CommonUser.UserStatic.FULLNAME;
+                string NgayNhap = dtpNgayNhap.Value.ToString("dd/MM/yyyy");
                 string ghichu = txtGhiChu.Text;
                 if (ghichu == "")
                 {
@@ -71,7 +72,7 @@ namespace frmMain
                             int sltonMoi = MaLkTonDTO.SLTON + slnhap;
                             TonLinhKienDAO.Instance.UpdateSLTON(MaLK, sltonMoi);
                             // TÁC ĐỘNG LÊN BẢNG THỐNG KÊ NHẬP.
-                            ThongKeNhapDAO.Instance.Insert(MaTKNhap, MaLK, TenLK, DateTime.Now.ToString("dd/MM/yyyy"), slnhap, dvtinh, ncc, NguoiNhap, ghichu, tinhtrangKKBD.IDTTKIEMKE, tinhtrangKKBD.CHITIETTTKK);
+                            ThongKeNhapDAO.Instance.Insert(MaTKNhap, MaLK, TenLK, NgayNhap, slnhap, dvtinh, ncc, NguoiNhap, ghichu, tinhtrangKKBD.IDTTKIEMKE, tinhtrangKKBD.CHITIETTTKK);
                             MessageBox.Show($"Nhập kho mã linh kiên {MaLK} thành công! ", " Thông báo: ");
                         }
                         else
@@ -84,7 +85,7 @@ namespace frmMain
                     {
                         TonLinhKienDAO.Instance.Insert(MaLK, TenLK, slnhap, dvtinh,tinhtrangKKBD.IDTTKIEMKE,tinhtrangKKBD.CHITIETTTKK);
                         // TÁC ĐỘNG LÊN BẢNG THỐNG KÊ NHẬP.
-                        ThongKeNhapDAO.Instance.Insert(MaTKNhap, MaLK, TenLK, DateTime.Now.ToString("dd/MM/yyyy"), slnhap, dvtinh, ncc, NguoiNhap, ghichu, tinhtrangKKBD.IDTTKIEMKE, tinhtrangKKBD.CHITIETTTKK);
+                        ThongKeNhapDAO.Instance.Insert(MaTKNhap, MaLK, TenLK, NgayNhap, slnhap, dvtinh, ncc, NguoiNhap, ghichu, tinhtrangKKBD.IDTTKIEMKE, tinhtrangKKBD.CHITIETTTKK);
                         MessageBox.Show($"Nhập kho mã linh kiên {MaLK} thành công! ", " Thông báo: ");
                     }                                                                          
                 }

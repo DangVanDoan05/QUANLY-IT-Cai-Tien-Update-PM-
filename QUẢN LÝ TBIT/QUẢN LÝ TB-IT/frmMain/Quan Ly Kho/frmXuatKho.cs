@@ -61,7 +61,7 @@ namespace frmMain
             string MaLK = txtMaLK.Text;
             string MaTKxuat = MaLK + DateTime.Now.ToString("-ddMMyyyy-HHmmss");
             string TenLK = txtTenLK.Text;
-            string ngayxuat = DateTime.Now.ToString("dd/MM/yyyy");
+            string ngayxuat = dtpNgayXuat.Value.ToString("dd/MM/yyyy");
             string ncc = txtNCC.Text;
             string dvtinh = txtDonvi.Text;
             int TonHtai = int.Parse(txtTonHtai.Text);

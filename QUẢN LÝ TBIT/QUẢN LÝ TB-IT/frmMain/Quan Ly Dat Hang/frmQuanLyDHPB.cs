@@ -295,28 +295,37 @@ namespace frmMain
 
         private void gridView1_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            GridView view = sender as GridView;
-            // string ton = view.GetRowCellDisplayText(e.RowHandle, view.Columns["SLTON"]).ToString();
-            string MaDonHang = view.GetRowCellValue(e.RowHandle, view.Columns["MADONHANG"]).ToString();
-            List<QlyDonHangPBDTO> ListDsQuaHan = QlyDonHangPBDAO.Instance.GetLsQuaDuKienNhan();
-            QlyDonHangPBDTO MaDHDTO = QlyDonHangPBDAO.Instance.GetDonHangDTO(MaDonHang);
-            if (MaDHDTO.NGAYNHAN == "" )            //ĐÃ ĐẶT HÀNG
+            try
             {
-                e.Appearance.BackColor = txtDaDat.BackColor;
-            }
-            if (MaDHDTO.NGAYNHAN != "" )     //ĐÃ NHẬN HÀNG
-            {
-                e.Appearance.BackColor = txtDaNhan.BackColor;
-            }
-
-
-            foreach (QlyDonHangPBDTO item in ListDsQuaHan)
-            {
-                if (MaDonHang == item.MADONHANG && MaDHDTO.NGAYNHAN == "" )
+                GridView view = sender as GridView;
+                // string ton = view.GetRowCellDisplayText(e.RowHandle, view.Columns["SLTON"]).ToString();
+                string MaDonHang = view.GetRowCellValue(e.RowHandle, view.Columns["MADONHANG"]).ToString();
+                List<QlyDonHangPBDTO> ListDsQuaHan = QlyDonHangPBDAO.Instance.GetLsQuaDuKienNhan();
+                QlyDonHangPBDTO MaDHDTO = QlyDonHangPBDAO.Instance.GetDonHangDTO(MaDonHang);
+                if (MaDHDTO.NGAYNHAN == "")            //ĐÃ ĐẶT HÀNG
                 {
-                    e.Appearance.BackColor = txtDaDatLau.BackColor;
+                    e.Appearance.BackColor = txtDaDat.BackColor;
+                }
+                if (MaDHDTO.NGAYNHAN != "")     //ĐÃ NHẬN HÀNG
+                {
+                    e.Appearance.BackColor = txtDaNhan.BackColor;
+                }
+
+
+                foreach (QlyDonHangPBDTO item in ListDsQuaHan)
+                {
+                    if (MaDonHang == item.MADONHANG && MaDHDTO.NGAYNHAN == "")
+                    {
+                        e.Appearance.BackColor = txtDaDatLau.BackColor;
+                    }
                 }
             }
+            catch 
+            {
+              
+            }
+            
+
         }
     }
 }

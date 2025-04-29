@@ -75,8 +75,19 @@ namespace DAO
             return lsv;
         }
 
+        public List<QuanLyMayTinhDTO> GetLsMTKhongConBH()
+        {
+            string query = "select * from QLYMAYTINH where BAOHANH = 0  ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            List<QuanLyMayTinhDTO> lsv = new List<QuanLyMayTinhDTO>();
+            foreach (DataRow item in data.Rows)
+            {
+                QuanLyMayTinhDTO maMT = new QuanLyMayTinhDTO(item);
+                lsv.Add(maMT);
+            }
+            return lsv;
+        }
 
-      
 
 
         public List<string> GetListMaPBDD1()

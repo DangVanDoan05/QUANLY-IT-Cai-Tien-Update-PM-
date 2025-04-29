@@ -81,6 +81,7 @@ namespace frmMain
                 txtModel.Enabled = false;
                 txtUPS.Enabled = false;
                 sglKeyWin.Enabled = false;
+                sglNhaMay.Enabled = false;
                 sglKeyOffice.Enabled = false;
                 sglKeyKas.Enabled = false;
 
@@ -116,8 +117,9 @@ namespace frmMain
                 sglDiaChiIP.Enabled = false;
                 txtModel.Enabled = true;
                 txtUPS.Enabled = true;
-                sglKeyWin.Enabled = false;
-                sglKeyOffice.Enabled = false;
+                sglNhaMay.Enabled = true;
+                sglKeyWin.Enabled = true;
+                sglKeyOffice.Enabled = true;
                 sglKeyKas.Enabled = false;
 
                 btnThem.Enabled = false;
@@ -207,16 +209,21 @@ namespace frmMain
             sglKeyOffice.Properties.DisplayMember = "MALICENSE";
             sglKeyOffice.Properties.ValueMember = "ID";
 
+            // Load Key Kas
+
+
+
             // Load Phòng ban:
 
             sglPhongBan.Properties.DataSource = PhongBanDAO.Instance.GetLsvPB();
             sglPhongBan.Properties.DisplayMember = "MAPB";
             sglPhongBan.Properties.ValueMember = "MAPB";
 
-            // Load Phòng ban:
+            // Load nhà máy
 
-            sglPhongBan.Properties.DataSource = PhongBanDAO.Instance.GetLsvPB();
-            sglPhongBan.Properties.DisplayMember = "MAPB";
+            sglNhaMay.Properties.DataSource = NHAMAYDAO.Instance.GetLsvNM();
+            sglNhaMay.Properties.DisplayMember = "MANHAMAY";
+            sglNhaMay.Properties.ValueMember = "MANHAMAY";
 
             // Load Dải  IP
 
@@ -308,7 +315,7 @@ namespace frmMain
                             }
                             if (IDKAS != 0)
                             {
-                                //++ Update trạng thái key KASPERSKY
+                                
                                KeyKas = QLLicenseDAO.Instance.GetLicenseDTO(IDKAS).MALICENSE;
                             }
 
@@ -361,6 +368,8 @@ namespace frmMain
                                     DsCaiDatDAO.Instance.Insert(MTDTO.ID, 45, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
 
                                 }
+
+
                                 if (IDOFFICE != 0)
                                 {
                                     //++ Update trạng thái key OFFICE
@@ -368,12 +377,23 @@ namespace frmMain
                                     // Cập nhật trong bảng thông tin cài đặt phần mềm.
                                     DsCaiDatDAO.Instance.Insert(MTDTO.ID, 29, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
                                 }
+
+
                                 if (IDKAS != 0)
                                 {
                                     //++ Update trạng thái key KASPERSKY
                                     QLLicenseDAO.Instance.UpdatesTATUS(IDKAS, 1);
                                     // Cập nhật trong bảng thông tin cài đặt phần mềm.
-                                    DsCaiDatDAO.Instance.Insert(MTDTO.ID, 29, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                    // Lấy ra được ID phần mềm từ ID license
+                                    QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(IDKAS);
+                                    int IDMT = MTDTO.ID;
+                                    int IDPM = LicenseDTO.IDPM;
+                                    // Như vậy sẽ không cần phải xóa thông tin phần mềm nữa.
+                                    bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
+                                    if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                    {
+                                        DsCaiDatDAO.Instance.Insert(MTDTO.ID, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                    }                                 
                                 }
 
 
@@ -502,12 +522,23 @@ namespace frmMain
                                         //++ Update trạng thái key KASPERSKY
                                         QLLicenseDAO.Instance.UpdatesTATUS(IDKAS, 1);
                                         // Cập nhật trong bảng thông tin cài đặt phần mềm.
-                                        DsCaiDatDAO.Instance.Insert(MTDTO.ID, 29, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                        // Lấy ra được ID phần mềm từ ID license
+                                        QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(IDKAS);
+                                        int IDMT = MTDTO.ID;
+                                        int IDPM = LicenseDTO.IDPM;
+                                        // Như vậy sẽ không cần phải xóa thông tin phần mềm nữa.
+                                        bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
+                                        if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                        {
+                                            DsCaiDatDAO.Instance.Insert(MTDTO.ID, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                        }
                                     }
 
                                     MessageBox.Show($"Đã thêm mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                    // chưa xét đến biến status nhỉ
 
                                 }
+
                                 luu = 0;
 
                             }
@@ -643,19 +674,55 @@ namespace frmMain
                             // So sánh IDIP cũ và IDIP MỚI ====> ĐỂ ĐƯA RA QUYẾT ĐỊNH CHẠY LỆNH Update trạng thái IDIP TRONG BẢNG QUẢN LÝ IP.
 
 
-                            //++ Update trạng thái key Win
+                            // Update trạng thái key Win.
                             // Nếu có sự thay đổi về KeyWin.
                             if(IDWINnew!=0)
                             {
-                                QLLicenseDAO.Instance.UpdatesTATUS(IDWINnew, 1); // Trạng thái 1 là đang cài đặt phần mềm.
+                                QLLicenseDAO.Instance.UpdatesTATUS(IDWINnew, 1);
+                                // Trạng thái 1 là đã cài đặt phần mềm.
+                                // Cập nhật trong bảng thông tin cài đặt phần mềm.
+                                // Lấy ra được ID phần mềm từ ID license
+                                QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(IDWINnew);
+                                int IDMT = IDselected;
+                                int IDPM = LicenseDTO.IDPM;
+                                // Như vậy sẽ không cần phải xóa thông tin phần mềm nữa.
+                                bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
+                                if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                {
+                                    DsCaiDatDAO.Instance.Insert(IDselected, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                }
                             }
                             if (IDOFFICEnew != 0)
                             {
-                                QLLicenseDAO.Instance.UpdatesTATUS(IDOFFICEnew, 1); // Trạng thái 1 là đang cài đặt phần mềm.
+                                QLLicenseDAO.Instance.UpdatesTATUS(IDOFFICEnew, 1); // Trạng thái 1 là đã  cài đặt phần mềm.
+
+                                // Cập nhật trong bảng thông tin cài đặt phần mềm.
+                                // Lấy ra được ID phần mềm từ ID license
+                                QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(IDOFFICEnew);
+                                int IDMT = IDselected;
+                                int IDPM = LicenseDTO.IDPM;
+                                // Như vậy sẽ không cần phải xóa thông tin phần mềm nữa.
+                                bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
+                                if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                {
+                                    DsCaiDatDAO.Instance.Insert(IDselected, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                }
                             }
                             if (IDKASnew != 0)
                             {
-                                QLLicenseDAO.Instance.UpdatesTATUS(IDKASnew, 1); // Trạng thái 1 là đang cài đặt phần mềm.
+                                //++ Update trạng thái key KASPERSKY
+                                QLLicenseDAO.Instance.UpdatesTATUS(IDKASnew, 1);
+                                // Cập nhật trong bảng thông tin cài đặt phần mềm.
+                                // Lấy ra được ID phần mềm từ ID license
+                                QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(IDKASnew);
+                                int IDMT = IDselected;
+                                int IDPM = LicenseDTO.IDPM;
+                                // Như vậy sẽ không cần phải xóa thông tin phần mềm nữa.
+                                bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
+                                if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                {
+                                    DsCaiDatDAO.Instance.Insert(IDselected, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                }
                             }
 
 
@@ -1241,27 +1308,40 @@ namespace frmMain
         private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             GridView view = sender as GridView;
-           
+            try
+            {
+
+                int IDMT = int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["ID"]).ToString());
+                int Status= int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["STATUS"]).ToString());
+                bool CheckCDPM = DsCaiDatDAO.Instance.CheckCDPM(IDMT);
+                bool kt = bool.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["BAOHANH"]).ToString());
+                //string ton = view.GetRowCellValue(e.RowHandle, view.Columns["SLTON"]).ToString();
+                //string ma = view.GetRowCellValue(e.RowHandle, view.Columns["MALK"]).ToString();
+                //TonLinhKienDTO TonLkDTO = TonLinhKienDAO.Instance.GetMaLKTon(ma);
+                //int IDttKK = TonLkDTO.IDTTKIEMKE;
+                //int ktMaTon = CheckTon(ma);
+
+                if (kt)
+                {
+                    e.Appearance.BackColor = btnConBH.Appearance.BackColor;
+                }
+                if (!CheckCDPM)
+                {
+                    e.Appearance.BackColor = btnChuaCaiPM.Appearance.BackColor;
+                }
+                if (Status==0)
+                {
+                    e.Appearance.BackColor = btnHong.Appearance.BackColor;
+                }
+
+            }
+            catch 
+            {
+              
+            }
             // string ton = view.GetRowCellDisplayText(e.RowHandle, view.Columns["SLTON"]).ToString();
             //string mamt = view.GetRowCellValue(e.RowHandle, view.Columns["MAMT"]).ToString();
-            int IDMT = int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["ID"]).ToString());
-            bool CheckCDPM = DsCaiDatDAO.Instance.CheckCDPM(IDMT);
-            bool kt = bool.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["BAOHANH"]).ToString());
-            //string ton = view.GetRowCellValue(e.RowHandle, view.Columns["SLTON"]).ToString();
-            //string ma = view.GetRowCellValue(e.RowHandle, view.Columns["MALK"]).ToString();
-            //TonLinhKienDTO TonLkDTO = TonLinhKienDAO.Instance.GetMaLKTon(ma);
-            //int IDttKK = TonLkDTO.IDTTKIEMKE;
-            //int ktMaTon = CheckTon(ma);
-
-            if (kt) 
-            {
-                e.Appearance.BackColor = btnConBH.Appearance.BackColor;
-            }
-            if(!CheckCDPM)
-            {
-                e.Appearance.BackColor = btnChuaCaiPM.Appearance.BackColor;
-            }
-
+           
           
 
             //if (e.RowHandle > 0)
@@ -1356,20 +1436,61 @@ namespace frmMain
 
         private void chkOnline_CheckedChanged(object sender, EventArgs e)
         {
-            sglKeyWin.Enabled = true;
-            sglKeyOffice.Enabled = true;
-            sglKeyKas.Enabled = true;
-            chkOffline.Checked = false;
+            //sglKeyWin.Enabled = true;
+            //sglKeyOffice.Enabled = true;
+            //sglKeyKas.Enabled = true;
+            //chkOffline.Checked = false;
         }
 
         private void chkOffline_CheckedChanged(object sender, EventArgs e)
         {
-            sglKeyWin.Enabled = false;
-            sglKeyOffice.Enabled = false;
-            sglKeyKas.Enabled = false;
-            chkOnline.Checked = false;
+            //sglKeyWin.Enabled = false;
+            //sglKeyOffice.Enabled = false;
+            //sglKeyKas.Enabled = false;
+            //chkOnline.Checked = false;
         }
-    }
 
-    
+        private void sglNhaMay_EditValueChanged(object sender, EventArgs e)
+        {
+            // Load Key Kasper khả dụng.
+
+            sglKeyKas.Enabled = true;
+            string MaNM = sglNhaMay.EditValue.ToString();
+
+            if(MaNM=="DD1")
+            {
+                sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDD1Available();
+                sglKeyKas.Properties.DisplayMember = "MALICENSE";
+                sglKeyKas.Properties.ValueMember = "ID";
+            }
+            if (MaNM == "DD2")
+            {
+                sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDD2Available();
+                sglKeyKas.Properties.DisplayMember = "MALICENSE";
+                sglKeyKas.Properties.ValueMember = "ID";
+            }
+            if (MaNM == "DDK")
+            {
+                sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
+                sglKeyKas.Properties.DisplayMember = "MALICENSE";
+                sglKeyKas.Properties.ValueMember = "ID";
+            }
+
+        }
+
+        private void gridView4_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            ColumSTT.Instance.CustomDrawRowIndicator(e);
+        }
+
+        private void searchLookUpEdit1View_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            ColumSTT.Instance.CustomDrawRowIndicator(e);
+        }
+
+        private void gridView3_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            ColumSTT.Instance.CustomDrawRowIndicator(e);
+        }
+    }   
 }

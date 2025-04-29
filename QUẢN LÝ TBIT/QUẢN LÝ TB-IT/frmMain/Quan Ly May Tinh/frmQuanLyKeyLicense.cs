@@ -261,7 +261,30 @@ namespace frmMain.Quan_Ly_May_Tinh
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            LoadControl();
+          LoadControl();
+
+            // Tạo ra hàng loạt Key sẵn cho các máy không còn bảo hành.
+
+            //// Lấy ra được các Mã máy tính không còn bảo hành trước
+            //List<QuanLyMayTinhDTO> LsMT = QuanLyMayTinhDAO.Instance.GetLsMTKhongConBH();
+
+            //// Thêm Key Win
+
+            //foreach (var item in LsMT)
+            //{
+            //    try
+            //    {
+            //        string MaMT = item.MAMT;
+            //        QLLicenseDAO.Instance.Insert("Win-" + MaMT, 45, "01/01/2024", "Không thời hạn.", 0);
+            //        QLLicenseDAO.Instance.Insert("Office-" + MaMT, 29, "01/01/2024", "Không thời hạn.", 0);
+            //    }
+            //    catch 
+            //    {
+                 
+            //    }
+                
+            //}
+            //MessageBox.Show("Đã cập nhật thành công.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)

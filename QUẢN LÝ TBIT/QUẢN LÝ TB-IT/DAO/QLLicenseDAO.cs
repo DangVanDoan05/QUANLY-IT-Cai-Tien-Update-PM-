@@ -49,6 +49,46 @@ namespace DAO
             }
 
 
+            public List<QLLicenseDTO> GetLsKeyKasDD1Available()
+            {
+                string query = "select * from QLLICENSE where IDPM=21 AND STATUS=0"; // ID=21 là key phần mềm của KAS DD1
+                DataTable data = DataProvider.Instance.ExecuteQuery(query);
+                List<QLLicenseDTO> lsv = new List<QLLicenseDTO>();
+                foreach (DataRow item in data.Rows)
+                {
+                    QLLicenseDTO maPM = new QLLicenseDTO(item);
+                    lsv.Add(maPM);
+                }
+                return lsv;
+            }
+
+            public List<QLLicenseDTO> GetLsKeyKasDD2Available()
+            {
+                string query = "select * from QLLICENSE where IDPM=22 AND STATUS=0"; // ID=21 là key phần mềm của KAS DD1
+                DataTable data = DataProvider.Instance.ExecuteQuery(query);
+                List<QLLicenseDTO> lsv = new List<QLLicenseDTO>();
+                foreach (DataRow item in data.Rows)
+                {
+                    QLLicenseDTO maPM = new QLLicenseDTO(item);
+                    lsv.Add(maPM);
+                }
+                return lsv;
+            }
+
+            public List<QLLicenseDTO> GetLsKeyKasDDKAvailable()
+            {
+                string query = "select * from QLLICENSE where IDPM=23 AND STATUS=0"; // ID=21 là key phần mềm của KAS DD1
+                DataTable data = DataProvider.Instance.ExecuteQuery(query);
+                List<QLLicenseDTO> lsv = new List<QLLicenseDTO>();
+                foreach (DataRow item in data.Rows)
+                {
+                    QLLicenseDTO maPM = new QLLicenseDTO(item);
+                    lsv.Add(maPM);
+                }
+                return lsv;
+            }
+
+
 
         public DataTable GetTable()
             {
