@@ -79,6 +79,7 @@ namespace frmMain
                 sglDaiIP.Enabled = false;
                 sglDiaChiIP.Enabled = false;
                 txtModel.Enabled = false;
+                txtSoSeri.Enabled = false;
                 txtUPS.Enabled = false;
                 sglKeyWin.Enabled = false;
                 sglNhaMay.Enabled = false;
@@ -119,6 +120,7 @@ namespace frmMain
                 sglDaiIP.Enabled = true;
                 sglDiaChiIP.Enabled = false;
                 txtModel.Enabled = true;
+                txtSoSeri.Enabled = true;
                 txtUPS.Enabled = true;
                 sglNhaMay.Enabled = true;
                 sglKeyWin.Enabled = true;
@@ -297,6 +299,7 @@ namespace frmMain
                             string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
                             string ghichu = txtGhiChu.Text;
                             string Model = txtModel.Text;
+                            string Serial = txtSoSeri.Text.Trim();
                             string UPS = txtUPS.Text;
                             int IDWIN = 0;
                             string KeyWin = "";
@@ -354,7 +357,7 @@ namespace frmMain
 
                                 // IP được lưu vào thì phải đổi trạng thái cho máy tính.
 
-                                QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model, UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status);
+                                QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model,Serial, UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status);
 
                                 // Lúc này lại ko biết được ID của thằng này
 
@@ -431,6 +434,7 @@ namespace frmMain
                                 string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
                                 string ghichu = txtGhiChu.Text;
                                 string Model = txtModel.Text;
+                                string Serial = txtSoSeri.Text.Trim();
                                 string UPS = txtUPS.Text;
                                 int IDWIN = 0;
                                 string KeyWin = "";
@@ -488,7 +492,7 @@ namespace frmMain
 
                                     // IP được lưu vào thì phải đổi trạng thái cho máy tính.
 
-                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP,Model,UPS, IDWIN,KeyWin, IDOFFICE,KeyOffice, IDKAS,KeyKas,status);
+                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP,Model,Serial,UPS, IDWIN,KeyWin, IDOFFICE,KeyOffice, IDKAS,KeyKas,status);
 
                                     // Lúc này lại ko biết được ID của thằng này
 
@@ -604,6 +608,7 @@ namespace frmMain
                         string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
                         string ghichu = txtGhiChu.Text;
                         string Model = txtModel.Text;
+                        string Serial = txtSoSeri.Text.Trim();
                         string UPS = txtUPS.Text;
                         int IDWINnew = 0;
                         string KeyWinnew = "";
@@ -656,7 +661,7 @@ namespace frmMain
 
                             // Sửa trong bảng quản lý máy tính
 
-                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew,Model,UPS,IDWINnew,KeyWinnew,IDOFFICEnew,KeyOffice,IDKASnew,KeyKasnew,status);
+                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew,Model,Serial,UPS,IDWINnew,KeyWinnew,IDOFFICEnew,KeyOffice,IDKASnew,KeyKasnew,status);
 
                             //Sửa trong cả bảng Quản lý IP.
                             // Kiểm tra sự khác biệt của 2 IDIP để chạy lệnh Update trạng thái IDIP.

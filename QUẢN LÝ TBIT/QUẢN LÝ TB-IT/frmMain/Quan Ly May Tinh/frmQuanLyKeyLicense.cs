@@ -290,21 +290,27 @@ namespace frmMain.Quan_Ly_May_Tinh
         private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
             GridView view = sender as GridView;
-
-            // string ton = view.GetRowCellDisplayText(e.RowHandle, view.Columns["SLTON"]).ToString();
-            //string mamt = view.GetRowCellValue(e.RowHandle, view.Columns["MAMT"]).ToString();
-            int STATUS = int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["STATUS"]).ToString());
-           
-
-            if (STATUS>0)
+            try
             {
-                e.Appearance.BackColor = btnDaSD.Appearance.BackColor; // Trạng thái bằng 1 là Key đã được add.
-            }
-            else
-            { 
-                e.Appearance.BackColor = btnChuaSD.Appearance.BackColor;
-            }
+                // string ton = view.GetRowCellDisplayText(e.RowHandle, view.Columns["SLTON"]).ToString();
+                //string mamt = view.GetRowCellValue(e.RowHandle, view.Columns["MAMT"]).ToString();
+                int STATUS = int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["STATUS"]).ToString());
 
+
+                if (STATUS > 0)
+                {
+                    e.Appearance.BackColor = btnDaSD.Appearance.BackColor; // Trạng thái bằng 1 là Key đã được add.
+                }
+                else
+                {
+                    e.Appearance.BackColor = btnChuaSD.Appearance.BackColor;
+                }
+            }
+            catch
+            {
+
+            }
+                                 
         }
 
         private void btnSua_Click(object sender, EventArgs e)

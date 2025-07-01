@@ -209,22 +209,22 @@ namespace DAO
             }
         }
 
-        public int Insert(string MaMT , string MAC,string Domain , string LOAIMT, string NCC,string NhaMay, string phongban, string nguoisd, string matscd, string ngaymua, string hanbh,bool baohanh,string ghichu, int IdIP,string Model,string UPS,int IDWIN,string KeyWin,int IDOFFICE,string KeyOffice,int IDKAS,string KeyKas,int status)
+        public int Insert(string MaMT , string MAC,string Domain , string LOAIMT, string NCC,string NhaMay, string phongban, string nguoisd, string matscd, string ngaymua, string hanbh,bool baohanh,string ghichu, int IdIP,string Model,string Serial,string UPS,int IDWIN,string KeyWin,int IDOFFICE,string KeyOffice,int IDKAS,string KeyKas,int status)
         {
-            string query = "insert QLYMAYTINH(MAMT,MAC,DOMAIN,LOAIMT,NCC,NHAMAY,PB,NGUOISD,MATSCD,NGAYMUA,HANBH,BAOHANH,GHICHU,IDIP,MODEL,UPS,IDWIN,KEYWIN,IDOFFICE,KEYOFFICE,IDKAS,KEYKAS,STATUS)" +
-                        " values ( @maMT , @mac , @Domain , @loaimt , @ncc , @nhamay , @pb , @ngsd , @matscd , @ngaymua , @hbh , @baohanh , @ghichu , @idip , @model , @UPS , @ID1 , @K1 , @ID2 , @K2 , @ID3 , @K3 , @status )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  MaMT,  MAC,Domain, LOAIMT,NCC, NhaMay,  phongban, nguoisd, matscd, ngaymua,  hanbh,  baohanh, ghichu ,IdIP,Model,UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status});
+            string query = "insert QLYMAYTINH(MAMT,MAC,DOMAIN,LOAIMT,NCC,NHAMAY,PB,NGUOISD,MATSCD,NGAYMUA,HANBH,BAOHANH,GHICHU,IDIP,MODEL,SERIAL,UPS,IDWIN,KEYWIN,IDOFFICE,KEYOFFICE,IDKAS,KEYKAS,STATUS)" +
+                        " values ( @maMT , @mac , @Domain , @loaimt , @ncc , @nhamay , @pb , @ngsd , @matscd , @ngaymua , @hbh , @baohanh , @ghichu , @idip , @model , @serial , @UPS , @ID1 , @K1 , @ID2 , @K2 , @ID3 , @K3 , @status )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  MaMT,  MAC,Domain, LOAIMT,NCC, NhaMay,  phongban, nguoisd, matscd, ngaymua,  hanbh,  baohanh, ghichu ,IdIP,Model,Serial,UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status});
             return data;
         }
 
         // HAM SUA
 
         public int Update(int ID,string MaMT, string MAC,string Domain, string LOAIMT, string NCC, string NhaMay, string phongban, string nguoisd,
-            string matscd, string ngaymua, string hanbh, bool baohanh, string ghichu, int IdIP, string Model,string UPS, int IDWIN,string KeyWin, int IDOFFICE,string KeyOffice, int IDKAS,string KeyKas,int status)
+            string matscd, string ngaymua, string hanbh, bool baohanh, string ghichu, int IdIP, string Model,string Serial,string UPS, int IDWIN,string KeyWin, int IDOFFICE,string KeyOffice, int IDKAS,string KeyKas,int status)
         {
             string query = "UPDATE QLYMAYTINH set MAMT= @MAMT ,MAC= @mac ,DOMAIN= @domain ,LOAIMT= @LoaiMT ,NCC= @NCC ,NHAMAY= @nhamay ,PB= @pb ,NGUOISD= @NgSD ,MATSCD= @MaTSCD " +
-                ",NGAYMUA= @NgayMua ,HANBH= @hanBH ,BAOHANH= @bh ,GHICHU= @GhiChu ,IDIP= @IdIP ,MODEL= @model ,UPS= @ups ,IDWIN= @ID1 ,KEYWIN= @K1 ,IDOFFICE= @ID2 ,KEYOFFICE= @k2  ,IDKAS= @ID3 ,KEYKAS= @K3 ,STATUS = @status where ID= @id ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT, MAC,Domain,LOAIMT, NCC, NhaMay, phongban, nguoisd, matscd, ngaymua, hanbh, baohanh, ghichu,IdIP,Model,UPS, IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status,ID});
+                ",NGAYMUA= @NgayMua ,HANBH= @hanBH ,BAOHANH= @bh ,GHICHU= @GhiChu ,IDIP= @IdIP ,MODEL= @model ,SERIAL= @seri ,UPS= @ups ,IDWIN= @ID1 ,KEYWIN= @K1 ,IDOFFICE= @ID2 ,KEYOFFICE= @k2  ,IDKAS= @ID3 ,KEYKAS= @K3 ,STATUS = @status where ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT, MAC,Domain,LOAIMT, NCC, NhaMay, phongban, nguoisd, matscd, ngaymua, hanbh, baohanh, ghichu,IdIP,Model,Serial,UPS, IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status,ID});
             return data;
         }
 
