@@ -27,13 +27,14 @@ namespace DAO
             return data;
         }
 
-        //public BoPhanDTO GetBoPhanDTO(string MaBP, string ThuocNM)
-        //{
-        //    string query = "select* from BOPHAN where MABOPHAN= @ma and NHAMAY= @nhamay ";
-        //    DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaBP, ThuocNM });
-        //    BoPhanDTO a = new BoPhanDTO(data.Rows[0]);
-        //    return a;
-        //}
+        public LoaiTBDTO GetTBDTO(int ID)
+        {
+            string query = "select* from LOAITB where ID= @ID ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { ID});
+            LoaiTBDTO a = new LoaiTBDTO(data.Rows[0]);
+            return a;
+        }
+
 
         //public List<BoPhanDTO> GetLsTB(string NhaMay)
         //{

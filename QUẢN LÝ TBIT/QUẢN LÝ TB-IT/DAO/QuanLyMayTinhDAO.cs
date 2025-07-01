@@ -188,8 +188,8 @@ namespace DAO
 
         public QuanLyMayTinhDTO GetMaMT1(string mamt)
         {
-            string query = $"select * from QLYMAYTINH where MAMT='{mamt}' ";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            string query = " select * from QLYMAYTINH where MAMT= @maMT ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { mamt });
             QuanLyMayTinhDTO maMTDTO = new QuanLyMayTinhDTO(data.Rows[0]);
             return maMTDTO;
         }
@@ -232,6 +232,29 @@ namespace DAO
         {
             string query = "update QLYMAYTINH set BAOHANH= @baohanh WHERE ID= @id ";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { baohanh,Id});
+            return data;
+        }
+
+        public int UpdateKeyWin(int Id, int IDKeyWin,string KeyWin)
+        {
+            string query = "update QLYMAYTINH set IDWIN= @idwin ,KEYWIN= @K1  WHERE ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { IDKeyWin, KeyWin , Id });
+            return data;
+        }
+
+
+        public int UpdateKeyOffice(int Id, int IDKeyOffice, string KeyOffice)
+        {
+            string query = "update QLYMAYTINH set IDOFFICE= @baohanh ,KEYOFFICE= @K1  WHERE ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { IDKeyOffice,KeyOffice, Id });
+            return data;
+        }
+
+
+        public int UpdateKeyKas(int Id, int IDKeyKas,string KeyKas)
+        {
+            string query = "update QLYMAYTINH set IDKAS= @idKas ,KEYKAS= @KEYKAS WHERE ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { IDKeyKas , KeyKas , Id });
             return data;
         }
 

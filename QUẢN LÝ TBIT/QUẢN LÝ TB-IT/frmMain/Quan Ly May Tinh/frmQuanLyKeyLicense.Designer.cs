@@ -133,7 +133,7 @@
             // 
             // btnChuaSD
             // 
-            this.btnChuaSD.Appearance.BackColor = System.Drawing.Color.White;
+            this.btnChuaSD.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.btnChuaSD.Appearance.Options.UseBackColor = true;
             this.btnChuaSD.Location = new System.Drawing.Point(1085, 38);
             this.btnChuaSD.Name = "btnChuaSD";

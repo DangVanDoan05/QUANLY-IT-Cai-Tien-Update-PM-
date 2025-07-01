@@ -31,6 +31,12 @@ namespace frmMain.Quản_Lý_Đặt_Hàng
             txtMaDH.Enabled = false;
             txtTenHang.Enabled = false;
             txtSlDat.Enabled = false;
+
+            sglLoaiHH.Properties.DataSource = LoaiTBDAO.Instance.GetTable();
+            sglLoaiHH.Properties.DisplayMember = "MATB";
+            sglLoaiHH.Properties.ValueMember = "ID";
+
+
         }
      
 
@@ -52,6 +58,23 @@ namespace frmMain.Quản_Lý_Đặt_Hàng
                 MessageBox.Show("Đã nhận hàng thành công!", "Thông báo:");
             }
             this.Close();
+        }
+
+        private void btnCapNhat_Click(object sender, EventArgs e)
+        {
+            string MaDH = txtMaDH.Text;
+
+            int IDHH = int.Parse(sglLoaiHH.EditValue.ToString());
+            string TenHH = LoaiTBDAO.Instance.GetTBDTO(IDHH).TENTB;
+            QlyDonHangPBDAO.Instance.UpdateIDHH(MaDH,IDHH,TenHH);
+            MessageBox.Show("Đã cập nhật thành công!", "Thông báo:");         
+            this.Close();
+            LoadControl();
+        }
+
+        private void searchLookUpEdit1View_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            ColumSTT.Instance.CustomDrawRowIndicator(e);
         }
     }
 }

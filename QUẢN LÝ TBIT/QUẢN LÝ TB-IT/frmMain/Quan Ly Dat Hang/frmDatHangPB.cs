@@ -28,6 +28,11 @@ namespace frmMain
             sglMaPB.Properties.DisplayMember = "MAPB";  
             sglMaPB.Properties.ValueMember = "MAPB";
             txtNhaMay.Enabled = false;
+
+            sglLoaiHH.Properties.DataSource = LoaiTBDAO.Instance.GetTable();
+            sglLoaiHH.Properties.DisplayMember = "MATB";
+            sglLoaiHH.Properties.ValueMember = "ID";
+          
         }
 
         private void searchLookUpEdit1View_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
@@ -45,6 +50,8 @@ namespace frmMain
                 string TgDH = dtpNgayDatHang.Value.ToString("-ddMMyyyy-") + DateTime.Now.ToString("HHmmss");
                 string MaDonHang = PBDH+"-"+NhaMay+ TgDH;
                 string TenHang = txtTenMH.Text;
+                int IDHH =int.Parse(sglLoaiHH.EditValue.ToString());
+                string TenHH = LoaiTBDAO.Instance.GetTBDTO(IDHH).TENTB;
                 string sldat = txtSLDat.Text;
                 string DvTinh = txtDonViTinh.Text;
                 string mdsd = txtMDSD.Text;
@@ -56,8 +63,8 @@ namespace frmMain
                 else
                 {
                     int SolgDat = int.Parse(sldat);
-                    QlyDonHangPBDAO.Instance.Insert(MaDonHang, PBDH, ngaydh, TenHang, SolgDat, DvTinh,NhaMay,mdsd, "", 0, "");
-                    MessageBox.Show("Cập nhật thành công!", "Thông báo:");
+                    QlyDonHangPBDAO.Instance.Insert(MaDonHang, PBDH, ngaydh, TenHang, SolgDat, DvTinh,NhaMay,mdsd, "", 0, "",IDHH,TenHH);
+                    MessageBox.Show("Cập nhật thành công đơn hàng.", "Thông báo:");
                 }
                 this.Close();
             }
@@ -71,6 +78,11 @@ namespace frmMain
         private void searchLookUpEdit1View_Click(object sender, EventArgs e)
         {
             txtNhaMay.Text=searchLookUpEdit1View.GetFocusedRowCellValue("NHAMAY").ToString();
+        }
+
+        private void gridView1_CustomDrawRowIndicator(object sender, DevExpress.XtraGrid.Views.Grid.RowIndicatorCustomDrawEventArgs e)
+        {
+            ColumSTT.Instance.CustomDrawRowIndicator(e);
         }
     }
 }

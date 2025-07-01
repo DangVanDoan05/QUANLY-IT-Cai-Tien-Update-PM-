@@ -145,13 +145,14 @@ namespace DAO
 
         // HAM THEM
 
-        public int Insert(string MaDonHang, string PB, string NgayDH, string tenhang, int SlDAT, string DonVi,string NhaMay, string mdsd ,string ngaynhan ,int SLnhan,string ghichu)
+        public int Insert(string MaDonHang, string PB, string NgayDH, string tenhang, int SlDAT, string DonVi,string NhaMay, string mdsd ,string ngaynhan ,int SLnhan,string ghichu,int IDHH,string TENHH)
         {
-            string query = "insert QLYDONHANGPB(MADONHANG, PHONGBAN, NGAYDH, TENHANG, SLDAT, DONVI,NHAMAY, MDSD, NGAYNHAN, SLNHAN, GHICHU)" +
-                                    " values ( @MaDH , @pb , @ngadh , @tenhang , @sldat , @donvi , @nhamay , @mdsd , @ngaynhan , @slnhan , @ghichu )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  MaDonHang,  PB,  NgayDH,  tenhang, SlDAT,  DonVi,NhaMay,mdsd,ngaynhan,  SLnhan, ghichu });
+            string query = "insert QLYDONHANGPB(MADONHANG, PHONGBAN, NGAYDH, TENHANG, SLDAT, DONVI,NHAMAY, MDSD, NGAYNHAN, SLNHAN, GHICHU,IDHH,TENHH)" +
+                                    " values ( @MaDH , @pb , @ngadh , @tenhang , @sldat , @donvi , @nhamay , @mdsd , @ngaynhan , @slnhan , @ghichu , @IDHH , @tenhh )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  MaDonHang,  PB,  NgayDH,  tenhang, SlDAT,  DonVi,NhaMay,mdsd,ngaynhan,  SLnhan, ghichu ,IDHH,TENHH});
             return data;
         }
+
 
         // HAM CAP NHAT
 
@@ -159,6 +160,13 @@ namespace DAO
         {
             string query = "UPDATE QLYDONHANGPB SET NGAYNHAN= @ngaynhan ,SLNHAN= @slnhan ,GHICHU= @ghichu WHERE MADONHANG= @maDH ";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { ngaynhan, SLnhan,  ghichu, MaDonHang });
+            return data;
+        }
+
+        public int UpdateIDHH(string MaDonHang, int IDHH ,string TENHH)
+        {
+            string query = "UPDATE QLYDONHANGPB SET IDHH= @ID ,TENHH= @tenHH  WHERE MADONHANG= @maDH ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {IDHH,TENHH, MaDonHang });
             return data;
         }
 

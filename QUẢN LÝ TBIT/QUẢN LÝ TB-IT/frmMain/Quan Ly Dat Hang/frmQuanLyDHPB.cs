@@ -327,5 +327,21 @@ namespace frmMain
             
 
         }
+
+        private void btnUpdateIDHH_Click(object sender, EventArgs e)
+        {
+            if (MaDHdc == "")
+            {
+                MessageBox.Show($"Chưa chọn mã đơn hàng cần cập nhật. ", "Lỗi: ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DHduocchon.MaDHdangchon = MaDHdc;
+                frmNhanHangPB f = new frmNhanHangPB();
+                f.ShowDialog();
+                LoadControl();
+            }
+        }
+
     }
 }

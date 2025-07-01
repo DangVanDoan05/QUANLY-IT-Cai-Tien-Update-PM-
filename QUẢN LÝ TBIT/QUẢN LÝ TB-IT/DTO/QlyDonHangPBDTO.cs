@@ -25,8 +25,12 @@ namespace DTO
             this.NGAYNHAN = row["NGAYNHAN"].ToString();
             this.SLNHAN =int.Parse( row["SLNHAN"].ToString());                                
             this.GHICHU = row["GHICHU"].ToString();
+            this.IDHH = int.Parse(row["IDHH"].ToString());
+            this.TENHH = row["TENHH"].ToString();
         }
-  
+        
+
+
         private string mADONHANG;
         private string pHONGBAN;
         private string nGAYDH;
@@ -38,6 +42,9 @@ namespace DTO
         private string nGAYNHAN;      
         private int sLNHAN;             
         private string gHICHU;
+        private int iDHH;
+        private string tENHH;
+
 
 
         public string MADONHANG { get => mADONHANG; set => mADONHANG = value; }
@@ -52,6 +59,7 @@ namespace DTO
         public string GHICHU { get => gHICHU; set => gHICHU = value; }
         public string MDSD { get => mDSD; set => mDSD = value; }
         public string NHAMAY { get => nHAMAY; set => nHAMAY = value; }
-
+        public int IDHH { get => iDHH; set => iDHH = value; }
+        public string TENHH { get => tENHH; set => tENHH = value; }
     }
 }

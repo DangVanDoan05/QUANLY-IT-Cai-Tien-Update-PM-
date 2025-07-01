@@ -21,8 +21,20 @@ namespace DAO
 
 
             private QLLicenseDAO() { }
+            public List<QLLicenseDTO> GetLsKey()
+            {
+                string query = "select * from QLLICENSE ";
+                DataTable data = DataProvider.Instance.ExecuteQuery(query);
+                List<QLLicenseDTO> lsv = new List<QLLicenseDTO>();
+                foreach (DataRow item in data.Rows)
+                {
+                    QLLicenseDTO maPM = new QLLicenseDTO(item);
+                    lsv.Add(maPM);
+                }
+                return lsv;
+            }
 
-            public List<QLLicenseDTO> GetLsKeyWinAvailable()
+        public List<QLLicenseDTO> GetLsKeyWinAvailable()
             {
                 string query = "select * from QLLICENSE where IDPM=45 AND STATUS=0";
                 DataTable data = DataProvider.Instance.ExecuteQuery(query);

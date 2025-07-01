@@ -90,6 +90,9 @@ namespace frmMain
                 btnXoa.Enabled = true;
                 btnLuu.Enabled = false;
                 btnCapNhat.Enabled = true;
+                btnGoWIN.Enabled = false;
+                btnGoOffice.Enabled = false;
+                btnGoKas.Enabled = false;
 
                 btnTaiForm.Enabled = true;
                 btnNhapExcell.Enabled = true;
@@ -127,6 +130,9 @@ namespace frmMain
                 btnXoa.Enabled = false;
                 btnLuu.Enabled = true;
                 btnCapNhat.Enabled = true;
+                btnGoWIN.Enabled = true;
+                btnGoOffice.Enabled = true;
+                btnGoKas.Enabled = true;
 
                 btnTaiForm.Enabled = true;
                 btnNhapExcell.Enabled = true;
@@ -142,14 +148,17 @@ namespace frmMain
 
             radIPtinh.Checked = true;
 
+
             // Load trong bảng kế hoạch bảo dưỡng, bảo trì xem có phòng ban nào cần bảo dưỡng không thì bôi màu các máy tính hết hạn bảo hành.
 
+
             // THÊM cột mã LICENSE VÀO TRONG BẢNG
+
 
             gridControl1.DataSource = QuanLyMayTinhDAO.Instance.GetTable();
             lblTongSoMT.Text = QuanLyMayTinhDAO.Instance.TongMT() + "";
             string maMT = txtMaMT.Text;
-            chkOffline.Checked = true;
+          
             radDHCP.Checked = true;
 
         }
@@ -211,7 +220,9 @@ namespace frmMain
 
             // Load Key Kas
 
-
+            sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
+            sglKeyKas.Properties.DisplayMember = "MALICENSE";
+            sglKeyKas.Properties.ValueMember = "ID";
 
             // Load Phòng ban:
 
@@ -252,8 +263,7 @@ namespace frmMain
             txtGhiChu.Clear();
             txtModel.Clear();
             txtUPS.Clear();
-            chkOnline.Checked = false;
-            chkOffline.Checked = false;
+           
         }
 
 
@@ -261,6 +271,8 @@ namespace frmMain
         {
             switch (luu)
             {
+
+                // Thêm máy tính phải ngừa trường hợp bị trùng key.
                 case 1: // luu khi them du lieu
                     {
                         // QLYMAYTINH(ID,MAMT, MAC, LOAIMT, NCC, NHAMAY, PB, NGUOISD, MATSCD, NGAYMUA, HANBH, BAOHANH, GHICHU, IDIP)
@@ -320,14 +332,7 @@ namespace frmMain
                             }
 
                             int status = 0;
-                            if(chkOnline.Checked)
-                            {
-                                status = 1;
-                            }
-                            if(chkOffline.Checked)
-                            {
-                                status = 0;
-                            }
+                         
 
                             // TRẠNG THÁI MÁY OFFILINE
                             bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
@@ -462,14 +467,7 @@ namespace frmMain
                                 }
 
                                 int status = 0;
-                                if (chkOnline.Checked)
-                                {
-                                    status = 1;
-                                }
-                                if (chkOffline.Checked)
-                                {
-                                    status = 0;
-                                }
+                              
 
                                 bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
 
@@ -642,16 +640,7 @@ namespace frmMain
                             KeyKasnew = QLLicenseDAO.Instance.GetLicenseDTO(IDKASnew).MALICENSE;
                         }
 
-                        int status = 0;
-                        if (chkOnline.Checked)
-                        {
-                            status = 1;
-                        }
-                        if (chkOffline.Checked)
-                        {
-                            status = 0;
-                        }
-
+                        int status = 0;                     
                         if (maMT == "")
                         {
                             MessageBox.Show("Chưa chọn mã máy tính để sửa. ", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -1234,7 +1223,7 @@ namespace frmMain
 
                 IDselected = int.Parse(gridView1.GetFocusedRowCellValue("ID").ToString());
                 // 320 thì sẽ lấy theo ID đầu tiên.
-              //  MessageBox.Show($"ID lấy là ID {IDselected} ");
+                // MessageBox.Show($"ID lấy là ID {IDselected} ");
                 txtMaMT.Text = gridView1.GetFocusedRowCellValue("MAMT").ToString();
                 txtDomain.Text = gridView1.GetFocusedRowCellValue("DOMAIN").ToString();
                 txtDiaChiIP.Text = gridView1.GetFocusedRowCellValue("IP").ToString();
@@ -1247,6 +1236,7 @@ namespace frmMain
                 sglPhongBan.EditValue = gridView1.GetFocusedRowCellValue("PB").ToString();
                 // đang không đúng lý ở đây // Lấy ra giá trị ID IP
                 sglDiaChiIP.EditValue= gridView1.GetFocusedRowCellValue("IDIP").ToString();
+
                 int IDIP= int.Parse(gridView1.GetFocusedRowCellValue("IDIP").ToString());
              
                 if(IDIP!=1053)
@@ -1257,20 +1247,15 @@ namespace frmMain
                 {
                     radDHCP.Checked = true;
                 }
+
+                sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
                 sglKeyWin.EditValue = gridView1.GetFocusedRowCellValue("IDWIN").ToString();
+                sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
                 sglKeyOffice.EditValue = gridView1.GetFocusedRowCellValue("IDOFFICE").ToString();
+                sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
                 sglKeyKas.EditValue = gridView1.GetFocusedRowCellValue("IDKAS").ToString();
                 int status= int.Parse(gridView1.GetFocusedRowCellValue("STATUS").ToString());
-                if (status == 1)
-                {
-                    chkOnline.Checked = true;
-                    chkOffline.Checked = false;
-                }
-                else
-                {
-                    chkOffline.Checked = true;
-                    chkOnline.Checked = false;
-                }
+               
 
                 txtNhaMay.Text = gridView1.GetFocusedRowCellValue("NHAMAY").ToString();
                 cbNCC.SelectedValue = gridView1.GetFocusedRowCellValue("NCC").ToString();
@@ -1329,10 +1314,10 @@ namespace frmMain
                 {
                     e.Appearance.BackColor = btnChuaCaiPM.Appearance.BackColor;
                 }
-                if (Status==0)
-                {
-                    e.Appearance.BackColor = btnHong.Appearance.BackColor;
-                }
+                //if (Status==0)
+                //{
+                //    e.Appearance.BackColor = btnHong.Appearance.BackColor;
+                //}
 
             }
             catch 
@@ -1491,6 +1476,75 @@ namespace frmMain
         private void gridView3_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             ColumSTT.Instance.CustomDrawRowIndicator(e);
+        }
+
+        private void btnGoWIN_Click(object sender, EventArgs e)
+        {
+            string MaMT = txtMaMT.Text;
+            DialogResult kq = MessageBox.Show($"Bạn muốn gỡ Key WIN của máy tính: {MaMT} được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if(kq==DialogResult.Yes)
+            {
+                QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
+
+
+                int IDWIN = MTDTO.IDWIN;
+                // Gỡ xong thì phải cập nhật trong bảng quản lý License.
+                QLLicenseDAO.Instance.UpdatesTATUS(IDWIN, 0); // trạng thái 0 là trạng thái key chưa sử dụng.
+
+                // Gỡ xong thì phải cập nhật trong bảng quản lý máy tính, cập nhật lại Key win cho máy tính bằng 0
+                // Update cả những chuỗi Key bằng rỗng.
+
+                QuanLyMayTinhDAO.Instance.UpdateKeyWin(IDselected, 0,"");
+
+
+                MessageBox.Show($"Đã gỡ Key WIN cho máy tính {MaMT} .", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+        }
+
+        private void btnGoOffice_Click(object sender, EventArgs e)
+        {
+            string MaMT = txtMaMT.Text;
+            DialogResult kq = MessageBox.Show($"Bạn muốn gỡ Key Office của máy tính: {MaMT} được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (kq == DialogResult.Yes)
+            {
+                QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
+
+
+                int IDOFFICE = MTDTO.IDOFFICE;
+                // Gỡ xong thì phải cập nhật trong bảng quản lý License.
+                QLLicenseDAO.Instance.UpdatesTATUS(IDOFFICE, 0); // trạng thái 0 là trạng thái key chưa sử dụng.
+
+                // Gỡ xong thì phải cập nhật trong bảng quản lý máy tính, cập nhật lại Key win cho máy tính bằng 0
+                QuanLyMayTinhDAO.Instance.UpdateKeyOffice(IDselected, 0,"");
+
+                MessageBox.Show($"Đã gỡ Key Office cho máy tính {MaMT} .", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
+        }
+
+        private void btnGoKas_Click(object sender, EventArgs e)
+        {
+            string MaMT = txtMaMT.Text;
+            DialogResult kq = MessageBox.Show($"Bạn muốn gỡ Key Kas của máy tính: {MaMT} được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (kq == DialogResult.Yes)
+            {
+                QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
+
+
+                int IDKAS = MTDTO.IDKAS;
+
+                // Gỡ xong thì phải cập nhật trong bảng quản lý License.
+                QLLicenseDAO.Instance.UpdatesTATUS(IDKAS, 0); // trạng thái 0 là trạng thái key chưa sử dụng.
+
+                // Gỡ xong thì phải cập nhật trong bảng quản lý máy tính, cập nhật lại Key win cho máy tính bằng 0
+                QuanLyMayTinhDAO.Instance.UpdateKeyKas(IDselected, 0,"");
+
+                MessageBox.Show($"Đã gỡ Key KAS cho máy tính {MaMT} .", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            }
+
         }
     }   
 }

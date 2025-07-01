@@ -298,7 +298,7 @@ namespace frmMain.Quan_Ly_May_Tinh
 
             if (STATUS>0)
             {
-                e.Appearance.BackColor = btnDaSD.Appearance.BackColor;
+                e.Appearance.BackColor = btnDaSD.Appearance.BackColor; // Trạng thái bằng 1 là Key đã được add.
             }
             else
             { 

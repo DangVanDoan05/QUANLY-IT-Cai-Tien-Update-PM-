@@ -352,7 +352,7 @@
             // 
             // btnLoaiTB
             // 
-            this.btnLoaiTB.Caption = "Loại Thiết Bị";
+            this.btnLoaiTB.Caption = "Loại Thiết Bị, Hàng Hóa.";
             this.btnLoaiTB.Id = 14;
             this.btnLoaiTB.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnLoaiTB.ImageOptions.Image")));
             this.btnLoaiTB.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnLoaiTB.ImageOptions.LargeImage")));
