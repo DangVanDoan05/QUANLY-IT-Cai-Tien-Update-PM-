@@ -264,6 +264,7 @@ namespace frmMain
             txtMaTSCD.Clear();
             txtGhiChu.Clear();
             txtModel.Clear();
+            txtSoSeri.Clear();
             txtUPS.Clear();
            
         }
@@ -1073,13 +1074,14 @@ namespace frmMain
         private void btnThem_Click(object sender, EventArgs e)
         {
             LockControl(false);
+            LoadCBX();
             luu = 1;                     
         }
 
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-
+            // Tại sao nhấn nút sửa nó ra nhiều Key thế nhỉ
             int Count = 0;
 
             List<int> LsIDselected = new List<int>();
@@ -1094,13 +1096,13 @@ namespace frmMain
             if (Count == 1)
             {
                 LockControl(false);
+                LoadCBX();
                 luu = 2;
             }
             else
             {
                 MessageBox.Show("Chưa chọn mã máy tính để xóa hoặc chọn quá 1 mã máy tính để sửa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
+            }         
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -1260,7 +1262,14 @@ namespace frmMain
                 sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
                 sglKeyKas.EditValue = gridView1.GetFocusedRowCellValue("IDKAS").ToString();
                 int status= int.Parse(gridView1.GetFocusedRowCellValue("STATUS").ToString());
-               
+
+                cbNCC.DataSource = NhaCungCapDAO.Instance.GetListNCC();
+                cbNCC.DisplayMember = "MANCC";
+                cbNCC.ValueMember = "MANCC";
+
+                cbLoaiMT.DataSource = LoaiMayTinhDAO.Instance.GetListLoaiMT();
+                cbLoaiMT.DisplayMember = "TENLOAIMT";
+                cbLoaiMT.ValueMember = "TENLOAIMT";
 
                 txtNhaMay.Text = gridView1.GetFocusedRowCellValue("NHAMAY").ToString();
                 cbNCC.SelectedValue = gridView1.GetFocusedRowCellValue("NCC").ToString();
@@ -1269,6 +1278,7 @@ namespace frmMain
                 dtpHanBaoHanh.Value = Convert.ToDateTime(gridView1.GetFocusedRowCellValue("HANBH").ToString());
                 txtGhiChu.Text = gridView1.GetFocusedRowCellValue("GHICHU").ToString();
                 txtModel.Text = gridView1.GetFocusedRowCellValue("MODEL").ToString();
+                txtSoSeri.Text = gridView1.GetFocusedRowCellValue("SERIAL").ToString();
                 txtUPS.Text = gridView1.GetFocusedRowCellValue("UPS").ToString();
 
             }

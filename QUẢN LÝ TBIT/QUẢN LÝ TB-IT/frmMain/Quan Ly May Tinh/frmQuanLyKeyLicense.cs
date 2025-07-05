@@ -230,17 +230,19 @@ namespace frmMain.Quan_Ly_May_Tinh
                 {
                     int demXoa = 0;
                     foreach (int item in LsIDLSdc)
-                    {                                          
-                       QLLicenseDAO.Instance.Delete(item);                       
+                    {
+                        // Check trạng thái của Key xem đã active chưa để xóa để xóa.
+                        QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(item);
+                        if(LicenseDTO.STATUS==0) // Nếu Key chưa active thì có thể xóa
+                        {
+                            QLLicenseDAO.Instance.Delete(item);
+                            demXoa++;
+                        }
+                                             
                     }
-                    //if (demXoa < dem)
-                    //{
-                    //    MessageBox.Show($"Đã xóa {demXoa} phần mềm, {dem - demXoa} phần mềm không thể xóa.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
-                    //else
-                    //{
-                        MessageBox.Show($"Đã xóa {dem} nhân viên được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    //}
+                   
+                    MessageBox.Show($"Có  {demXoa} License đã xóa.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    
                     demXoa = 0;
                     dem = 0;
                 }

@@ -66,7 +66,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.btnConBH = new DevExpress.XtraEditors.SimpleButton();
             this.btnChuaCaiPM = new DevExpress.XtraEditors.SimpleButton();
-            this.btnCanBD = new DevExpress.XtraEditors.SimpleButton();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDomain = new System.Windows.Forms.TextBox();
             this.btnBaoDuong = new DevExpress.XtraEditors.SimpleButton();
@@ -148,7 +147,6 @@
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem28 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem29 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem30 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -214,7 +212,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
@@ -260,7 +257,6 @@
             this.layoutControl1.Controls.Add(this.label8);
             this.layoutControl1.Controls.Add(this.btnConBH);
             this.layoutControl1.Controls.Add(this.btnChuaCaiPM);
-            this.layoutControl1.Controls.Add(this.btnCanBD);
             this.layoutControl1.Controls.Add(this.label3);
             this.layoutControl1.Controls.Add(this.txtDomain);
             this.layoutControl1.Controls.Add(this.btnBaoDuong);
@@ -538,9 +534,9 @@
             // 
             this.btnHong.Appearance.BackColor = System.Drawing.Color.DarkGray;
             this.btnHong.Appearance.Options.UseBackColor = true;
-            this.btnHong.Location = new System.Drawing.Point(1020, 116);
+            this.btnHong.Location = new System.Drawing.Point(842, 116);
             this.btnHong.Name = "btnHong";
-            this.btnHong.Size = new System.Drawing.Size(322, 22);
+            this.btnHong.Size = new System.Drawing.Size(500, 22);
             this.btnHong.StyleController = this.layoutControl1;
             this.btnHong.TabIndex = 59;
             this.btnHong.Text = "Offline,Hỏng, không sử dụng, lưu kho";
@@ -679,23 +675,12 @@
             // 
             this.btnChuaCaiPM.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.btnChuaCaiPM.Appearance.Options.UseBackColor = true;
-            this.btnChuaCaiPM.Location = new System.Drawing.Point(720, 116);
+            this.btnChuaCaiPM.Location = new System.Drawing.Point(411, 116);
             this.btnChuaCaiPM.Name = "btnChuaCaiPM";
-            this.btnChuaCaiPM.Size = new System.Drawing.Size(296, 22);
+            this.btnChuaCaiPM.Size = new System.Drawing.Size(427, 22);
             this.btnChuaCaiPM.StyleController = this.layoutControl1;
             this.btnChuaCaiPM.TabIndex = 36;
             this.btnChuaCaiPM.Text = "Chưa cài đặt phần mềm";
-            // 
-            // btnCanBD
-            // 
-            this.btnCanBD.Appearance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-            this.btnCanBD.Appearance.Options.UseBackColor = true;
-            this.btnCanBD.Location = new System.Drawing.Point(411, 116);
-            this.btnCanBD.Name = "btnCanBD";
-            this.btnCanBD.Size = new System.Drawing.Size(305, 22);
-            this.btnCanBD.StyleController = this.layoutControl1;
-            this.btnCanBD.TabIndex = 35;
-            this.btnCanBD.Text = "Tới kỳ bảo dưỡng";
             // 
             // label3
             // 
@@ -1400,7 +1385,6 @@
             this.layoutControlItem25,
             this.layoutControlItem26,
             this.layoutControlItem27,
-            this.layoutControlItem28,
             this.layoutControlItem29,
             this.layoutControlItem30,
             this.layoutControlItem3,
@@ -1679,21 +1663,12 @@
             this.layoutControlItem27.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem27.TextVisible = false;
             // 
-            // layoutControlItem28
-            // 
-            this.layoutControlItem28.Control = this.btnCanBD;
-            this.layoutControlItem28.Location = new System.Drawing.Point(399, 104);
-            this.layoutControlItem28.Name = "layoutControlItem28";
-            this.layoutControlItem28.Size = new System.Drawing.Size(309, 26);
-            this.layoutControlItem28.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem28.TextVisible = false;
-            // 
             // layoutControlItem29
             // 
             this.layoutControlItem29.Control = this.btnChuaCaiPM;
-            this.layoutControlItem29.Location = new System.Drawing.Point(708, 104);
+            this.layoutControlItem29.Location = new System.Drawing.Point(399, 104);
             this.layoutControlItem29.Name = "layoutControlItem29";
-            this.layoutControlItem29.Size = new System.Drawing.Size(300, 26);
+            this.layoutControlItem29.Size = new System.Drawing.Size(431, 26);
             this.layoutControlItem29.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem29.TextVisible = false;
             // 
@@ -1701,8 +1676,10 @@
             // 
             this.layoutControlItem30.Control = this.btnConBH;
             this.layoutControlItem30.Location = new System.Drawing.Point(88, 104);
+            this.layoutControlItem30.MinSize = new System.Drawing.Size(177, 26);
             this.layoutControlItem30.Name = "layoutControlItem30";
             this.layoutControlItem30.Size = new System.Drawing.Size(311, 26);
+            this.layoutControlItem30.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom;
             this.layoutControlItem30.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem30.TextVisible = false;
             // 
@@ -1806,9 +1783,9 @@
             // layoutControlItem43
             // 
             this.layoutControlItem43.Control = this.btnHong;
-            this.layoutControlItem43.Location = new System.Drawing.Point(1008, 104);
+            this.layoutControlItem43.Location = new System.Drawing.Point(830, 104);
             this.layoutControlItem43.Name = "layoutControlItem43";
-            this.layoutControlItem43.Size = new System.Drawing.Size(326, 26);
+            this.layoutControlItem43.Size = new System.Drawing.Size(504, 26);
             this.layoutControlItem43.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem43.TextVisible = false;
             // 
@@ -1935,7 +1912,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem28)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem29)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem30)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
@@ -2033,10 +2009,8 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
         private System.Windows.Forms.TextBox txtDomain;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
-        private DevExpress.XtraEditors.SimpleButton btnCanBD;
         private System.Windows.Forms.Label label3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem28;
         private DevExpress.XtraEditors.SimpleButton btnChuaCaiPM;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem29;
         private DevExpress.XtraEditors.SimpleButton btnConBH;
