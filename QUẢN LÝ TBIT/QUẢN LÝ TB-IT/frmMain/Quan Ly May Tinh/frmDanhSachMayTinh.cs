@@ -1096,7 +1096,7 @@ namespace frmMain
             if (Count == 1)
             {
                 LockControl(false);
-                LoadCBX();
+               
                 luu = 2;
             }
             else
