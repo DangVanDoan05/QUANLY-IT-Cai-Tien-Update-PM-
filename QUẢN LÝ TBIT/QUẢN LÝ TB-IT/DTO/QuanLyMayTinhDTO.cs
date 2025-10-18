@@ -32,10 +32,15 @@ namespace DTO
             this.GHICHU = row["GHICHU"].ToString();
             this.IDIP = int.Parse(row["IDIP"].ToString());
             this.MODEL = row["MODEL"].ToString();
-            this.UPS= row["UPS"].ToString();
+            this.UPS= row["MADONHANG"].ToString();
             this.IDWIN = int.Parse(row["IDWIN"].ToString());
             this.IDOFFICE = int.Parse(row["IDOFFICE"].ToString());
             this.IDKAS = int.Parse(row["IDKAS"].ToString());
+            this.WIN = row["WIN"].ToString();
+            this.OFFICE = row["OFFICE"].ToString();
+            this.KASPERSKY = row["KASPERSKY"].ToString();
+
+
             this.STATUS = int.Parse(row["STATUS"].ToString());
         }
 
@@ -100,6 +105,11 @@ namespace DTO
         private string kEYOFFICE;
         private int iDKAS;
         private string kEYKAS;
+        private string wIN;
+        private string oFFICE;
+        private string kASPERSKY;
+
+
         private int sTATUS;
 
 
@@ -129,5 +139,8 @@ namespace DTO
         public string KEYWIN { get => kEYWIN; set => kEYWIN = value; }
         public string KEYOFFICE { get => kEYOFFICE; set => kEYOFFICE = value; }
         public string KEYKAS { get => kEYKAS; set => kEYKAS = value; }
+        public string WIN { get => wIN; set => wIN = value; }
+        public string OFFICE { get => oFFICE; set => oFFICE = value; }
+        public string KASPERSKY { get => kASPERSKY; set => kASPERSKY = value; }
     }
 }

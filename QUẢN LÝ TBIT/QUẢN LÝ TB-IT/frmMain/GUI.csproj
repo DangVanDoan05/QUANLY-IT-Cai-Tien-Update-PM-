@@ -134,6 +134,12 @@
     <Compile Include="Quan Ly Dat Hang\frmNhapExcellDsDH.Designer.cs">
       <DependentUpon>frmNhapExcellDsDH.cs</DependentUpon>
     </Compile>
+    <Compile Include="Quan Ly Dat Hang\frmUpdateNote.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Quan Ly Dat Hang\frmUpdateNote.Designer.cs">
+      <DependentUpon>frmUpdateNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Quan Ly Kho\frmThongKeThuHoi.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -468,6 +474,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Quan Ly Dat Hang\frmNhapExcellDsDH.resx">
       <DependentUpon>frmNhapExcellDsDH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Quan Ly Dat Hang\frmUpdateNote.resx">
+      <DependentUpon>frmUpdateNote.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Quan Ly Kho\frmThongKeThuHoi.resx">
       <DependentUpon>frmThongKeThuHoi.cs</DependentUpon>

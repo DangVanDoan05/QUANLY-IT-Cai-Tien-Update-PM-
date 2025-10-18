@@ -55,6 +55,7 @@ namespace frmMain
                 string sldat = txtSLDat.Text;
                 string DvTinh = txtDonViTinh.Text;
                 string mdsd = txtMDSD.Text;
+                bool NhapKho = false;
 
                 if (TenHang == "" || sldat == "" || DvTinh == "" || mdsd == "" || PBDH == "")
                 {
@@ -63,7 +64,7 @@ namespace frmMain
                 else
                 {
                     int SolgDat = int.Parse(sldat);
-                    QlyDonHangPBDAO.Instance.Insert(MaDonHang, PBDH, ngaydh, TenHang, SolgDat, DvTinh,NhaMay,mdsd, "", 0, "",IDHH,TenHH);
+                    QlyDonHangPBDAO.Instance.Insert(MaDonHang, PBDH, ngaydh, TenHang, SolgDat, DvTinh,NhaMay,mdsd, "", 0, "",IDHH,TenHH,NhapKho);
                     MessageBox.Show("Cập nhật thành công đơn hàng.", "Thông báo:");
                 }
                 this.Close();
@@ -84,5 +85,7 @@ namespace frmMain
         {
             ColumSTT.Instance.CustomDrawRowIndicator(e);
         }
+
+
     }
 }

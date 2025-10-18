@@ -95,6 +95,7 @@
     <Compile Include="TonLinhKienDTO.cs" />
     <Compile Include="TonLKThuHoiDTO.cs" />
     <Compile Include="UserDTO.cs" />
+    <Compile Include="StatusWinOfficeKASDTO.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

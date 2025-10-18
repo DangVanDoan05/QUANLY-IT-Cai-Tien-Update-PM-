@@ -287,7 +287,7 @@ namespace frmMain.Quan_Ly_Dat_Hang
                     {
                         string TenHH = "";
                         // QLYDONHANGPB(MADONHANG, PHONGBAN, NGAYDH, TENHANG, SLDAT, DONVI, NHAMAY, MDSD, NGAYNHAN, SLNHAN, GHICHU)
-                        QlyDonHangPBDAO.Instance.Insert(DHdto.MADONHANG,DHdto.PHONGBAN,DHdto.NGAYDH,DHdto.TENHANG,DHdto.SLDAT,DHdto.DONVI,DHdto.NHAMAY,DHdto.MDSD,DHdto.NGAYNHAN,DHdto.SLNHAN,DHdto.GHICHU,0,TenHH);
+                     //   QlyDonHangPBDAO.Instance.Insert(DHdto.MADONHANG,DHdto.PHONGBAN,DHdto.NGAYDH,DHdto.TENHANG,DHdto.SLDAT,DHdto.DONVI,DHdto.NHAMAY,DHdto.MDSD,DHdto.NGAYNHAN,DHdto.SLNHAN,DHdto.GHICHU,0,TenHH);
                         mamoi++;
                     }
                     else

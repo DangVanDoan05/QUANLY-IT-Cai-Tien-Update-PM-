@@ -59,12 +59,12 @@ namespace frmMain.Quan_Ly_User
             else
             {
                 sglMaNV.Enabled = true;
-                txtHoTen.Enabled = false;
-                txtBoPhan.Enabled = false;
-                txtPhongBan.Enabled = false;
-                txtChucVu.Enabled = false;
-                txtNhom.Enabled = false;
-                txtTaiKhoan.Enabled = false;
+                txtHoTen.Enabled = true;
+                txtBoPhan.Enabled = true;
+                txtPhongBan.Enabled = true;
+                txtChucVu.Enabled = true;
+                txtNhom.Enabled = true;
+                txtTaiKhoan.Enabled = true;
                 txtMatKhau.Enabled = true;
                
                 btnThem.Enabled = false;
@@ -231,21 +231,21 @@ namespace frmMain.Quan_Ly_User
 
         private void sglMaNV_EditValueChanged(object sender, EventArgs e)
         {
-            //string MaNV = sglMaNV.EditValue.ToString(); 
+            //string MaNV = sglMaNV.EditValue.ToString();
             //QLNhanVienDTO NhanVienDTO = QLNhanVienDAO.Instance.GetNhanVienDTO(MaNV);
-            
+
             //string HoTenNV = NhanVienDTO.FULLNAME;
             //txtHoTen.Text = HoTenNV;
             //// Cắt chuỗi lấy ký tự đầu và ký tự cuối
             //string[] arrayHoTen = HoTenNV.Split(' ');
             //int dodai = arrayHoTen.Length;
             //string Ho = arrayHoTen[0];
-            //string Ten= arrayHoTen[dodai-1];
+            //string Ten = arrayHoTen[dodai - 1];
             //string Kytudau = Ho.Substring(0, 1).ToLower();
             //string Kytucuoi = Ten.Substring(0, 1).ToLower();
             //string HautoViet = Kytudau + Kytucuoi;
             //string HautoAnh = RemoveSign4VietnameseString(HautoViet);
-           
+
             //txtMatKhau.Text = "1";
             //txtBoPhan.Text = NhanVienDTO.BOPHAN;
             //txtPhongBan.Text = NhanVienDTO.PHONGBAN;
@@ -255,7 +255,7 @@ namespace frmMain.Quan_Ly_User
             //if (txtPhongBan.Text == "ADMIN")
             //{
             //    txtTaiKhoan.Enabled = true;
-            //    txtTaiKhoan.Text = MaNV ;
+            //    txtTaiKhoan.Text = MaNV;
             //}
             //else
             //{

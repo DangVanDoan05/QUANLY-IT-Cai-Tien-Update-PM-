@@ -37,11 +37,12 @@ namespace frmMain
           //   UpdateBaoHanh(); 
            
             LoadEditLookup();
+            LoadData();
             LoadCBX();
             LockControl(true);
-            CleanText();    
-            LoadData();
+            CleanText();             
             IDselected = 0;
+
         }
 
 
@@ -85,6 +86,9 @@ namespace frmMain
                 sglNhaMay.Enabled = false;
                 sglKeyOffice.Enabled = false;
                 sglKeyKas.Enabled = false;
+                cbWIN.Enabled = false;
+                cbOffice.Enabled = false;
+                cbKasper.Enabled = false;
 
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
@@ -126,6 +130,9 @@ namespace frmMain
                 sglKeyWin.Enabled = true;
                 sglKeyOffice.Enabled = true;
                 sglKeyKas.Enabled = false;
+                cbWIN.Enabled = true;
+                cbOffice.Enabled = true;
+                cbKasper.Enabled = true;
 
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
@@ -162,6 +169,16 @@ namespace frmMain
             string maMT = txtMaMT.Text;
           
             radDHCP.Checked = true;
+
+            //Load Số lượng key Kasper xem có bị quá giới hạn hay không.
+
+            txtKasDD1.Text = QuanLyMayTinhDAO.Instance.TongKeyKasDD1() + "";
+
+            txtKassDD2.Text = QuanLyMayTinhDAO.Instance.TongKeyKasDD2() + "";
+
+            txtKasDDK.Text = QuanLyMayTinhDAO.Instance.TongKeyKasDDK() + "";
+
+
 
         }
 
@@ -201,6 +218,61 @@ namespace frmMain
             cbNCC.DataSource = NhaCungCapDAO.Instance.GetListNCC();
             cbNCC.DisplayMember = "MANCC";
             cbNCC.ValueMember = "MANCC";
+
+            // Load Combobox Office:
+
+            StatusWinOfficeKASDTO Co = new StatusWinOfficeKASDTO("Có");
+            StatusWinOfficeKASDTO Khong = new StatusWinOfficeKASDTO("Không");
+            List<StatusWinOfficeKASDTO> LsStatusWinOffice = new List<StatusWinOfficeKASDTO>();
+            LsStatusWinOffice.Add(Co);
+            LsStatusWinOffice.Add(Khong);
+
+            //Load Combobox WIN
+            cbWIN.DataSource = LsStatusWinOffice;
+            cbWIN.DisplayMember = "STATUS";
+            cbWIN.ValueMember = "STATUS";
+
+            //Load Combobox Office
+            List<StatusWinOfficeKASDTO> LsStatusWinOffice1 = new List<StatusWinOfficeKASDTO>();
+            LsStatusWinOffice1.Add(Co);
+            LsStatusWinOffice1.Add(Khong);
+            cbOffice.DataSource = LsStatusWinOffice1;
+            cbOffice.DisplayMember = "STATUS";
+            cbOffice.ValueMember = "STATUS";
+
+
+
+            // Ý tưởng hay, nếu vượt quá thì List bị trừ.
+
+            int SolgKassDD1 = QuanLyMayTinhDAO.Instance.TongKeyKasDD1();
+            int SolgKassDD2 = QuanLyMayTinhDAO.Instance.TongKeyKasDD2();
+            int SolgKassDDK = QuanLyMayTinhDAO.Instance.TongKeyKasDDK();
+
+            StatusWinOfficeKASDTO KasDD1 = new StatusWinOfficeKASDTO("KasDD1");
+            StatusWinOfficeKASDTO KasDD2 = new StatusWinOfficeKASDTO("KasDD2");
+            StatusWinOfficeKASDTO KasDDK = new StatusWinOfficeKASDTO("KasDDK");
+
+            List<StatusWinOfficeKASDTO> LsStatusKaper = new List<StatusWinOfficeKASDTO>();
+            if(SolgKassDD1<50) // Nếu số lượng quá 50 máy
+            {
+                LsStatusKaper.Add(KasDD1);
+            }
+            if (SolgKassDD2 < 40) // Nếu số lượng quá 30 máy
+            {
+                LsStatusKaper.Add(KasDD2);
+            }
+            if (SolgKassDDK < 10) // Nếu số lượng quá 20 máy
+            {
+                LsStatusKaper.Add(KasDDK);
+            }
+         
+            LsStatusKaper.Add(Khong);
+
+            //Load Combobox KAS
+
+            cbKasper.DataSource = LsStatusKaper;
+            cbKasper.DisplayMember = "STATUS";
+            cbKasper.ValueMember = "STATUS";
 
 
 
@@ -253,7 +325,29 @@ namespace frmMain
 
         }
 
+        private void LoadLicense()
+        {
+                    
+            // Load Key Win khả dụng.
 
+            sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyWinAvailable();
+            sglKeyWin.Properties.DisplayMember = "MALICENSE";
+            sglKeyWin.Properties.ValueMember = "ID";
+
+            // Load Key Office khả dụng.
+
+            sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyOfficeAvailable();
+            sglKeyOffice.Properties.DisplayMember = "MALICENSE";
+            sglKeyOffice.Properties.ValueMember = "ID";
+
+            // Load Key Kas
+
+            sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
+            sglKeyKas.Properties.DisplayMember = "MALICENSE";
+            sglKeyKas.Properties.ValueMember = "ID";
+                   
+
+        }
 
         private void CleanText()
         {
@@ -358,7 +452,9 @@ namespace frmMain
 
                                 // IP được lưu vào thì phải đổi trạng thái cho máy tính.
 
-                                QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model,Serial, UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status);
+                                // Trước khi thêm lại kiểm tra xem Số lượng Kasper có bị quá hạn ko
+
+                               // QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model,Serial, UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status);
 
                                 // Lúc này lại ko biết được ID của thằng này
 
@@ -493,7 +589,7 @@ namespace frmMain
 
                                     // IP được lưu vào thì phải đổi trạng thái cho máy tính.
 
-                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP,Model,Serial,UPS, IDWIN,KeyWin, IDOFFICE,KeyOffice, IDKAS,KeyKas,status);
+                                  //  QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP,Model,Serial,UPS, IDWIN,KeyWin, IDOFFICE,KeyOffice, IDKAS,KeyKas,status);
 
                                     // Lúc này lại ko biết được ID của thằng này
 
@@ -572,7 +668,11 @@ namespace frmMain
                         int IDWINpast = 0;
                         int IDOFFICEpast = 0;
                         int IDKASpast = 0;
-                        
+                        string WinMT = "";
+                        string OffMT = "";
+                        string KasMT = "";
+
+
                         try
                         {
                             QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
@@ -580,6 +680,10 @@ namespace frmMain
                             IDWINpast = MTDTO.IDWIN;
                             IDOFFICEpast = MTDTO.IDOFFICE;
                             IDKASpast = MTDTO.IDKAS;
+
+                            WinMT = MTDTO.WIN;
+                             OffMT = MTDTO.OFFICE;
+                            KasMT = MTDTO.KASPERSKY;
 
                         }
                         catch 
@@ -617,6 +721,20 @@ namespace frmMain
                         string KeyOffice = "";
                         int IDKASnew = 0;
                         string KeyKasnew = "";
+                        QuanLyMayTinhDTO   MTDTO1 = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
+                        string StatusWIN = MTDTO1.WIN;
+
+
+                        string StatusOFFICE = OffMT;
+                        string StatusKAS = KasMT;
+
+                        //string StatusWIN = cbWIN.SelectedValue.ToString();
+
+
+                        //string StatusOFFICE = cbOffice.SelectedValue.ToString();
+                        //string StatusKAS = cbKasper.SelectedValue.ToString();
+
+
                         try
                         {
                             IDWINnew = int.Parse(sglKeyWin.EditValue.ToString());
@@ -662,7 +780,7 @@ namespace frmMain
 
                             // Sửa trong bảng quản lý máy tính
 
-                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew,Model,Serial,UPS,IDWINnew,KeyWinnew,IDOFFICEnew,KeyOffice,IDKASnew,KeyKasnew,status);
+                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew,Model,Serial,UPS,IDWINnew,KeyWinnew,IDOFFICEnew,KeyOffice,IDKASnew,KeyKasnew,status,StatusWIN, StatusOFFICE,StatusKAS);
 
                             //Sửa trong cả bảng Quản lý IP.
                             // Kiểm tra sự khác biệt của 2 IDIP để chạy lệnh Update trạng thái IDIP.
@@ -1096,7 +1214,7 @@ namespace frmMain
             if (Count == 1)
             {
                 LockControl(false);
-               
+                LoadLicense();
                 luu = 2;
             }
             else
@@ -1271,6 +1389,32 @@ namespace frmMain
                 cbLoaiMT.DisplayMember = "TENLOAIMT";
                 cbLoaiMT.ValueMember = "TENLOAIMT";
 
+                // Load trả lại Combobox WIN, OFFICE, KASS
+                StatusWinOfficeKASDTO Co = new StatusWinOfficeKASDTO("Có");
+                StatusWinOfficeKASDTO Khong = new StatusWinOfficeKASDTO("Không");
+                List<StatusWinOfficeKASDTO> LsStatusWinOffice = new List<StatusWinOfficeKASDTO>();
+                LsStatusWinOffice.Add(Co);
+                LsStatusWinOffice.Add(Khong);
+
+                //Load Combobox WIN
+                cbWIN.DataSource = LsStatusWinOffice;
+                cbWIN.DisplayMember = "STATUS";
+                cbWIN.ValueMember = "STATUS";
+
+                //Load Combobox Office
+                List<StatusWinOfficeKASDTO> LsStatusWinOffice1 = new List<StatusWinOfficeKASDTO>();
+                LsStatusWinOffice1.Add(Co);
+                LsStatusWinOffice1.Add(Khong);
+                cbOffice.DataSource = LsStatusWinOffice1;
+                cbOffice.DisplayMember = "STATUS";
+                cbOffice.ValueMember = "STATUS";
+
+
+
+                cbWIN.SelectedValue = gridView1.GetFocusedRowCellValue("WIN").ToString();
+                cbOffice.SelectedValue = gridView1.GetFocusedRowCellValue("OFFICE").ToString();
+                cbKasper.SelectedValue = gridView1.GetFocusedRowCellValue("KASPERSKY").ToString();
+               
                 txtNhaMay.Text = gridView1.GetFocusedRowCellValue("NHAMAY").ToString();
                 cbNCC.SelectedValue = gridView1.GetFocusedRowCellValue("NCC").ToString();
                 cbLoaiMT.SelectedValue = gridView1.GetFocusedRowCellValue("LOAIMT").ToString();

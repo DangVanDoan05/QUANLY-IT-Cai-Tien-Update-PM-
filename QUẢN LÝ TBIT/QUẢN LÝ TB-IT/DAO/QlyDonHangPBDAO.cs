@@ -116,6 +116,15 @@ namespace DAO
             return data;
         }
 
+
+        public DataTable GetDHPMNhapKho()
+        {
+            string query = " select * from QLYDONHANGPB WHERE IDHH=2007 and NHAPKHO=0 and NGAYNHAN!= '' ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            return data;
+        }
+
+
         public QlyDonHangPBDTO GetDonHangDTO(string MaDonHang)
         {
             string query = "select* from QLYDONHANGPB where MADONHANG= @ma ";
@@ -145,11 +154,11 @@ namespace DAO
 
         // HAM THEM
 
-        public int Insert(string MaDonHang, string PB, string NgayDH, string tenhang, int SlDAT, string DonVi,string NhaMay, string mdsd ,string ngaynhan ,int SLnhan,string ghichu,int IDHH,string TENHH)
+        public int Insert(string MaDonHang, string PB, string NgayDH, string tenhang, int SlDAT, string DonVi,string NhaMay, string mdsd ,string ngaynhan ,int SLnhan,string ghichu,int IDHH,string TENHH, bool NhapKho)
         {
-            string query = "insert QLYDONHANGPB(MADONHANG, PHONGBAN, NGAYDH, TENHANG, SLDAT, DONVI,NHAMAY, MDSD, NGAYNHAN, SLNHAN, GHICHU,IDHH,TENHH)" +
-                                    " values ( @MaDH , @pb , @ngadh , @tenhang , @sldat , @donvi , @nhamay , @mdsd , @ngaynhan , @slnhan , @ghichu , @IDHH , @tenhh )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  MaDonHang,  PB,  NgayDH,  tenhang, SlDAT,  DonVi,NhaMay,mdsd,ngaynhan,  SLnhan, ghichu ,IDHH,TENHH});
+            string query = "insert QLYDONHANGPB(MADONHANG, PHONGBAN, NGAYDH, TENHANG, SLDAT, DONVI,NHAMAY, MDSD, NGAYNHAN, SLNHAN, GHICHU,IDHH,TENHH,NHAPKHO)" +
+                                    " values ( @MaDH , @pb , @ngadh , @tenhang , @sldat , @donvi , @nhamay , @mdsd , @ngaynhan , @slnhan , @ghichu , @IDHH , @tenhh , @nhapkho )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  MaDonHang,  PB,  NgayDH,  tenhang, SlDAT,  DonVi,NhaMay,mdsd,ngaynhan,  SLnhan, ghichu ,IDHH,TENHH, NhapKho });
             return data;
         }
 
@@ -160,6 +169,13 @@ namespace DAO
         {
             string query = "UPDATE QLYDONHANGPB SET NGAYNHAN= @ngaynhan ,SLNHAN= @slnhan ,GHICHU= @ghichu WHERE MADONHANG= @maDH ";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { ngaynhan, SLnhan,  ghichu, MaDonHang });
+            return data;
+        }
+
+        public int UpdateGhiChu(string MaDonHang, string ghichu)
+        {
+            string query = "UPDATE QLYDONHANGPB SET GHICHU= @ghichu WHERE MADONHANG= @maDH ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { ghichu, MaDonHang });
             return data;
         }
 

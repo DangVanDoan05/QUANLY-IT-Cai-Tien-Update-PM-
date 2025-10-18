@@ -318,7 +318,16 @@ namespace frmMain
                     {
                         e.Appearance.BackColor = txtDaDatLau.BackColor;
                     }
+
+                    //if (MaDHDTO.IDHH == 2007 && MaDHDTO.NHAPKHO != true)
+                    //{
+                    //    e.Appearance.BackColor = txtChuaAcTive.BackColor;
+                    //}
                 }
+                //if (MaDHDTO.IDHH == 2007 && MaDHDTO.NHAPKHO != true)
+                //{
+                //    e.Appearance.BackColor = txtChuaAcTive.BackColor;
+                //}
             }
             catch 
             {
@@ -343,5 +352,19 @@ namespace frmMain
             }
         }
 
+        private void btnUpdateNote_Click(object sender, EventArgs e)
+        {
+            if (MaDHdc == "")
+            {
+                MessageBox.Show($"Chưa chọn mã đơn hàng cần cập nhật Ghi chú. ", "Lỗi: ", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                DHduocchon.MaDHdangchon = MaDHdc;
+                frmUpdateNote f = new frmUpdateNote();
+                f.ShowDialog();
+                LoadControl();
+            }
+        }
     }
 }

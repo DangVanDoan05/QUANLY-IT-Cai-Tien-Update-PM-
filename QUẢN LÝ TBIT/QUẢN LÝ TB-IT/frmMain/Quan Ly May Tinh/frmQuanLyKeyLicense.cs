@@ -26,6 +26,7 @@ namespace frmMain.Quan_Ly_May_Tinh
 
         private void LoadControl()
         {
+            radMaThuCong.Checked = true;
             LockControl(true);
             LoadData();
             CleanText();
@@ -33,10 +34,25 @@ namespace frmMain.Quan_Ly_May_Tinh
             IDselected = 0;
         }
 
-        // Mã License KASS DD1, KAS DD2
+
+        // Load nguồn đơn hàng.
+
+      
+
+        // Mã License KASS DD1, KAS DD2 
+
+            // Mệt không buồn nghĩ.
+
 
         private void LoadEditLookup()
         {
+            // Load nguồn đơn hàng.
+
+            sglDonHang.Properties.DataSource = QlyDonHangPBDAO.Instance.GetDHPMNhapKho(); // Lấy những đơn hàng đã nhận và trạng thái nhập kho bằng không
+            sglDonHang.Properties.DisplayMember = "MAPM";
+            sglDonHang.Properties.ValueMember = "ID";
+
+
             sglPhanMem.Properties.DataSource = QLPhanMemDAO.Instance.GetTable();
             sglPhanMem.Properties.DisplayMember = "MAPM";
             sglPhanMem.Properties.ValueMember = "ID";
@@ -60,6 +76,7 @@ namespace frmMain.Quan_Ly_May_Tinh
         {
             if (kt)
             {
+                sglDonHang.Enabled = false;
                 txtMaLicense.Enabled = false;
                 sglPhanMem.Enabled = false;
                 dtpNgayMua.Enabled = false;
@@ -77,13 +94,13 @@ namespace frmMain.Quan_Ly_May_Tinh
             }
             else
             {
-
+                sglDonHang.Enabled = true;
                 txtMaLicense.Enabled = true;
                 sglPhanMem.Enabled = true;
                 dtpNgayMua.Enabled = true;
                 dtpNgayHetHan.Enabled = true;
                 chkKhongTH.Enabled = true;
-                txtSoLuong.Enabled = true;
+                txtSoLuong.Enabled = false;
 
 
                 btnThem.Enabled = false;
@@ -329,9 +346,17 @@ namespace frmMain.Quan_Ly_May_Tinh
                 Count++;
             }
             if (Count == 1)
-            {
-                LockControl(false);
-               
+            {             
+                QLLicenseDTO A = QLLicenseDAO.Instance.GetLicenseDTO(IDselected);
+                int STATUS = A.STATUS;
+                if(STATUS==0) // trạng thái chưa kích hoạt thì mới có khả năng sửa key
+                {
+                    LockControl(false);
+                }
+                else
+                {
+                    MessageBox.Show("Mã License không thể sửa do đã kích hoạt.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }             
             }
             else
             {
@@ -366,6 +391,16 @@ namespace frmMain.Quan_Ly_May_Tinh
         private void gridView1_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             ColumSTT.Instance.CustomDrawRowIndicator(e);
+        }
+
+        private void gridView2_CustomDrawRowIndicator(object sender, RowIndicatorCustomDrawEventArgs e)
+        {
+            ColumSTT.Instance.CustomDrawRowIndicator(e);
+        }
+
+        private void radMaTuDong_CheckedChanged(object sender, EventArgs e)
+        {
+            txtMaLicense.Enabled = false;
         }
     }
 }

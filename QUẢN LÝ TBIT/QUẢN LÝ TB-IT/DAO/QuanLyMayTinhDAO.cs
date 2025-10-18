@@ -35,6 +35,27 @@ namespace DAO
             return data.Rows.Count;
         }
 
+        public int TongKeyKasDD1()
+        {
+            string query = " select * from QLYMAYTINH where  KASPERSKY = 'KasDD1' ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            return data.Rows.Count;
+        }
+
+        public int TongKeyKasDD2()
+        {
+            string query = " select * from QLYMAYTINH where KASPERSKY = 'KasDD2' ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            return data.Rows.Count;
+        }
+
+        public int TongKeyKasDDK()
+        {
+            string query = " select * from QLYMAYTINH where KASPERSKY = 'KasDDK' ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query);
+            return data.Rows.Count;
+        }
+
         public List<QuanLyMayTinhDTO> GetListMaMT()
         {
             string query = "select * from QLYMAYTINH";
@@ -209,22 +230,27 @@ namespace DAO
             }
         }
 
-        public int Insert(string MaMT , string MAC,string Domain , string LOAIMT, string NCC,string NhaMay, string phongban, string nguoisd, string matscd, string ngaymua, string hanbh,bool baohanh,string ghichu, int IdIP,string Model,string Serial,string UPS,int IDWIN,string KeyWin,int IDOFFICE,string KeyOffice,int IDKAS,string KeyKas,int status)
+        public int Insert(string MaMT , string MAC,string Domain , string LOAIMT, string NCC,string NhaMay, string phongban, string nguoisd, string matscd, string ngaymua,
+            string hanbh,bool baohanh,string ghichu, int IdIP,string Model,string Serial,string MaDonHang,int IDWIN,string KeyWin,int IDOFFICE,string KeyOffice,int IDKAS,string KeyKas,
+            int status,string statusWIN, string statusOFFICE,string statusKAS)
         {
-            string query = "insert QLYMAYTINH(MAMT,MAC,DOMAIN,LOAIMT,NCC,NHAMAY,PB,NGUOISD,MATSCD,NGAYMUA,HANBH,BAOHANH,GHICHU,IDIP,MODEL,SERIAL,UPS,IDWIN,KEYWIN,IDOFFICE,KEYOFFICE,IDKAS,KEYKAS,STATUS)" +
-                        " values ( @maMT , @mac , @Domain , @loaimt , @ncc , @nhamay , @pb , @ngsd , @matscd , @ngaymua , @hbh , @baohanh , @ghichu , @idip , @model , @serial , @UPS , @ID1 , @K1 , @ID2 , @K2 , @ID3 , @K3 , @status )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  MaMT,  MAC,Domain, LOAIMT,NCC, NhaMay,  phongban, nguoisd, matscd, ngaymua,  hanbh,  baohanh, ghichu ,IdIP,Model,Serial,UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status});
+            string query = "insert QLYMAYTINH(MAMT,MAC,DOMAIN,LOAIMT,NCC,NHAMAY,PB,NGUOISD,MATSCD,NGAYMUA,HANBH,BAOHANH,GHICHU,IDIP,MODEL,SERIAL,MADONHANG,IDWIN,KEYWIN,IDOFFICE,KEYOFFICE,IDKAS,KEYKAS,STATUS,WIN,OFFICE,KASPERSKY)" +
+                        " values ( @maMT , @mac , @Domain , @loaimt , @ncc , @nhamay , @pb , @ngsd , @matscd , @ngaymua , @hbh , @baohanh , @ghichu , @idip , @model , @serial , @UPS , @ID1 , @K1 , @ID2 , @K2 , @ID3 , @K3 , @status , @win , @office , @kas )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {  MaMT,  MAC,Domain, LOAIMT,NCC, NhaMay,  phongban, nguoisd, matscd, ngaymua,  hanbh,  baohanh, ghichu ,IdIP,Model,Serial,MaDonHang,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,  statusWIN, statusOFFICE, statusKAS });
             return data;
         }
 
         // HAM SUA
 
         public int Update(int ID,string MaMT, string MAC,string Domain, string LOAIMT, string NCC, string NhaMay, string phongban, string nguoisd,
-            string matscd, string ngaymua, string hanbh, bool baohanh, string ghichu, int IdIP, string Model,string Serial,string UPS, int IDWIN,string KeyWin, int IDOFFICE,string KeyOffice, int IDKAS,string KeyKas,int status)
+            string matscd, string ngaymua, string hanbh, bool baohanh, string ghichu, int IdIP, string Model,string Serial,string UPS, int IDWIN,string KeyWin, int IDOFFICE,
+            string KeyOffice, int IDKAS,string KeyKas,int status, string statusWIN, string statusOFFICE, string statusKAS)
         {
             string query = "UPDATE QLYMAYTINH set MAMT= @MAMT ,MAC= @mac ,DOMAIN= @domain ,LOAIMT= @LoaiMT ,NCC= @NCC ,NHAMAY= @nhamay ,PB= @pb ,NGUOISD= @NgSD ,MATSCD= @MaTSCD " +
-                ",NGAYMUA= @NgayMua ,HANBH= @hanBH ,BAOHANH= @bh ,GHICHU= @GhiChu ,IDIP= @IdIP ,MODEL= @model ,SERIAL= @seri ,UPS= @ups ,IDWIN= @ID1 ,KEYWIN= @K1 ,IDOFFICE= @ID2 ,KEYOFFICE= @k2  ,IDKAS= @ID3 ,KEYKAS= @K3 ,STATUS = @status where ID= @id ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT, MAC,Domain,LOAIMT, NCC, NhaMay, phongban, nguoisd, matscd, ngaymua, hanbh, baohanh, ghichu,IdIP,Model,Serial,UPS, IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status,ID});
+                ",NGAYMUA= @NgayMua ,HANBH= @hanBH ,BAOHANH= @bh ,GHICHU= @GhiChu ,IDIP= @IdIP ,MODEL= @model ,SERIAL= @seri ,MADONHANG= @ups ,IDWIN= @ID1 ,KEYWIN= @K1 ,IDOFFICE= @ID2 ,KEYOFFICE= @k2  ,IDKAS= @ID3 ,KEYKAS= @K3 ,STATUS = @status " +
+                ",WIN= @win ,OFFICE= @OFFICE ,KASPERSKY= @KAS9 where ID= @id ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT, MAC,Domain,LOAIMT, NCC, NhaMay, phongban, nguoisd, matscd, ngaymua, hanbh, baohanh, ghichu,IdIP,Model,Serial,UPS,
+                IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status,statusWIN,statusOFFICE,statusKAS,ID});
             return data;
         }
 
