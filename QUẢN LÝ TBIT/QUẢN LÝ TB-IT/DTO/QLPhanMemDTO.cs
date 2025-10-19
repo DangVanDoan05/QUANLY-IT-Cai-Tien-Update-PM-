@@ -9,12 +9,16 @@ namespace DTO
 {
     public class QLPhanMemDTO
     {
+
+
        // QLYPHANMEM(MAPM, TENPM, LICENSE, NGAYMUA, HANSD, NCC, CHUCNANG, GHICHU)
+
         public QLPhanMemDTO(DataRow row)
         {
             this.ID =int.Parse(row["ID"].ToString());
             this.MAPM = row["MAPM"].ToString();
             this.TENPM = row["TENPM"].ToString();
+            this.SLMAXKEY = int.Parse(row["SLMAXKEY"].ToString());
             this.LICENSE = row["LICENSE"].ToString();
             this.NGAYMUA = row["NGAYMUA"].ToString();
             this.HANSD = row["HANSD"].ToString();
@@ -42,6 +46,7 @@ namespace DTO
         private int iD;
         private string mAPM;
         private string tENPM;
+        private int sLMAXKEY;
         private string lICENSE;
         private string nGAYMUA;
         private string hANSD;
@@ -60,5 +65,6 @@ namespace DTO
         public string CHUCNANG { get => cHUCNANG; set => cHUCNANG = value; }
         public int ID { get => iD; set => iD = value; }
         public int STATUS { get => sTATUS; set => sTATUS = value; }
+        public int SLMAXKEY { get => sLMAXKEY; set => sLMAXKEY = value; }
     }
 }

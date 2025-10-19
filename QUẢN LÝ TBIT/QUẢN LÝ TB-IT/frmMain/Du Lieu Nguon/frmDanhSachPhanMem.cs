@@ -47,13 +47,16 @@ namespace frmMain
             cbNCC.ValueMember = "MANCC";
         }
 
+
         // đang ko biết hệ thống lưu làm sao
+
         private void CleanText()
         {
             txtMaPhanMem.Clear();
             txtTenPhanMem.Clear();
             txtLicense.Clear();
             txtGhiChu.Clear();
+            txtGioiHanSLKey.Clear();
             chkGHLC.Checked = false;
         }
 
@@ -70,8 +73,11 @@ namespace frmMain
             {
                 txtMaPhanMem.Enabled = false;
                 txtTenPhanMem.Enabled = false;
+                txtGioiHanSLKey.Enabled = false;
                 txtLicense.Enabled = false;
                 txtGhiChu.Enabled = false;
+
+
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
                 btnXoa.Enabled = true;
@@ -87,8 +93,11 @@ namespace frmMain
             {
                 txtMaPhanMem.Enabled = true;
                 txtTenPhanMem.Enabled = true;
+                txtGioiHanSLKey.Enabled = true;
                 txtLicense.Enabled = true;
                 txtGhiChu.Enabled = true;
+
+
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
                 btnXoa.Enabled = false;
@@ -114,6 +123,7 @@ namespace frmMain
                     string maPM = txtMaPhanMem.Text;
                     string tenPM = txtTenPhanMem.Text;
                     string license = txtLicense.Text;
+                    int slmaxKey = int.Parse(txtGioiHanSLKey.Text);
                     string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
                     string hansd = dtpHanSuDung.Value.ToString("dd/MM/yyyy");
                     string ghichu = txtGhiChu.Text;
@@ -135,16 +145,14 @@ namespace frmMain
                     }
                     else
                     {
-
                         DialogResult kq = MessageBox.Show($"Bạn muốn thêm mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            QLPhanMemDAO.Instance.Insert(maPM, tenPM, license, ngaymua, hansd, ncc,chucnang, ghichu,GioiHanLC);
+                            QLPhanMemDAO.Instance.Insert(maPM, tenPM,slmaxKey ,license, ngaymua, hansd, ncc,chucnang, ghichu,GioiHanLC);
                             MessageBox.Show($" Thêm mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         them = false;
                         LoadControl();
-
                     }
                 }
                 else
@@ -153,6 +161,7 @@ namespace frmMain
                     string maPM = txtMaPhanMem.Text;
                     string tenPM = txtTenPhanMem.Text;
                     string license = txtLicense.Text;
+                    int slmaxKey = int.Parse(txtGioiHanSLKey.Text);
                     string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
                     string hansd = dtpHanSuDung.Value.ToString("dd/MM/yyyy");
                     string ghichu = txtGhiChu.Text;
@@ -176,7 +185,7 @@ namespace frmMain
                         DialogResult kq = MessageBox.Show($"Bạn muốn sửa thông tin của mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, license, ngaymua, hansd, ncc,ChucNang, ghichu,GioiHanLC);
+                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, slmaxKey,license, ngaymua, hansd, ncc,ChucNang, ghichu,GioiHanLC);
                             MessageBox.Show($" Sửa thông tin mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }

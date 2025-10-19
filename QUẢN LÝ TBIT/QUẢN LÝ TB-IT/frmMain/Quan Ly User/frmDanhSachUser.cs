@@ -39,8 +39,10 @@ namespace frmMain.Quan_Ly_User
 
         private void LockControl(bool kt)
         {
+
             if (kt)
             {
+
                 sglMaNV.Enabled = false;
                 txtHoTen.Enabled = false;
                 txtBoPhan.Enabled = false;
@@ -55,16 +57,17 @@ namespace frmMain.Quan_Ly_User
                 btnXoa.Enabled = true;
                 btnLuu.Enabled = false;
                 btnCapNhat.Enabled = true;
+
             }
             else
             {
                 sglMaNV.Enabled = true;
-                txtHoTen.Enabled = true;
-                txtBoPhan.Enabled = true;
-                txtPhongBan.Enabled = true;
-                txtChucVu.Enabled = true;
-                txtNhom.Enabled = true;
-                txtTaiKhoan.Enabled = true;
+                txtHoTen.Enabled = false;
+                txtBoPhan.Enabled = false;
+                txtPhongBan.Enabled = false;
+                txtChucVu.Enabled =false;
+                txtNhom.Enabled = false;
+                txtTaiKhoan.Enabled = false;
                 txtMatKhau.Enabled = true;
                
                 btnThem.Enabled = false;
@@ -73,6 +76,8 @@ namespace frmMain.Quan_Ly_User
                 btnLuu.Enabled = true;
                 btnCapNhat.Enabled = true;
             }
+
+
         }
 
         private void LoadGridControl()
@@ -231,36 +236,36 @@ namespace frmMain.Quan_Ly_User
 
         private void sglMaNV_EditValueChanged(object sender, EventArgs e)
         {
-            //string MaNV = sglMaNV.EditValue.ToString();
-            //QLNhanVienDTO NhanVienDTO = QLNhanVienDAO.Instance.GetNhanVienDTO(MaNV);
+            string MaNV = sglMaNV.EditValue.ToString();
+            // Lấy đoạn nhà máy ở đâu ra cái này để sau để thêm cột id vào
+            QLNhanVienDTO NhanVienDTO = QLNhanVienDAO.Instance.GetNhanVienDTOByMANV(MaNV);
+            string HoTenNV = NhanVienDTO.FULLNAME;
+            txtHoTen.Text = HoTenNV;
+            // Cắt chuỗi lấy ký tự đầu và ký tự cuối
+            string[] arrayHoTen = HoTenNV.Split(' ');
+            int dodai = arrayHoTen.Length;
+            string Ho = arrayHoTen[0];
+            string Ten = arrayHoTen[dodai - 1];
+            string Kytudau = Ho.Substring(0, 1).ToLower();
+            string Kytucuoi = Ten.Substring(0, 1).ToLower();
+            string HautoViet = Kytudau + Kytucuoi;
+            string HautoAnh = RemoveSign4VietnameseString(HautoViet);
 
-            //string HoTenNV = NhanVienDTO.FULLNAME;
-            //txtHoTen.Text = HoTenNV;
-            //// Cắt chuỗi lấy ký tự đầu và ký tự cuối
-            //string[] arrayHoTen = HoTenNV.Split(' ');
-            //int dodai = arrayHoTen.Length;
-            //string Ho = arrayHoTen[0];
-            //string Ten = arrayHoTen[dodai - 1];
-            //string Kytudau = Ho.Substring(0, 1).ToLower();
-            //string Kytucuoi = Ten.Substring(0, 1).ToLower();
-            //string HautoViet = Kytudau + Kytucuoi;
-            //string HautoAnh = RemoveSign4VietnameseString(HautoViet);
+            txtMatKhau.Text = "1";
+            txtBoPhan.Text = NhanVienDTO.BOPHAN;
+            txtPhongBan.Text = NhanVienDTO.PHONGBAN;
+            txtNhom.Text = NhanVienDTO.NHOM;
+            txtChucVu.Text = NhanVienDTO.CHUCVU;
 
-            //txtMatKhau.Text = "1";
-            //txtBoPhan.Text = NhanVienDTO.BOPHAN;
-            //txtPhongBan.Text = NhanVienDTO.PHONGBAN;
-            //txtNhom.Text = NhanVienDTO.NHOM;
-            //txtChucVu.Text = NhanVienDTO.CHUCVU;
-
-            //if (txtPhongBan.Text == "ADMIN")
-            //{
-            //    txtTaiKhoan.Enabled = true;
-            //    txtTaiKhoan.Text = MaNV;
-            //}
-            //else
-            //{
-            //    txtTaiKhoan.Text = MaNV + HautoAnh;
-            //}
+            if (txtPhongBan.Text == "ADMIN")
+            {
+                txtTaiKhoan.Enabled = true;
+                txtTaiKhoan.Text = MaNV;
+            }
+            else
+            {
+                txtTaiKhoan.Text = MaNV + HautoAnh;
+            }
         }
 
         void Save()
@@ -453,6 +458,7 @@ namespace frmMain.Quan_Ly_User
         {
             try
             {
+
                 sglMaNV.EditValue = gridView1.GetFocusedRowCellValue("MANV").ToString();
                 txtHoTen.Text = gridView1.GetFocusedRowCellValue("FULLNAME").ToString();
                 txtTaiKhoan.Text = gridView1.GetFocusedRowCellValue("TAIKHOAN").ToString();
@@ -462,6 +468,7 @@ namespace frmMain.Quan_Ly_User
             }
             catch
             {
+
             }
         }
 

@@ -46,6 +46,7 @@ namespace DAO
             return lsv;
         }
 
+
         public QLPhanMemDTO GetPMDTO(int IDPM)
         {
             string query = "select * from QLYPHANMEM where ID= @id ";
@@ -56,6 +57,15 @@ namespace DAO
             return phanMemDTO;
         }
 
+
+        public QLPhanMemDTO GetPMDTObyMaPM(string MaPM)
+        {
+            string query = "select * from QLYPHANMEM where MAPM= @id ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaPM });
+            DataRow row = data.Rows[0];
+            QLPhanMemDTO phanMemDTO = new QLPhanMemDTO(row);
+            return phanMemDTO;
+        }
 
         public DataTable GetTable()
         {
@@ -81,22 +91,22 @@ namespace DAO
 
         // HAM THEM
 
-        public int Insert(string MaPM, string TenPM, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status)
+        public int Insert(string MaPM, string TenPM,int SlMaxKey,string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status)
         {
-            string query = "insert QLYPHANMEM(MAPM,TENPM,LICENSE,NGAYMUA,HANSD,NCC,CHUCNANG,GHICHU) values( @ma , @ten , @LICENSE , @ngmua , @hsd , @ncc , @CN , @note , @status )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM, license, ngmua, hansd, ncc, Chucnang, ghichu });
+            string query = "insert QLYPHANMEM(MAPM,TENPM,SLMAXKEY,LICENSE,NGAYMUA,HANSD,NCC,CHUCNANG,GHICHU) values( @ma , @ten , @SLMAX , @LICENSE , @ngmua , @hsd , @ncc , @CN , @note , @status )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM,SlMaxKey,license, ngmua, hansd, ncc, Chucnang, ghichu });
             return data;
 
         }
 
         // HAM SUA
-        public int Update(int ID,string MaPM, string TenPM, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status)
+        public int Update(int ID,string MaPM, string TenPM, int SlMaxKey, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status)
         {
-            string query = "UPDATE	QLYPHANMEM SET MAPM= @ma ,TENPM= @tenpm ,LICENSE= @lisen ,NGAYMUA= @ngmua ,HANSD= @han ,NCC= @ncc ,CHUCNANG= @CN ,GHICHU= @ghichu ,STATUS= @status  WHERE ID= @id  ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM, license, ngmua, hansd, ncc, Chucnang, ghichu,status, ID });
+            string query = "UPDATE	QLYPHANMEM SET MAPM= @ma ,TENPM= @tenpm ,SLMAXKEY= @SLMAX ,LICENSE= @lisen ,NGAYMUA= @ngmua ,HANSD= @han ,NCC= @ncc ,CHUCNANG= @CN ,GHICHU= @ghichu ,STATUS= @status  WHERE ID= @id  ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM, SlMaxKey, license, ngmua, hansd, ncc, Chucnang, ghichu,status, ID });
             return data;
-
         }
+
 
         // HAM XOA
 
@@ -106,8 +116,6 @@ namespace DAO
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { ID });
             return data;
         }
-
-       
-
+     
     }
 }

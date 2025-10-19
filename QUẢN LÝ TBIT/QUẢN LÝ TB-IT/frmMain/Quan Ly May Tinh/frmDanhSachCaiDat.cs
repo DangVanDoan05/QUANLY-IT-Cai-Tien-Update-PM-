@@ -23,6 +23,9 @@ namespace frmMain
             loadControl();
         }
 
+        bool them;
+        int idquyen = CommonUser.Quyen;
+        string MaCVUserLogon = CommonUser.UserStatic.CHUCVU;
         private void loadControl()
         {
             gridControl1.DataSource = DsCaiDatDAO.Instance.GetTable();
@@ -36,45 +39,52 @@ namespace frmMain
         // tạo thêm một cột mới.
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            // cho phép xóa nhiều dòng trong gridview
-
-            int dem = 0;
-           
-            List<int> LsTTCDdcChon = new List<int>();
-            foreach (var item in gridView1.GetSelectedRows())
+            if (idquyen >= 3)
             {
-                int id =int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
-                LsTTCDdcChon.Add(id);
-                dem++;
-            }
+                // cho phép xóa nhiều dòng trong gridview
 
-            if (dem > 0)
-            {
-                DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} thông tin cài đặt phần mềm được chọn.", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (kq == DialogResult.Yes)
+                int dem = 0;
+
+                List<int> LsTTCDdcChon = new List<int>();
+                foreach (var item in gridView1.GetSelectedRows())
                 {
-                    int demXoa = 0;
-                    foreach (int item in LsTTCDdcChon)
-                    {
-
-                        DsCaiDatDAO.Instance.DeleteThongTinCD(item);
-                           demXoa++;
-                        
-                    }                   
-                    MessageBox.Show($"Đã xóa {demXoa} thông tin cài đặt được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);                   
-                    demXoa = 0;
-                    dem = 0;
+                    int id = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                    LsTTCDdcChon.Add(id);
+                    dem++;
                 }
-                loadControl();
+
+                if (dem > 0)
+                {
+                    DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} thông tin cài đặt phần mềm được chọn.", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (kq == DialogResult.Yes)
+                    {
+                        int demXoa = 0;
+                        foreach (int item in LsTTCDdcChon)
+                        {
+
+                            DsCaiDatDAO.Instance.DeleteThongTinCD(item);
+                            demXoa++;
+
+                        }
+                        MessageBox.Show($"Đã xóa {demXoa} thông tin cài đặt được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        demXoa = 0;
+                        dem = 0;
+                    }
+                    loadControl();
+                }
+                else
+                {
+                    MessageBox.Show("Bạn chưa chọn thông tin cài đặt để xóa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Bạn chưa chọn thông tin cài đặt để xóa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-      
 
+   
         void XuatExCel()
         {
             using (System.Windows.Forms.SaveFileDialog saveDialog = new System.Windows.Forms.SaveFileDialog())

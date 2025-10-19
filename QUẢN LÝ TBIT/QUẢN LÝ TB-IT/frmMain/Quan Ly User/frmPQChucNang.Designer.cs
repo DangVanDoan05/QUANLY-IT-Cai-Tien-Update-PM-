@@ -75,7 +75,7 @@
             this.layoutControl1.Name = "layoutControl1";
             this.layoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = new System.Drawing.Rectangle(1270, 356, 650, 400);
             this.layoutControl1.Root = this.Root;
-            this.layoutControl1.Size = new System.Drawing.Size(1493, 572);
+            this.layoutControl1.Size = new System.Drawing.Size(1303, 572);
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
@@ -84,13 +84,13 @@
             this.treeList2.Columns.AddRange(new DevExpress.XtraTreeList.Columns.TreeListColumn[] {
             this.treeListColumn2});
             this.treeList2.KeyFieldName = "MANV";
-            this.treeList2.Location = new System.Drawing.Point(14, 14);
+            this.treeList2.Location = new System.Drawing.Point(12, 12);
             this.treeList2.MinWidth = 23;
             this.treeList2.Name = "treeList2";
             this.treeList2.OptionsSelection.MultiSelectMode = DevExpress.XtraTreeList.TreeListMultiSelectMode.CellSelect;
             this.treeList2.OptionsView.CheckBoxStyle = DevExpress.XtraTreeList.DefaultNodeCheckBoxStyle.Check;
             this.treeList2.ParentFieldName = "MAQLTT";
-            this.treeList2.Size = new System.Drawing.Size(457, 544);
+            this.treeList2.Size = new System.Drawing.Size(398, 548);
             this.treeList2.TabIndex = 9;
             this.treeList2.TreeLevelWidth = 21;
             this.treeList2.AfterCheckNode += new DevExpress.XtraTreeList.NodeEventHandler(this.treeList2_AfterCheckNode);
@@ -117,14 +117,14 @@
             this.treeListColumn1});
             this.treeList1.ContextMenuStrip = this.contextMenuStrip1;
             this.treeList1.HorzScrollStep = 1;
-            this.treeList1.Location = new System.Drawing.Point(475, 14);
+            this.treeList1.Location = new System.Drawing.Point(414, 12);
             this.treeList1.MinWidth = 23;
             this.treeList1.Name = "treeList1";
             this.treeList1.OptionsView.CheckBoxStyle = DevExpress.XtraTreeList.DefaultNodeCheckBoxStyle.Check;
             this.treeList1.OptionsView.ShowCaption = true;
             this.treeList1.ParentFieldName = "IDPARENT";
             this.treeList1.RowHeight = 23;
-            this.treeList1.Size = new System.Drawing.Size(1004, 544);
+            this.treeList1.Size = new System.Drawing.Size(877, 548);
             this.treeList1.TabIndex = 8;
             this.treeList1.TreeLevelWidth = 21;
             this.treeList1.ViewStyle = DevExpress.XtraTreeList.TreeListViewStyle.TreeList;
@@ -294,15 +294,15 @@
             this.layoutControlItem5,
             this.layoutControlItem1});
             this.Root.Name = "Root";
-            this.Root.Size = new System.Drawing.Size(1493, 572);
+            this.Root.Size = new System.Drawing.Size(1303, 572);
             this.Root.TextVisible = false;
             // 
             // layoutControlItem5
             // 
             this.layoutControlItem5.Control = this.treeList1;
-            this.layoutControlItem5.Location = new System.Drawing.Point(461, 0);
+            this.layoutControlItem5.Location = new System.Drawing.Point(402, 0);
             this.layoutControlItem5.Name = "layoutControlItem5";
-            this.layoutControlItem5.Size = new System.Drawing.Size(1008, 548);
+            this.layoutControlItem5.Size = new System.Drawing.Size(881, 552);
             this.layoutControlItem5.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem5.TextVisible = false;
             // 
@@ -311,7 +311,7 @@
             this.layoutControlItem1.Control = this.treeList2;
             this.layoutControlItem1.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem1.Name = "layoutControlItem1";
-            this.layoutControlItem1.Size = new System.Drawing.Size(461, 548);
+            this.layoutControlItem1.Size = new System.Drawing.Size(402, 552);
             this.layoutControlItem1.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem1.TextVisible = false;
             // 
@@ -325,7 +325,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1493, 572);
+            this.ClientSize = new System.Drawing.Size(1303, 572);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmPQChucNang";

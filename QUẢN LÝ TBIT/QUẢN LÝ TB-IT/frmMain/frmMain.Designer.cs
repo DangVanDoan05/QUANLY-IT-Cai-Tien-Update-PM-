@@ -279,7 +279,7 @@
             this.btnDanhSachMT.Id = 5;
             this.btnDanhSachMT.ImageOptions.SvgImage = ((DevExpress.Utils.Svg.SvgImage)(resources.GetObject("btnDanhSachMT.ImageOptions.SvgImage")));
             this.btnDanhSachMT.Name = "btnDanhSachMT";
-            this.btnDanhSachMT.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.barButtonItem4_ItemClick);
+            this.btnDanhSachMT.ItemClick += new DevExpress.XtraBars.ItemClickEventHandler(this.btnDanhSachMT_ItemClick);
             // 
             // btnChiTietCH
             // 
@@ -868,7 +868,7 @@
             // 
             // btnQLKey
             // 
-            this.btnQLKey.Caption = "Quản lý License Key";
+            this.btnQLKey.Caption = "Quản lý Key License";
             this.btnQLKey.Id = 77;
             this.btnQLKey.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnQLKey.ImageOptions.Image")));
             this.btnQLKey.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnQLKey.ImageOptions.LargeImage")));
@@ -935,9 +935,7 @@
             // rpgQlyMayTinh
             // 
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnDanhSachMT);
-            this.rpgQlyMayTinh.ItemLinks.Add(this.btnChiTietCH, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnChiTietCaiDat, true);
-            this.rpgQlyMayTinh.ItemLinks.Add(this.btnChiTietUpdatePM, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnDanhSachCaiDat, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnLichSuBT, true);
             this.rpgQlyMayTinh.ItemLinks.Add(this.btnQLKey, true);

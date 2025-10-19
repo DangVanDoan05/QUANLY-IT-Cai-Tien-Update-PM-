@@ -25,9 +25,7 @@ namespace frmMain
 
             // Phân quyền cho Form
 
-            // ADMIN xem được toàn bộ
-            // QLCC xem đc toàn bộ phận
-            // QLTC xem đc phòng ban
+           
 
         bool them=false;
         int idquyen = CommonUser.Quyen;      
@@ -254,6 +252,9 @@ namespace frmMain
             {
                 try
                 {
+                    
+                    // đang để cho 3 nhà máy chạy mã song song Mã M1029 có thể xuất hiện ở cả 3 nhà máy.
+
                     string manv = txtMaNhanVien.Text.Trim();    
                     string tenht = txtHoTenNV.Text.Trim();                                                         
                     string Nhom = "";
@@ -276,8 +277,7 @@ namespace frmMain
                     {                     
                             //*** Thêm vào bảng quản lý Nhân viên
                             QLNhanVienDAO.Instance.Insert(manv, tenht,NhaMay, Bophan, Phongban, Nhom, ChucVu);
-                            MessageBox.Show($"Đã thêm nhân viên mã {manv} cho nhà máy {NhaMay}.", "THÀNH CÔNG!");
-                        
+                            MessageBox.Show($"Đã thêm nhân viên mã {manv} cho nhà máy {NhaMay}.", "THÀNH CÔNG!");                       
                      }
                     
                 }
@@ -291,38 +291,39 @@ namespace frmMain
             else // Update thông tin nhân viên
             {
 
-                //try
-                //{
-                //    string manv = txtMaNhanVien.Text.Trim();
-                //    string tenht = txtHoTenNV.Text.Trim();
-                //    string ChucVu = sglChucVu.EditValue.ToString();
-                                                       
-                //    string Nhom = "";
-                //    if (chkThuocNhom.Checked)
-                //    {
-                //        Nhom = sglNhom.EditValue.ToString();
-                //    }
-                //    string Phongban = sglPhongBan.EditValue.ToString();
-                //    string Bophan = txtBoPhan.Text;
+                try
+                {
+                    string manv = txtMaNhanVien.Text.Trim();
+                    string tenht = txtHoTenNV.Text.Trim();
+                    string ChucVu = sglChucVu.EditValue.ToString();
 
-                //    //bool CheckNVExist = QLNhanVienDAO.Instance.CheckMaNVExist(manv);                
-                //    //DialogResult kq = MessageBox.Show($"Bạn muốn thay đổi thông tin nhân viên mã {manv} ?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
-                //    //if (kq == DialogResult.Yes)
-                //    // {
-                //    //        //*** update thông tin nhân viên
+                    string Nhom = "";
+                    if (chkThuocNhom.Checked)
+                    {
+                        Nhom = sglNhom.EditValue.ToString();
+                    }
 
-                //    //        QLNhanVienDAO.Instance.Update(manv, tenht, Bophan, Phongban, Nhom, ChucVu);
-                //    //        MessageBox.Show($"Đã sửa thông tin nhân viên mã {manv}.", "THÀNH CÔNG!");
-                //    //        them = false;
-                //    // }                   
-                //}
-                //catch
-                //{
+                    string Phongban = sglPhongBan.EditValue.ToString();
+                    string Bophan = txtBoPhan.Text;
+                    string Nhamay = txtNhaMay.Text;
+                    DialogResult kq = MessageBox.Show($"Bạn muốn thay đổi thông tin nhân viên mã {manv} ?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
+                    if (kq == DialogResult.Yes)
+                    {
 
-                //    MessageBox.Show($"Hãy chọn chức vụ nhóm hoặc phòng ban có trong danh sách. ", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Stop);
-                //    them = false;
+                        //*** update thông tin nhân viên
+                        QLNhanVienDAO.Instance.Update(manv, tenht,Nhamay, Bophan, Phongban, Nhom, ChucVu);
+                        MessageBox.Show($"Đã sửa thông tin nhân viên mã {manv}.", "THÀNH CÔNG!");
+                        them = false;
 
-                //}
+                    }
+                }
+                catch
+                {
+
+                    MessageBox.Show($"Hãy chọn chức vụ nhóm hoặc phòng ban có trong danh sách. ", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                    them = false;
+
+                }
 
             }
         }
@@ -369,15 +370,15 @@ namespace frmMain
 
         private void btnSuaUser_Click(object sender, EventArgs e)
         {
-            //if (idquyen >= 2)
-            //{
-            //    LockControl(false);
-            //    txtMaNhanVien.Enabled = false;
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //}           
+            if (idquyen >= 2)
+            {
+                LockControl(false);
+                txtMaNhanVien.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnLuuUser_Click(object sender, EventArgs e)

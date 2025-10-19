@@ -28,7 +28,8 @@ namespace frmMain
 
         int IDselected=0;
         int luu = 0;
-
+        int idquyen = CommonUser.Quyen;
+        string MaCVUserLogon = CommonUser.UserStatic.CHUCVU;
 
         private void LoadControl()
         {
@@ -82,10 +83,7 @@ namespace frmMain
                 txtModel.Enabled = false;
                 txtSoSeri.Enabled = false;
                 txtUPS.Enabled = false;
-                sglKeyWin.Enabled = false;
-                sglNhaMay.Enabled = false;
-                sglKeyOffice.Enabled = false;
-                sglKeyKas.Enabled = false;
+               
                 cbWIN.Enabled = false;
                 cbOffice.Enabled = false;
                 cbKasper.Enabled = false;
@@ -95,9 +93,7 @@ namespace frmMain
                 btnXoa.Enabled = true;
                 btnLuu.Enabled = false;
                 btnCapNhat.Enabled = true;
-                btnGoWIN.Enabled = false;
-                btnGoOffice.Enabled = false;
-                btnGoKas.Enabled = false;
+               
 
                 btnTaiForm.Enabled = true;
                 btnNhapExcell.Enabled = true;
@@ -126,10 +122,7 @@ namespace frmMain
                 txtModel.Enabled = true;
                 txtSoSeri.Enabled = true;
                 txtUPS.Enabled = true;
-                sglNhaMay.Enabled = true;
-                sglKeyWin.Enabled = true;
-                sglKeyOffice.Enabled = true;
-                sglKeyKas.Enabled = false;
+               
                 cbWIN.Enabled = true;
                 cbOffice.Enabled = true;
                 cbKasper.Enabled = true;
@@ -139,10 +132,7 @@ namespace frmMain
                 btnXoa.Enabled = false;
                 btnLuu.Enabled = true;
                 btnCapNhat.Enabled = true;
-                btnGoWIN.Enabled = true;
-                btnGoOffice.Enabled = true;
-                btnGoKas.Enabled = true;
-
+               
                 btnTaiForm.Enabled = true;
                 btnNhapExcell.Enabled = true;
                 btnXuatExcell.Enabled = true;
@@ -253,15 +243,21 @@ namespace frmMain
             StatusWinOfficeKASDTO KasDDK = new StatusWinOfficeKASDTO("KasDDK");
 
             List<StatusWinOfficeKASDTO> LsStatusKaper = new List<StatusWinOfficeKASDTO>();
-            if(SolgKassDD1<50) // Nếu số lượng quá 50 máy
+
+            // Số lượng này sẽ lấy ở định mức trong bảng quản lý phần mềm 
+            int SLMaxKeyKasDD1 = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDD1").SLMAXKEY;
+            if(SolgKassDD1< SLMaxKeyKasDD1) // Nếu số lượng quá 50 máy
             {
                 LsStatusKaper.Add(KasDD1);
             }
-            if (SolgKassDD2 < 40) // Nếu số lượng quá 30 máy
+            int SLMaxKeyKasDD2 = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDD2").SLMAXKEY;
+            if (SolgKassDD2 < SLMaxKeyKasDD2) // Nếu số lượng quá 40 máy
             {
                 LsStatusKaper.Add(KasDD2);
             }
-            if (SolgKassDDK < 10) // Nếu số lượng quá 20 máy
+
+            int SLMaxKeyKasDDK = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDDK").SLMAXKEY;
+            if (SolgKassDDK < SLMaxKeyKasDDK) // Nếu số lượng quá 20 máy
             {
                 LsStatusKaper.Add(KasDDK);
             }
@@ -282,21 +278,21 @@ namespace frmMain
 
             // Load Key Win khả dụng.
 
-            sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyWinAvailable();
-            sglKeyWin.Properties.DisplayMember = "MALICENSE";
-            sglKeyWin.Properties.ValueMember = "ID";
+            //sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyWinAvailable();
+            //sglKeyWin.Properties.DisplayMember = "MALICENSE";
+            //sglKeyWin.Properties.ValueMember = "ID";
 
             // Load Key Office khả dụng.
 
-            sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyOfficeAvailable();
-            sglKeyOffice.Properties.DisplayMember = "MALICENSE";
-            sglKeyOffice.Properties.ValueMember = "ID";
+            //sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyOfficeAvailable();
+            //sglKeyOffice.Properties.DisplayMember = "MALICENSE";
+            //sglKeyOffice.Properties.ValueMember = "ID";
 
             // Load Key Kas
 
-            sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
-            sglKeyKas.Properties.DisplayMember = "MALICENSE";
-            sglKeyKas.Properties.ValueMember = "ID";
+            //sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
+            //sglKeyKas.Properties.DisplayMember = "MALICENSE";
+            //sglKeyKas.Properties.ValueMember = "ID";
 
             // Load Phòng ban:
 
@@ -306,9 +302,9 @@ namespace frmMain
 
             // Load nhà máy
 
-            sglNhaMay.Properties.DataSource = NHAMAYDAO.Instance.GetLsvNM();
-            sglNhaMay.Properties.DisplayMember = "MANHAMAY";
-            sglNhaMay.Properties.ValueMember = "MANHAMAY";
+            //sglNhaMay.Properties.DataSource = NHAMAYDAO.Instance.GetLsvNM();
+            //sglNhaMay.Properties.DisplayMember = "MANHAMAY";
+            //sglNhaMay.Properties.ValueMember = "MANHAMAY";
 
             // Load Dải  IP
 
@@ -330,21 +326,21 @@ namespace frmMain
                     
             // Load Key Win khả dụng.
 
-            sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyWinAvailable();
-            sglKeyWin.Properties.DisplayMember = "MALICENSE";
-            sglKeyWin.Properties.ValueMember = "ID";
+            //sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyWinAvailable();
+            //sglKeyWin.Properties.DisplayMember = "MALICENSE";
+            //sglKeyWin.Properties.ValueMember = "ID";
 
-            // Load Key Office khả dụng.
+            //// Load Key Office khả dụng.
 
-            sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyOfficeAvailable();
-            sglKeyOffice.Properties.DisplayMember = "MALICENSE";
-            sglKeyOffice.Properties.ValueMember = "ID";
+            //sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyOfficeAvailable();
+            //sglKeyOffice.Properties.DisplayMember = "MALICENSE";
+            //sglKeyOffice.Properties.ValueMember = "ID";
 
-            // Load Key Kas
+            //// Load Key Kas
 
-            sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
-            sglKeyKas.Properties.DisplayMember = "MALICENSE";
-            sglKeyKas.Properties.ValueMember = "ID";
+            //sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
+            //sglKeyKas.Properties.DisplayMember = "MALICENSE";
+            //sglKeyKas.Properties.ValueMember = "ID";
                    
 
         }
@@ -402,11 +398,12 @@ namespace frmMain
                             string KeyOffice = "";
                             int IDKAS = 0;
                             string KeyKas = "";
+
                             try
                             {
-                                IDWIN =int.Parse(sglKeyWin.EditValue.ToString());                             
-                                IDOFFICE = int.Parse(sglKeyOffice.EditValue.ToString());
-                                IDKAS = int.Parse(sglKeyKas.EditValue.ToString());
+                                //IDWIN =int.Parse(sglKeyWin.EditValue.ToString());                             
+                                //IDOFFICE = int.Parse(sglKeyOffice.EditValue.ToString());
+                                //IDKAS = int.Parse(sglKeyKas.EditValue.ToString());
                             }
                             catch 
                             {                                
@@ -454,7 +451,7 @@ namespace frmMain
 
                                 // Trước khi thêm lại kiểm tra xem Số lượng Kasper có bị quá hạn ko
 
-                               // QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model,Serial, UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status);
+                                  QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model,Serial, UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status);
 
                                 // Lúc này lại ko biết được ID của thằng này
 
@@ -541,9 +538,9 @@ namespace frmMain
                                 string KeyKas = "";
                                 try
                                 {
-                                    IDWIN = int.Parse(sglKeyWin.EditValue.ToString());
-                                    IDOFFICE = int.Parse(sglKeyOffice.EditValue.ToString());
-                                    IDKAS = int.Parse(sglKeyKas.EditValue.ToString());
+                                    //IDWIN = int.Parse(sglKeyWin.EditValue.ToString());
+                                    //IDOFFICE = int.Parse(sglKeyOffice.EditValue.ToString());
+                                    //IDKAS = int.Parse(sglKeyKas.EditValue.ToString());
                                 }
                                 catch
                                 {
@@ -737,9 +734,9 @@ namespace frmMain
 
                         try
                         {
-                            IDWINnew = int.Parse(sglKeyWin.EditValue.ToString());
-                            IDOFFICEnew = int.Parse(sglKeyOffice.EditValue.ToString());
-                            IDKASnew = int.Parse(sglKeyKas.EditValue.ToString());
+                            //IDWINnew = int.Parse(sglKeyWin.EditValue.ToString());
+                            //IDOFFICEnew = int.Parse(sglKeyOffice.EditValue.ToString());
+                            //IDKASnew = int.Parse(sglKeyKas.EditValue.ToString());
                         }
                         catch
                         {
@@ -1191,36 +1188,53 @@ namespace frmMain
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            LockControl(false);
-            LoadCBX();
-            luu = 1;                     
+            if (idquyen >= 2)
+            {
+                LockControl(false);
+                LoadCBX();
+                luu = 1;
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+                              
         }
 
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            // Tại sao nhấn nút sửa nó ra nhiều Key thế nhỉ
-            int Count = 0;
-
-            List<int> LsIDselected = new List<int>();
-
-            foreach (var item in gridView1.GetSelectedRows())
+            if (idquyen >= 2)
             {
-                int ID = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
-                IDselected = ID;
-                LsIDselected.Add(ID);
-                Count++;
-            }
-            if (Count == 1)
-            {
-                LockControl(false);
-                LoadLicense();
-                luu = 2;
+                // Tại sao nhấn nút sửa nó ra nhiều Key thế nhỉ
+                int Count = 0;
+
+                List<int> LsIDselected = new List<int>();
+
+                foreach (var item in gridView1.GetSelectedRows())
+                {
+                    int ID = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                    IDselected = ID;
+                    LsIDselected.Add(ID);
+                    Count++;
+                }
+                if (Count == 1)
+                {
+                    LockControl(false);
+                    LoadLicense();
+                    luu = 2;
+                }
+                else
+                {
+                    MessageBox.Show("Chưa chọn mã máy tính để xóa hoặc chọn quá 1 mã máy tính để sửa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else
             {
-                MessageBox.Show("Chưa chọn mã máy tính để xóa hoặc chọn quá 1 mã máy tính để sửa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }         
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+             
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -1283,16 +1297,35 @@ namespace frmMain
             LoadControl();
         }
 
+
+
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            Save();
-            LoadControl();
+            if (idquyen >= 2)
+            {
+                Save();
+                LoadControl();
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }        
         }
+
+
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
-            LoadControl();
-            // Done: hoàn thành.
+            if (idquyen >= 2)
+            {
+                LoadControl();
+                // Done: hoàn thành.
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
 
 
@@ -1373,12 +1406,12 @@ namespace frmMain
                     radDHCP.Checked = true;
                 }
 
-                sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
-                sglKeyWin.EditValue = gridView1.GetFocusedRowCellValue("IDWIN").ToString();
-                sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
-                sglKeyOffice.EditValue = gridView1.GetFocusedRowCellValue("IDOFFICE").ToString();
-                sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
-                sglKeyKas.EditValue = gridView1.GetFocusedRowCellValue("IDKAS").ToString();
+                //sglKeyWin.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
+                //sglKeyWin.EditValue = gridView1.GetFocusedRowCellValue("IDWIN").ToString();
+                //sglKeyOffice.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
+                //sglKeyOffice.EditValue = gridView1.GetFocusedRowCellValue("IDOFFICE").ToString();
+                //sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKey();
+                //sglKeyKas.EditValue = gridView1.GetFocusedRowCellValue("IDKAS").ToString();
                 int status= int.Parse(gridView1.GetFocusedRowCellValue("STATUS").ToString());
 
                 cbNCC.DataSource = NhaCungCapDAO.Instance.GetListNCC();
@@ -1598,27 +1631,27 @@ namespace frmMain
         {
             // Load Key Kasper khả dụng.
 
-            sglKeyKas.Enabled = true;
-            string MaNM = sglNhaMay.EditValue.ToString();
+            //sglKeyKas.Enabled = true;
+            //string MaNM = sglNhaMay.EditValue.ToString();
 
-            if(MaNM=="DD1")
-            {
-                sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDD1Available();
-                sglKeyKas.Properties.DisplayMember = "MALICENSE";
-                sglKeyKas.Properties.ValueMember = "ID";
-            }
-            if (MaNM == "DD2")
-            {
-                sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDD2Available();
-                sglKeyKas.Properties.DisplayMember = "MALICENSE";
-                sglKeyKas.Properties.ValueMember = "ID";
-            }
-            if (MaNM == "DDK")
-            {
-                sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
-                sglKeyKas.Properties.DisplayMember = "MALICENSE";
-                sglKeyKas.Properties.ValueMember = "ID";
-            }
+            //if(MaNM=="DD1")
+            //{
+            //    sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDD1Available();
+            //    sglKeyKas.Properties.DisplayMember = "MALICENSE";
+            //    sglKeyKas.Properties.ValueMember = "ID";
+            //}
+            //if (MaNM == "DD2")
+            //{
+            //    sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDD2Available();
+            //    sglKeyKas.Properties.DisplayMember = "MALICENSE";
+            //    sglKeyKas.Properties.ValueMember = "ID";
+            //}
+            //if (MaNM == "DDK")
+            //{
+            //    sglKeyKas.Properties.DataSource = QLLicenseDAO.Instance.GetLsKeyKasDDKAvailable();
+            //    sglKeyKas.Properties.DisplayMember = "MALICENSE";
+            //    sglKeyKas.Properties.ValueMember = "ID";
+            //}
 
         }
 

@@ -65,7 +65,7 @@ namespace frmMain
                         CommonUser.UserStatic = userDTO;
                         CommonUser.NhaMayDN = "DD1";
                         frmMain f = new frmMain();
-                        f.Text = "Quản lý IT Đông Dương 1";
+                        f.Text = "Quản Lý Thiết Bị IT ";
                         f.ShowDialog();
                     }
                     else

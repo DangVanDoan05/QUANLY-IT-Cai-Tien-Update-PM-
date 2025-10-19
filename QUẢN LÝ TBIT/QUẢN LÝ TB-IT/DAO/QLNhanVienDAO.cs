@@ -149,14 +149,25 @@ namespace DAO
         public QLNhanVienDTO GetNhanVienDTO(string MaNV, string Nhamay)
         {
             string query = "select* from QLYNHANVIEN where MANV= @ma and NHAMAY= @nhamay ";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaNV, Nhamay});
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaNV,Nhamay});
 
             foreach (DataRow item in data.Rows)
             {
                 QLNhanVienDTO dto = new QLNhanVienDTO(item);
                 return dto;
+            }          
+            return null;
+        }
+
+        public QLNhanVienDTO GetNhanVienDTOByMANV(string MaNV)
+        {
+            string query = "select* from QLYNHANVIEN where MANV= @ma ";
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { MaNV});
+            foreach (DataRow item in data.Rows)
+            {
+                QLNhanVienDTO dto = new QLNhanVienDTO(item);
+                return dto;
             }
-            
             return null;
         }
 
@@ -185,7 +196,13 @@ namespace DAO
             return data;
         }
 
-                
+        public int Update(string MaNV, string FullName, string NhaMay, string Bophan, string Phongban, string nhom, string chucvu)
+        {
+            string query = "update QLYNHANVIEN set FULLNAME= @name ,NHAMAY= @nm ,BOPHAN= @bp ,PHONGBAN= @pb ,NHOM= @nhom ,CHUCVU= @chucvu where MANV= @ma ";                               
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { FullName, NhaMay, Bophan, Phongban, nhom, chucvu, MaNV });
+            return data;
+        }
+
         // HAM XOA
         public int Delete(string maNV,string NhaMay)
         {

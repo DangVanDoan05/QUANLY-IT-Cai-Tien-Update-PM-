@@ -356,7 +356,6 @@ namespace frmMain
         {
             LoadItem(e);
             OpenForm(typeof(frmPhongBan));
-            
         }
 
         private void barButtonItem15_ItemClick(object sender, ItemClickEventArgs e)
@@ -371,11 +370,7 @@ namespace frmMain
             OpenForm(typeof(frmThongTinTaiKhoan));
         }
 
-        private void barButtonItem4_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            //  LoadItem(e);         
-            OpenForm(typeof(frmDanhSachMayTinh)); 
-        }
+       
 
         private void barButtonItem1_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -717,6 +712,11 @@ namespace frmMain
             OpenForm(typeof(frmQuanLyKeyLicense));
         }
 
+        private void btnDanhSachMT_ItemClick(object sender, ItemClickEventArgs e)
+        {
+            LoadItem(e);
+            OpenForm(typeof(frmDanhSachMayTinh));
+        }
     }
 }
  

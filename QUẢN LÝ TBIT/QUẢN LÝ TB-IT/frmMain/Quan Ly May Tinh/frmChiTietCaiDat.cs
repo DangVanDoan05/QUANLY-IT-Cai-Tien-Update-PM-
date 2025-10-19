@@ -25,6 +25,8 @@ namespace frmMain
 
         int IDMTsuaTT = 0;
         bool them;
+        int idquyen = CommonUser.Quyen;
+        string MaCVUserLogon = CommonUser.UserStatic.CHUCVU;
 
         List<int> LsIDPMSua = new List<int>();
 
@@ -122,37 +124,46 @@ namespace frmMain
       
         private void btnCaiDatPM_Click(object sender, EventArgs e)
         {
-            // Đang ở nút thêm phần mềm.
-            #region  Thêm thông tin cài đặt phần mềm.
-
-          
-
-            int DemMT = 0;
-
-            // LẤY ID cùa máy tính.
-            List<int> ListIDMaMT = new List<int>();
-
-
-            foreach (var item in gridView1.GetSelectedRows())
+            if (idquyen >= 2)
             {
-                int IDMaMT =int.Parse( gridView1.GetRowCellValue(item, "ID").ToString());             
-                DemMT++;
-                ListIDMaMT.Add(IDMaMT);
-            }
+                #region  Thêm thông tin cài đặt phần mềm.
 
-            if (DemMT == 0)
-            {
-                MessageBox.Show("Chưa chọn máy tính.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LoadControl();
+
+
+                int DemMT = 0;
+
+                // LẤY ID cùa máy tính.
+                List<int> ListIDMaMT = new List<int>();
+
+
+                foreach (var item in gridView1.GetSelectedRows())
+                {
+                    int IDMaMT = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                    DemMT++;
+                    ListIDMaMT.Add(IDMaMT);
+                }
+
+                if (DemMT == 0)
+                {
+                    MessageBox.Show("Chưa chọn máy tính.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LoadControl();
+                }
+                else
+                {
+                    LockControl(false);
+                    them = true;
+                }
+
+
+                #endregion
             }
             else
             {
-                LockControl(false);
-                them = true;
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-            
-            #endregion
+
+           
+           
         }
 
         private void gcDsMayTinh_Click(object sender, EventArgs e)
@@ -176,65 +187,15 @@ namespace frmMain
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            // Chọn máy tính xong thì mới mở ds phần mềm ra đúng không?
-            #region  Thêm thông tin cài đặt phần mềm.
-
-
-
-            int DemMT = 0;
-
-            // LẤY ID cùa máy tính.
-            List<int> ListIDMaMT = new List<int>();
-
-
-            foreach (var item in gridView1.GetSelectedRows())
+            if (idquyen >= 2)
             {
-                int IDMaMT = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
-                DemMT++;
-                ListIDMaMT.Add(IDMaMT);
-            }
+                // Chọn máy tính xong thì mới mở ds phần mềm ra đúng không?
+                #region  Thêm thông tin cài đặt phần mềm.
 
-            if (DemMT != 1)
-            {
-                MessageBox.Show("Chưa chọn máy tính hoặc chọn quá 1 máy tính để sửa thông tin.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                LoadControl();
-            }
-            else
-            {
-
-                LockControl(false);
-                int idselected = 0;
-
-                // Nếu số lượng là 1 thì nó phải Rowcell style cho tôi.
-                foreach (int item in ListIDMaMT)
-                {
-                    idselected = item;
-                }
-                List<DsCaiDatDTO> LsDSCDDTO = DsCaiDatDAO.Instance.GetLsPMcaiMT(idselected);
-                foreach (DsCaiDatDTO item in LsDSCDDTO)
-                {
-                    LsIDPMSua.Add(item.IDPM);
-                }
-
-
-            }
-
-
-            #endregion
-
-        }
-
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            if(them)
-            {
-
-                #region  Kiểm tra xem Mã phần mềm đã có trên mã máy tính hay chưa. 
-
-                string ngaycaidat = dtpNgayCaiDat.Value.ToString("dd/MM/yyyy");
 
 
                 int DemMT = 0;
+
                 // LẤY ID cùa máy tính.
                 List<int> ListIDMaMT = new List<int>();
 
@@ -246,18 +207,76 @@ namespace frmMain
                     ListIDMaMT.Add(IDMaMT);
                 }
 
-
-                int DemPM = 0;
-
-               
-                List<int> ListIDMaPM = new List<int>();
-                foreach (var item in gridView2.GetSelectedRows())
+                if (DemMT != 1)
                 {
-                    int IDMaPM = int.Parse(gridView2.GetRowCellValue(item, "ID").ToString());
-                    DemPM++;
-                    ListIDMaPM.Add(IDMaPM);
+                    MessageBox.Show("Chưa chọn máy tính hoặc chọn quá 1 máy tính để sửa thông tin.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    LoadControl();
                 }
-               
+                else
+                {
+
+                    LockControl(false);
+                    int idselected = 0;
+
+                    // Nếu số lượng là 1 thì nó phải Rowcell style cho tôi.
+                    foreach (int item in ListIDMaMT)
+                    {
+                        idselected = item;
+                    }
+                    List<DsCaiDatDTO> LsDSCDDTO = DsCaiDatDAO.Instance.GetLsPMcaiMT(idselected);
+                    foreach (DsCaiDatDTO item in LsDSCDDTO)
+                    {
+                        LsIDPMSua.Add(item.IDPM);
+                    }
+
+
+                }
+
+
+                #endregion
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }         
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            if (idquyen >= 2)
+            {
+                if (them)
+                {
+
+                    #region  Kiểm tra xem Mã phần mềm đã có trên mã máy tính hay chưa. 
+
+                    string ngaycaidat = dtpNgayCaiDat.Value.ToString("dd/MM/yyyy");
+
+
+                    int DemMT = 0;
+                    // LẤY ID cùa máy tính.
+                    List<int> ListIDMaMT = new List<int>();
+
+
+                    foreach (var item in gridView1.GetSelectedRows())
+                    {
+                        int IDMaMT = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                        DemMT++;
+                        ListIDMaMT.Add(IDMaMT);
+                    }
+
+
+                    int DemPM = 0;
+
+
+                    List<int> ListIDMaPM = new List<int>();
+                    foreach (var item in gridView2.GetSelectedRows())
+                    {
+                        int IDMaPM = int.Parse(gridView2.GetRowCellValue(item, "ID").ToString());
+                        DemPM++;
+                        ListIDMaPM.Add(IDMaPM);
+                    }
+
                     if (DemPM == 0)
                     {
                         MessageBox.Show("Chưa chọn phần mềm.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -285,84 +304,87 @@ namespace frmMain
                         }
                     }
 
-                DemMT = 0;
-                DemPM = 0;
-                LoadControl();
-                #endregion
+                    DemMT = 0;
+                    DemPM = 0;
+                    LoadControl();
+                    #endregion
 
-            }
-            else  // Sửa thông tin cài đặt máy.
-            {
-                #region  Kiểm tra xem Mã phần mềm đã có trên mã máy tính hay chưa. 
-
-                string ngaycaidat = dtpNgayCaiDat.Value.ToString("dd/MM/yyyy");
-
-
-              
-                // LẤY ID cùa máy tính.
-                List<int> ListIDMaMT = new List<int>();
-
-                int DemMT = 0;
-                foreach (var item in gridView1.GetSelectedRows())
-                {
-                    int IDMaMT = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
-                    DemMT++;
-                    ListIDMaMT.Add(IDMaMT);
                 }
-
-
-                int DemPM = 0;
-
-
-                List<int> ListIDMaPM = new List<int>();
-                foreach (var item in gridView2.GetSelectedRows())
+                else  // Sửa thông tin cài đặt máy.
                 {
-                    int IDMaPM = int.Parse(gridView2.GetRowCellValue(item, "ID").ToString());
-                    DemPM++;
-                    ListIDMaPM.Add(IDMaPM);
-                }
+                    #region  Kiểm tra xem Mã phần mềm đã có trên mã máy tính hay chưa. 
 
-                if (DemPM == 0)
-                {
-                    MessageBox.Show("Chưa chọn phần mềm để cập nhật lại.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                else
-                {
-                    DialogResult kq = MessageBox.Show($"Bạn muốn sửa {DemPM} phần mềm cài đặt cho {DemMT} máy tính?", "Thông báo: ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                    if (kq == DialogResult.Yes)
+                    string ngaycaidat = dtpNgayCaiDat.Value.ToString("dd/MM/yyyy");
+
+
+
+                    // LẤY ID cùa máy tính.
+                    List<int> ListIDMaMT = new List<int>();
+
+                    int DemMT = 0;
+                    foreach (var item in gridView1.GetSelectedRows())
                     {
-                        // Xóa hết toàn bộ phần mềm cũ đang cài đặt.
-                      
+                        int IDMaMT = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                        DemMT++;
+                        ListIDMaMT.Add(IDMaMT);
+                    }
 
-                        // Thêm toàn bộ phần mềm mới vào.
 
-                        int dem = 0;
-                        foreach (int itemMT in ListIDMaMT)
+                    int DemPM = 0;
+
+
+                    List<int> ListIDMaPM = new List<int>();
+                    foreach (var item in gridView2.GetSelectedRows())
+                    {
+                        int IDMaPM = int.Parse(gridView2.GetRowCellValue(item, "ID").ToString());
+                        DemPM++;
+                        ListIDMaPM.Add(IDMaPM);
+                    }
+
+                    if (DemPM == 0)
+                    {
+                        MessageBox.Show("Chưa chọn phần mềm để cập nhật lại.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        DialogResult kq = MessageBox.Show($"Bạn muốn sửa {DemPM} phần mềm cài đặt cho {DemMT} máy tính?", "Thông báo: ", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        if (kq == DialogResult.Yes)
                         {
-                            DsCaiDatDAO.Instance.DeleteWithIDMT(itemMT);
-                            foreach (int itemPM in ListIDMaPM)
+                            // Xóa hết toàn bộ phần mềm cũ đang cài đặt.
+
+
+                            // Thêm toàn bộ phần mềm mới vào.
+
+                            int dem = 0;
+                            foreach (int itemMT in ListIDMaMT)
                             {
-                                                             
-                                bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(itemMT, itemPM);
-                                if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                DsCaiDatDAO.Instance.DeleteWithIDMT(itemMT);
+                                foreach (int itemPM in ListIDMaPM)
                                 {
-                                    string Ghichu = txtGhiChu.Text.Trim();
-                                    DsCaiDatDAO.Instance.Insert(itemMT, itemPM, ngaycaidat, ngaycaidat, Ghichu);
-                                    dem++;
+
+                                    bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(itemMT, itemPM);
+                                    if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                    {
+                                        string Ghichu = txtGhiChu.Text.Trim();
+                                        DsCaiDatDAO.Instance.Insert(itemMT, itemPM, ngaycaidat, ngaycaidat, Ghichu);
+                                        dem++;
+                                    }
                                 }
                             }
+                            MessageBox.Show($"Đã lưu {dem} thông tin cài đặt phần mềm.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
-                        MessageBox.Show($"Đã lưu {dem} thông tin cài đặt phần mềm.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+
+                    DemMT = 0;
+                    DemPM = 0;
+                    LoadControl();
+                    #endregion
                 }
-
-                DemMT = 0;
-                DemPM = 0;
-                LoadControl();
-                #endregion
             }
-
-
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }          
         }
 
         private void gridView2_RowCellStyle(object sender, RowCellStyleEventArgs e)
