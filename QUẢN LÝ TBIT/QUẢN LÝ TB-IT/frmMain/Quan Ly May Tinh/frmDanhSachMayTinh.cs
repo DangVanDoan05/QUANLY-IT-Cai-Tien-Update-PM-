@@ -371,10 +371,10 @@ namespace frmMain
                         // QLYMAYTINH(ID,MAMT, MAC, LOAIMT, NCC, NHAMAY, PB, NGUOISD, MATSCD, NGAYMUA, HANBH, BAOHANH, GHICHU, IDIP)
 
                         string maMT = txtMaMT.Text.Trim();
-                     
+
                         int IdIP = 0;
-                      
-                        if(radDHCP.Checked)
+
+                        if (radDHCP.Checked)
                         {
                             IdIP = 1053;  // ID= 1053 là ID của DHCP
                             string mac = txtDcMAC.Text.Trim();
@@ -385,49 +385,19 @@ namespace frmMain
                             string NhaMay = txtNhaMay.Text;
                             string nguoisd = txtNguoiSD.Text;
                             string MaTSCD = txtMaTSCD.Text;
-                            bool   baohanh = false;
+                            bool baohanh = false;
                             string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
                             string hanbh = dtpHanBaoHanh.Value.ToString("dd/MM/yyyy");
                             string ghichu = txtGhiChu.Text;
                             string Model = txtModel.Text;
                             string Serial = txtSoSeri.Text.Trim();
                             string UPS = txtUPS.Text;
-                            int IDWIN = 0;
-                            string KeyWin = "";
-                            int IDOFFICE = 0;
-                            string KeyOffice = "";
-                            int IDKAS = 0;
-                            string KeyKas = "";
-
-                            try
-                            {
-                                //IDWIN =int.Parse(sglKeyWin.EditValue.ToString());                             
-                                //IDOFFICE = int.Parse(sglKeyOffice.EditValue.ToString());
-                                //IDKAS = int.Parse(sglKeyKas.EditValue.ToString());
-                            }
-                            catch 
-                            {                                
-                            }
-
-                            if (IDWIN != 0)
-                            {
-                                //++ Update trạng thái key Win
-
-                                KeyWin = QLLicenseDAO.Instance.GetLicenseDTO(IDWIN).MALICENSE;
-                            }
-                            if (IDOFFICE != 0)
-                            {
-                                //++ Update trạng thái key OFFICE
-                                KeyOffice = QLLicenseDAO.Instance.GetLicenseDTO(IDOFFICE).MALICENSE;
-                            }
-                            if (IDKAS != 0)
-                            {
-                                
-                               KeyKas = QLLicenseDAO.Instance.GetLicenseDTO(IDKAS).MALICENSE;
-                            }
+                            string StatusWIN = cbWIN.SelectedValue.ToString();
+                            string StatusOffice = cbWIN.SelectedValue.ToString();
+                            string StatusKAS = cbWIN.SelectedValue.ToString();
 
                             int status = 0;
-                         
+
 
                             // TRẠNG THÁI MÁY OFFILINE
                             bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
@@ -451,7 +421,7 @@ namespace frmMain
 
                                 // Trước khi thêm lại kiểm tra xem Số lượng Kasper có bị quá hạn ko
 
-                                  QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model,Serial, UPS,IDWIN,KeyWin,IDOFFICE,KeyOffice,IDKAS,KeyKas,status);
+                                QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model, Serial, UPS, status, StatusWIN, StatusOffice, StatusKAS);
 
                                 // Lúc này lại ko biết được ID của thằng này
 
@@ -462,41 +432,41 @@ namespace frmMain
                                 QlyIPDAO.Instance.UpdateStatus(IdIP, MTDTO.ID, maMT, nguoisd);
 
                                 // Update LẠI TRẠNG THÁI CỦA KEY WIN(BẢNG QUẢN LÝ LICENSE) và     (BẢNG CÀI ĐẶT PHẦN MỀM, 
-                                if (IDWIN != 0)
-                                {
-                                    //++ Update trạng thái key Win
-                                    QLLicenseDAO.Instance.UpdatesTATUS(IDWIN, 1); // Trạng thái 1 là đang cài đặt phần mềm.
-                                                                                  // Cập nhật trong bảng thông tin cài đặt phần mềm.( ID PHẦN MỀM WIN LÀ 45)
-                                    DsCaiDatDAO.Instance.Insert(MTDTO.ID, 45, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                //if (IDWIN != 0)
+                                //{
+                                //    //++ Update trạng thái key Win
+                                //    QLLicenseDAO.Instance.UpdatesTATUS(IDWIN, 1); // Trạng thái 1 là đang cài đặt phần mềm.
+                                //                                                  // Cập nhật trong bảng thông tin cài đặt phần mềm.( ID PHẦN MỀM WIN LÀ 45)
+                                //    DsCaiDatDAO.Instance.Insert(MTDTO.ID, 45, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
 
-                                }
-
-
-                                if (IDOFFICE != 0)
-                                {
-                                    //++ Update trạng thái key OFFICE
-                                    QLLicenseDAO.Instance.UpdatesTATUS(IDOFFICE, 1);
-                                    // Cập nhật trong bảng thông tin cài đặt phần mềm.
-                                    DsCaiDatDAO.Instance.Insert(MTDTO.ID, 29, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
-                                }
+                                //}
 
 
-                                if (IDKAS != 0)
-                                {
-                                    //++ Update trạng thái key KASPERSKY
-                                    QLLicenseDAO.Instance.UpdatesTATUS(IDKAS, 1);
-                                    // Cập nhật trong bảng thông tin cài đặt phần mềm.
-                                    // Lấy ra được ID phần mềm từ ID license
-                                    QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(IDKAS);
-                                    int IDMT = MTDTO.ID;
-                                    int IDPM = LicenseDTO.IDPM;
-                                    // Như vậy sẽ không cần phải xóa thông tin phần mềm nữa.
-                                    bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
-                                    if (!CheckCDPM) // Chưa có thông tin cài đặt.
-                                    {
-                                        DsCaiDatDAO.Instance.Insert(MTDTO.ID, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
-                                    }                                 
-                                }
+                                //if (IDOFFICE != 0)
+                                //{
+                                //    //++ Update trạng thái key OFFICE
+                                //    QLLicenseDAO.Instance.UpdatesTATUS(IDOFFICE, 1);
+                                //    // Cập nhật trong bảng thông tin cài đặt phần mềm.
+                                //    DsCaiDatDAO.Instance.Insert(MTDTO.ID, 29, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                //}
+
+
+                                //if (IDKAS != 0)
+                                //{
+                                //    //++ Update trạng thái key KASPERSKY
+                                //    QLLicenseDAO.Instance.UpdatesTATUS(IDKAS, 1);
+                                //    // Cập nhật trong bảng thông tin cài đặt phần mềm.
+                                //    // Lấy ra được ID phần mềm từ ID license
+                                //    QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(IDKAS);
+                                //    int IDMT = MTDTO.ID;
+                                //    int IDPM = LicenseDTO.IDPM;
+                                //    // Như vậy sẽ không cần phải xóa thông tin phần mềm nữa.
+                                //    bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
+                                //    if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                //    {
+                                //        DsCaiDatDAO.Instance.Insert(MTDTO.ID, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                //    }                                 
+                                //}
 
 
 
@@ -511,7 +481,7 @@ namespace frmMain
                             luu = 0;
 
                         }
-                        if(radIPtinh.Checked)
+                        if (radIPtinh.Checked)
                         {
                             try
                             {
@@ -530,42 +500,11 @@ namespace frmMain
                                 string Model = txtModel.Text;
                                 string Serial = txtSoSeri.Text.Trim();
                                 string UPS = txtUPS.Text;
-                                int IDWIN = 0;
-                                string KeyWin = "";
-                                int IDOFFICE = 0;
-                                string KeyOffice = "";
-                                int IDKAS = 0;
-                                string KeyKas = "";
-                                try
-                                {
-                                    //IDWIN = int.Parse(sglKeyWin.EditValue.ToString());
-                                    //IDOFFICE = int.Parse(sglKeyOffice.EditValue.ToString());
-                                    //IDKAS = int.Parse(sglKeyKas.EditValue.ToString());
-                                }
-                                catch
-                                {
-
-
-                                }
-                                if (IDWIN != 0)
-                                {
-                                    //++ Update trạng thái key Win
-
-                                    KeyWin = QLLicenseDAO.Instance.GetLicenseDTO(IDWIN).MALICENSE;
-                                }
-                                if (IDOFFICE != 0)
-                                {
-                                    //++ Update trạng thái key OFFICE
-                                    KeyOffice = QLLicenseDAO.Instance.GetLicenseDTO(IDOFFICE).MALICENSE;
-                                }
-                                if (IDKAS != 0)
-                                {
-                                    //++ Update trạng thái key KASPERSKY
-                                    KeyKas = QLLicenseDAO.Instance.GetLicenseDTO(IDKAS).MALICENSE;
-                                }
-
+                                string StatusWIN = cbWIN.SelectedValue.ToString();
+                                string StatusOffice = cbWIN.SelectedValue.ToString();
+                                string StatusKAS = cbWIN.SelectedValue.ToString();
                                 int status = 0;
-                              
+
 
                                 bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
 
@@ -586,7 +525,7 @@ namespace frmMain
 
                                     // IP được lưu vào thì phải đổi trạng thái cho máy tính.
 
-                                  //  QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP,Model,Serial,UPS, IDWIN,KeyWin, IDOFFICE,KeyOffice, IDKAS,KeyKas,status);
+                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model, Serial, UPS, status, StatusWIN, StatusOffice, StatusKAS);
 
                                     // Lúc này lại ko biết được ID của thằng này
 
@@ -594,59 +533,38 @@ namespace frmMain
 
                                     // Update trạng thái IP từ 0 chuyển sang Status là ID của máy tính.
 
-                                    QlyIPDAO.Instance.UpdateStatus(IdIP, MTDTO.ID,maMT,nguoisd);
+                                    QlyIPDAO.Instance.UpdateStatus(IdIP, MTDTO.ID, maMT, nguoisd);
 
 
                                     // Update LẠI TRẠNG THÁI CỦA KEY WIN(BẢNG QUẢN LÝ LICENSE) và     (BẢNG CÀI ĐẶT PHẦN MỀM, 
-                                    if (IDWIN != 0)
-                                    {
-                                        //++ Update trạng thái key Win
-                                        QLLicenseDAO.Instance.UpdatesTATUS(IDWIN, 1); // Trạng thái 1 là đang cài đặt phần mềm.
-                                        // Cập nhật trong bảng thông tin cài đặt phần mềm.( ID PHẦN MỀM WIN LÀ 45)
-                                        DsCaiDatDAO.Instance.Insert(MTDTO.ID, 45, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
 
-                                    }
-                                    if (IDOFFICE != 0)
-                                    {
-                                        //++ Update trạng thái key OFFICE
-                                        QLLicenseDAO.Instance.UpdatesTATUS(IDOFFICE, 1);
-                                        // Cập nhật trong bảng thông tin cài đặt phần mềm.
-                                        DsCaiDatDAO.Instance.Insert(MTDTO.ID, 29, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
-                                    }
-                                    if (IDKAS != 0)
-                                    {
-                                        //++ Update trạng thái key KASPERSKY
-                                        QLLicenseDAO.Instance.UpdatesTATUS(IDKAS, 1);
-                                        // Cập nhật trong bảng thông tin cài đặt phần mềm.
-                                        // Lấy ra được ID phần mềm từ ID license
-                                        QLLicenseDTO LicenseDTO = QLLicenseDAO.Instance.GetLicenseDTO(IDKAS);
-                                        int IDMT = MTDTO.ID;
-                                        int IDPM = LicenseDTO.IDPM;
-                                        // Như vậy sẽ không cần phải xóa thông tin phần mềm nữa.
-                                        bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
-                                        if (!CheckCDPM) // Chưa có thông tin cài đặt.
-                                        {
-                                            DsCaiDatDAO.Instance.Insert(MTDTO.ID, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
-                                        }
-                                    }
 
-                                    MessageBox.Show($"Đã thêm mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    // chưa xét đến biến status nhỉ
-
+                                    //bool CheckCDPM = DsCaiDatDAO.Instance.CheckPMtrenMT(IDMT, IDPM);
+                                    //if (!CheckCDPM) // Chưa có thông tin cài đặt.
+                                    //{
+                                    //   // DsCaiDatDAO.Instance.Insert(MTDTO.ID, LicenseDTO.IDPM, DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.ToString("dd/MM/yyyy"), ghichu);
+                                    //}
                                 }
 
+                                MessageBox.Show($"Đã thêm mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                // chưa xét đến biến status nhỉ
+
+
+
                                 luu = 0;
-
                             }
-                            catch
-                            {
-                                MessageBox.Show($"Chưa chọn địa chỉ IP.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                            }
-                            
-                        }
 
                         
+                    
+                            catch
+                        {
+                            MessageBox.Show($"Chưa chọn địa chỉ IP.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                        }
+
+                    }
+
+            
                     }
 
                     break;
@@ -777,7 +695,7 @@ namespace frmMain
 
                             // Sửa trong bảng quản lý máy tính
 
-                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew,Model,Serial,UPS,IDWINnew,KeyWinnew,IDOFFICEnew,KeyOffice,IDKASnew,KeyKasnew,status,StatusWIN, StatusOFFICE,StatusKAS);
+                            QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu,IdIPnew,Model,Serial,UPS,status,StatusWIN, StatusOFFICE,StatusKAS);
 
                             //Sửa trong cả bảng Quản lý IP.
                             // Kiểm tra sự khác biệt của 2 IDIP để chạy lệnh Update trạng thái IDIP.

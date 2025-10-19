@@ -48,8 +48,9 @@ namespace frmMain
 
         private void btnDnDD1_Click(object sender, EventArgs e)
         {
-            DataProvider.Instance.strcon = @"Data Source=192.168.4.48,1433;Initial Catalog=QlyIT_ALL_06-07-2025;User ID=sa;Password=P@ssword@123456";
-            // DataProvider.Instance.strcon = @"server=192.168.0.10;uid=sa;database=QlyITall-06-07-2025;password=12345678;";
+           // DataProvider.Instance.strcon = @"Data Source=192.168.4.48,1433;Initial Catalog=QlyIT_ALL_06-07-2025;User ID=sa;Password=P@ssword@123456";
+           // In Home
+             DataProvider.Instance.strcon = @"server=192.168.0.10;uid=sa;database=QLTBIT-19-10-2025;password=12345678;";
             string tknhap = txtTaiKhoan.Text.Trim();
             string tk = tknhap.ToLower();
             string mkNhap = txtMatKhau.Text.Trim();
