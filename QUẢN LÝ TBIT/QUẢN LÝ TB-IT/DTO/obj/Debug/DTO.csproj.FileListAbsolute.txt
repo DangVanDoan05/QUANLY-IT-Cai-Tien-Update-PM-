@@ -687,3 +687,9 @@ D:\PM QUAN LY IT 19-10-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN
 D:\PM QUAN LY IT 19-10-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\PM QUAN LY IT 19-10-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.dll
 D:\PM QUAN LY IT 19-10-2025\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.pdb
+E:\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\bin\Debug\DTO.dll
+E:\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\bin\Debug\DTO.pdb
+E:\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+E:\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.dll
+E:\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\QUANLY-IT-Cai-Tien-Update-PM-\QUẢN LÝ TBIT\QUẢN LÝ TB-IT\DTO\obj\Debug\DTO.pdb

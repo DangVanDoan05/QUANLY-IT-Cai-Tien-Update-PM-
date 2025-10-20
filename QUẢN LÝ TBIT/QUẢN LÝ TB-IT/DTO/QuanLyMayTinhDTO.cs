@@ -24,23 +24,15 @@ namespace DTO
             this.PB = row["PB"].ToString();
             this.NGUOISD = row["NGUOISD"].ToString();
             this.MATSCD = row["MATSCD"].ToString();
-            this.NGAYMUA = row["NGAYMUA"].ToString();
-            this.KEYWIN = row["KEYWIN"].ToString();
-            this.KEYOFFICE = row["KEYOFFICE"].ToString();
-            this.KEYKAS = row["KEYKAS"].ToString();
+            this.NGAYMUA = row["NGAYMUA"].ToString();          
             this.HANBH = row["HANBH"].ToString();
             this.GHICHU = row["GHICHU"].ToString();
             this.IDIP = int.Parse(row["IDIP"].ToString());
             this.MODEL = row["MODEL"].ToString();
-            this.UPS= row["MADONHANG"].ToString();
-            this.IDWIN = int.Parse(row["IDWIN"].ToString());
-            this.IDOFFICE = int.Parse(row["IDOFFICE"].ToString());
-            this.IDKAS = int.Parse(row["IDKAS"].ToString());
+            this.UPS= row["MADONHANG"].ToString();        
             this.WIN = row["WIN"].ToString();
             this.OFFICE = row["OFFICE"].ToString();
             this.KASPERSKY = row["KASPERSKY"].ToString();
-
-
             this.STATUS = int.Parse(row["STATUS"].ToString());
         }
 

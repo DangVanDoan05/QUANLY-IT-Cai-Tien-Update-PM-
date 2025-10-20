@@ -50,6 +50,7 @@ namespace frmMain
 
         // đang ko biết hệ thống lưu làm sao
 
+
         private void CleanText()
         {
             txtMaPhanMem.Clear();
@@ -57,7 +58,7 @@ namespace frmMain
             txtLicense.Clear();
             txtGhiChu.Clear();
             txtGioiHanSLKey.Clear();
-            chkGHLC.Checked = false;
+            chkGHLC.Checked = true;
         }
 
 
@@ -65,6 +66,7 @@ namespace frmMain
         {
             gridControl1.DataSource = QLPhanMemDAO.Instance.GetTable();
             // Trường STATUS để giới hạn Key hay không.
+            chkGHLC.Checked = true;
         }
 
         private void LockControl(bool kt)
@@ -74,7 +76,16 @@ namespace frmMain
                 txtMaPhanMem.Enabled = false;
                 txtTenPhanMem.Enabled = false;
                 txtGioiHanSLKey.Enabled = false;
+                chkGHLC.Enabled = false;
                 txtLicense.Enabled = false;
+                dtpNgayMua.Enabled = false;
+                radKhongTH.Enabled = false;
+                dtpHanSuDung.Enabled = false;
+                txtChucnang.Enabled = false;
+                txtGhiChu.Enabled = false;
+                cbNCC.Enabled = false;
+
+
                 txtGhiChu.Enabled = false;
 
 
@@ -93,10 +104,18 @@ namespace frmMain
             {
                 txtMaPhanMem.Enabled = true;
                 txtTenPhanMem.Enabled = true;
-                txtGioiHanSLKey.Enabled = true;
-                txtLicense.Enabled = true;
-                txtGhiChu.Enabled = true;
+                txtGioiHanSLKey.Enabled = false;
 
+                txtLicense.Enabled = true;
+                chkGHLC.Enabled = true;
+              
+                dtpNgayMua.Enabled = true;
+                radKhongTH.Enabled = true;
+                dtpHanSuDung.Enabled = false;
+                txtChucnang.Enabled = true;
+                txtGhiChu.Enabled = true;
+                cbNCC.Enabled = true;
+                txtGhiChu.Enabled = true;
 
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
@@ -312,6 +331,7 @@ namespace frmMain
                 txtTenPhanMem.Text = gridView1.GetFocusedRowCellValue("TENPM").ToString();
                 txtLicense.Text = gridView1.GetFocusedRowCellValue("LICENSE").ToString();
                 txtGhiChu.Text = gridView1.GetFocusedRowCellValue("GHICHU").ToString();
+                txtGioiHanSLKey.Text = gridView1.GetFocusedRowCellValue("SLMAXKEY").ToString();
                 dtpNgayMua.Value = DateTime.Parse(gridView1.GetFocusedRowCellValue("NGAYMUA").ToString());
                 dtpHanSuDung.Value = DateTime.Parse(gridView1.GetFocusedRowCellValue("HANSD").ToString());
                 cbNCC.SelectedValue = gridView1.GetFocusedRowCellValue("NCC").ToString();
@@ -526,6 +546,20 @@ namespace frmMain
             frmNhapExcelDSPhanMem f = new frmNhapExcelDSPhanMem();
             f.ShowDialog();
             LoadControl();
+        }
+
+
+        private void chkGHLC_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkGHLC.Checked)
+            {
+                txtGioiHanSLKey.Enabled = false;
+            }
+            else
+            {
+                txtGioiHanSLKey.Enabled = true;
+            }
+           
         }
 
     }
