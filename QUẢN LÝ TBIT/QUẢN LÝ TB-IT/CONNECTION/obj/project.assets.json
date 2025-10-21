@@ -3832,11 +3832,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\CONNECTION.csproj",
+      "projectUniqueName": "E:\\PHAN MEM QLY TBI IT(Đang làm 21-10-2025)\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\CONNECTION.csproj",
       "projectName": "CONNECTION",
-      "projectPath": "E:\\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\CONNECTION.csproj",
+      "projectPath": "E:\\PHAN MEM QLY TBI IT(Đang làm 21-10-2025)\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\CONNECTION.csproj",
       "packagesPath": "C:\\Users\\m1029dd\\.nuget\\packages\\",
-      "outputPath": "E:\\PHAN MEM QLY TBI IT(Đang làm 20-10-2025)\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\obj\\",
+      "outputPath": "E:\\PHAN MEM QLY TBI IT(Đang làm 21-10-2025)\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\m1029dd\\AppData\\Roaming\\NuGet\\NuGet.Config",

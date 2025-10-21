@@ -93,8 +93,9 @@ namespace DAO
 
         public int Insert(string MaPM, string TenPM,int SlMaxKey,string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status)
         {
-            string query = "insert QLYPHANMEM(MAPM,TENPM,SLMAXKEY,LICENSE,NGAYMUA,HANSD,NCC,CHUCNANG,GHICHU) values( @ma , @ten , @SLMAX , @LICENSE , @ngmua , @hsd , @ncc , @CN , @note , @status )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM,SlMaxKey,license, ngmua, hansd, ncc, Chucnang, ghichu });
+            string query = "insert QLYPHANMEM(MAPM,TENPM,SLMAXKEY,LICENSE,NGAYMUA,HANSD,NCC,CHUCNANG,GHICHU,STATUS)" +
+                " values( @ma , @ten , @SLMAX , @LICENSE , @ngmua , @hsd , @ncc , @CN , @note , @status )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM,SlMaxKey,license, ngmua, hansd, ncc, Chucnang, ghichu, status });
             return data;
 
         }

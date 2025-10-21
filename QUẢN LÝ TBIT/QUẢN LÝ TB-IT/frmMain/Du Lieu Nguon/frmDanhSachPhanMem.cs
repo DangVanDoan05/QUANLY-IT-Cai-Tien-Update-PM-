@@ -133,8 +133,8 @@ namespace frmMain
 
         void Save()
         {
-            try
-            {
+            //try
+            //{
                 // 
                 if (them)
                 {
@@ -142,34 +142,32 @@ namespace frmMain
                     string maPM = txtMaPhanMem.Text;
                     string tenPM = txtTenPhanMem.Text;
                     string license = txtLicense.Text;
-                    int slmaxKey = int.Parse(txtGioiHanSLKey.Text);
+                //  int slmaxKey = int.Parse(txtGioiHanSLKey.Text);
+                    int slmaxKey = 0;
+                    if(chkGHLC.Checked)
+                    {
+                    // Nếu được check thì số lượng giới hạn bằng 0
+                        slmaxKey = 0;
+                    }
+                    else
+                    {
+                        slmaxKey = int.Parse(txtGioiHanSLKey.Text);
+                    }
                     string ngaymua = dtpNgayMua.Value.ToString("dd/MM/yyyy");
                     string hansd = dtpHanSuDung.Value.ToString("dd/MM/yyyy");
                     string ghichu = txtGhiChu.Text;
                     string chucnang = txtChucnang.Text;
                     string ncc = cbNCC.Text;
-                    int GioiHanLC = 0;
-                    if(chkGHLC.Checked)
-                    {
-                        GioiHanLC = 1;
-                    }
-                    else
-                    {
-                        GioiHanLC = 0;
-                    }
+                    int status = 0;
                     bool CheckMaPMExist = QLPhanMemDAO.Instance.CheckMaPMExist(maPM);
                     if (CheckMaPMExist)
                     {
                         MessageBox.Show(" Mã phần mềm đã tồn tại!", "Lỗi:",MessageBoxButtons.OK,MessageBoxIcon.Error);
                     }
                     else
-                    {
-                        DialogResult kq = MessageBox.Show($"Bạn muốn thêm mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo,MessageBoxIcon.Question);
-                        if (kq == DialogResult.Yes)
-                        {
-                            QLPhanMemDAO.Instance.Insert(maPM, tenPM,slmaxKey ,license, ngaymua, hansd, ncc,chucnang, ghichu,GioiHanLC);
-                            MessageBox.Show($" Thêm mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
+                    {                      
+                        QLPhanMemDAO.Instance.Insert(maPM,tenPM,slmaxKey,license, ngaymua, hansd, ncc,chucnang, ghichu,status);
+                        MessageBox.Show($" Thêm mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);                      
                         them = false;
                         LoadControl();
                     }
@@ -209,11 +207,11 @@ namespace frmMain
                         }
                     }
                 }
-            }
-            catch
-            {
-                MessageBox.Show("Hãy chọn nhà cung cấp có trong danh sách ", "Thông Báo:");
-            }
+            //}
+            //catch
+            //{
+            //    MessageBox.Show("Hãy chọn nhà cung cấp có trong danh sách ", "Thông Báo:");
+            //}
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -303,6 +301,7 @@ namespace frmMain
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            // Câu lệnh Insert đang bị sai
             Save();
             LoadControl();
         }

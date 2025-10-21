@@ -75,7 +75,6 @@ namespace DAO
                         }
                     }
                 }
-
                 data = cmd.ExecuteNonQuery();
                 sqlcon.Close();
             }

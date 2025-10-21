@@ -32,6 +32,8 @@ namespace frmMain
         int idquyen = CommonUser.Quyen;
         string MaCVUserLogon = CommonUser.UserStatic.CHUCVU;
 
+
+
         private void LoadControl()
         {
 
@@ -212,6 +214,7 @@ namespace frmMain
 
         private void LoadCBX()
         {
+
             // Load NHÀ CUNG CẤP:
 
             cbNCC.DataSource = NhaCungCapDAO.Instance.GetListNCC();
@@ -373,16 +376,12 @@ namespace frmMain
         {
             switch (luu)
             {
-
                 // Thêm máy tính phải ngừa trường hợp bị trùng key.
                 case 1: // luu khi them du lieu
                     {
                         // QLYMAYTINH(ID,MAMT, MAC, LOAIMT, NCC, NHAMAY, PB, NGUOISD, MATSCD, NGAYMUA, HANBH, BAOHANH, GHICHU, IDIP)
-
                         string maMT = txtMaMT.Text.Trim();
-
                         int IdIP = 0;
-
                         if (radDHCP.Checked)
                         {
                             IdIP = 1053;  // ID= 1053 là ID của DHCP
@@ -580,7 +579,7 @@ namespace frmMain
 
                 // Thực hiện sửa dữ liệu máy tính( Sửa thông tin là khó)
 
-                case 2: // Sửa thông tin máy tính.
+                case 2: // Sửa thông tin máy tính.              // Chưa nghĩ ra được khúc sửa thông tin máy tính nhỉ
                     //SỬA THÔNG TIN MÁY TÍNH. 
                     // bÂY GIỜ CẬP NHẬT ĐỂ SỬA kEY WIN TRƯỚC
                     //  Từ ID máy tính đc chọn ====> Lấy ra được IDIP của máy tính theo DTO.
@@ -632,11 +631,12 @@ namespace frmMain
                         string UPS = txtUPS.Text;
                        
                         QuanLyMayTinhDTO   MTDTO1 = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
+
                         //string StatusWIN = MTDTO1.WIN;
                         //string StatusOFFICE = OffMT;
                         //string StatusKAS = KasMT;
 
-                        // *** LẤY GIÁ TRỊ TỪ COMBOBOX
+                        // *** LẤY GIÁ TRỊ TỪ COMBOBOX, Vẫn cần phải giá trị từ commbox box
 
                         string StatusWIN = cbWIN.SelectedValue.ToString();
                         string StatusOFFICE = cbOffice.SelectedValue.ToString();
@@ -1024,14 +1024,13 @@ namespace frmMain
             else
             {
                 MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-                              
+            }                           
         }
 
 
         private void btnSua_Click(object sender, EventArgs e)
         {
+            // Nếu nó chạy biến sửa mới thêm Kasper.
             if (idquyen >= 2)
             {
                 // Tại sao nhấn nút sửa nó ra nhiều Key thế nhỉ
@@ -1048,7 +1047,25 @@ namespace frmMain
                 }
                 if (Count == 1)
                 {
+
                     LockControl(false);
+                    QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
+                    // Load Combo cho Kasper
+                    // Đảo thứ tự 2 thằng lên cho nhau
+                    //Load Combobox Kasper, Tạm thời để vậy, sẽ suy nghĩ sau
+                    string KesKasPresent = MTDTO.KASPERSKY;
+                    StatusWinOfficeKASDTO Khong = new StatusWinOfficeKASDTO("Không");
+                    StatusWinOfficeKASDTO KasPreSent = new StatusWinOfficeKASDTO(KesKasPresent);
+                    List<StatusWinOfficeKASDTO> LsStatusKaper = new List<StatusWinOfficeKASDTO>();
+                    
+                    LsStatusKaper.Add(KasPreSent);
+                    LsStatusKaper.Add(Khong);
+
+                    // Load Combobox
+                    cbKasper.DataSource = LsStatusKaper;
+                    cbKasper.DisplayMember = "STATUS";
+                    cbKasper.ValueMember = "STATUS";
+
                     LoadLicense();
                     luu = 2;
                 }
@@ -1066,62 +1083,15 @@ namespace frmMain
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            LockControl(false);
-            txtMaMT.Enabled = false;
-
-            // cho phép xóa nhiều dòng trong gridview
-            int dem = 0;
-
-            List<string> LsMaMTDcChon = new List<string>();
-
-            foreach (var item in gridView1.GetSelectedRows())
+            if (idquyen >= 3)
             {
-                string MaMT = gridView1.GetRowCellValue(item, "MAMT").ToString();
-                LsMaMTDcChon.Add(MaMT);
-                dem++;
-            }
-
-            if (dem > 0)
-            {
-                DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} mã máy tính được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (kq == DialogResult.Yes)
-                {
-
-                    foreach (string item in LsMaMTDcChon)
-                    {
-                        // Update lại trạng thái cho địa chỉ IP của máy tính.
-
-                        QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMaMT1(item);
-                        int IdIP = MTDTO.IDIP;
-
-                        // TRƯỜNG HỢP XÓA MÁY TÍNH(Cập nhật trong bảng quản lý IP)
-                        QlyIPDAO.Instance.UpdateStatus(IdIP,0,"",""); // Trạng thái IP 0 là trạng thái IP chưa được gán.
-
-                        // CẬP NHẬT TRẠNG THÁI CHO LICENSE:
-
-                                //++ xÉT TRẠNG THÁI CHO KEY WIN, LICENSE
-
-                        // Xóa trong bảng ds cài đặt phần mềm, vấn đề là nếu mã máy tính thay đổi thì trong bảng ds cài đặt sẽ chưa thay đổi mã theo nên vẫn báo là máy chưa cài đặt PM.
-                        int IdMT = MTDTO.ID;
-
-                        // Xóa thông tin cài đặt theo ID máy tính.
-
-                        DsCaiDatDAO.Instance.DeleteWithIDMT(IdMT);
-
-                        // Xóa trong bảng ds máy tính. 
-
-                        QuanLyMayTinhDAO.Instance.Delete(item);
-
-                    }
-                    MessageBox.Show($"Đã xóa {dem} mã máy tính được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                LoadControl();
+               
             }
             else
             {
-                MessageBox.Show("Bạn chưa chọn mã máy tính để xóa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            LoadControl();
+           
         }
 
 
@@ -1130,7 +1100,61 @@ namespace frmMain
         {
             if (idquyen >= 2)
             {
-                Save();
+                LockControl(false);
+                txtMaMT.Enabled = false;
+
+                // cho phép xóa nhiều dòng trong gridview
+                int dem = 0;
+
+                List<string> LsMaMTDcChon = new List<string>();
+
+                foreach (var item in gridView1.GetSelectedRows())
+                {
+                    string MaMT = gridView1.GetRowCellValue(item, "MAMT").ToString();
+                    LsMaMTDcChon.Add(MaMT);
+                    dem++;
+                }
+
+                if (dem > 0)
+                {
+                    DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} mã máy tính được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (kq == DialogResult.Yes)
+                    {
+
+                        foreach (string item in LsMaMTDcChon)
+                        {
+                            // Update lại trạng thái cho địa chỉ IP của máy tính.
+
+                            QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMaMT1(item);
+                            int IdIP = MTDTO.IDIP;
+
+                            // TRƯỜNG HỢP XÓA MÁY TÍNH(Cập nhật trong bảng quản lý IP)
+                            QlyIPDAO.Instance.UpdateStatus(IdIP, 0, "", ""); // Trạng thái IP 0 là trạng thái IP chưa được gán.
+
+                            // CẬP NHẬT TRẠNG THÁI CHO LICENSE:
+
+                            //++ xÉT TRẠNG THÁI CHO KEY WIN, LICENSE
+
+                            // Xóa trong bảng ds cài đặt phần mềm, vấn đề là nếu mã máy tính thay đổi thì trong bảng ds cài đặt sẽ chưa thay đổi mã theo nên vẫn báo là máy chưa cài đặt PM.
+                            int IdMT = MTDTO.ID;
+
+                            // Xóa thông tin cài đặt theo ID máy tính.
+
+                            DsCaiDatDAO.Instance.DeleteWithIDMT(IdMT);
+
+                            // Xóa trong bảng ds máy tính. 
+
+                            QuanLyMayTinhDAO.Instance.Delete(item);
+
+                        }
+                        MessageBox.Show($"Đã xóa {dem} mã máy tính được chọn.", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    LoadControl();
+                }
+                else
+                {
+                    MessageBox.Show("Bạn chưa chọn mã máy tính để xóa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 LoadControl();
             }
             else
@@ -1142,17 +1166,8 @@ namespace frmMain
 
 
         private void btnCapNhat_Click(object sender, EventArgs e)
-        {
-            if (idquyen >= 2)
-            {
-                LoadControl();
-                // Done: hoàn thành.
-            }
-            else
-            {
-                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
+        {           
+            LoadControl();          
         }
 
 
@@ -1207,6 +1222,7 @@ namespace frmMain
             {
 
                 IDselected = int.Parse(gridView1.GetFocusedRowCellValue("ID").ToString());
+                QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
                 // 320 thì sẽ lấy theo ID đầu tiên.
                 // MessageBox.Show($"ID lấy là ID {IDselected} ");
                 txtMaMT.Text = gridView1.GetFocusedRowCellValue("MAMT").ToString();
@@ -1269,7 +1285,7 @@ namespace frmMain
                 cbOffice.DisplayMember = "STATUS";
                 cbOffice.ValueMember = "STATUS";
 
-
+                
 
                 cbWIN.SelectedValue = gridView1.GetFocusedRowCellValue("WIN").ToString();
                 cbOffice.SelectedValue = gridView1.GetFocusedRowCellValue("OFFICE").ToString();
@@ -1305,13 +1321,23 @@ namespace frmMain
 
         private void btnBaoDuong_Click(object sender, EventArgs e)
         {
-            frmKHBaoDuongMT f = new frmKHBaoDuongMT();
-            f.ShowDialog();
+            // Nếu nó chạy biến sửa mới thêm Kasper.
+            if (idquyen >= 2)
+            {
+                frmKHBaoDuongMT f = new frmKHBaoDuongMT();
+                f.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }         
         }
 
         private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
         {
+
             GridView view = sender as GridView;
+
             try
             {
 
@@ -1319,6 +1345,7 @@ namespace frmMain
                 int Status= int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["STATUS"]).ToString());
                 bool CheckCDPM = DsCaiDatDAO.Instance.CheckCDPM(IDMT);
                 bool kt = bool.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["BAOHANH"]).ToString());
+
                 //string ton = view.GetRowCellValue(e.RowHandle, view.Columns["SLTON"]).ToString();
                 //string ma = view.GetRowCellValue(e.RowHandle, view.Columns["MALK"]).ToString();
                 //TonLinhKienDTO TonLkDTO = TonLinhKienDAO.Instance.GetMaLKTon(ma);
