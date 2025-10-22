@@ -491,8 +491,8 @@ namespace frmMain
                         }
                         if (radIPtinh.Checked)
                         {
-                            try
-                            {
+                            //try
+                            //{
                                 IdIP = int.Parse(sglDiaChiIP.EditValue.ToString()); string mac = txtDcMAC.Text.Trim();
                                 string Domain = txtDomain.Text.Trim();
                                 string loaiMT = cbLoaiMT.SelectedValue.ToString();
@@ -556,19 +556,12 @@ namespace frmMain
 
                                 MessageBox.Show($"Đã thêm mã máy tính {maMT}.", "Thành công:", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 // chưa xét đến biến status nhỉ
-
-
-
                                 luu = 0;
-                            }
-
-                        
-                    
-                            catch
-                        {
-                            MessageBox.Show($"Chưa chọn địa chỉ IP.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                        }
+                            //}                                        
+                            //catch
+                            //{
+                            //    MessageBox.Show($"Chưa chọn địa chỉ IP.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);  
+                            //}
 
                     }
 
@@ -1059,6 +1052,7 @@ namespace frmMain
                     List<StatusWinOfficeKASDTO> LsStatusKaper = new List<StatusWinOfficeKASDTO>();
                     
                     LsStatusKaper.Add(KasPreSent);
+
                     LsStatusKaper.Add(Khong);
 
                     // Load Combobox
@@ -1085,42 +1079,22 @@ namespace frmMain
         {
             if (idquyen >= 3)
             {
-               
-            }
-            else
-            {
-                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-           
-        }
-
-
-
-        private void btnLuu_Click(object sender, EventArgs e)
-        {
-            if (idquyen >= 2)
-            {
                 LockControl(false);
                 txtMaMT.Enabled = false;
-
                 // cho phép xóa nhiều dòng trong gridview
                 int dem = 0;
-
                 List<string> LsMaMTDcChon = new List<string>();
-
                 foreach (var item in gridView1.GetSelectedRows())
                 {
                     string MaMT = gridView1.GetRowCellValue(item, "MAMT").ToString();
                     LsMaMTDcChon.Add(MaMT);
                     dem++;
                 }
-
                 if (dem > 0)
                 {
-                    DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} mã máy tính được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    DialogResult kq = MessageBox.Show($"Bạn muốn xóa {dem} mã máy tính được chọn?", "CHÚ Ý:", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (kq == DialogResult.Yes)
                     {
-
                         foreach (string item in LsMaMTDcChon)
                         {
                             // Update lại trạng thái cho địa chỉ IP của máy tính.
@@ -1155,6 +1129,22 @@ namespace frmMain
                 {
                     MessageBox.Show("Bạn chưa chọn mã máy tính để xóa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                LoadControl();
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
+        }
+
+
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            if (idquyen >= 2)
+            {
+                Save();
                 LoadControl();
             }
             else
@@ -1340,7 +1330,6 @@ namespace frmMain
 
             try
             {
-
                 int IDMT = int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["ID"]).ToString());
                 int Status= int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["STATUS"]).ToString());
                 bool CheckCDPM = DsCaiDatDAO.Instance.CheckCDPM(IDMT);
@@ -1351,24 +1340,23 @@ namespace frmMain
                 //TonLinhKienDTO TonLkDTO = TonLinhKienDAO.Instance.GetMaLKTon(ma);
                 //int IDttKK = TonLkDTO.IDTTKIEMKE;
                 //int ktMaTon = CheckTon(ma);
-
+                //if (!CheckCDPM)
+                //{
+                //    e.Appearance.BackColor = btnLimitKasDD1.Appearance.BackColor;
+                //}
                 if (kt)
                 {
                     e.Appearance.BackColor = btnConBH.Appearance.BackColor;
                 }
-                if (!CheckCDPM)
-                {
-                    e.Appearance.BackColor = btnLimitKasDD1.Appearance.BackColor;
-                }
+              
                 //if (Status==0)
                 //{
                 //    e.Appearance.BackColor = btnHong.Appearance.BackColor;
                 //}
-
             }
             catch 
             {
-              
+                
             }
             // string ton = view.GetRowCellDisplayText(e.RowHandle, view.Columns["SLTON"]).ToString();
             //string mamt = view.GetRowCellValue(e.RowHandle, view.Columns["MAMT"]).ToString();

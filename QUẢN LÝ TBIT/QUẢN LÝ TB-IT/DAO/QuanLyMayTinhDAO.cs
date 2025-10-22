@@ -237,7 +237,7 @@ namespace DAO
         {
             string query = "insert QLYMAYTINH(MAMT,MAC,DOMAIN,LOAIMT,NCC,NHAMAY,PB,NGUOISD,MATSCD,NGAYMUA,HANBH,BAOHANH,GHICHU,IDIP,MODEL,SERIAL,MADONHANG,STATUS,WIN,OFFICE,KASPERSKY)" +
                         " values ( @maMT , @mac , @Domain , @loaimt , @ncc , @nhamay , @pb , @ngsd , @matscd , @ngaymua , @hbh , @baohanh , @ghichu , @idip , @model , @serial , @MaDH , @status , @win , @office , @kas )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT,MAC,Domain,LOAIMT,NCC,NhaMay,phongban, nguoisd, matscd, ngaymua,  hanbh,  baohanh, ghichu ,IdIP,Model,Serial,MaDonHang,statusWIN, statusOFFICE, statusKAS });
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT,MAC,Domain,LOAIMT,NCC,NhaMay,phongban, nguoisd, matscd, ngaymua,  hanbh,  baohanh, ghichu ,IdIP,Model,Serial,MaDonHang,status,statusWIN, statusOFFICE, statusKAS });
             return data;
         }
 
