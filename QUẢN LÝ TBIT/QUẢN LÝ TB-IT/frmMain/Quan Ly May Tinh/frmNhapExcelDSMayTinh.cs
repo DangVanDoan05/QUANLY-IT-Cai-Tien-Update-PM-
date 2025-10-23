@@ -77,7 +77,7 @@ namespace frmMain
         // Chọn Sheet.
         private void ReadFileExcel()
         {
-          
+          // Đi lấy từng dòng một để đọc File.
 
             DataTable dt = new DataTable();
             dt.Columns.Add("MAMT");           
@@ -357,7 +357,6 @@ namespace frmMain
             {
                 foreach (QuanLyMayTinhDTO item in dsMT)
                 {
-
                     bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(item.MAMT);
                     if(!CheckMaMTExist)
                     {
@@ -368,9 +367,7 @@ namespace frmMain
                     {
                         MaMTton.Add(item.MAMT);
                         loi++;
-                    }
-                   
-
+                    }                 
                 }
             }
             MessageBox.Show($"Thêm thành công {mamoi} máy tính, {loi} mã máy đã tồn tại.", "Thông Báo: ");

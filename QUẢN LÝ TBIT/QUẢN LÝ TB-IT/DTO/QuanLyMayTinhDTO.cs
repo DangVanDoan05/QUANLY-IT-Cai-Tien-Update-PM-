@@ -36,6 +36,8 @@ namespace DTO
             this.STATUS = int.Parse(row["STATUS"].ToString());
         }
 
+        // MAMT,MAC,DOMAIN,LOAIMT,NCC,NHAMAY,PB,NGUOISD,MATSCD,NGAYMUA,HANBH,BAOHANH,GHICHU,IDIP,MODEL,SERIAL,MADONHANG,STATUS,WIN,OFFICE,KASPERSKY
+
         public QuanLyMayTinhDTO(string maMT, bool baohanh, string ip, string mac,string Domain,string LoaiMT, string NCC, string Nhamay, string phongban, string nguoisd, string mtscd, string ngaymua, string hanbh, string ghichu)
         {
             this.MAMT = maMT;
@@ -53,6 +55,26 @@ namespace DTO
             this.HANBH = hanbh;
             this.GHICHU = ghichu;
         }
+
+
+        public QuanLyMayTinhDTO(string MaMT, string Model, string Serial, string NguoiSD)
+        {       
+            this.MAMT = baohanh;
+            this.IP = ip;
+            this.MAC = mac;
+            this.DOMAIN = Domain;
+            this.LOAIMT = LoaiMT;
+            this.NCC = NCC;
+            this.NHAMAY = Nhamay;
+            this.PB = phongban;
+            this.NGUOISD = nguoisd;
+            this.MATSCD = mtscd;
+            this.NGAYMUA = ngaymua;
+            this.HANBH = hanbh;
+            this.GHICHU = ghichu;
+        }
+
+
 
 
 

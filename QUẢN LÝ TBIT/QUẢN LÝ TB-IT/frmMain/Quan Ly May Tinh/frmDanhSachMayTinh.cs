@@ -1177,11 +1177,9 @@ namespace frmMain
         private void btnNhapExcell_Click(object sender, EventArgs e)
         {
             LockControl(false);
-
             frmNhapExcelDSMayTinh f = new frmNhapExcelDSMayTinh();
             f.ShowDialog();
             LoadControl();
-
         }
 
         private void btnXuatExcell_Click(object sender, EventArgs e)
@@ -1558,24 +1556,15 @@ namespace frmMain
 
         }
 
-        private void btnGoKas_Click(object sender, EventArgs e)
+       
+        private void simpleButton1_Click(object sender, EventArgs e)
         {
-            string MaMT = txtMaMT.Text;
-            DialogResult kq = MessageBox.Show($"Bạn muốn gỡ Key Kas của máy tính: {MaMT} được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult kq = MessageBox.Show($"Bạn muốn UPDATE Model Serial và người sử dụng của máy tính được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (kq == DialogResult.Yes)
             {
-                QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
+                // Đang sử dụng nguyên lý của nó giống như là nhập Excell.
+                
 
-
-                int IDKAS = MTDTO.IDKAS;
-
-                // Gỡ xong thì phải cập nhật trong bảng quản lý License.
-                QLLicenseDAO.Instance.UpdatesTATUS(IDKAS, 0); // trạng thái 0 là trạng thái key chưa sử dụng.
-
-                // Gỡ xong thì phải cập nhật trong bảng quản lý máy tính, cập nhật lại Key win cho máy tính bằng 0
-                QuanLyMayTinhDAO.Instance.UpdateKeyKas(IDselected, 0,"");
-
-                MessageBox.Show($"Đã gỡ Key KAS cho máy tính {MaMT} .", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             }
 
