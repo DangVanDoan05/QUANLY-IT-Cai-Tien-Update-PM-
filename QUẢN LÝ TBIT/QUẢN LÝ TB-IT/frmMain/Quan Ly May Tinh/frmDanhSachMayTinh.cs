@@ -403,7 +403,7 @@ namespace frmMain
                             string StatusWIN = cbWIN.SelectedValue.ToString();
                             string StatusOffice = cbWIN.SelectedValue.ToString();
                             string StatusKAS = cbWIN.SelectedValue.ToString();
-
+                            string Giatrimay = txtGiaTriMay.Text.Trim();
                             int status = 0;
 
 
@@ -429,7 +429,7 @@ namespace frmMain
 
                                 // Trước khi thêm lại kiểm tra xem Số lượng Kasper có bị quá hạn ko
 
-                                QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model, Serial, UPS, status, StatusWIN, StatusOffice, StatusKAS);
+                                QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model, Serial, UPS, status, StatusWIN, StatusOffice, StatusKAS,Giatrimay);
 
                                 // Lúc này lại ko biết được ID của thằng này
 
@@ -511,6 +511,7 @@ namespace frmMain
                                 string StatusWIN = cbWIN.SelectedValue.ToString();
                                 string StatusOffice = cbWIN.SelectedValue.ToString();
                                 string StatusKAS = cbWIN.SelectedValue.ToString();
+                                string Giatrimay = txtGiaTriMay.Text.Trim();
                                 int status = 0;
 
 
@@ -533,7 +534,7 @@ namespace frmMain
 
                                     // IP được lưu vào thì phải đổi trạng thái cho máy tính.
 
-                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model, Serial, UPS, status, StatusWIN, StatusOffice, StatusKAS);
+                                    QuanLyMayTinhDAO.Instance.Insert(maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua, hanbh, baohanh, ghichu, IdIP, Model, Serial, UPS, status, StatusWIN, StatusOffice, StatusKAS,Giatrimay);
 
                                     // Lúc này lại ko biết được ID của thằng này
 
@@ -622,7 +623,8 @@ namespace frmMain
                         string Model = txtModel.Text;
                         string Serial = txtSoSeri.Text.Trim();
                         string UPS = txtUPS.Text;
-                       
+                        string GiatriMay= txtGiaTriMay.Text.Trim();
+
                         QuanLyMayTinhDTO   MTDTO1 = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
 
                         //string StatusWIN = MTDTO1.WIN;
@@ -651,7 +653,7 @@ namespace frmMain
                             // Sửa trong bảng quản lý máy tính
 
                             QuanLyMayTinhDAO.Instance.Update(IDselected,maMT, mac, Domain, loaiMT, ncc, NhaMay, Phongban, nguoisd, MaTSCD, ngaymua,
-                                hanbh, baohanh, ghichu,IdIPnew,Model,Serial,UPS,status,StatusWIN, StatusOFFICE,StatusKAS);
+                                hanbh, baohanh, ghichu,IdIPnew,Model,Serial,UPS,status,StatusWIN, StatusOFFICE,StatusKAS,GiatriMay);
 
                             //Sửa trong cả bảng Quản lý IP.
                             // Kiểm tra sự khác biệt của 2 IDIP để chạy lệnh Update trạng thái IDIP.
@@ -1172,14 +1174,22 @@ namespace frmMain
             ColumSTT.Instance.CustomDrawRowIndicator(e);
         }
 
+
         DataTable data = new DataTable();
 
         private void btnNhapExcell_Click(object sender, EventArgs e)
         {
-            LockControl(false);
-            frmNhapExcelDSMayTinh f = new frmNhapExcelDSMayTinh();
-            f.ShowDialog();
-            LoadControl();
+            if (idquyen >= 2)
+            {
+                LockControl(false);
+                frmNhapExcelDSMayTinh f = new frmNhapExcelDSMayTinh();
+                f.ShowDialog();
+                LoadControl();
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa được cấp quyền cho chức năng này.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }           
         }
 
         private void btnXuatExcell_Click(object sender, EventArgs e)
@@ -1551,23 +1561,23 @@ namespace frmMain
                 QuanLyMayTinhDAO.Instance.UpdateKeyOffice(IDselected, 0,"");
 
                 MessageBox.Show($"Đã gỡ Key Office cho máy tính {MaMT} .", "THÀNH CÔNG!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
             }
-
         }
 
        
         private void simpleButton1_Click(object sender, EventArgs e)
         {
-            DialogResult kq = MessageBox.Show($"Bạn muốn UPDATE Model Serial và người sử dụng của máy tính được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (kq == DialogResult.Yes)
-            {
-                // Đang sử dụng nguyên lý của nó giống như là nhập Excell.
+            //DialogResult kq = MessageBox.Show($"Bạn muốn UPDATE Model Serial và người sử dụng của máy tính được chọn?", "Thông báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //if (kq == DialogResult.Yes)
+            //{
+            //    // Đang sử dụng nguyên lý của nó giống như là nhập Excell.
                 
+            //    LockControl(false);
+            //    frmNhapExcelDSMayTinh f = new frmNhapExcelDSMayTinh();
+            //    f.ShowDialog();
+            //    LoadControl();
 
-
-            }
-
+            //}
         }
     }   
 }

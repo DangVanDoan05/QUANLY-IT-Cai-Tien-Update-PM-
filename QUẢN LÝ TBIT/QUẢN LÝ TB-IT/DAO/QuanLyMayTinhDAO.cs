@@ -232,12 +232,12 @@ namespace DAO
 
         // Hàm thêm
         public int Insert(string MaMT , string MAC,string Domain , string LOAIMT, string NCC,string NhaMay, string phongban, string nguoisd, string matscd, string ngaymua,
-            string hanbh,bool baohanh,string ghichu, int IdIP,string Model,string Serial,string MaDonHang, int status, string statusWIN, string statusOFFICE, string statusKAS)
+            string hanbh,bool baohanh,string ghichu, int IdIP,string Model,string Serial,string MaDonHang, int status, string statusWIN, string statusOFFICE, string statusKAS,string GiatriMay)
 
         {
-            string query = "insert QLYMAYTINH(MAMT,MAC,DOMAIN,LOAIMT,NCC,NHAMAY,PB,NGUOISD,MATSCD,NGAYMUA,HANBH,BAOHANH,GHICHU,IDIP,MODEL,SERIAL,MADONHANG,STATUS,WIN,OFFICE,KASPERSKY)" +
-                        " values ( @maMT , @mac , @Domain , @loaimt , @ncc , @nhamay , @pb , @ngsd , @matscd , @ngaymua , @hbh , @baohanh , @ghichu , @idip , @model , @serial , @MaDH , @status , @win , @office , @kas )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT,MAC,Domain,LOAIMT,NCC,NhaMay,phongban, nguoisd, matscd, ngaymua,  hanbh,  baohanh, ghichu ,IdIP,Model,Serial,MaDonHang,status,statusWIN, statusOFFICE, statusKAS });
+            string query = "insert QLYMAYTINH(MAMT,MAC,DOMAIN,LOAIMT,NCC,NHAMAY,PB,NGUOISD,MATSCD,NGAYMUA,HANBH,BAOHANH,GHICHU,IDIP,MODEL,SERIAL,MADONHANG,STATUS,WIN,OFFICE,KASPERSKY,GIATRIMT)" +
+                        " values ( @maMT , @mac , @Domain , @loaimt , @ncc , @nhamay , @pb , @ngsd , @matscd , @ngaymua , @hbh , @baohanh , @ghichu , @idip , @model , @serial , @MaDH , @status , @win , @office , @kas , @gtMT )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT,MAC,Domain,LOAIMT,NCC,NhaMay,phongban, nguoisd, matscd, ngaymua,  hanbh,  baohanh, ghichu ,IdIP,Model,Serial,MaDonHang,status,statusWIN, statusOFFICE, statusKAS,GiatriMay });
             return data;
         }
 
@@ -245,21 +245,29 @@ namespace DAO
 
         public int Update(int ID,string MaMT, string MAC,string Domain, string LOAIMT, string NCC, string NhaMay, string phongban, string nguoisd,
             string matscd, string ngaymua, string hanbh, bool baohanh, string ghichu, int IdIP, string Model,string Serial,string UPS, int status,
-            string statusWIN, string statusOFFICE, string statusKAS)
-
+            string statusWIN, string statusOFFICE, string statusKAS, string GiatriMay)
         {
             string query = "UPDATE QLYMAYTINH set MAMT= @MAMT ,MAC= @mac ,DOMAIN= @domain ,LOAIMT= @LoaiMT ,NCC= @NCC ,NHAMAY= @nhamay ,PB= @pb ,NGUOISD= @NgSD ,MATSCD= @MaTSCD " +
                 ",NGAYMUA= @NgayMua ,HANBH= @hanBH ,BAOHANH= @bh ,GHICHU= @GhiChu ,IDIP= @IdIP ,MODEL= @model ,SERIAL= @seri ,MADONHANG= @ups  ,STATUS = @status " +
-                ",WIN= @win ,OFFICE= @OFFICE ,KASPERSKY= @KAS9 where ID= @id ";
+                ",WIN= @win ,OFFICE= @OFFICE ,KASPERSKY= @KAS9 ,GIATRIMT= @gtmt where ID= @id ";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] {MaMT, MAC,Domain,LOAIMT, NCC, NhaMay, phongban, nguoisd, matscd, ngaymua, hanbh, baohanh, ghichu,IdIP,Model,Serial,UPS
-               ,status,statusWIN,statusOFFICE,statusKAS,ID});
+               ,status,statusWIN,statusOFFICE,statusKAS,GiatriMay,ID});
             return data;
         }
+
 
         public int UpdateBH(int Id,bool baohanh)
         {
             string query = "update QLYMAYTINH set BAOHANH= @baohanh WHERE ID= @id ";
             int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { baohanh,Id});
+            return data;
+        }
+
+
+        public int UpdateMoDelSeriNgSD(string MaMT, string Model, string Serial, string NgSD)
+        {
+            string query = "update QLYMAYTINH set MODEL= @model ,SERIAL= @serial ,NGUOISD= @NgSD WHERE MAMT= @mamt ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { Model, Serial , NgSD , MaMT });
             return data;
         }
 

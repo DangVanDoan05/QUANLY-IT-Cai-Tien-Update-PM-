@@ -33,6 +33,7 @@ namespace DTO
             this.WIN = row["WIN"].ToString();
             this.OFFICE = row["OFFICE"].ToString();
             this.KASPERSKY = row["KASPERSKY"].ToString();
+            this.GIATRIMT = row["GIATRIMT"].ToString();
             this.STATUS = int.Parse(row["STATUS"].ToString());
         }
 
@@ -59,19 +60,10 @@ namespace DTO
 
         public QuanLyMayTinhDTO(string MaMT, string Model, string Serial, string NguoiSD)
         {       
-            this.MAMT = baohanh;
-            this.IP = ip;
-            this.MAC = mac;
-            this.DOMAIN = Domain;
-            this.LOAIMT = LoaiMT;
-            this.NCC = NCC;
-            this.NHAMAY = Nhamay;
-            this.PB = phongban;
-            this.NGUOISD = nguoisd;
-            this.MATSCD = mtscd;
-            this.NGAYMUA = ngaymua;
-            this.HANBH = hanbh;
-            this.GHICHU = ghichu;
+            this.MAMT = MaMT;         
+            this.MODEL = Model;          
+            this.SERIAL = Serial;
+            this.NGUOISD = NguoiSD;          
         }
 
 
@@ -112,11 +104,13 @@ namespace DTO
         private string gHICHU;
         private int iDIP;
         private string mODEL;
+        private string sERIAL;
         private string uPS;
         private int iDWIN;
         private string  kEYWIN;
         private int iDOFFICE;
         private string kEYOFFICE;
+        private string gIATRIMT;
         private int iDKAS;
         private string kEYKAS;
         private string wIN;
@@ -132,8 +126,7 @@ namespace DTO
         public string IP { get => iP; set => iP = value; }
         public string MAC { get => mAC; set => mAC = value; }
         public string LOAIMT { get => lOAIMT; set => lOAIMT = value; }
-        public string NCC { get => nCC; set => nCC = value; }
-       
+        public string NCC { get => nCC; set => nCC = value; }   
         public string NGUOISD { get => nGUOISD; set => nGUOISD = value; }
         public string MATSCD { get => mATSCD; set => mATSCD = value; }
         public string NGAYMUA { get => nGAYMUA; set => nGAYMUA = value; }
@@ -156,5 +149,7 @@ namespace DTO
         public string WIN { get => wIN; set => wIN = value; }
         public string OFFICE { get => oFFICE; set => oFFICE = value; }
         public string KASPERSKY { get => kASPERSKY; set => kASPERSKY = value; }
+        public string SERIAL { get => sERIAL; set => sERIAL = value; }
+        public string GIATRIMT { get => gIATRIMT; set => gIATRIMT = value; }
     }
 }

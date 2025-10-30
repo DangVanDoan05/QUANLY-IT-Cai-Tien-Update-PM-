@@ -34,7 +34,7 @@ namespace frmMain
 
         List<QuanLyMayTinhDTO> dsMT = new List<QuanLyMayTinhDTO>();
 
-
+        List<QuanLyMayTinhDTO> ListMTDTOMaMTModelSerial = new List<QuanLyMayTinhDTO>();
 
         private void OpenFile()
         {
@@ -274,6 +274,81 @@ namespace frmMain
                 MessageBox.Show($"Lỗi chưa chọn Sheet hoặc File chọn ko phải là dạng ExCell ");
             }
         }
+
+        private void ReadFileExcelMaMTSerial()
+        {
+            // Đi lấy từng dòng một để đọc File.
+
+            DataTable dt = new DataTable();
+            dt.Columns.Add("MAMT");
+            dt.Columns.Add("MODEL");
+            dt.Columns.Add("SERIAL");
+            dt.Columns.Add("NGUOISD");         
+            try
+            {
+                string ten = cbSheet.Text;
+                worksheet = package.Workbook.Worksheets[ten];
+
+                //   duyet tuan tu tu dong thu 2 den dong cuoi cung cua file, luu y file excel bat dau tu so 1
+
+                for (int i = worksheet.Dimension.Start.Row + 1; i <= worksheet.Dimension.End.Row; i++)
+                {
+                    //  biến j biểu thị cho một cột dữ liệu trong file Excell
+
+                    //   QLYMAYTINH(MAMT,MODEL,SERIAL,NGUOISD)
+                    int j = 2;
+                    string maMT = "";
+                    try
+                    {
+                        maMT = worksheet.Cells[i, j].Value.ToString();
+                    }
+                    catch
+                    {
+
+                    }
+                    j++;
+                    string model = "";
+                    try
+                    {
+                        model = worksheet.Cells[i, j].Value.ToString();
+                    }
+                    catch
+                    {
+
+                    }
+                    j++;
+                    string serial = "";
+                    try
+                    {
+                        serial = worksheet.Cells[i, j].Value.ToString();
+                    }
+                    catch
+                    {
+
+                    }
+                    j++;
+                    string nguoisd = "";
+                    try
+                    {
+                        nguoisd = worksheet.Cells[i, j].Value.ToString();
+                    }
+                    catch
+                    {
+
+                    }                                  
+                    dt.Rows.Add(maMT,model,serial,nguoisd);
+                    QuanLyMayTinhDTO mt = new QuanLyMayTinhDTO(maMT, model, serial, nguoisd);
+                    ListMTDTOMaMTModelSerial.Add(mt);
+                }
+                //  gridControl1.DataSource = dt;
+                gridControl1.DataSource = ListMTDTOMaMTModelSerial;
+                LockControl(false);
+            }
+            catch
+            {
+                MessageBox.Show($"Lỗi chưa chọn Sheet hoặc File chọn ko phải là dạng ExCell ");
+            }
+        }
         private void btnOpenFile_Click(object sender, EventArgs e)
         {
 
@@ -339,6 +414,7 @@ namespace frmMain
 
         private void btnXem_Click(object sender, EventArgs e)
         {
+            
             LockControl(false);
             btnXem.Enabled = true;
             ReadFileExcel();
@@ -391,6 +467,49 @@ namespace frmMain
         private void gridView1_CustomDrawRowIndicator_1(object sender, RowIndicatorCustomDrawEventArgs e)
         {
             ColumSTT.Instance.CustomDrawRowIndicator(e);
+        }
+
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            DialogResult kq = MessageBox.Show("Bạn muốn cập nhật Model,Serial và Người sử dụng lưu dữ liệu từ File Excell vào hệ thống! ", "THÔNG BÁO:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (kq == DialogResult.Yes)
+            {
+
+                // Đang tạm khóa , duyệt từng phần tử của List sau đó chạy câu lệnh Update
+
+                // Chạy câu lệnh để Update
+                int dem = 0;
+                foreach (QuanLyMayTinhDTO item in ListMTDTOMaMTModelSerial)
+                {
+
+                    // Chạy câu lệnh để Update theo từng mã một
+                    string MaMT = item.MAMT;
+                    string Model = item.MODEL;
+                    string Serial = item.SERIAL;
+                    string NgSuDung = item.NGUOISD;
+
+                   // Update cho từng máy 
+
+                    QuanLyMayTinhDAO.Instance.UpdateMoDelSeriNgSD(MaMT,Model,Serial,NgSuDung);
+                    dem++;                 
+                }
+                MessageBox.Show($"Đã cập nhật thông tin thành công cho {dem} máy tính. ", "THÀNH CÔNG: ");
+            }                    
+        }
+
+        private void btnXemSerial_Click(object sender, EventArgs e)
+        {
+
+            LockControl(false);
+            btnXem.Enabled = true;
+            ReadFileExcelMaMTSerial();
+        }
+
+        private void btnXemSerial_Click_1(object sender, EventArgs e)
+        {
+            LockControl(false);
+            btnXem.Enabled = true;
+            ReadFileExcelMaMTSerial();
         }
     }
 }

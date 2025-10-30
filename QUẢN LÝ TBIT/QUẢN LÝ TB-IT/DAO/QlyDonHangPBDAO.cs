@@ -100,12 +100,11 @@ namespace DAO
                 TimeSpan time = DateTime.Now - ngayDH;
                 int songay = time.Days;
 
-                if (songay > 15)
+                if (songay > 7)
                 {
                     LsQuaHan.Add(a);
                 }
             }
-
             return LsQuaHan;
         }
 
