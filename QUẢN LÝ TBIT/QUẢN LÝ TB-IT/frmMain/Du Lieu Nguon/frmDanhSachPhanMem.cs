@@ -84,8 +84,7 @@ namespace frmMain
                 txtChucnang.Enabled = false;
                 txtGhiChu.Enabled = false;
                 cbNCC.Enabled = false;
-
-
+                txtLinkHD.Enabled = false;
                 txtGhiChu.Enabled = false;
 
 
@@ -105,17 +104,16 @@ namespace frmMain
                 txtMaPhanMem.Enabled = true;
                 txtTenPhanMem.Enabled = true;
                 txtGioiHanSLKey.Enabled = false;
-
                 txtLicense.Enabled = true;
-                chkGHLC.Enabled = true;
-              
+                chkGHLC.Enabled = true;            
                 dtpNgayMua.Enabled = true;
                 radKhongTH.Enabled = true;
                 dtpHanSuDung.Enabled = false;
                 txtChucnang.Enabled = true;
+                txtLinkHD.Enabled = true;
                 txtGhiChu.Enabled = true;
                 cbNCC.Enabled = true;
-                txtGhiChu.Enabled = true;
+               
 
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
