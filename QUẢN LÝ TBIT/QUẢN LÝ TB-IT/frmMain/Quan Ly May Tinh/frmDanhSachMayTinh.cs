@@ -400,13 +400,12 @@ namespace frmMain
                             string Model = txtModel.Text;
                             string Serial = txtSoSeri.Text.Trim();
                             string UPS = txtUPS.Text;
+                          
                             string StatusWIN = cbWIN.SelectedValue.ToString();
-                            string StatusOffice = cbWIN.SelectedValue.ToString();
-                            string StatusKAS = cbWIN.SelectedValue.ToString();
+                            string StatusOffice = cbOffice.SelectedValue.ToString();
+                            string StatusKAS = cbKasper.SelectedValue.ToString();
                             string Giatrimay = txtGiaTriMay.Text.Trim();
                             int status = 0;
-
-
                             // TRẠNG THÁI MÁY OFFILINE
                             bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
 
@@ -509,12 +508,10 @@ namespace frmMain
                                 string Serial = txtSoSeri.Text.Trim();
                                 string UPS = txtUPS.Text;
                                 string StatusWIN = cbWIN.SelectedValue.ToString();
-                                string StatusOffice = cbWIN.SelectedValue.ToString();
-                                string StatusKAS = cbWIN.SelectedValue.ToString();
+                                string StatusOffice = cbOffice.SelectedValue.ToString();
+                                string StatusKAS = cbKasper.SelectedValue.ToString();
                                 string Giatrimay = txtGiaTriMay.Text.Trim();
                                 int status = 0;
-
-
                                 bool CheckMaMTExist = QuanLyMayTinhDAO.Instance.CheckMaMTExist(maMT);
 
                                 if (CheckMaMTExist)
