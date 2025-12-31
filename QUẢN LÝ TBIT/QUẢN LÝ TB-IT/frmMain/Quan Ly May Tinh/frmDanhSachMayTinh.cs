@@ -1037,29 +1037,66 @@ namespace frmMain
                     LsIDselected.Add(ID);
                     Count++;
                 }
+
                 if (Count == 1)
                 {
-
-                    LockControl(false);
+                   
                     QuanLyMayTinhDTO MTDTO = QuanLyMayTinhDAO.Instance.GetMTDTO(IDselected);
-                    // Load Combo cho Kasper
-                    // Đảo thứ tự 2 thằng lên cho nhau
-                    //Load Combobox Kasper, Tạm thời để vậy, sẽ suy nghĩ sau
-                    string KesKasPresent = MTDTO.KASPERSKY;
-                    StatusWinOfficeKASDTO Khong = new StatusWinOfficeKASDTO("Không");
-                    StatusWinOfficeKASDTO KasPreSent = new StatusWinOfficeKASDTO(KesKasPresent);
-                    List<StatusWinOfficeKASDTO> LsStatusKaper = new List<StatusWinOfficeKASDTO>();
-                    
-                    LsStatusKaper.Add(KasPreSent);
 
+                    // Load Combo cho Kasper
+
+                    // Đảo thứ tự 2 thằng lên cho nhau
+
+                   
+
+                    string KesKasPresent = MTDTO.KASPERSKY;   //Key hiện tại
+
+                    int SolgKassDD1 = QuanLyMayTinhDAO.Instance.TongKeyKasDD1();
+                    int SolgKassDD2 = QuanLyMayTinhDAO.Instance.TongKeyKasDD2();
+                    int SolgKassDDK = QuanLyMayTinhDAO.Instance.TongKeyKasDDK();
+
+                    StatusWinOfficeKASDTO KasDD1 = new StatusWinOfficeKASDTO("KasDD1");
+                    StatusWinOfficeKASDTO KasDD2 = new StatusWinOfficeKASDTO("KasDD2");
+                    StatusWinOfficeKASDTO KasDDK = new StatusWinOfficeKASDTO("KasDDK");
+
+                    List<StatusWinOfficeKASDTO> LsStatusKaper = new List<StatusWinOfficeKASDTO>();
+
+                    // Số lượng này sẽ lấy ở định mức trong bảng quản lý phần mềm 
+
+                   
+                    StatusWinOfficeKASDTO Khong = new StatusWinOfficeKASDTO("Không");
+                   
+                    StatusWinOfficeKASDTO KasPreSent = new StatusWinOfficeKASDTO(KesKasPresent);
+                   
+                    //Bắt đầu add vào List:
+
+                    LsStatusKaper.Add(KasPreSent);
                     LsStatusKaper.Add(Khong);
+
+                    int SLMaxKeyKasDD1 = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDD1").SLMAXKEY;
+
+                    if (SolgKassDD1 < SLMaxKeyKasDD1) // Nếu số lượng quá 50 máy
+                    {
+                        LsStatusKaper.Add(KasDD1);
+                    }
+                    int SLMaxKeyKasDD2 = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDD2").SLMAXKEY;
+                    if (SolgKassDD2 < SLMaxKeyKasDD2) // Nếu số lượng quá 40 máy
+                    {
+                        LsStatusKaper.Add(KasDD2);
+                    }
+
+                    int SLMaxKeyKasDDK = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDDK").SLMAXKEY;
+                    if (SolgKassDDK < SLMaxKeyKasDDK) // Nếu số lượng quá 20 máy
+                    {
+                        LsStatusKaper.Add(KasDDK);
+                    }
 
                     // Load Combobox
                     cbKasper.DataSource = LsStatusKaper;
                     cbKasper.DisplayMember = "STATUS";
                     cbKasper.ValueMember = "STATUS";
-
                     LoadLicense();
+                    LockControl(false);
                     luu = 2;
                 }
                 else
