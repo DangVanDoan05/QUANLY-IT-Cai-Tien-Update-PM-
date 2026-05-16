@@ -36,15 +36,22 @@ namespace frmMain
             LockControl(true);
             LoadData();
             CleanText();
-            LoadCBX();
+         
             IDselected = 0;
+            LoadEditlookup();
         }
 
-        private void LoadCBX()
+       
+
+        private void LoadEditlookup()
         {
-            cbNCC.DataSource = NhaCungCapDAO.Instance.GetListNCC();
-            cbNCC.DisplayMember = "MANCC";
-            cbNCC.ValueMember = "MANCC";
+            sglLoaiPM.Properties.DataSource = LoaiPhanMemDAO.Instance.GetListLoaiPM();
+            sglLoaiPM.Properties.DisplayMember = "TENLOAIPM";
+            sglLoaiPM.Properties.ValueMember = "ID";
+
+            sglPhienBanPM.Properties.DataSource = PhienBanPMDAO.Instance.GetListPhienBanPM();
+            sglPhienBanPM.Properties.DisplayMember = "TENPHIENBANPM";
+            sglPhienBanPM.Properties.ValueMember = "ID";
         }
 
 
@@ -79,11 +86,12 @@ namespace frmMain
                 chkGHLC.Enabled = false;
                 txtLicense.Enabled = false;
                 dtpNgayMua.Enabled = false;
+                sglLoaiPM.Enabled = false;
                 radKhongTH.Enabled = false;
                 dtpHanSuDung.Enabled = false;
                 txtChucnang.Enabled = false;
                 txtGhiChu.Enabled = false;
-                cbNCC.Enabled = false;
+                txtNCC.Enabled = false;
                 txtLinkHD.Enabled = false;
                 txtGhiChu.Enabled = false;
 
@@ -112,7 +120,8 @@ namespace frmMain
                 txtChucnang.Enabled = true;
                 txtLinkHD.Enabled = true;
                 txtGhiChu.Enabled = true;
-                cbNCC.Enabled = true;
+                txtNCC.Enabled = true;
+                sglLoaiPM.Enabled = true;
                
 
                 btnThem.Enabled = false;
@@ -155,7 +164,8 @@ namespace frmMain
                     string hansd = dtpHanSuDung.Value.ToString("dd/MM/yyyy");
                     string ghichu = txtGhiChu.Text;
                     string chucnang = txtChucnang.Text;
-                    string ncc = cbNCC.Text;
+                    int IDLoaiPM =int.Parse( sglLoaiPM.EditValue.ToString());
+                    string ncc = txtNCC.Text;
                     int status = 0;
                     bool CheckMaPMExist = QLPhanMemDAO.Instance.CheckMaPMExist(maPM);
                     if (CheckMaPMExist)
@@ -164,7 +174,7 @@ namespace frmMain
                     }
                     else
                     {                      
-                        QLPhanMemDAO.Instance.Insert(maPM,tenPM,slmaxKey,license, ngaymua, hansd, ncc,chucnang, ghichu,status);
+                        QLPhanMemDAO.Instance.Insert(maPM,tenPM,slmaxKey,license, ngaymua, hansd, ncc,chucnang, ghichu,status,IDLoaiPM);
                         MessageBox.Show($" Thêm mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);                      
                         them = false;
                         LoadControl();
@@ -181,7 +191,8 @@ namespace frmMain
                     string hansd = dtpHanSuDung.Value.ToString("dd/MM/yyyy");
                     string ghichu = txtGhiChu.Text;
                     string ChucNang = txtChucnang.Text;
-                    string ncc = cbNCC.Text;
+                    int IDLoaiPM = int.Parse(sglLoaiPM.EditValue.ToString());
+                    string ncc = txtNCC.Text;
                     int GioiHanLC = 0;
                     if (chkGHLC.Checked)
                     {
@@ -200,7 +211,7 @@ namespace frmMain
                         DialogResult kq = MessageBox.Show($"Bạn muốn sửa thông tin của mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, slmaxKey,license, ngaymua, hansd, ncc,ChucNang, ghichu,GioiHanLC);
+                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, slmaxKey,license, ngaymua, hansd, ncc,ChucNang, ghichu,GioiHanLC,IDLoaiPM);
                             MessageBox.Show($" Sửa thông tin mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -331,7 +342,7 @@ namespace frmMain
                 txtGioiHanSLKey.Text = gridView1.GetFocusedRowCellValue("SLMAXKEY").ToString();
                 dtpNgayMua.Value = DateTime.Parse(gridView1.GetFocusedRowCellValue("NGAYMUA").ToString());
                 dtpHanSuDung.Value = DateTime.Parse(gridView1.GetFocusedRowCellValue("HANSD").ToString());
-                cbNCC.SelectedValue = gridView1.GetFocusedRowCellValue("NCC").ToString();
+                txtNCC.Text = gridView1.GetFocusedRowCellValue("NCC").ToString();
             }
             catch
             {

@@ -48,7 +48,7 @@ namespace frmMain
 
         private void btnDnDD1_Click(object sender, EventArgs e)
         {
-           DataProvider.Instance.strcon = @"Data Source=192.168.4.48,1433;Initial Catalog=QLIT-20-10-2025;User ID=sa;Password=P@ssword@123456";
+           DataProvider.Instance.strcon = @"Data Source=DM-DI06\SQLEXPRESS;Initial Catalog=csdl-30-10-2025;Integrated Security=True";
            // In Home
            //  DataProvider.Instance.strcon = @"server=192.168.0.10;uid=sa;database=QLTBIT-19-10-2025;password=12345678;";
             string tknhap = txtTaiKhoan.Text.Trim();

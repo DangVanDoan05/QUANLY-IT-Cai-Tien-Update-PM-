@@ -165,5 +165,10 @@ namespace frmMain.Quan_Ly_May_Tinh
         {
             LoadControl();
         }
+
+        private void frmLoaiMT_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

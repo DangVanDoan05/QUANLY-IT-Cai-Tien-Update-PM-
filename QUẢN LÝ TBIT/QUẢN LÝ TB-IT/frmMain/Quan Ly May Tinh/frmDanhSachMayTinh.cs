@@ -160,24 +160,24 @@ namespace frmMain
 
 
             gridControl1.DataSource = QuanLyMayTinhDAO.Instance.GetTable();
-            lblTongSoMT.Text = QuanLyMayTinhDAO.Instance.TongMT() + "";
-            string maMT = txtMaMT.Text;
+          //  lblTongSoMT.Text = QuanLyMayTinhDAO.Instance.TongMT() + "";
+          //  string maMT = txtMaMT.Text;
           
             radDHCP.Checked = true;
 
             //Load Định mức:
 
-            btnLimitKasDD1.Text =  QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDD1").SLMAXKEY+"" ;
-            btnLimitKasDD2.Text = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDD2").SLMAXKEY +"";
-            btnLimitKasDDK.Text = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDDK").SLMAXKEY +"";
+          //  btnLimitKasDD1.Text =  QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDD1").SLMAXKEY+"" ;
+           // btnLimitKasDD2.Text = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDD2").SLMAXKEY +"";
+           // btnLimitKasDDK.Text = QLPhanMemDAO.Instance.GetPMDTObyMaPM("KasDDK").SLMAXKEY +"";
 
             //Load Số lượng key Kasper đã add cho các máy tính xem có bị quá giới hạn hay không.
 
-            lblSlKassDD1.Text ="SL máy cài KassDD1: "+ QuanLyMayTinhDAO.Instance.TongKeyKasDD1() + "  PCS";
+          //  lblSlKassDD1.Text ="SL máy cài KassDD1: "+ QuanLyMayTinhDAO.Instance.TongKeyKasDD1() + "  PCS";
 
-            lblSlKassDD2.Text = "SL máy cài KassDD2: " + QuanLyMayTinhDAO.Instance.TongKeyKasDD2() + "  PCS";
+          //  lblSlKassDD2.Text = "SL máy cài KassDD2: " + QuanLyMayTinhDAO.Instance.TongKeyKasDD2() + "  PCS";
 
-            lblSlKassDDK.Text = "SL máy cài KassDDK: " + QuanLyMayTinhDAO.Instance.TongKeyKasDDK() + "  PCS";
+          //  lblSlKassDDK.Text = "SL máy cài KassDDK: " + QuanLyMayTinhDAO.Instance.TongKeyKasDDK() + "  PCS";
 
 
 

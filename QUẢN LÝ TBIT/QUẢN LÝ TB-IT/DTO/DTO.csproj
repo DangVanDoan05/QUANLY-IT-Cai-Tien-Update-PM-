@@ -46,6 +46,8 @@
     <Compile Include="BoPhanDTO.cs" />
     <Compile Include="ChucVuDTO.cs" />
     <Compile Include="DsCaiDatDTO.cs" />
+    <Compile Include="LoaiPhanMemDTO.cs" />
+    <Compile Include="PhienBanPMDTO.cs" />
     <Compile Include="QLLicenseDTO.cs" />
     <Compile Include="QLPhanMemDTO.cs" />
     <Compile Include="QlyIPDTO.cs" />

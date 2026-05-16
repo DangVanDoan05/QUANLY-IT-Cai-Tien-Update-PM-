@@ -33,7 +33,7 @@ namespace DTO
             this.WIN = row["WIN"].ToString();
             this.OFFICE = row["OFFICE"].ToString();
             this.KASPERSKY = row["KASPERSKY"].ToString();
-            this.GIATRIMT = row["GIATRIMT"].ToString();
+           
             this.STATUS = int.Parse(row["STATUS"].ToString());
         }
 

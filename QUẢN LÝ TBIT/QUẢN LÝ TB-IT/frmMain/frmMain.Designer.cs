@@ -131,6 +131,7 @@
             this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
             this.lblCommonUser = new System.Windows.Forms.Label();
+            this.btnLoaiPhanMem = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tabbedView1)).BeginInit();
@@ -219,9 +220,10 @@
             this.btnTonLKTH,
             this.btnTKTH,
             this.btnChiTietUpdatePM,
-            this.btnQLKey});
+            this.btnQLKey,
+            this.btnLoaiPhanMem});
             this.ribbon.Location = new System.Drawing.Point(0, 0);
-            this.ribbon.MaxItemId = 78;
+            this.ribbon.MaxItemId = 79;
             this.ribbon.Name = "ribbon";
             this.ribbon.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.rpYCKT,
@@ -1008,7 +1010,8 @@
             this.rpgQuanLyMT.ItemLinks.Add(this.btnLoaiMT, true);
             this.rpgQuanLyMT.ItemLinks.Add(this.btnDanhSachPM, true);
             this.rpgQuanLyMT.ItemLinks.Add(this.btnBaoDuongSuaChua, true);
-            this.rpgQuanLyMT.ItemLinks.Add(this.btnQlyIP, true);
+            this.rpgQuanLyMT.ItemLinks.Add(this.btnLoaiPhanMem, true);
+            this.rpgQuanLyMT.ItemLinks.Add(this.btnQlyIP);
             this.rpgQuanLyMT.Name = "rpgQuanLyMT";
             this.rpgQuanLyMT.Text = "Qly máy tính";
             // 
@@ -1051,6 +1054,14 @@
             this.lblCommonUser.Name = "lblCommonUser";
             this.lblCommonUser.Size = new System.Drawing.Size(0, 15);
             this.lblCommonUser.TabIndex = 3;
+            // 
+            // btnLoaiPhanMem
+            // 
+            this.btnLoaiPhanMem.Caption = "Loại phần mềm";
+            this.btnLoaiPhanMem.Id = 78;
+            this.btnLoaiPhanMem.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.Image")));
+            this.btnLoaiPhanMem.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("barButtonItem4.ImageOptions.LargeImage")));
+            this.btnLoaiPhanMem.Name = "btnLoaiPhanMem";
             // 
             // frmMain
             // 
@@ -1177,5 +1188,6 @@
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup rpgQlyVTTH;
         private DevExpress.XtraBars.BarButtonItem btnChiTietUpdatePM;
         private DevExpress.XtraBars.BarButtonItem btnQLKey;
+        private DevExpress.XtraBars.BarButtonItem btnLoaiPhanMem;
     }
 }

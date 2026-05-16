@@ -22,7 +22,7 @@ namespace DTO
             this.LICENSE = row["LICENSE"].ToString();
             this.NGAYMUA = row["NGAYMUA"].ToString();
             this.HANSD = row["HANSD"].ToString();
-            this.LINKHD = row["LINKHD"].ToString();
+            this.LINKHD = "";
             this.NCC = row["NCC"].ToString();
             this.CHUCNANG = row["CHUCNANG"].ToString();
             this.GHICHU = row["GHICHU"].ToString();

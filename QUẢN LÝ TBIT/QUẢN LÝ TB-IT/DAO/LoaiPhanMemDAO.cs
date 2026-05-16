@@ -8,39 +8,33 @@ using DTO;
 
 namespace DAO
 {
-    public class LoaiMayTinhDAO
+    public class LoaiPhanMemDAO
     {
-        private static LoaiMayTinhDAO instance;
+        private static LoaiPhanMemDAO instance;
 
-        public static LoaiMayTinhDAO Instance
+        public static LoaiPhanMemDAO Instance
         {
-            get { if (instance == null) instance = new LoaiMayTinhDAO(); return LoaiMayTinhDAO.instance; }
-            private set { LoaiMayTinhDAO.instance = value; }
+            get { if (instance == null) instance = new LoaiPhanMemDAO(); return LoaiPhanMemDAO.instance; }
+            private set { LoaiPhanMemDAO.instance = value; }
         }
-        private LoaiMayTinhDAO() { }
+        private LoaiPhanMemDAO() { }
 
         // HAM LAY BANG
-        public DataTable GetTable()
-        {
-            string query = "select * from LOAIMAYTINH";
-            DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            return data;
-        }
+      
+       
 
-
-        public List<LoaiMayTinhDTO> GetListLoaiMT()
+        public List<LoaiPhanMemDTO> GetListLoaiPM()
         {
-            string query = "select* from LOAIMAYTINH";
+            string query = "select* from LOAIPHANMEM";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
-            List<LoaiMayTinhDTO> lsv = new List<LoaiMayTinhDTO>();
+            List<LoaiPhanMemDTO> lsv = new List<LoaiPhanMemDTO>();
             foreach (DataRow item in data.Rows)
             {
-                LoaiMayTinhDTO loaiMTDTO = new LoaiMayTinhDTO(item);
-                lsv.Add(loaiMTDTO);
+                LoaiPhanMemDTO loaiDTO = new LoaiPhanMemDTO(item);
+                lsv.Add(loaiDTO);
             }
             return lsv;
         }
-
 
         public int CheckLoai(string tenloaiMT)
         {

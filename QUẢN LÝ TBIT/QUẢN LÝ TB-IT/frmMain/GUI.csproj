@@ -104,6 +104,12 @@
     <Compile Include="Du Lieu Nguon\frmChucVu.Designer.cs">
       <DependentUpon>frmChucVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="Du Lieu Nguon\frmLoaiPhanMem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Du Lieu Nguon\frmLoaiPhanMem.Designer.cs">
+      <DependentUpon>frmLoaiPhanMem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Du Lieu Nguon\frmQlyIP.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -459,6 +465,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Du Lieu Nguon\frmChucVu.resx">
       <DependentUpon>frmChucVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Du Lieu Nguon\frmLoaiPhanMem.resx">
+      <DependentUpon>frmLoaiPhanMem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Du Lieu Nguon\frmQlyIP.resx">
       <DependentUpon>frmQlyIP.cs</DependentUpon>
