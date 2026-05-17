@@ -48,9 +48,9 @@ namespace frmMain
 
         private void btnDnDD1_Click(object sender, EventArgs e)
         {
-           DataProvider.Instance.strcon = @"Data Source=DM-DI06\SQLEXPRESS;Initial Catalog=csdl-30-10-2025;Integrated Security=True";
-           // In Home
-           //  DataProvider.Instance.strcon = @"server=192.168.0.10;uid=sa;database=QLTBIT-19-10-2025;password=12345678;";
+            // DataProvider.Instance.strcon = @"Data Source=DM-DI06\SQLEXPRESS;Initial Catalog=csdl-30-10-2025;Integrated Security=True";
+            // In Home
+            DataProvider.Instance.strcon = @"server=192.168.0.10;uid=sa;database=csdl-16-05-2026(2);password=12345678;";
             string tknhap = txtTaiKhoan.Text.Trim();
             string tk = tknhap.ToLower();
             string mkNhap = txtMatKhau.Text.Trim();

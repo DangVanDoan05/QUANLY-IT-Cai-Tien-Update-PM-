@@ -69,7 +69,7 @@ namespace DAO
 
         public DataTable GetTable()
         {
-            string query = "select * from QLYPHANMEM, LOAIPHANMEM where IDLOAIPM=LOAIPHANMEM.ID";
+            string query = "select * from QLYPHANMEM, LOAIPHANMEM,PHIENBANPM where IDLOAIPM=LOAIPHANMEM.ID and IDPHIENBANPM=PHIENBANPM.ID";
             DataTable data = DataProvider.Instance.ExecuteQuery(query);
             return data;
         }
