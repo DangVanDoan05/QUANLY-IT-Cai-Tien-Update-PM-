@@ -372,6 +372,8 @@
             this.gridColumn8.Caption = "ID Mã MT";
             this.gridColumn8.FieldName = "ID";
             this.gridColumn8.Name = "gridColumn8";
+            this.gridColumn8.Visible = true;
+            this.gridColumn8.VisibleIndex = 4;
             // 
             // gridColumn1
             // 

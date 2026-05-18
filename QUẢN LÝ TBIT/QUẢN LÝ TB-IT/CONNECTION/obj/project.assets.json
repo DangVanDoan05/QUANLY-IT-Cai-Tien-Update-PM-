@@ -3827,25 +3827,20 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\IT06\\.nuget\\packages\\": {},
-    "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages": {}
+    "C:\\Users\\admin\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\PHẦN MỀM IT 18-05-2026\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\CONNECTION.csproj",
+      "projectUniqueName": "D:\\PHẦN MỀM QUẢN LÝ IT 18-05-2026\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\CONNECTION.csproj",
       "projectName": "CONNECTION",
-      "projectPath": "D:\\PHẦN MỀM IT 18-05-2026\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\CONNECTION.csproj",
-      "packagesPath": "C:\\Users\\IT06\\.nuget\\packages\\",
-      "outputPath": "D:\\PHẦN MỀM IT 18-05-2026\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\obj\\",
+      "projectPath": "D:\\PHẦN MỀM QUẢN LÝ IT 18-05-2026\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\CONNECTION.csproj",
+      "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
+      "outputPath": "D:\\PHẦN MỀM QUẢN LÝ IT 18-05-2026\\QUANLY-IT-Cai-Tien-Update-PM-\\QUẢN LÝ TBIT\\QUẢN LÝ TB-IT\\CONNECTION\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\DevExpress 25.2\\Components\\Offline Packages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\IT06\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 19.1.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 25.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3854,7 +3849,6 @@
       "sources": {
         "C:\\Program Files (x86)\\DevExpress 19.1\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\DevExpress 25.2\\Components\\System\\Components\\Packages": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
