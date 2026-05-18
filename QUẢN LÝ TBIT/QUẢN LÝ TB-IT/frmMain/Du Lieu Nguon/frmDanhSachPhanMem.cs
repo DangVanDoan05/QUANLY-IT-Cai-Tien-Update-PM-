@@ -16,7 +16,7 @@ using static DevExpress.Utils.Svg.CommonSvgImages;
 using DevExpress.XtraGrid.Columns;
 using DTO;
 using Microsoft.Office.Interop.Excel;
-
+using DevExpress.XtraGrid.Views.Grid;
 
 namespace frmMain
 {
@@ -87,6 +87,7 @@ namespace frmMain
                 txtLicense.Enabled = false;
                 dtpNgayMua.Enabled = false;
                 sglLoaiPM.Enabled = false;
+                sglPhienBanPM.Enabled = false;
                 radKhongTH.Enabled = false;
                 dtpHanSuDung.Enabled = false;
                 txtChucnang.Enabled = false;
@@ -122,7 +123,8 @@ namespace frmMain
                 txtGhiChu.Enabled = true;
                 txtNCC.Enabled = true;
                 sglLoaiPM.Enabled = true;
-               
+                sglPhienBanPM.Enabled = true;
+
 
                 btnThem.Enabled = false;
                 btnSua.Enabled = false;
@@ -165,6 +167,7 @@ namespace frmMain
                     string ghichu = txtGhiChu.Text;
                     string chucnang = txtChucnang.Text;
                     int IDLoaiPM =int.Parse( sglLoaiPM.EditValue.ToString());
+                    int IDPhienBanPM= int.Parse(sglPhienBanPM.EditValue.ToString());
                     string ncc = txtNCC.Text;
                     int status = 0;
                     bool CheckMaPMExist = QLPhanMemDAO.Instance.CheckMaPMExist(maPM);
@@ -174,7 +177,7 @@ namespace frmMain
                     }
                     else
                     {                      
-                        QLPhanMemDAO.Instance.Insert(maPM,tenPM,slmaxKey,license, ngaymua, hansd, ncc,chucnang, ghichu,status,IDLoaiPM);
+                        QLPhanMemDAO.Instance.Insert(maPM,tenPM,slmaxKey,license, ngaymua, hansd, ncc,chucnang, ghichu,status,IDLoaiPM,IDPhienBanPM);
                         MessageBox.Show($" Thêm mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);                      
                         them = false;
                         LoadControl();
@@ -192,6 +195,7 @@ namespace frmMain
                     string ghichu = txtGhiChu.Text;
                     string ChucNang = txtChucnang.Text;
                     int IDLoaiPM = int.Parse(sglLoaiPM.EditValue.ToString());
+                    int IDPhienBanPM = int.Parse(sglPhienBanPM.EditValue.ToString());
                     string ncc = txtNCC.Text;
                     int GioiHanLC = 0;
                     if (chkGHLC.Checked)
@@ -211,7 +215,7 @@ namespace frmMain
                         DialogResult kq = MessageBox.Show($"Bạn muốn sửa thông tin của mã phần mềm {maPM}", "Thông Báo:", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                         if (kq == DialogResult.Yes)
                         {
-                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, slmaxKey,license, ngaymua, hansd, ncc,ChucNang, ghichu,GioiHanLC,IDLoaiPM);
+                            QLPhanMemDAO.Instance.Update(IDselected,maPM, tenPM, slmaxKey,license, ngaymua, hansd, ncc,ChucNang, ghichu,GioiHanLC,IDLoaiPM,IDPhienBanPM);
                             MessageBox.Show($" Sửa thông tin mã phần mềm {maPM} thành công! ", "Thành công!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                     }
@@ -570,6 +574,20 @@ namespace frmMain
            
         }
 
+        private void gridView1_RowCellStyle(object sender, DevExpress.XtraGrid.Views.Grid.RowCellStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+            int IDLOAIPM =int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["IDLOAIPM"]).ToString());
+                                 
+            if (IDLOAIPM==1) // Loại phần mềm yêu cầu bản quyền
+            {
+                e.Appearance.BackColor = btnYCBanQuyen.Appearance.BackColor;              
+            }       
+            if (IDLOAIPM == 1)
+            {
+                e.Appearance.BackColor = btnKhongYCBQ.Appearance.BackColor;
+            }
+        }
     }
 
 }

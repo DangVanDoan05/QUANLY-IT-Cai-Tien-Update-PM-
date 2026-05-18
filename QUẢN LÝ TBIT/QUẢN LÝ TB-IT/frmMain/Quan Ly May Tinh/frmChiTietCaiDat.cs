@@ -23,20 +23,21 @@ namespace frmMain
             LoadControl();
         }
 
-        int IDMTsuaTT = 0;
+        int IDMTselected = 0;
         bool them;
         int idquyen = CommonUser.Quyen;
         string MaCVUserLogon = CommonUser.UserStatic.CHUCVU;
 
         List<int> LsIDPMSua = new List<int>();
+        List<int> LsIDPMCaiTrenMT = new List<int>();
 
         private void LoadControl()
         {
             LockControl(true);
-            IDMTsuaTT = 0;
+            IDMTselected = 0;
             them = false;
             gcDsMayTinh.DataSource = QuanLyMayTinhDAO.Instance.GetListMaMT();
-            gcDsPhanMem.DataSource = QLPhanMemDAO.Instance.GetListPMDTOKoGH();// Không có Key thì không hiện lên phần mềm ở trên này
+            gcDsPhanMem.DataSource = QLPhanMemDAO.Instance.GetTable();// Không có Key thì không hiện lên phần mềm ở trên này
             LsIDPMSua.Clear();
             txtGhiChu.Clear();
         }
@@ -48,7 +49,7 @@ namespace frmMain
                 dtpNgayCaiDat.Enabled = false;
                 txtGhiChu.Enabled = false;
                 gcDsMayTinh.Enabled = true;
-                gcDsPhanMem.Enabled = false;
+                gcDsPhanMem.Enabled = true;
 
                 btnThem.Enabled = true;
                 btnSua.Enabled = true;
@@ -124,17 +125,15 @@ namespace frmMain
       
         private void btnCaiDatPM_Click(object sender, EventArgs e)
         {
+            //CHƯA CÓ THÔNG TIN THÌ THÊM, ĐÃ CÓ THÔNG TIN THÌ SỬA.
             if (idquyen >= 2)
             {
                 #region  Thêm thông tin cài đặt phần mềm.
-
-
 
                 int DemMT = 0;
 
                 // LẤY ID cùa máy tính.
                 List<int> ListIDMaMT = new List<int>();
-
 
                 foreach (var item in gridView1.GetSelectedRows())
                 {
@@ -143,15 +142,28 @@ namespace frmMain
                     ListIDMaMT.Add(IDMaMT);
                 }
 
-                if (DemMT == 0)
+                if (DemMT <= 0||DemMT>1)
                 {
-                    MessageBox.Show("Chưa chọn máy tính.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Chưa chọn máy tính Hoặc chọn quá 1 máy", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     LoadControl();
                 }
-                else
+                else // Đảm bảo đã chọn một máy.
                 {
-                    LockControl(false);
-                    them = true;
+                    foreach (var item in gridView1.GetSelectedRows())
+                    {
+                         IDMTselected = int.Parse(gridView1.GetRowCellValue(item, "ID").ToString());
+                    }
+                    bool CheckPMCDtrenMay = DsCaiDatDAO.Instance.CheckCDPM(IDMTselected);
+                    if (CheckPMCDtrenMay) // Đã có thông tin thì báo hãy chọn nút sửa.
+                    {
+                        MessageBox.Show("Máy đã có thông tin cài đặt, Hãy chọn nút sửa.", "Lỗi:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LoadControl();
+                    }
+                    else // Chưa có thông tin thì thêm
+                    {
+                        LockControl(false);
+                        them = true;
+                    }
                 }
 
 
@@ -228,7 +240,6 @@ namespace frmMain
                     {
                         LsIDPMSua.Add(item.IDPM);
                     }
-
 
                 }
 
@@ -389,27 +400,75 @@ namespace frmMain
 
         private void gridView2_RowCellStyle(object sender, RowCellStyleEventArgs e)
         {
-            if (LsIDPMSua.Count > 0)
+           
+
+        }
+
+        private void gridView1_FocusedRowChanged(object sender, DevExpress.XtraGrid.Views.Base.FocusedRowChangedEventArgs e)
+        {
+           
+                int idMayTinh = Convert.ToInt32(gridView1.GetRowCellValue(e.FocusedRowHandle, "ID"));
+                LsIDPMCaiTrenMT = DsCaiDatDAO.Instance.GetLsPMcaiMT(idMayTinh)
+                                    .Select(x => x.IDPM).ToList();
+
+                gridView2.RefreshData();
+
+                // Tích chọn dòng focus
+                gridView1.SetRowCellValue(e.FocusedRowHandle, "IsChecked", true);
+            
+
+            // Lấy danh sách phần mềm đã cài theo ID
+            LsIDPMCaiTrenMT.Clear(); // Xóa hết phần tử nếu còn phần tử 
+          
+            LsIDPMCaiTrenMT = new List<int>();
+            List<DsCaiDatDTO> List1 = DsCaiDatDAO.Instance.GetLsPMcaiMT(idMayTinh);
+            foreach (DsCaiDatDTO item in List1)
             {
-                // đặt biến vào để khóa sự kiện.
-                GridView view = sender as GridView;              
-                int IDPM = int.Parse(view.GetRowCellValue(e.RowHandle, view.Columns["ID"]).ToString());                                       
-               
+                int IDMaPM = item.IDPM;
+                LsIDPMCaiTrenMT.Add(IDMaPM);
+            }
+            // Refresh lại grid bên phải để áp dụng màu
+            gridView2.RefreshData();
 
-                if (LsIDPMSua.Contains(IDPM))
-                {
-                    e.Appearance.BackColor = btnPMDC.Appearance.BackColor;
-                }
-                else
-                {
-                  
+         
+        }
 
-                }
+        private void gridView2_RowStyle(object sender, RowStyleEventArgs e)
+        {
+            GridView view = sender as GridView;
+
+            // Lấy giá trị ID của dòng hiện tại
+            int IDPM = Convert.ToInt32(view.GetRowCellValue(e.RowHandle, "ID"));
+
+            // Nếu ID này nằm trong danh sách phần mềm đã cài
+            if (LsIDPMCaiTrenMT.Contains(IDPM))
+            {
+                e.Appearance.BackColor = Color.OrangeRed;
+                e.Appearance.ForeColor = Color.Black;
+
+                // Tích chọn checkbox cho dòng này
+                view.SetRowCellValue(e.RowHandle, "IsChecked", true);
+            }
+            else
+            {
+                view.SetRowCellValue(e.RowHandle, "IsChecked", false);
             }
 
 
+        }
 
+        private void gridView1_RowStyle(object sender, RowStyleEventArgs e)
+        {
+           
+                GridView view = sender as GridView;
 
+                // Kiểm tra nếu đây là dòng đang được chọn (FocusedRow)
+                if (e.RowHandle == view.FocusedRowHandle)
+                {
+                    e.Appearance.BackColor = Color.Red; // màu nền tùy chọn
+                    e.Appearance.ForeColor = Color.Black;        // màu chữ tùy chọn
+                }
+            
 
         }
     }

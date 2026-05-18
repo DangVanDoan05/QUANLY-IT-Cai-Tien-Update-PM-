@@ -115,16 +115,13 @@ namespace DAO
         {
             string query = " select * from DSCAIDAT where IDMAMT= @IDMT ";
             DataTable data = DataProvider.Instance.ExecuteQuery(query, new object[] { IDMayTinh });
-            List<DsCaiDatDTO> LsMaMT = new List<DsCaiDatDTO>();
+            List<DsCaiDatDTO> LsDSCD = new List<DsCaiDatDTO>();
             foreach (DataRow item in data.Rows)
             {
-                DsCaiDatDTO a = new DsCaiDatDTO(item);
-               
-                    LsMaMT.Add(a);
-                
-
+                DsCaiDatDTO a = new DsCaiDatDTO(item);             
+                LsDSCD.Add(a);               
             }         
-            return LsMaMT;
+            return LsDSCD;
         }
 
 

@@ -160,7 +160,7 @@ namespace frmMain
 
 
             gridControl1.DataSource = QuanLyMayTinhDAO.Instance.GetTable();
-          //  lblTongSoMT.Text = QuanLyMayTinhDAO.Instance.TongMT() + "";
+            lblTongSoMT.Text = QuanLyMayTinhDAO.Instance.TongMT() + "";
           //  string maMT = txtMaMT.Text;
           
             radDHCP.Checked = true;

@@ -91,20 +91,20 @@ namespace DAO
 
         // HAM THEM
 
-        public int Insert(string MaPM, string TenPM,int SlMaxKey,string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status,int IDLoaiPM)
+        public int Insert(string MaPM, string TenPM,int SlMaxKey,string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status,int IDLoaiPM, int IDPhienBanPM)
         {
-            string query = "insert QLYPHANMEM(MAPM,TENPM,SLMAXKEY,LICENSE,NGAYMUA,HANSD,NCC,CHUCNANG,GHICHU,STATUS,IDLOAIPM)" +
-                " values( @ma , @ten , @SLMAX , @LICENSE , @ngmua , @hsd , @ncc , @CN , @note , @status , @idloaiPM )";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM,SlMaxKey,license, ngmua, hansd, ncc, Chucnang, ghichu, status, IDLoaiPM });
+            string query = "insert QLYPHANMEM(MAPM,TENPM,SLMAXKEY,LICENSE,NGAYMUA,HANSD,NCC,CHUCNANG,GHICHU,STATUS,IDLOAIPM, IDPHIENBANPM)" +
+                " values( @ma , @ten , @SLMAX , @LICENSE , @ngmua , @hsd , @ncc , @CN , @note , @status , @idloaiPM , @idPhienBanPM )";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM,SlMaxKey,license, ngmua, hansd, ncc, Chucnang, ghichu, status, IDLoaiPM,IDPhienBanPM });
             return data;
 
         }
 
         // HAM SUA
-        public int Update(int ID,string MaPM, string TenPM, int SlMaxKey, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status, int IDLoaiPM)
+        public int Update(int ID,string MaPM, string TenPM, int SlMaxKey, string license, string ngmua, string hansd, string ncc, string Chucnang, string ghichu, int status, int IDLoaiPM, int IDPhienBanPM)
         {
-            string query = "UPDATE	QLYPHANMEM SET MAPM= @ma ,TENPM= @tenpm ,SLMAXKEY= @SLMAX ,LICENSE= @lisen ,NGAYMUA= @ngmua ,HANSD= @han ,NCC= @ncc ,CHUCNANG= @CN ,GHICHU= @ghichu ,STATUS= @status ,IDLOAIPM= @IdLoaiPM  WHERE ID= @id  ";
-            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM, SlMaxKey, license, ngmua, hansd, ncc, Chucnang, ghichu,status, IDLoaiPM,ID });
+            string query = "UPDATE	QLYPHANMEM SET MAPM= @ma ,TENPM= @tenpm ,SLMAXKEY= @SLMAX ,LICENSE= @lisen ,NGAYMUA= @ngmua ,HANSD= @han ,NCC= @ncc ,CHUCNANG= @CN ,GHICHU= @ghichu ,STATUS= @status ,IDLOAIPM= @IdLoaiPM ,IDPHIENBANPM= @idPhienBanPM  WHERE ID= @id  ";
+            int data = DataProvider.Instance.ExecuteNonQuery(query, new object[] { MaPM, TenPM, SlMaxKey, license, ngmua, hansd, ncc, Chucnang, ghichu,status, IDLoaiPM,IDPhienBanPM,ID });
             return data;
         }
 
